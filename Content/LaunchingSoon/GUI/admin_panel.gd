@@ -1,7 +1,6 @@
 extends Control
 class_name AdminPanel
 
-@export var base_place_label:Label
 @export var progress_label:Label
 
 @export var score_label:NumberLabel
@@ -11,10 +10,7 @@ class_name AdminPanel
 
 var launch_controller:LaunchController
 	
-func _ready() -> void:
-	base_place_label.visible=true
-	progress_label.visible=false
-		
+func _ready() -> void:	
 	score_label.set_value(0)
 	
 	launch_controller = get_tree().get_first_node_in_group("LaunchController") as LaunchController
@@ -43,10 +39,6 @@ func update_salary_display(new_score:float) -> void:
 	score_label.set_value(new_score)
 	
 func update_floor_progress(curr_floor) -> void:
-	if base_place_label.visible:
-		base_place_label.visible=false
-		progress_label.visible=true
-	
 	progress_label.text = "%s / %s Parts Placed" %[curr_floor,LaunchSettings.CARGO_TO_FULL]
 	
 func update_warnings_display(new_warning_amount:int) -> void:

@@ -1,15 +1,15 @@
-[gd_scene load_steps=29 format=3 uid="uid://br1uqoo22tbid"]
+[gd_scene load_steps=28 format=3 uid="uid://br1uqoo22tbid"]
 
 [ext_resource type="PackedScene" uid="uid://bjraw1pe2akjs" path="res://Content/LaunchingSoon/CarrierDrone/CarrierDrone.tscn" id="1_0ctbn"]
 [ext_resource type="Script" uid="uid://cv18o0w81gm0o" path="res://Content/LaunchingSoon/launch_controller.gd" id="1_2r3xa"]
 [ext_resource type="Script" uid="uid://ocr0sopy3y7m" path="res://Content/LaunchingSoon/payload.gd" id="2_rysxf"]
-[ext_resource type="Script" uid="uid://n6g5u8nsidur" path="res://Content/sky_rig.gd" id="3_4dyoj"]
+[ext_resource type="Script" uid="uid://n6g5u8nsidur" path="res://Content/LaunchingSoon/sky_rig.gd" id="3_4dyoj"]
 [ext_resource type="Script" uid="uid://bdqo28tuoefon" path="res://Content/LaunchingSoon/launchpad.gd" id="3_7vw0k"]
 [ext_resource type="Script" uid="uid://cnbq5j46m1vgl" path="res://Content/LaunchingSoon/death_zone.gd" id="3_ms4aa"]
-[ext_resource type="PackedScene" uid="uid://bg3pbyvr1l12j" path="res://Content/LaunchingSoon/Cargo/RocketParts/BasePart.tscn" id="4_lvne8"]
+[ext_resource type="PackedScene" uid="uid://w7mp31uu88ft" path="res://Content/LaunchingSoon/Cargo/RocketParts/BasePart.tscn" id="4_lvne8"]
 [ext_resource type="PackedScene" uid="uid://bk1qyvsd3td77" path="res://Content/LaunchingSoon/Cargo/RocketParts/MiddlePart.tscn" id="5_run4a"]
 [ext_resource type="Script" uid="uid://dkb5enrht5vw3" path="res://Content/LaunchingSoon/cargo_structure.gd" id="6_run4a"]
-[ext_resource type="PackedScene" uid="uid://bhbp2v6ly8dnh" path="res://Content/LaunchingSoon/Cargo/RocketParts/TopPart.tscn" id="6_xu2r4"]
+[ext_resource type="PackedScene" uid="uid://dsro4jknouore" path="res://Content/LaunchingSoon/Cargo/RocketParts/TopPart.tscn" id="6_xu2r4"]
 [ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="10_2jycn"]
 [ext_resource type="Script" uid="uid://c4fxv2bctb2up" path="res://Content/LaunchingSoon/GUI/gui.gd" id="10_7s1oc"]
 [ext_resource type="Script" uid="uid://dpbwy1xjqctiu" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="10_xu2r4"]
@@ -40,18 +40,12 @@ size = Vector3(1.49902, 1, 1.49585)
 size = Vector3(1, 0.2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_kvfj4"]
-size = Vector3(6, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2r3xa"]
-size = Vector3(10, 1, 1)
+size = Vector3(8, 1, 8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2r3xa"]
-size = Vector3(10.0449, 1, 1)
-
-[sub_resource type="Curve" id="Curve_ms4aa"]
-_limits = [0.0, 1.0, -1.0, 1.0]
-_data = [Vector2(-1, 1), 0.0, 0.0, 0, 0, Vector2(-0.014, 0.7), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
+size = Vector3(8, 1, 8)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7s1oc"]
 
@@ -71,9 +65,12 @@ environment = SubResource("Environment_ms4aa")
 transform = Transform3D(0.99889, -0.0154141, 0.0445132, -0.0245071, 0.636954, 0.770512, -0.0402296, -0.770748, 0.635869, 0, 4.00598, 3.9653)
 
 [node name="Launchpad" type="StaticBody3D" parent="." node_paths=PackedStringArray("cargo_structure")]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("3_7vw0k")
 start_drop_height = 0.6
 cargo_structure = NodePath("CargoStructure")
+base_cargo_scn = ExtResource("4_lvne8")
 
 [node name="Mesh" type="MeshInstance3D" parent="Launchpad"]
 mesh = SubResource("BoxMesh_0ctbn")
@@ -86,15 +83,17 @@ shape = SubResource("BoxShape3D_kk0jy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("6_run4a")
 
-[node name="Sky Rig" type="Node3D" parent="." node_paths=PackedStringArray("drone", "payload")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551272, 2.02099)
+[node name="Sky Rig" type="Node3D" parent="." node_paths=PackedStringArray("cam", "drone", "payload")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.597)
 script = ExtResource("3_4dyoj")
+cam = NodePath("Cam")
 drone = NodePath("../CarrierDrone")
 payload = NodePath("Payload")
-offset_from_launchpad = Vector3(0, -0.5, 0)
+fly_duration = 1.0
+offset_from_launchpad = Vector3(0, -0.6, 0)
 
 [node name="Cam" type="Camera3D" parent="Sky Rig"]
-transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.354773, -0.266988)
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, -0.267)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sky Rig"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.26554)
@@ -102,19 +101,23 @@ mesh = SubResource("BoxMesh_rysxf")
 skeleton = NodePath("../..")
 
 [node name="Payload" type="Node3D" parent="Sky Rig"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.129654, 1.00353)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.909658, 0.247571)
 script = ExtResource("2_rysxf")
-base_cargo_scn = ExtResource("4_lvne8")
 main_cargo_parts = Array[PackedScene]([ExtResource("5_run4a")])
 top_cargo_scn = ExtResource("6_xu2r4")
 
 [node name="Mesh" type="MeshInstance3D" parent="Sky Rig/Payload"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.09673e-05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.357, 0.226)
+mesh = SubResource("BoxMesh_kvfj4")
+skeleton = NodePath("../..")
+
+[node name="Mesh2" type="MeshInstance3D" parent="Sky Rig/Payload"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.342, 0.226)
 mesh = SubResource("BoxMesh_kvfj4")
 skeleton = NodePath("../..")
 
 [node name="DeathZone" type="StaticBody3D" parent="Sky Rig"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.58959, -2.267)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.59, -1.73105)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("3_ms4aa")
@@ -128,11 +131,11 @@ transform = Transform3D(1, 0, 0, 0, 0.999993, 0, 0, 0, 0.999993, 0, 0, 0)
 shape = SubResource("BoxShape3D_2r3xa")
 
 [node name="CarrierDrone" parent="." instance=ExtResource("1_0ctbn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4564, 2.97918)
-base_speed = 2.0
-speed_growth_tick = 0.05
-speed_multiplier_curve = SubResource("Curve_ms4aa")
-amplitude_growth_tick = Vector3(0.015, 0.01, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.28726, 0.740841, 1.9685)
+speed_growth_tick = 0.3
+start_move_range = Vector3(0.15, 0.1, 0)
+max_move_range = Vector3(0.35, 0.3, 0)
+amplitude_growth_tick = Vector3(0.02, 0.01, 0)
 
 [node name="GUI" type="Control" parent="." node_paths=PackedStringArray("admin_panel", "win_screen", "lose_screen")]
 layout_mode = 3
@@ -146,7 +149,7 @@ admin_panel = NodePath("AdminPanel")
 win_screen = NodePath("WinScreen")
 lose_screen = NodePath("FiredScreen")
 
-[node name="AdminPanel" type="PanelContainer" parent="GUI" node_paths=PackedStringArray("base_place_label", "progress_label", "score_label", "warnings_container")]
+[node name="AdminPanel" type="PanelContainer" parent="GUI" node_paths=PackedStringArray("progress_label", "score_label", "warnings_container")]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -157,7 +160,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7s1oc")
 script = ExtResource("11_8edqq")
-base_place_label = NodePath("Content/ProgressContainer/BasePlaceLabel")
 progress_label = NodePath("Content/ProgressContainer/ProgressLabel")
 score_label = NodePath("Content/HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/Score")
 warnings_container = NodePath("Content/HBoxContainer/PanelContainer/MarginContainer/WarningsContainer")
@@ -226,15 +228,7 @@ expand_mode = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="BasePlaceLabel" type="Label" parent="GUI/AdminPanel/Content/ProgressContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 31
-text = "Touch Anywhere to Drop the Base!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ProgressLabel" type="Label" parent="GUI/AdminPanel/Content/ProgressContainer"]
-visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "0 / 30 Parts Placed"

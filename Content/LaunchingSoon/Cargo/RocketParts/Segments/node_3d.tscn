@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cy74tpf0h2fy6"]
 
-[ext_resource type="PackedScene" uid="uid://ct52ihqc3b62d" path="res://Drone/Drone.glb" id="1_7j512"]
+[ext_resource type="PackedScene" uid="uid://ct52ihqc3b62d" path="res://Content/LaunchingSoon/CarrierDrone/BunnyDrone/Drone.glb" id="1_7j512"]
 
 [node name="Node3D" type="Node3D"]
 

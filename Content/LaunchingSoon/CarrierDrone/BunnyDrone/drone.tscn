@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://ct52ihqc3b62d" path="res://Content/LaunchingSoon/CarrierDrone/BunnyDrone/Drone.glb" id="1_g44ys"]
 [ext_resource type="Material" uid="uid://btj2xjxsr2edv" path="res://Content/LaunchingSoon/Cargo/RocketParts/Segments/GradientAtlasMaterial.tres" id="2_8x555"]
-[ext_resource type="Shader" path="res://Content/LaunchingSoon/CarrierDrone/BunnyDrone/drone_propellor.gdshader" id="2_en4ly"]
-[ext_resource type="Curve" path="res://Content/LaunchingSoon/CarrierDrone/BunnyDrone/ear_stiffness.tres" id="2_g44ys"]
+[ext_resource type="Shader" uid="uid://b2exeas5w2mhg" path="res://Content/LaunchingSoon/CarrierDrone/BunnyDrone/drone_propellor.gdshader" id="2_en4ly"]
+[ext_resource type="Curve" uid="uid://5o24l26ihfle" path="res://Content/LaunchingSoon/CarrierDrone/BunnyDrone/ear_stiffness.tres" id="2_g44ys"]
 [ext_resource type="Texture2D" uid="uid://bw7hsubvilmug" path="res://Content/LaunchingSoon/CarrierDrone/BunnyDrone/Drone_Spinny.png" id="3_m04rb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m04rb"]
@@ -28,7 +28,6 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Drone" instance=ExtResource("1_g44ys")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="RabbitDrone" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("2_8x555")

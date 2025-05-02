@@ -1,25 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjraw1pe2akjs"]
+[gd_scene load_steps=6 format=3 uid="uid://bjraw1pe2akjs"]
 
 [ext_resource type="Script" uid="uid://de0hhjry8fvwq" path="res://Content/LaunchingSoon/CarrierDrone/carrier_drone.gd" id="1_h26ka"]
-[ext_resource type="PackedScene" uid="uid://bdbbw50ob5msl" path="res://Content/LaunchingSoon/CarrierDrone/puck.glb" id="2_1tmj7"]
+[ext_resource type="PackedScene" uid="uid://rjg5jerv3gs6" path="res://Content/LaunchingSoon/CarrierDrone/BunnyDrone/drone.tscn" id="2_1tmj7"]
 [ext_resource type="Script" uid="uid://wumrupdj6tl1" path="res://Content/LaunchingSoon/CarrierDrone/magnet_puck.gd" id="2_guq74"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_2r3xa"]
+[sub_resource type="Curve" id="Curve_ms4aa"]
+_limits = [0.0, 1.0, -1.0, 1.0]
+_data = [Vector2(-1, 1), 0.0, 0.0, 0, 0, Vector2(-0.014, 0.7), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
-[node name="CarrierDrone" type="Node3D" node_paths=PackedStringArray("spawn_point")]
+[sub_resource type="CylinderMesh" id="CylinderMesh_1tmj7"]
+top_radius = 0.08
+bottom_radius = 0.08
+height = 0.04
+
+[node name="CarrierDrone" type="Node3D" node_paths=PackedStringArray("magnet_puck")]
 script = ExtResource("1_h26ka")
-spawn_point = NodePath("puck/SpawnPoint")
+speed_multiplier_curve = SubResource("Curve_ms4aa")
+magnet_puck = NodePath("Puck")
 
-[node name="Visual" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-mesh = SubResource("SphereMesh_2r3xa")
-skeleton = NodePath("")
+[node name="Drone" parent="." instance=ExtResource("2_1tmj7")]
 
-[node name="puck" parent="." instance=ExtResource("2_1tmj7")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.2, 0)
+[node name="Puck" type="Node3D" parent="." node_paths=PackedStringArray("spawn_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15, 0)
 script = ExtResource("2_guq74")
-tether_length = 0.2
-spring_strength = 50.0
+spawn_point = NodePath("SpawnPoint")
+tether_length = 0.15
+spring_strength = 2.0
 
-[node name="SpawnPoint" type="Node3D" parent="puck"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0157151)
+[node name="Mesh" type="MeshInstance3D" parent="Puck"]
+mesh = SubResource("CylinderMesh_1tmj7")
+skeleton = NodePath("../..")
+
+[node name="SpawnPoint" type="Node3D" parent="Puck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)

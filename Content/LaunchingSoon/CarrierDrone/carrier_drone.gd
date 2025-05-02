@@ -1,15 +1,15 @@
 extends Node3D
 class_name CarrierDrone
 
-@export var base_speed:float = 80
-@export var speed_growth_tick:float = 10
+@export var base_speed:float = 2
+@export var speed_growth_tick:float = 0.05
 @export var speed_multiplier_curve:Curve
 
 @export var start_move_range:Vector3 = Vector3(0.15,0.02,0.0)
 @export var max_move_range:Vector3 = Vector3(0.4,0.3,0.0)
-@export var amplitude_growth_tick = Vector3(0.01,0.02,0.0)
+@export var amplitude_growth_tick = Vector3(0.015,0.01,0.0)
 
-@export var spawn_point:Node3D
+@export var magnet_puck:MagnetPuck
 
 var curr_speed:float
 var curr_move_range:Vector3
@@ -24,20 +24,28 @@ var time_elapsed:float=0
 
 var target_point:Vector3
 
-var is_at_destination:bool
+var is_at_destination:bool=true
+
+var look_target:Vector3
+var tilt_strength:float = 5.0
+var max_tilt = deg_to_rad(90) # Max tilt in degrees
+var tilt_influence = 0.5 # 0 = ignore tilt, 1 = full tilt affects look
 
 signal on_dropped(cargo:Cargo)
+signal on_target_reached()
 
 func _ready() -> void:
-	prev_pos = self.global_position
+	prev_pos = self.global_position	
 	curr_speed = base_speed
 	curr_move_range = start_move_range
 	
 
 func _process(delta):
+	if target_point == Vector3.ZERO:
+		return
+		
 	var target_pos:Vector3 = target_point
 	var speed:float = curr_speed
-	
 	# Calculate oscillation (ranges from -1 to 1) when ready to drop cargo
 	if is_at_destination:
 		if curr_cargo!=null:
@@ -51,7 +59,7 @@ func _process(delta):
 			target_pos.x += oscillation.x * curr_move_range.x # Apply scaled oscillation
 			target_pos.y += oscillation.y * curr_move_range.y
 			
-			speed *= speed_multiplier_curve.sample(x_position)
+			#speed *= speed_multiplier_curve.sample(x_position)
 			time_elapsed+=delta
 	else:
 		speed *= 2.0
@@ -59,21 +67,46 @@ func _process(delta):
 	var dir_to_target:Vector3 = (target_pos - self.global_position)
 	var distance_to_target: float = dir_to_target.length()
 	
-	#print(distance_to_target)
-	#if distance_to_target > 0.0:  # Avoid division by zero
-	# Scale movement speed based on distance to target for smooth approach
 	var new_position:Vector3 = self.global_position.move_toward(target_pos, speed * delta)
+	velocity = (new_position - self.global_position).normalized() * speed * delta
+	
 	global_position = new_position
-	#var smooth_factor:float = clamp(distance_to_target * speed, 0, speed)  # Proportional speed
-	#var move_delta:Vector3 = dir_to_target.normalized() * smooth_factor * delta
-	#self.global_position += move_delta  # Move smoothly toward target
 	
 	if !is_at_destination and distance_to_target < 0.02:
 		self.global_position = target_pos
 		is_at_destination=true
 		time_elapsed=0
+		on_target_reached.emit()
 	
-	velocity = (self.global_position-prev_pos) / delta
+	if look_target!=Vector3.ZERO:
+		#var look_quat = Quaternion(Basis().looking_at(-look_target.normalized(), Vector3.UP))
+		var forward_dir:Vector3 = (look_target - global_position).normalized()
+		var look_basis = Basis().looking_at(-forward_dir, Vector3.UP)
+		var look_quat = Quaternion(look_basis)
+		
+		
+		var tilt_quat = Quaternion.IDENTITY	
+		if velocity.length() > 0.01:
+			# Work in the local space of the look direction
+			var right = look_basis.x.normalized()
+			var up = look_basis.y.normalized()
+
+			# Dot velocity with local right and up for tilt influence
+			var roll_amount = clamp(velocity.dot(right) * tilt_strength, -1.0, 1.0) * max_tilt  # X axis tilt (side)
+			var pitch_amount = clamp(velocity.dot(up) * tilt_strength, -1.0, 1.0) * max_tilt    # Y axis tilt (up/down)
+
+			var roll_quat = Quaternion(right, roll_amount)
+			var pitch_quat = Quaternion(up, -pitch_amount)
+
+			# Combine tilts (order matters slightly)
+			tilt_quat = pitch_quat * roll_quat
+			
+		var look_with_tilt = look_quat * tilt_quat
+		var target_quat = look_quat.slerp(look_with_tilt, tilt_influence)
+				
+		var current_quat = global_transform.basis.get_rotation_quaternion()
+		var new_quat = current_quat.slerp(target_quat, 50 * delta)
+		global_transform.basis = Basis(new_quat)
 	
 	# Store current position for next frame
 	prev_pos = self.global_position
@@ -84,14 +117,10 @@ func try_drop_load() -> void:
 		return
 	
 	curr_cargo.reparent(get_tree().root)
-	
-	#var load_velocity:Vector3 = velocity
-	#load_velocity.x /= curr_cargo.mass #make the velocity be affected by mass
-	#load_velocity.y = 0
-	
-	curr_cargo.release(velocity)
+	curr_cargo.release(magnet_puck.velocity)
 	
 	on_dropped.emit(curr_cargo)
+	
 	curr_cargo = null
 	
 func grab_cargo(cargo:Cargo, increase_difficulty:bool=false) -> void:
@@ -100,18 +129,16 @@ func grab_cargo(cargo:Cargo, increase_difficulty:bool=false) -> void:
 		curr_move_range += amplitude_growth_tick
 		curr_move_range = curr_move_range.clamp(start_move_range,max_move_range)
 		
-	#print(curr_speed)
-	#print(curr_move_range)
-	
-	attach_cargo(cargo)
+	magnet_puck.spawn_point.add_child(cargo)
+	cargo.position += Vector3(0,-cargo.height/2,0)
+	curr_cargo = cargo
 	self.visible = true
 	
 	
-func attach_cargo(cargo:Cargo) -> void:
-	spawn_point.add_child(cargo)
-	cargo.position += Vector3(0,0,-cargo.height/2)
-	curr_cargo = cargo
-	
-func fly_to(position:Vector3) -> void:
+func fly_to(position:Vector3, look_target:Vector3 = Vector3.ZERO) -> void:
 	target_point = position
+	if look_target == Vector3.ZERO:
+		look_target = target_point
+	else:
+		self.look_target = look_target
 	is_at_destination=false

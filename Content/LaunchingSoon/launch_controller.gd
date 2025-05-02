@@ -18,8 +18,10 @@ func _init() -> void:
 	add_to_group("LaunchController")
 
 func _ready() -> void:
-	prepare_drop(launchpad.get_drop_point(),structure.get_top_point())
+	await launchpad.activate()
+	prepare_drop()
 	structure.on_cargo_placed.connect(process_cargo_placed)
+	
 	pass
 	
 func process_cargo_placed(cargo:Cargo, placement_score:int) -> void:
@@ -32,7 +34,7 @@ func process_cargo_placed(cargo:Cargo, placement_score:int) -> void:
 	if structure.is_complete():
 		send_off()
 	else:
-		prepare_drop(launchpad.get_drop_point(),structure.get_top_point())
+		prepare_drop()
 	
 	
 func process_cargo_destroyed() -> void:
@@ -42,13 +44,14 @@ func process_cargo_destroyed() -> void:
 	if curr_warnings == LaunchSettings.WARNINGS_TO_FIRE:
 		fire_builder()
 	else:
-		prepare_drop(launchpad.get_drop_point(),structure.get_top_point())
+		prepare_drop()
 		
-func prepare_drop(drop_point:Vector3, place_position:Vector3) -> void:
-	var rig_fly_point:Vector3 = (drop_point + place_position)/2
-	await rig.fly_towards(rig_fly_point)
-	rig.send_cargo(drop_point)
-	structure.on_cargo_placed.connect(process_cargo_placed)
+func prepare_drop() -> void:
+	rig.send_cargo(launchpad.get_drop_point())
+	
+	var rig_fly_point:Vector3 = (launchpad.get_drop_point() + structure.get_highest_point())/2
+	
+	rig.fly_towards(rig_fly_point)
 	
 func get_salary(score:int) -> float:
 #	add score conversion to token

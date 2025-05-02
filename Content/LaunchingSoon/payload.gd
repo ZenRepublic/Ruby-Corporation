@@ -1,14 +1,10 @@
 extends Node3D
 class_name Payload
 
-@export var base_cargo_scn:PackedScene
 @export var main_cargo_parts:Array[PackedScene]
 @export var top_cargo_scn:PackedScene
 
 func get_next_cargo_scn(structure:CargoStructure) -> PackedScene:
-	if structure.cargo_base==null:
-		return base_cargo_scn
-
 	if structure.get_size() == LaunchSettings.CARGO_TO_FULL-1:
 		return top_cargo_scn
 	elif structure.get_size() >= 0 and structure.get_size()<LaunchSettings.CARGO_TO_FULL-1:
@@ -19,7 +15,8 @@ func get_next_cargo_scn(structure:CargoStructure) -> PackedScene:
 		
 func get_random_position_on_surface() -> Vector3:
 	# Assuming the MeshInstance3D is assigned to a variable or node reference
-	var mesh_instance: MeshInstance3D = get_child(0) as MeshInstance3D
+	var random_mesh_id:int = randi_range(0,get_child_count()-1)
+	var mesh_instance: MeshInstance3D = get_child(random_mesh_id) as MeshInstance3D
 
 	# Get the AABB (Axis-Aligned Bounding Box) of the mesh
 	var aabb: AABB = mesh_instance.get_aabb()

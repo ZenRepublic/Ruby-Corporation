@@ -1,6 +1,7 @@
 extends Node3D
 class_name SkyRig
 
+@export var cam:Camera3D
 @export var drone:CarrierDrone
 @export var payload:Payload
 
@@ -25,11 +26,15 @@ func _process(delta: float) -> void:
 func send_cargo(deploy_point:Vector3) -> void:
 	var cargo_scn:PackedScene = payload.get_next_cargo_scn(launch_controller.structure)
 	var cargo_instance:Cargo = cargo_scn.instantiate()
+	if !drone.is_at_destination:
+		await drone.on_target_reached
 	drone.grab_cargo(cargo_instance,false)
-	drone.fly_to(deploy_point)
+	drone.fly_to(deploy_point, cam.global_position)
 	
 func return_drone(dropped_cargo:Cargo) -> void:
 	dropped_cargo.on_expired.connect(process_failed_drop)
+	if !drone.is_at_destination:
+		await drone.on_target_reached
 	drone.fly_to(payload.get_random_position_on_surface())
 
 func fly_towards(fly_point:Vector3) -> void:
@@ -46,6 +51,7 @@ func fly_towards(fly_point:Vector3) -> void:
 	tween.tween_property(self, "position", target_pos, fly_duration)
 	await tween.finished
 	on_rise_complete.emit()
+
 
 func process_failed_drop() -> void:
 	launch_controller.process_cargo_destroyed()
