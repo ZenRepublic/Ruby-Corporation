@@ -1,0 +1,182 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnfq88vw2eksv"]
+
+[ext_resource type="Script" path="res://Scripts/DropGameKit/CampaignManagement/campaign_account.gd" id="2_w5oyl"]
+[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="3_c34kt"]
+[ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="4_viqwm"]
+[ext_resource type="Script" path="res://Scripts/Utility/timed_button.gd" id="5_iht2v"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="5_p8jhh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pamv"]
+bg_color = Color(0.529412, 0.207843, 0.333333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yce1"]
+bg_color = Color(1, 1, 1, 1)
+skew = Vector2(0.56, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmr7k"]
+bg_color = Color(0.65098, 0.521569, 0.623529, 1)
+border_width_top = 5
+border_color = Color(0.482353, 0.329412, 0.501961, 1)
+
+[node name="AccountSelect" type="VBoxContainer" node_paths=PackedStringArray("token_displayable", "mine_gate_displayable", "campaign_name_label", "mine_type_label", "mine_timer_button")]
+custom_minimum_size = Vector2(0, 45)
+offset_right = 692.0
+offset_bottom = 57.0
+theme = ExtResource("5_p8jhh")
+theme_type_variation = &"ListEntryButton"
+theme_override_constants/separation = 0
+script = ExtResource("2_w5oyl")
+token_displayable = NodePath("Title/MarginContainer/HBoxContainer/TokenInfo")
+mine_gate_displayable = NodePath("MainDetails/MarginContainer/Content/CampaignGateAsset")
+campaign_name_label = NodePath("Title/MarginContainer/HBoxContainer/MineName")
+mine_type_label = NodePath("MainDetails/MarginContainer/Content/VBoxContainer/HBoxContainer/type")
+mine_timer_button = NodePath("MainDetails/MarginContainer/Content/VBoxContainer/TimerButton")
+
+[node name="Title" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1pamv")
+
+[node name="MarginContainer" type="MarginContainer" parent="Title"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Title/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+
+[node name="MineName" type="Label" parent="Title/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_p8jhh")
+theme_override_font_sizes/font_size = 30
+text = "CRAZY MINE FOR CRAZY MINER"
+vertical_alignment = 1
+
+[node name="Divider" type="HBoxContainer" parent="Title/MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Divider1" type="Panel" parent="Title/MarginContainer/HBoxContainer/Divider"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7yce1")
+
+[node name="Divider2" type="Panel" parent="Title/MarginContainer/HBoxContainer/Divider"]
+custom_minimum_size = Vector2(4.97, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7yce1")
+
+[node name="TokenInfo" type="HBoxContainer" parent="Title/MarginContainer/HBoxContainer" node_paths=PackedStringArray("visual", "symbol_label")]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+script = ExtResource("3_c34kt")
+visual = NodePath("TokenIcon")
+image_size = 64
+symbol_label = NodePath("SymbolName")
+
+[node name="TokenIcon" type="TextureRect" parent="Title/MarginContainer/HBoxContainer/TokenInfo"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_viqwm")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SymbolName" type="Label" parent="Title/MarginContainer/HBoxContainer/TokenInfo"]
+layout_mode = 2
+theme = ExtResource("5_p8jhh")
+theme_override_font_sizes/font_size = 20
+text = "-"
+vertical_alignment = 1
+
+[node name="MainDetails" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kmr7k")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainDetails"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Content" type="HBoxContainer" parent="MainDetails/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CampaignGateAsset" type="MarginContainer" parent="MainDetails/MarginContainer/Content" node_paths=PackedStringArray("visual", "name_label")]
+layout_mode = 2
+script = ExtResource("3_c34kt")
+visual = NodePath("TextureRect")
+image_size = 256
+default_icon_path = "res://addons/SolanaSDK/Textures/missingicon.png"
+name_label = NodePath("../VBoxContainer/Name")
+max_name_length = 22
+
+[node name="TextureRect" type="TextureRect" parent="MainDetails/MarginContainer/Content/CampaignGateAsset"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("4_viqwm")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainDetails/MarginContainer/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainDetails/MarginContainer/Content/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="EligibleText" type="Label" parent="MainDetails/MarginContainer/Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_p8jhh")
+theme_override_font_sizes/font_size = 18
+text = "Eligible Diggas:"
+
+[node name="CampaignType" type="Label" parent="MainDetails/MarginContainer/Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_p8jhh")
+theme_override_font_sizes/font_size = 18
+text = "Mine Type:"
+
+[node name="type" type="Label" parent="MainDetails/MarginContainer/Content/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_p8jhh")
+theme_override_colors/font_color = Color(0.988235, 0.937255, 0.552941, 1)
+theme_override_font_sizes/font_size = 18
+text = "-"
+
+[node name="Name" type="Label" parent="MainDetails/MarginContainer/Content/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_p8jhh")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 28
+text = "-"
+
+[node name="TimerButton" type="Button" parent="MainDetails/MarginContainer/Content/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("5_p8jhh")
+theme_type_variation = &"SimpleButton"
+theme_override_font_sizes/font_size = 21
+text = "..."
+script = ExtResource("5_iht2v")
+time_left_prefix = "Mine Details"
+activated_text = "Mine Closed..."
+refresh_frequency_seconds = 60
+enable_on_finished = false
+
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 2
+theme = ExtResource("5_p8jhh")
+theme_type_variation = &"ListEntryButton"

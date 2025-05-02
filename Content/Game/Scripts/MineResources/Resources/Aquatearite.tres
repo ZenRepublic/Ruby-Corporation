@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://bedxtobnl2sw1"]
+
+[ext_resource type="PackedScene" uid="uid://ldnn3un1wrpc" path="res://Content/Game/Assets/Treasures/Aquatearite.tscn" id="1_agaya"]
+[ext_resource type="Script" path="res://Content/Game/Scripts/MineResources/item_resource.gd" id="1_wrj28"]
+
+[resource]
+script = ExtResource("1_wrj28")
+scene = ExtResource("1_agaya")
+dimensions = Vector2(2, 2)
+weight = 50

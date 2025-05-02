@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FloorData" load_steps=3 format=3 uid="uid://fe6ymwfm33uw"]
+
+[ext_resource type="Script" path="res://Content/Game/Scripts/Floors/floor_data.gd" id="1_pcsk8"]
+[ext_resource type="Texture2D" uid="uid://jd18vjdnyi4t" path="res://Content/Game/textures/Tiles/Bedrock/Bedrock Base.PNG" id="1_x5p1m"]
+
+[resource]
+script = ExtResource("1_pcsk8")
+floor_level = 3
+layers = Array[Texture2D]([ExtResource("1_x5p1m")])
+layer_healths = Array[int]([999])
+debris_color = Color(0, 0, 0, 1)
+possible_obstacles = {}
+possible_treasures = {}
+treasure_spawn_density = 0
+possible_utilities = {}
+utility_spawn_density = 0
+is_destroyable = false

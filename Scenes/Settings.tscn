@@ -1,0 +1,179 @@
+[gd_scene load_steps=7 format=3 uid="uid://opkwvwup8u86"]
+
+[ext_resource type="Texture2D" uid="uid://dm7iln4hubqck" path="res://Content/Game/textures/GUI/MenuSidePanel.png" id="1_xncxa"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="2_yxwqe"]
+[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/priority_fee_option.gd" id="3_3ppe4"]
+[ext_resource type="Script" path="res://Scripts/Menu/game_settings.gd" id="4_em806"]
+
+[sub_resource type="GDScript" id="GDScript_pvu1n"]
+resource_name = "settings_screen"
+script/source = "extends Control
+
+func close() -> void:
+	self.visible=false
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wux1o"]
+bg_color = Color(0.290196, 0.188235, 0.321569, 0.956863)
+
+[node name="SettingsScreen" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_pvu1n")
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wux1o")
+
+[node name="TopBar" type="Control" parent="Background"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+anchors_preset = 0
+offset_right = 720.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top" type="TextureRect" parent="Background/TopBar"]
+self_modulate = Color(0.121569, 0.0627451, 0.164706, 0.67451)
+layout_mode = 2
+offset_right = 488.0
+offset_bottom = 720.0
+grow_vertical = 2
+rotation = 1.5708
+scale = Vector2(1, -1)
+texture = ExtResource("1_xncxa")
+
+[node name="BottomBar" type="Control" parent="Background"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = -502.0
+offset_right = 360.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Bottom" type="TextureRect" parent="Background/BottomBar"]
+self_modulate = Color(0.121569, 0.0627451, 0.164706, 0.67451)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 359.0
+offset_top = 250.0
+offset_right = 815.0
+offset_bottom = 970.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+scale = Vector2(-1, 1)
+texture = ExtResource("1_xncxa")
+
+[node name="Settings" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Label" type="Label" parent="Settings"]
+layout_mode = 2
+theme = ExtResource("2_yxwqe")
+theme_override_font_sizes/font_size = 60
+text = "GAME SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PriorityFee" type="HBoxContainer" parent="Settings" node_paths=PackedStringArray("priority_fee_option")]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 15
+script = ExtResource("3_3ppe4")
+priority_fee_option = NodePath("FeeLevel")
+
+[node name="Fee" type="Label" parent="Settings/PriorityFee"]
+layout_mode = 2
+theme = ExtResource("2_yxwqe")
+theme_override_font_sizes/font_size = 35
+text = "Priority Fees:"
+vertical_alignment = 1
+
+[node name="FeeLevel" type="OptionButton" parent="Settings/PriorityFee"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_yxwqe")
+alignment = 1
+
+[node name="Settings" type="VBoxContainer" parent="Settings" node_paths=PackedStringArray("music_slider", "sfx_slider")]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("4_em806")
+music_slider = NodePath("MusicSlider")
+sfx_slider = NodePath("SoundsSlider")
+
+[node name="MusicLabel" type="Label" parent="Settings/Settings"]
+layout_mode = 2
+theme = ExtResource("2_yxwqe")
+theme_override_font_sizes/font_size = 35
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="Settings/Settings"]
+layout_mode = 2
+theme = ExtResource("2_yxwqe")
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Sound FX" type="Label" parent="Settings/Settings"]
+layout_mode = 2
+theme = ExtResource("2_yxwqe")
+theme_override_font_sizes/font_size = 35
+text = "SounD FX"
+
+[node name="SoundsSlider" type="HSlider" parent="Settings/Settings"]
+layout_mode = 2
+theme = ExtResource("2_yxwqe")
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="CloseButton" type="Button" parent="Settings"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_yxwqe")
+theme_type_variation = &"SimpleButtonAlt"
+theme_override_font_sizes/font_size = 30
+text = "Close"
+
+[connection signal="pressed" from="Settings/CloseButton" to="." method="close"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=16 format=3 uid="uid://bb5vbvsscbeds"]
+
+[ext_resource type="Script" path="res://Scripts/SoundManagement/music_manager.gd" id="1_0mdud"]
+[ext_resource type="AudioStream" uid="uid://ceo2wgynvlpj6" path="res://Content/Game/Sounds/Music/LoginMusic.mp3" id="2_cofjb"]
+[ext_resource type="AudioStream" uid="uid://b1hu4fonmpcnx" path="res://Content/Game/Sounds/Music/MenuSong.mp3" id="3_2bte8"]
+[ext_resource type="AudioStream" uid="uid://dgjaegemxet4g" path="res://Content/Game/Sounds/Music/GameSong.mp3" id="4_8nips"]
+[ext_resource type="AudioStream" uid="uid://b2f0vtj8fe51y" path="res://Content/Game/Sounds/Music/WinJingle.mp3" id="5_fb80r"]
+[ext_resource type="AudioStream" uid="uid://cm278a24mieti" path="res://Content/Game/Sounds/UI/slideradjusts.mp3" id="6_8vb7i"]
+[ext_resource type="AudioStream" uid="uid://bku770dgbthg0" path="res://Content/Game/Sounds/transitiondiamond.mp3" id="6_ll4ae"]
+[ext_resource type="AudioStream" uid="uid://dow2gsjp3lhm3" path="res://Content/Game/Sounds/OutOfEnergy.mp3" id="7_8qgyk"]
+[ext_resource type="AudioStream" uid="uid://cojs82uu73ctv" path="res://Content/Game/Sounds/UI/buttonpress.mp3" id="7_kutgl"]
+[ext_resource type="AudioStream" uid="uid://bta85g154ui34" path="res://Content/Game/Sounds/UI/button_press_rich.mp3" id="8_voltk"]
+[ext_resource type="AudioStream" uid="uid://cunnj26stug8q" path="res://Content/Game/Sounds/UI/MainButtonSound.mp3" id="9_8gdex"]
+[ext_resource type="AudioStream" uid="uid://dbqxyr7v3x53b" path="res://Content/Game/Sounds/UI/checkmarksound.mp3" id="10_faybf"]
+[ext_resource type="AudioStream" uid="uid://dfmwym0j8y55n" path="res://Content/Game/Sounds/UI/returnsound.mp3" id="11_qepbk"]
+[ext_resource type="AudioStream" uid="uid://xoio1puhisej" path="res://Content/Game/Sounds/UI/errorsound.mp3" id="12_nvhey"]
+[ext_resource type="AudioStream" uid="uid://b0vf2eljmdfgc" path="res://Content/Game/Sounds/UI/TransactionFailed.mp3" id="13_w5la0"]
+
+
+[node name="MusicManager" type="Node"]
+script = ExtResource("1_0mdud")
+music_library = {
+"Game": ExtResource("4_8nips"),
+"Login": ExtResource("2_cofjb"),
+"Menu": ExtResource("3_2bte8"),
+"OutOfEnergy": ExtResource("7_8qgyk"),
+"TransitionDiamond": ExtResource("6_ll4ae"),
+"WinJingle": ExtResource("5_fb80r")
+}
+sound_library = {
+"ButtonJuicy": ExtResource("9_8gdex"),
+"ButtonRich": ExtResource("8_voltk"),
+"ButtonSimple": ExtResource("7_kutgl"),
+"Checkbox": ExtResource("10_faybf"),
+"Error": ExtResource("12_nvhey"),
+"Fail": ExtResource("13_w5la0"),
+"Return": ExtResource("11_qepbk"),
+"Slider": ExtResource("6_8vb7i")
+}
+default_fade_duration = 0.7
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 2
+bus = &"Music"
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 4
+bus = &"SFX"

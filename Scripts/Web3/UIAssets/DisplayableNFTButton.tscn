@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://btmj6a3kagg46"]
+
+[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="1_4rwe4"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="2_0p8nk"]
+[ext_resource type="Texture2D" uid="uid://bpt1e8u1buonk" path="res://Textures/BrandingAssets/whosthatrubian.png" id="2_sw3gr"]
+
+
+[node name="DisplayableNFTButton" type="MarginContainer" node_paths=PackedStringArray("visual", "select_button")]
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_4rwe4")
+visual = NodePath("Visual")
+image_size = 256
+select_button = NodePath("Visual/Button")
+
+[node name="Visual" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_sw3gr")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="Visual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_0p8nk")
+theme_type_variation = &"InvisibleButton"

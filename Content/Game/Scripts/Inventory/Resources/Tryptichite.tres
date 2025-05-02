@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://q5h2jehtiy7i"]
+
+[ext_resource type="Script" path="res://Content/Game/Scripts/Inventory/inventory_item.gd" id="1_5yy30"]
+[ext_resource type="AudioStream" uid="uid://28ud3u7rplfo" path="res://Content/Game/Sounds/AddItem.mp3" id="1_36qha"]
+[ext_resource type="Texture2D" uid="uid://evy6pj2whj1e" path="res://Content/Game/textures/Treasures/inventory_versions/Tryptichite_inv.png" id="2_k3wxu"]
+[ext_resource type="Texture2D" uid="uid://dh64nfeho1u0o" path="res://Content/Game/textures/Treasures/Triptychite 2x2.PNG" id="4_u0kwj"]
+
+[resource]
+script = ExtResource("1_5yy30")
+item_name = "Tryptichite"
+market_value = 30
+icon = ExtResource("2_k3wxu")
+visual = ExtResource("4_u0kwj")
+quantity = 1
+move_sound = ExtResource("1_36qha")

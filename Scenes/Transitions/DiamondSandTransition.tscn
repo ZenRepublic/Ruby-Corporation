@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjjl43eub4i10"]
+
+[ext_resource type="Shader" path="res://Shaders/diamond_transition.gdshader" id="1_jaa71"]
+[ext_resource type="AudioStream" uid="uid://b1qf5d8foogv2" path="res://Content/Game/Sounds/transitiondiamondout.mp3" id="2_3moet"]
+[ext_resource type="Texture2D" uid="uid://nik2c5k3pmp8" path="res://Content/Game/textures/Background.png" id="2_7gyyw"]
+[ext_resource type="AudioStream" uid="uid://bku770dgbthg0" path="res://Content/Game/Sounds/transitiondiamond.mp3" id="4_qvxjf"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="5_l2dac"]
+
+
+[sub_resource type="GDScript" id="GDScript_oirlt"]
+script/source = "extends TransitionScene
+
+@onready var texture:TextureRect = $TransitionTexture
+@onready var loading_panel:Control = $LoadingInfo
+@onready var audio_player:AudioStreamPlayer = $AudioStreamPlayer
+@export var fade_in_sound:AudioStreamMP3
+@export var fade_out_sound:AudioStreamMP3
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	loading_panel.visible=false
+	
+	SceneManager.fade_in_started.connect(start_transition)
+	SceneManager.fade_in_ended.connect(show_loading_panel)
+	SceneManager.fade_out_started.connect(handle_fade_out)
+	pass # Replace with function body.
+
+func _process(_delta: float) -> void:
+	texture.material.set_shader_parameter(\"progress\",fade_progress)
+	
+	
+func start_transition() -> void:
+	if fade_in_sound!=null:
+		audio_player.stream= fade_in_sound
+		audio_player.play()
+	
+func show_loading_panel() -> void:
+	loading_panel.visible=true
+
+func handle_fade_out() -> void:
+	if fade_out_sound!=null:
+		audio_player.stream= fade_out_sound
+		audio_player.play()
+	loading_panel.visible=false
+	texture.material.set_shader_parameter(\"forward\",false)
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rb4bn"]
+shader = ExtResource("1_jaa71")
+shader_parameter/start_color = Color(1, 1, 1, 1)
+shader_parameter/end_color = Color(0.290196, 0.188235, 0.321569, 1)
+shader_parameter/progress = 1.0
+shader_parameter/diamondPixelSize = 100.0
+shader_parameter/forward = true
+
+[node name="DiamondSandTransition" type="CanvasLayer"]
+layer = 100
+script = SubResource("GDScript_oirlt")
+fade_in_sound = ExtResource("4_qvxjf")
+fade_out_sound = ExtResource("2_3moet")
+fade_duration = 1.0
+
+[node name="TransitionTexture" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_rb4bn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7gyyw")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qvxjf")
+bus = &"SFX"
+
+[node name="LoadingInfo" type="VBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="LoadingInfo"]
+layout_mode = 2
+theme = ExtResource("5_l2dac")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 46
+text = "Loading, hang on!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FirstTime" type="Label" parent="LoadingInfo"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = ExtResource("5_l2dac")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 20
+text = "First time might take a while..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

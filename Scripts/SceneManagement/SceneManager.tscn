@@ -1,0 +1,27 @@
+[gd_scene load_steps=14 format=3 uid="uid://dyidk1vxcpwe4"]
+
+[ext_resource type="Script" path="res://Scripts/SceneManagement/scene_manager.gd" id="1_lsbho"]
+[ext_resource type="PackedScene" uid="uid://bjjl43eub4i10" path="res://Scenes/Transitions/DiamondSandTransition.tscn" id="2_kwcg0"]
+[ext_resource type="Script" path="res://Scripts/SceneManagement/particles_cache.gd" id="3_saj7b"]
+[ext_resource type="PackedScene" uid="uid://b1nnth8d5aqv5" path="res://Content/Game/ParticleEffects/TileDestroyParticles.tscn" id="4_gjolg"]
+[ext_resource type="PackedScene" uid="uid://cajq4ulytq68w" path="res://Content/Game/ParticleEffects/RockParticles.tscn" id="5_7s1ga"]
+[ext_resource type="PackedScene" uid="uid://b4pwoxcejmqq8" path="res://Content/Game/ParticleEffects/GemSparkles.tscn" id="9_8he6q"]
+[ext_resource type="PackedScene" uid="uid://cmrn6rkiftvbu" path="res://Content/Game/ParticleEffects/DynamiteExplodeParticles.tscn" id="10_27kgs"]
+[ext_resource type="PackedScene" uid="uid://dfrcbv7q8b264" path="res://Content/Game/ParticleEffects/ChiselHit.tscn" id="11_74fcy"]
+[ext_resource type="PackedScene" uid="uid://13nkg302in" path="res://Content/Game/ParticleEffects/PickaxeHit.tscn" id="12_2hb12"]
+[ext_resource type="PackedScene" uid="uid://cmjhxri7e5uq8" path="res://Content/Game/ParticleEffects/BombExplosion.tscn" id="13_65gxa"]
+[ext_resource type="PackedScene" uid="uid://cdt77gu0pbhdt" path="res://Content/Game/ParticleEffects/HitMiss.tscn" id="13_adypx"]
+[ext_resource type="PackedScene" uid="uid://0mco5mcbx44" path="res://Content/Game/ParticleEffects/HammerHit.tscn" id="13_d0ni8"]
+[ext_resource type="PackedScene" uid="uid://s05an6ihbsig" path="res://Content/Game/ParticleEffects/DustCPU.tscn" id="13_nfo5w"]
+
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_lsbho")
+transition_panels = Array[PackedScene]([ExtResource("2_kwcg0")])
+
+[node name="ParticleCache" type="CanvasLayer" parent="."]
+layer = -99
+script = ExtResource("3_saj7b")
+scene_caches = {
+"res://Games/MiningMinigame/Scenes/MiningMinigame.tscn": [ExtResource("4_gjolg"), ExtResource("5_7s1ga"), ExtResource("9_8he6q"), ExtResource("10_27kgs"), ExtResource("11_74fcy"), ExtResource("12_2hb12"), ExtResource("13_d0ni8"), ExtResource("13_65gxa"), ExtResource("13_adypx"), ExtResource("13_nfo5w")]
+}

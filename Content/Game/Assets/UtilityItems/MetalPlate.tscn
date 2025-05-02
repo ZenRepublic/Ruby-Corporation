@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmwietox0oefn"]
+
+[ext_resource type="Script" path="res://Content/Game/Scripts/MineItems/obstacle.gd" id="1_25n4u"]
+[ext_resource type="Texture2D" uid="uid://bv40r7ktjldfp" path="res://Content/Game/textures/Tiles/Metal/Metalish.png" id="2_gu0rb"]
+[ext_resource type="Script" path="res://Scripts/SoundManagement/sfx_manager.gd" id="3_w0x1q"]
+
+
+[node name="MetalPlate" type="Node2D"]
+script = ExtResource("1_25n4u")
+type = 2
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_gu0rb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource("3_w0x1q")

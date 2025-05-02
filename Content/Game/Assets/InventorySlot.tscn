@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsvw53lakv2lb"]
+
+[ext_resource type="Texture2D" uid="uid://dgu6187ctkhd5" path="res://Content/Game/textures/Treasures/inventory_versions/Aquatearite_inv.png" id="1_4fl1o"]
+[ext_resource type="Script" path="res://Content/Game/Scripts/Gameplay/inventory_slot.gd" id="1_5xsjt"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="3_6clml"]
+[ext_resource type="FontFile" uid="uid://bngvp83jfv5b1" path="res://Fonts/Jaywalk.ttf" id="3_ujpel"]
+
+[node name="InventorySlot" type="HBoxContainer"]
+theme_override_constants/separation = 20
+alignment = 1
+script = ExtResource("1_5xsjt")
+
+[node name="Visual" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("1_4fl1o")
+
+[node name="Quantity" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("3_6clml")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_ujpel")
+theme_override_font_sizes/font_size = 12
+text = "x11"
+horizontal_alignment = 2
+vertical_alignment = 1

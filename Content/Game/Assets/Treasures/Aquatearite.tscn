@@ -1,0 +1,40 @@
+[gd_scene load_steps=10 format=3 uid="uid://ldnn3un1wrpc"]
+
+[ext_resource type="Script" path="res://Content/Game/Scripts/MineItems/gem.gd" id="1_hs1ad"]
+[ext_resource type="Shader" path="res://Content/Game/Shaders/gem_flash.gdshader" id="2_fqja1"]
+[ext_resource type="Resource" uid="uid://qe1fviswnlj0" path="res://Content/Game/Scripts/Inventory/Resources/Aquatearite.tres" id="2_oqid6"]
+[ext_resource type="Texture2D" uid="uid://bph3o4v4d7pc5" path="res://Content/Game/textures/Treasures/Aquatearite 2x2.PNG" id="3_7rmff"]
+[ext_resource type="PackedScene" uid="uid://b4pwoxcejmqq8" path="res://Content/Game/ParticleEffects/GemSparkles.tscn" id="4_sogul"]
+[ext_resource type="Script" path="res://Scripts/SoundManagement/sfx_manager.gd" id="5_tfuv6"]
+[ext_resource type="AudioStream" uid="uid://dclhqunsk31ls" path="res://Content/Game/Sounds/GemDiscover.mp3" id="6_rwwug"]
+[ext_resource type="AudioStream" uid="uid://28ud3u7rplfo" path="res://Content/Game/Sounds/AddItem.mp3" id="7_36kqh"]
+
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ady04"]
+resource_local_to_scene = true
+shader = ExtResource("2_fqja1")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+shader_parameter/shine_progress = 0.0
+shader_parameter/shine_size = 0.2
+shader_parameter/shine_angle = 30.0
+
+[node name="Aquatearite" type="Node2D" node_paths=PackedStringArray("particles")]
+script = ExtResource("1_hs1ad")
+particles = NodePath("Sparkles")
+inventory_item = ExtResource("2_oqid6")
+focus_zoom_strength = 0.4
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ady04")
+texture = ExtResource("3_7rmff")
+
+[node name="Sparkles" parent="." instance=ExtResource("4_sogul")]
+amount = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+script = ExtResource("5_tfuv6")
+clip_pool = Array[AudioStream]([ExtResource("6_rwwug"), ExtResource("7_36kqh")])
+min_pitch = 0.95
+max_pitch = 1.05

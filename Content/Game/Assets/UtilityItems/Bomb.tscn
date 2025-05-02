@@ -1,0 +1,138 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwwld3lboby8d"]
+
+[ext_resource type="Script" path="res://Content/Game/Scripts/MineItems/area_explosive.gd" id="1_3q0w6"]
+[ext_resource type="PackedScene" uid="uid://cmjhxri7e5uq8" path="res://Content/Game/ParticleEffects/BombExplosion.tscn" id="2_2uay6"]
+[ext_resource type="Texture2D" uid="uid://dvgb6svvbcj35" path="res://Content/Game/textures/Items/Kabomb.PNG" id="3_y4ww5"]
+[ext_resource type="AudioStream" uid="uid://opei2yjkif3w" path="res://Content/Game/Sounds/BombExplode.mp3" id="4_h52mw"]
+[ext_resource type="Script" path="res://Scripts/SoundManagement/sfx_manager.gd" id="5_frgp6"]
+
+[sub_resource type="Animation" id="Animation_27nhk"]
+resource_name = "Explode"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-7, -3), Vector2(2, 4), Vector2(-5, 3), Vector2(4, -3), Vector2(-5, 8), Vector2(-8, -7), Vector2(5, 4), Vector2(-8, 7), Vector2(6, -8), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.174533, 0.174533, -0.174533, 0.174533, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.5, 1), Vector2(1.5, 1.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 0.627451)]
+}
+
+[sub_resource type="Animation" id="Animation_4ow8i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s6187"]
+_data = {
+"Explode": SubResource("Animation_27nhk"),
+"RESET": SubResource("Animation_4ow8i")
+}
+
+[node name="Bomb" type="Node2D"]
+script = ExtResource("1_3q0w6")
+explode_particles_scn = ExtResource("2_2uay6")
+shake_strength = 25.0
+type = 1
+focus_zoom_strength = 0.4
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_y4ww5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s6187")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_h52mw")
+bus = &"SFX"
+script = ExtResource("5_frgp6")
+clip_pool = Array[AudioStream]([ExtResource("4_h52mw")])

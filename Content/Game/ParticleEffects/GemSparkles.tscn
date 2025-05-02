@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4pwoxcejmqq8"]
+
+[ext_resource type="Texture2D" uid="uid://dwww6880ynas2" path="res://Content/Game/textures/Particles/flare_2.png" id="1_qku8p"]
+
+
+[sub_resource type="Curve" id="Curve_uproo"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), -4.83161, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_og3jk"]
+_data = [Vector2(0, 0.582418), 0.0, 0.0, 0, 0, Vector2(0.350993, 1), 0.0, 0.0, 0, 0, Vector2(0.986755, 0.021978), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Sparkles" type="CPUParticles2D"]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+texture = ExtResource("1_qku8p")
+emission_shape = 3
+emission_rect_extents = Vector2(64, 64)
+gravity = Vector2(0, 0)
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+angular_velocity_curve = SubResource("Curve_uproo")
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_og3jk")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MineTreasure" load_steps=3 format=3 uid="uid://2rx4dv8wovkq"]
+
+[ext_resource type="PackedScene" uid="uid://bwgkj6bwomdf1" path="res://Content/Game/Assets/UtilityItems/DynamiteVertical.tscn" id="1_afp2i"]
+[ext_resource type="Script" path="res://Content/Game/Scripts/MineResources/item_resource.gd" id="2_e3rv1"]
+
+
+
+[resource]
+script = ExtResource("2_e3rv1")
+scene = ExtResource("1_afp2i")
+dimensions = Vector2(1, 2)

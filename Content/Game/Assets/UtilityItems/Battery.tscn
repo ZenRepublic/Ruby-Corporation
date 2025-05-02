@@ -1,0 +1,183 @@
+[gd_scene load_steps=11 format=3 uid="uid://bvlx0d5v077tw"]
+
+[ext_resource type="Script" uid="uid://cab3yc1hb82em" path="res://Content/Game/Scripts/MineItems/battery.gd" id="1_mprew"]
+[ext_resource type="Texture2D" uid="uid://dv1we8u67uyky" path="res://Content/Game/textures/Items/Battery.PNG" id="2_iugiy"]
+[ext_resource type="Script" uid="uid://c50bma6jrp4nc" path="res://Scripts/SoundManagement/sfx_manager.gd" id="3_0y10x"]
+[ext_resource type="AudioStream" uid="uid://buln65uf5r56h" path="res://Content/Game/Sounds/BatteryDiscover.mp3" id="4_utlna"]
+[ext_resource type="AudioStream" uid="uid://dkmc8ej4ilpk7" path="res://Content/Game/Sounds/batterypour-003.mp3" id="5_c41o2"]
+
+[sub_resource type="Animation" id="Animation_518qm"]
+resource_name = "Discover"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 0.7), Vector2(0.8, 1.5), Vector2(1.3, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-9, -11), Vector2(13, 12), Vector2(-25, 19), Vector2(19, -23), Vector2(-2.37759, -5.3242), Vector2(-27.9385, -3.52731), Vector2(33.2385, 0.446116), Vector2(3.64087, -21.9031), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.45, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.309, -1.309, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3o1r7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pnil1"]
+resource_name = "Heal"
+length = 0.65
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.55, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0.241156, 0.241156, 0.241156, 1), Color(0.0431373, 0.0431373, 0.0431373, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.174533, 0.0, 0.0, -0.174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ee48"]
+_data = {
+&"Discover": SubResource("Animation_518qm"),
+&"RESET": SubResource("Animation_3o1r7"),
+&"Restore": SubResource("Animation_pnil1")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_xv3ku"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 9, -1, 19.6654, 72.6251, -19.6654, -72.6251, -17, -203, 67.3898, -349.363, -67.3898, 349.363, -258, 6, 0, 0, 0, 0, -362, 723, 0, 0, 0, 0, -419, 1218)
+}
+point_count = 5
+
+[node name="Battery" type="Node2D"]
+script = ExtResource("1_mprew")
+type = 1
+focus_zoom_strength = 0.5
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_iugiy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3ee48")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+script = ExtResource("3_0y10x")
+clip_pool = Array[AudioStream]([ExtResource("4_utlna"), ExtResource("5_c41o2")])
+min_pitch = 0.95
+max_pitch = 1.05
+
+[node name="Path2D" type="Path2D" parent="."]
+visible = false
+position = Vector2(-7, -2)
+curve = SubResource("Curve2D_xv3ku")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(9, -1)
+rotation = -1.69881
+loop = false

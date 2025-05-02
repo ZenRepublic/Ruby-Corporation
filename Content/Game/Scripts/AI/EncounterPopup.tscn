@@ -1,0 +1,129 @@
+[gd_scene load_steps=6 format=3 uid="uid://rfyxw6amutqa"]
+
+[ext_resource type="Script" path="res://Content/Game/Scripts/AI/encounter_popup.gd" id="1_kycab"]
+
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aibrh"]
+bg_color = Color(0.85098, 0.498039, 0.262745, 0.352941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qn3vw"]
+bg_color = Color(0.830271, 0.500582, 0.406592, 1)
+
+[sub_resource type="Gradient" id="Gradient_qba3k"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qn5ut"]
+gradient = SubResource("Gradient_qba3k")
+
+[node name="EncounterPopup" type="CanvasLayer"]
+script = ExtResource("1_kycab")
+
+[node name="Background" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_aibrh")
+
+[node name="EncounterBox" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.167
+anchor_top = 0.494
+anchor_right = 0.833
+anchor_bottom = 0.889
+offset_left = -0.384018
+offset_top = -0.112
+offset_right = 0.383911
+offset_bottom = -0.0720215
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qn3vw")
+
+[node name="Narration" type="Control" parent="EncounterBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Textbox" type="Label" parent="EncounterBox/Narration"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.147
+anchor_right = 1.0
+anchor_bottom = 0.702
+offset_left = 32.0
+offset_top = 26.368
+offset_right = -32.0
+offset_bottom = 12.288
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Test text omg its so cool this is best game ever"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ClickToContinue" type="Label" parent="EncounterBox/Narration"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -56.0
+offset_right = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 21
+text = "Click to continue..."
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Options" type="HBoxContainer" parent="EncounterBox"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 104.0
+offset_right = -24.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 45
+alignment = 1
+
+[node name="Button" type="Button" parent="EncounterBox/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 26
+text = "Walk The Dog"
+
+[node name="Button2" type="Button" parent="EncounterBox/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "Walk The Dog"
+
+[node name="Button3" type="Button" parent="EncounterBox/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "Walk The Dog"
+
+[node name="Visual" type="TextureRect" parent="EncounterBox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = -216.0
+offset_right = 128.0
+offset_bottom = 40.0
+grow_horizontal = 2
+texture = SubResource("GradientTexture2D_qn5ut")

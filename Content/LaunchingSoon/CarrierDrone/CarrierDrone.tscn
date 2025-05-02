@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjraw1pe2akjs"]
+
+[ext_resource type="Script" uid="uid://de0hhjry8fvwq" path="res://Content/LaunchingSoon/CarrierDrone/carrier_drone.gd" id="1_h26ka"]
+[ext_resource type="PackedScene" uid="uid://bdbbw50ob5msl" path="res://Content/LaunchingSoon/CarrierDrone/puck.glb" id="2_1tmj7"]
+[ext_resource type="Script" uid="uid://wumrupdj6tl1" path="res://Content/LaunchingSoon/CarrierDrone/magnet_puck.gd" id="2_guq74"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_2r3xa"]
+
+[node name="CarrierDrone" type="Node3D" node_paths=PackedStringArray("spawn_point")]
+script = ExtResource("1_h26ka")
+spawn_point = NodePath("puck/SpawnPoint")
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("SphereMesh_2r3xa")
+skeleton = NodePath("")
+
+[node name="puck" parent="." instance=ExtResource("2_1tmj7")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.2, 0)
+script = ExtResource("2_guq74")
+tether_length = 0.2
+spring_strength = 50.0
+
+[node name="SpawnPoint" type="Node3D" parent="puck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0157151)

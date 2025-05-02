@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bav80rv2du2x2"]
+
+[ext_resource type="Script" path="res://Scripts/Tensor/tensor_collection_entry.gd" id="1_50gjt"]
+[ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="1_mus84"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="2_6mrwi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vq0v"]
+bg_color = Color(0.482353, 0.329412, 0.501961, 1)
+
+[node name="TensorCollectionEntry" type="PanelContainer" node_paths=PackedStringArray("visual", "name_label", "select_button")]
+custom_minimum_size = Vector2(400, 30)
+theme_override_styles/panel = SubResource("StyleBoxFlat_1vq0v")
+script = ExtResource("1_50gjt")
+visual = NodePath("MarginContainer/Content/Visual")
+name_label = NodePath("MarginContainer/Content/TokenName")
+max_name_length = 15
+select_button = NodePath("MarginContainer/Content/Button")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="Content" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Visual" type="TextureRect" parent="MarginContainer/Content"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("1_mus84")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="TokenName" type="Label" parent="MarginContainer/Content"]
+layout_mode = 2
+theme = ExtResource("2_6mrwi")
+theme_override_font_sizes/font_size = 24
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/Content"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme = ExtResource("2_6mrwi")
+theme_type_variation = &"SimpleButton"
+theme_override_font_sizes/font_size = 21
+text = "SELECT"

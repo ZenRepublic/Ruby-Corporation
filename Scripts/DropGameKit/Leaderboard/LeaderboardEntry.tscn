@@ -1,0 +1,138 @@
+[gd_scene load_steps=14 format=3 uid="uid://ebyxtunpa1fd"]
+
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="1_55noe"]
+[ext_resource type="Texture2D" uid="uid://bpt1e8u1buonk" path="res://Textures/BrandingAssets/whosthatrubian.png" id="2_1wqkt"]
+[ext_resource type="Script" uid="uid://dkjusa4wx24y8" path="res://Scripts/DropGameKit/Leaderboard/leaderboard_account.gd" id="2_jtfeo"]
+[ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="3_4e2ic"]
+[ext_resource type="Texture2D" uid="uid://7kqujf7rup2c" path="res://Textures/Icons/Medals/Gold medal.png" id="3_6a2dp"]
+[ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="3_bdctd"]
+[ext_resource type="Texture2D" uid="uid://bvy8wmpka1ggp" path="res://Textures/Icons/Medals/Silver medal.png" id="4_3w6ha"]
+[ext_resource type="Script" uid="uid://dpbwy1xjqctiu" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="5_2m2et"]
+[ext_resource type="Texture2D" uid="uid://31n2y7qa30v2" path="res://Textures/Icons/Medals/Bronze medal.png" id="5_mb3n8"]
+[ext_resource type="Texture2D" uid="uid://bqif02eekq215" path="res://Textures/Icons/copyicon.png" id="10_ujm05"]
+[ext_resource type="Script" uid="uid://bwchk1fr718eh" path="res://addons/texture_button_colored/texture_button_colored.gd" id="11_vkj3l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jj8w"]
+bg_color = Color(0.380392, 0.0941176, 0.317647, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfitm"]
+bg_color = Color(0.529412, 0.243137, 0.517647, 1)
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_detail = 2
+
+[node name="LeaderboardEntry" type="PanelContainer" node_paths=PackedStringArray("rank_visual", "rank_id", "player_displayable", "token_visual", "player_score", "copy_address_button")]
+size_flags_vertical = 3
+theme = ExtResource("1_55noe")
+theme_type_variation = &"LeaderboardPanel"
+theme_override_styles/panel = SubResource("StyleBoxFlat_7jj8w")
+script = ExtResource("2_jtfeo")
+rank_visual = NodePath("HBoxContainer/Rank")
+rank_id = NodePath("HBoxContainer/Rank/ID")
+top_rank_textures = Array[Texture2D]([ExtResource("3_6a2dp"), ExtResource("4_3w6ha"), ExtResource("5_mb3n8")])
+player_displayable = NodePath("HBoxContainer/NFTVisual")
+token_visual = NodePath("HBoxContainer/ScoreContainer/HBoxContainer/Visual")
+player_score = NodePath("HBoxContainer/ScoreContainer/HBoxContainer/Score")
+copy_address_button = NodePath("HBoxContainer/CopyAddressButton")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Rank" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ID" type="Label" parent="HBoxContainer/Rank"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NFTVisual" type="TextureRect" parent="HBoxContainer" node_paths=PackedStringArray("visual", "name_label")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_1wqkt")
+expand_mode = 3
+stretch_mode = 5
+script = ExtResource("3_4e2ic")
+visual = NodePath(".")
+image_size = 48
+name_label = NodePath("../Name")
+max_name_length = 12
+
+[node name="Name" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "..."
+
+[node name="ScoreContainer" type="PanelContainer" parent="HBoxContainer" node_paths=PackedStringArray("visual", "balance_label")]
+custom_minimum_size = Vector2(150, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_55noe")
+theme_type_variation = &"LeaderboardPanel"
+theme_override_styles/panel = SubResource("StyleBoxFlat_gfitm")
+script = ExtResource("3_4e2ic")
+visual = NodePath("HBoxContainer/Visual")
+image_size = 32
+balance_label = NodePath("HBoxContainer/Score")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScoreContainer"]
+layout_mode = 2
+
+[node name="Visual" type="TextureRect" parent="HBoxContainer/ScoreContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_bdctd")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Score" type="Label" parent="HBoxContainer/ScoreContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme = ExtResource("1_55noe")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_2m2et")
+format_mode = 1
+decimal_amount = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="CopyAddressButton" type="TextureButton" parent="HBoxContainer"]
+visible = false
+self_modulate = Color(0.482353, 0.329412, 0.501961, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("10_ujm05")
+texture_pressed = ExtResource("10_ujm05")
+texture_hover = ExtResource("10_ujm05")
+texture_disabled = ExtResource("10_ujm05")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("11_vkj3l")
+theme_override_colors/icon_normal_color = Color(0.482353, 0.329412, 0.501961, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(0.85098, 0.741176, 0.784314, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(0.290196, 0.188235, 0.321569, 0.780392)

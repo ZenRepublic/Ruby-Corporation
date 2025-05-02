@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MineTreasure" load_steps=3 format=3 uid="uid://bw42pux1dmdu2"]
+
+[ext_resource type="PackedScene" uid="uid://cwwld3lboby8d" path="res://Content/Game/Assets/UtilityItems/Bomb.tscn" id="1_17gd0"]
+[ext_resource type="Script" path="res://Content/Game/Scripts/MineResources/item_resource.gd" id="1_hwg8c"]
+
+
+[resource]
+script = ExtResource("1_hwg8c")
+scene = ExtResource("1_17gd0")
+dimensions = Vector2(2, 2)

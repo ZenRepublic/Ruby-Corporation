@@ -1,0 +1,68 @@
+[gd_scene load_steps=15 format=3 uid="uid://ba4kxwsn7roaa"]
+
+[ext_resource type="Script" path="res://Content/Game/Scripts/MineItems/gem.gd" id="1_dk24u"]
+[ext_resource type="Resource" uid="uid://cgth6177sjdyo" path="res://Content/Game/Scripts/Inventory/Resources/Tangerinite.tres" id="2_fenva"]
+[ext_resource type="Shader" path="res://Content/Game/Shaders/gem_flash.gdshader" id="2_icgwy"]
+[ext_resource type="Texture2D" uid="uid://baphbcihnyu1l" path="res://Content/Game/textures/Treasures/Tangerinite 1x1.PNG" id="3_i8wme"]
+[ext_resource type="PackedScene" uid="uid://b4pwoxcejmqq8" path="res://Content/Game/ParticleEffects/GemSparkles.tscn" id="4_6qdde"]
+[ext_resource type="Script" path="res://Scripts/SoundManagement/sfx_manager.gd" id="5_3kp4a"]
+[ext_resource type="AudioStream" uid="uid://dclhqunsk31ls" path="res://Content/Game/Sounds/GemDiscover.mp3" id="6_bqvo1"]
+[ext_resource type="AudioStream" uid="uid://28ud3u7rplfo" path="res://Content/Game/Sounds/AddItem.mp3" id="7_qe0p5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ady04"]
+resource_local_to_scene = true
+shader = ExtResource("2_icgwy")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+shader_parameter/shine_progress = 0.0
+shader_parameter/shine_size = 0.2
+shader_parameter/shine_angle = 30.0
+
+[sub_resource type="Curve" id="Curve_uproo"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), -4.83161, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_n3pbe"]
+curve = SubResource("Curve_uproo")
+
+[sub_resource type="Curve" id="Curve_og3jk"]
+_data = [Vector2(0, 0.582418), 0.0, 0.0, 0, 0, Vector2(0.350993, 1), 0.0, 0.0, 0, 0, Vector2(0.986755, 0.021978), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ip8qa"]
+curve = SubResource("Curve_og3jk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_epd1q"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(128, 128, 0)
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+angular_velocity_curve = SubResource("CurveTexture_n3pbe")
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_ip8qa")
+
+[node name="Tangerinite" type="Node2D" node_paths=PackedStringArray("particles")]
+script = ExtResource("1_dk24u")
+particles = NodePath("Sparkles")
+inventory_item = ExtResource("2_fenva")
+focus_zoom_strength = 0.6
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ady04")
+texture = ExtResource("3_i8wme")
+
+[node name="Sparkles" parent="." instance=ExtResource("4_6qdde")]
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_epd1q")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+script = ExtResource("5_3kp4a")
+clip_pool = Array[AudioStream]([ExtResource("6_bqvo1"), ExtResource("7_qe0p5")])
+min_pitch = 0.95
+max_pitch = 1.05

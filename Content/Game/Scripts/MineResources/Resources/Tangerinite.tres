@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=3 format=3 uid="uid://blwka57irkrc2"]
+
+[ext_resource type="PackedScene" uid="uid://ba4kxwsn7roaa" path="res://Content/Game/Assets/Treasures/Tangerinite.tscn" id="1_0il6w"]
+[ext_resource type="Script" path="res://Content/Game/Scripts/MineResources/item_resource.gd" id="1_f732b"]
+
+[resource]
+script = ExtResource("1_f732b")
+scene = ExtResource("1_0il6w")
+dimensions = Vector2(1, 1)
+weight = 15

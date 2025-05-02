@@ -1,0 +1,105 @@
+[gd_scene load_steps=11 format=3 uid="uid://dkkonekh61r3p"]
+
+[ext_resource type="Script" path="res://Content/Game/Scripts/Gameplay/mining_tool.gd" id="1_vpxef"]
+[ext_resource type="Texture2D" uid="uid://by7c4fki5jv16" path="res://Content/Game/textures/Tools/Chisel1.PNG" id="2_58m6g"]
+[ext_resource type="PackedScene" uid="uid://dfrcbv7q8b264" path="res://Content/Game/ParticleEffects/ChiselHit.tscn" id="3_mwmh5"]
+[ext_resource type="PackedScene" uid="uid://cdt77gu0pbhdt" path="res://Content/Game/ParticleEffects/HitMiss.tscn" id="4_keyxd"]
+[ext_resource type="AudioStream" uid="uid://buul085bm1pmb" path="res://Content/Game/Sounds/ChiselHit.mp3" id="5_hrml5"]
+[ext_resource type="AudioStream" uid="uid://j6k3l6rhgs32" path="res://Content/Game/Sounds/HitMiss.mp3" id="6_2g0mc"]
+[ext_resource type="Script" path="res://Scripts/SoundManagement/sfx_manager.gd" id="7_46jm2"]
+
+
+[sub_resource type="Animation" id="Animation_k7w63"]
+resource_name = "ChiselHit"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(123, 126), Vector2(129, 130), Vector2(49, 77), Vector2(123, 126)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.4, 0.4), Vector2(0.45, 0.45), Vector2(0.238281, 0.347266), Vector2(0.4, 0.4)]
+}
+
+[sub_resource type="Animation" id="Animation_j6c67"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, 55)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.4, 0.4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x5scx"]
+_data = {
+"Hit": SubResource("Animation_k7w63"),
+"RESET": SubResource("Animation_j6c67")
+}
+
+[node name="Chisel" type="Node2D"]
+script = ExtResource("1_vpxef")
+tool_type = 3
+neutral_visual = ExtResource("2_58m6g")
+hit_visual = ExtResource("2_58m6g")
+energy_cost = 1
+hit_success_rate = 1.0
+hit_particles_scn = ExtResource("3_mwmh5")
+miss_particles_scn = ExtResource("4_keyxd")
+hit_wait_time = 0.15
+shake_strength = 1.0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(48, 55)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_58m6g")
+
+[node name="WirePoint" type="Node2D" parent="Sprite"]
+position = Vector2(212.5, 205)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x5scx")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 5
+bus = &"SFX"
+script = ExtResource("7_46jm2")
+clip_pool = Array[AudioStream]([ExtResource("5_hrml5"), ExtResource("6_2g0mc")])
+min_pitch = 0.85
+max_pitch = 1.15

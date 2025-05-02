@@ -1,0 +1,177 @@
+[gd_scene load_steps=10 format=3 uid="uid://lx17th5tw38f"]
+
+[ext_resource type="Script" path="res://Scripts/Tensor/tensor_collection_display.gd" id="1_6bsox"]
+[ext_resource type="PackedScene" uid="uid://bav80rv2du2x2" path="res://Scripts/Tensor/TensorCollectionEntry.tscn" id="2_8jyjq"]
+[ext_resource type="Script" path="res://Scripts/Tensor/tensor_api.gd" id="3_tefep"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="4_ixmf5"]
+[ext_resource type="Texture2D" uid="uid://b3003ar1uxa77" path="res://addons/SolanaSDK/Textures/closebutton.jpg.png" id="5_5wdy5"]
+[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="6_8epwe"]
+[ext_resource type="Texture2D" uid="uid://mwxd7sxmvxmf" path="res://Textures/LogosAndTokens/tensorlogo.png" id="7_e05jc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kehq"]
+bg_color = Color(0.121569, 0.0627451, 0.164706, 0.941176)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qac5"]
+bg_color = Color(0.65098, 0.521569, 0.623529, 1)
+
+[node name="TensorCollectionDisplay" type="Control" node_paths=PackedStringArray("tensor_api", "container", "no_asset_overlay", "search_bar", "search_button")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6bsox")
+tensor_api = NodePath("TensorAPI")
+show_limit = 10
+container = NodePath("MarginContainer/Content/Panel/MarginContainer/VBoxContainer/ScrollContainer/CollectionContainer")
+no_asset_overlay = NodePath("MarginContainer/Content/Panel/MarginContainer/NoAssetsOverlay")
+display_entry_scn = ExtResource("2_8jyjq")
+search_bar = NodePath("MarginContainer/Content/Panel/MarginContainer/VBoxContainer/Searchbar/Searchbar")
+search_button = NodePath("MarginContainer/Content/Panel/MarginContainer/VBoxContainer/Searchbar/SearchButton")
+close_on_select = true
+
+[node name="TensorAPI" type="Node" parent="."]
+script = ExtResource("3_tefep")
+API_KEY = "8af09011-d26f-4002-9bd3-130e569c5176"
+
+[node name="BG" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3kehq")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Content" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Info" type="HBoxContainer" parent="MarginContainer/Content"]
+layout_mode = 2
+
+[node name="SelectCollection" type="Label" parent="MarginContainer/Content/Info"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("4_ixmf5")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 40
+text = "Select Collection"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Close" type="HBoxContainer" parent="MarginContainer/Content/Info"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="CloseButton" type="TextureButton" parent="MarginContainer/Content/Info/Close"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 8
+texture_normal = ExtResource("5_5wdy5")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Panel" type="PanelContainer" parent="MarginContainer/Content"]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3qac5")
+
+[node name="Exit" type="Control" parent="MarginContainer/Content/Panel"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Content/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Content/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Searchbar" type="HBoxContainer" parent="MarginContainer/Content/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Searchbar" type="LineEdit" parent="MarginContainer/Content/Panel/MarginContainer/VBoxContainer/Searchbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_ixmf5")
+theme_override_font_sizes/font_size = 35
+placeholder_text = "Search for collection..."
+script = ExtResource("6_8epwe")
+
+[node name="SearchButton" type="Button" parent="MarginContainer/Content/Panel/MarginContainer/VBoxContainer/Searchbar"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme = ExtResource("4_ixmf5")
+theme_type_variation = &"SimpleButton"
+theme_override_font_sizes/font_size = 26
+text = "Search"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Content/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="CollectionContainer" type="VBoxContainer" parent="MarginContainer/Content/Panel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="TensorCollectionEntry" parent="MarginContainer/Content/Panel/MarginContainer/VBoxContainer/ScrollContainer/CollectionContainer" instance=ExtResource("2_8jyjq")]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="PoweredBy" type="HBoxContainer" parent="MarginContainer/Content/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BalanceLabel" type="Label" parent="MarginContainer/Content/Panel/MarginContainer/VBoxContainer/PoweredBy"]
+layout_mode = 2
+theme = ExtResource("4_ixmf5")
+theme_override_font_sizes/font_size = 24
+text = "Powered by Tensor
+"
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Content/Panel/MarginContainer/VBoxContainer/PoweredBy"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("7_e05jc")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="NoAssetsOverlay" type="CenterContainer" parent="MarginContainer/Content/Panel/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Content/Panel/MarginContainer/NoAssetsOverlay"]
+layout_mode = 2
+theme = ExtResource("4_ixmf5")
+theme_override_font_sizes/font_size = 40
+text = "No Collections found..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/Content/Info/Close/CloseButton" to="." method="close"]

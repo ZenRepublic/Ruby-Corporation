@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwlqhjwslk81y"]
+
+[ext_resource type="Script" path="res://Scripts/OpenAI/open_ai_prompter.gd" id="1_5p66w"]
+[ext_resource type="Script" path="res://Scripts/OpenAI/image_prompter.gd" id="2_abqn1"]
+
+[node name="OpenAI" type="Node"]
+script = ExtResource("1_5p66w")
+path_to_key = "C:\\Users\\thomas\\Desktop\\API\\openai.txt"
+model = "gpt-3.5-turbo"
+
+[node name="ImagePrompter" type="Node" parent="."]
+script = ExtResource("2_abqn1")
+model = "dall-e-2"

@@ -1,0 +1,361 @@
+[gd_scene load_steps=12 format=3 uid="uid://cyrmlhn128s53"]
+
+[ext_resource type="Script" path="res://Scripts/Web3/TransactionManagement/transaction_ui_overlay.gd" id="1_f1p7i"]
+[ext_resource type="Script" path="res://Scripts/Utility/screen_manager.gd" id="2_nf61e"]
+[ext_resource type="Shader" path="res://Shaders/scrolling_background.gdshader" id="3_by8ct"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="3_qp2q8"]
+[ext_resource type="Texture2D" uid="uid://duj7xntofu70d" path="res://Content/Game/textures/GUI/treasure_pattern.png" id="4_u3hst"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjeht"]
+bg_color = Color(0.121569, 0.0627451, 0.164706, 1)
+
+[sub_resource type="Animation" id="Animation_23rod"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/SigningLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Signing Transaction..."]
+}
+
+[sub_resource type="Animation" id="Animation_ddjq2"]
+resource_name = "signingdots"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/SigningLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["Signing Transaction", "Signing Transaction.", "Signing Transaction..", "Signing Transaction..."]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_okekc"]
+_data = {
+"RESET": SubResource("Animation_23rod"),
+"signingdots": SubResource("Animation_ddjq2")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnvdi"]
+bg_color = Color(0.458824, 0.0901961, 0.337255, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h6v3h"]
+shader = ExtResource("3_by8ct")
+shader_parameter/scroll_speed = 0.2
+shader_parameter/angle_degrees = 0.0
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/tint = Color(0.8, 0.258824, 0.368627, 1)
+
+[node name="TransactionOverlay" type="CanvasLayer" node_paths=PackedStringArray("error_text_label")]
+layer = 99
+script = ExtResource("1_f1p7i")
+time_to_close = 1.0
+auto_close_fail = false
+error_text_label = NodePath("FailPanel/VBoxContainer/ErrorText/ErrorData")
+
+[node name="ScreenManager" type="Node" parent="." node_paths=PackedStringArray("screens")]
+script = ExtResource("2_nf61e")
+screens = [NodePath("../LoadingPanel"), NodePath("../SuccessPanel"), NodePath("../FailPanel")]
+
+[node name="LoadingPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qjeht")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoadingPanel"]
+layout_mode = 2
+theme_override_constants/separation = 140
+alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LoadingPanel/VBoxContainer"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_okekc")
+}
+autoplay = "signingdots"
+
+[node name="SideScroller" type="Control" parent="LoadingPanel/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 64.035)
+layout_mode = 2
+
+[node name="SideScrollerBG" type="Panel" parent="LoadingPanel/VBoxContainer/SideScroller"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jnvdi")
+
+[node name="SideScroller" type="TextureRect" parent="LoadingPanel/VBoxContainer/SideScroller"]
+material = SubResource("ShaderMaterial_h6v3h")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 10.0
+offset_right = -166.0
+offset_bottom = -22.035
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("4_u3hst")
+stretch_mode = 1
+
+[node name="SigningLabel" type="Label" parent="LoadingPanel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_qp2q8")
+theme_override_font_sizes/font_size = 40
+text = "Signing Transaction..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SideScroller2" type="Control" parent="LoadingPanel/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 64.035)
+layout_mode = 2
+
+[node name="SideScrollerBG" type="Panel" parent="LoadingPanel/VBoxContainer/SideScroller2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jnvdi")
+
+[node name="SideScroller" type="TextureRect" parent="LoadingPanel/VBoxContainer/SideScroller2"]
+material = SubResource("ShaderMaterial_h6v3h")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 10.0
+offset_right = -166.0
+offset_bottom = -22.035
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("4_u3hst")
+stretch_mode = 1
+
+[node name="SuccessPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qjeht")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SuccessPanel"]
+layout_mode = 2
+theme_override_constants/separation = 140
+alignment = 1
+
+[node name="SideScroller" type="Control" parent="SuccessPanel/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 64.035)
+layout_mode = 2
+
+[node name="SideScrollerBG" type="Panel" parent="SuccessPanel/VBoxContainer/SideScroller"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jnvdi")
+
+[node name="SideScroller" type="TextureRect" parent="SuccessPanel/VBoxContainer/SideScroller"]
+material = SubResource("ShaderMaterial_h6v3h")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 10.0
+offset_right = -166.0
+offset_bottom = -22.035
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("4_u3hst")
+stretch_mode = 1
+
+[node name="SuccessText" type="Label" parent="SuccessPanel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_qp2q8")
+theme_override_font_sizes/font_size = 40
+text = "Transaction Success!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SideScroller2" type="Control" parent="SuccessPanel/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 64.035)
+layout_mode = 2
+
+[node name="SideScrollerBG" type="Panel" parent="SuccessPanel/VBoxContainer/SideScroller2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jnvdi")
+
+[node name="SideScroller" type="TextureRect" parent="SuccessPanel/VBoxContainer/SideScroller2"]
+material = SubResource("ShaderMaterial_h6v3h")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 10.0
+offset_right = -166.0
+offset_bottom = -22.035
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("4_u3hst")
+stretch_mode = 1
+
+[node name="FailPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qjeht")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FailPanel"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="SideScroller" type="Control" parent="FailPanel/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 64.035)
+layout_mode = 2
+
+[node name="SideScrollerBG" type="Panel" parent="FailPanel/VBoxContainer/SideScroller"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jnvdi")
+
+[node name="SideScroller" type="TextureRect" parent="FailPanel/VBoxContainer/SideScroller"]
+material = SubResource("ShaderMaterial_h6v3h")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 10.0
+offset_right = -166.0
+offset_bottom = -22.035
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("4_u3hst")
+stretch_mode = 1
+
+[node name="ErrorText" type="VBoxContainer" parent="FailPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="FailText" type="Label" parent="FailPanel/VBoxContainer/ErrorText"]
+layout_mode = 2
+theme = ExtResource("3_qp2q8")
+theme_override_font_sizes/font_size = 40
+text = "Transaction Failed..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ErrorData" type="Label" parent="FailPanel/VBoxContainer/ErrorText"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_qp2q8")
+theme_override_colors/font_color = Color(0.639216, 0.156863, 0.345098, 1)
+theme_override_font_sizes/font_size = 25
+text = "Error -32002: Transaction simulation failed: Error processing Instruction 2: An account required by the instruction is missing"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Buttons" type="VBoxContainer" parent="FailPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="CopyLogsButton" type="Button" parent="FailPanel/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme = ExtResource("3_qp2q8")
+theme_type_variation = &"SimpleButtonAlt"
+text = "Copy Error Logs"
+
+[node name="CloseOverlayButton" type="Button" parent="FailPanel/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme = ExtResource("3_qp2q8")
+theme_type_variation = &"SimpleButton"
+text = "Okay..."
+
+[node name="SideScroller2" type="Control" parent="FailPanel/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 64.035)
+layout_mode = 2
+
+[node name="SideScrollerBG" type="Panel" parent="FailPanel/VBoxContainer/SideScroller2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jnvdi")
+
+[node name="SideScroller" type="TextureRect" parent="FailPanel/VBoxContainer/SideScroller2"]
+material = SubResource("ShaderMaterial_h6v3h")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 10.0
+offset_right = -166.0
+offset_bottom = -22.035
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("4_u3hst")
+stretch_mode = 1
+
+[connection signal="pressed" from="FailPanel/VBoxContainer/Buttons/CopyLogsButton" to="." method="copy_error_logs"]
+[connection signal="pressed" from="FailPanel/VBoxContainer/Buttons/CloseOverlayButton" to="." method="manual_overlay_close"]

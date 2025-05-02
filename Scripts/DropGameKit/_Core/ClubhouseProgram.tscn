@@ -1,0 +1,1528 @@
+[gd_scene load_steps=7 format=3 uid="uid://d06uexibndcy6"]
+
+[ext_resource type="Script" uid="uid://cnrmvih7tmduv" path="res://Scripts/DropGameKit/_Core/clubhouse_program.gd" id="1_ga3ja"]
+[ext_resource type="JSON" path="res://Scripts/DropGameKit/_Core/clubhouse.json" id="2_hn8ct"]
+[ext_resource type="Script" uid="uid://tfneiel8dgsv" path="res://Scripts/DropGameKit/_Core/clubhouse_utils.gd" id="4_85xot"]
+[ext_resource type="Script" uid="uid://dclawv4eq7has" path="res://Scripts/DropGameKit/Utility/RewardCalculations/mine_reward_calculator.gd" id="4_ljieg"]
+[ext_resource type="Script" uid="uid://ddctawf4lsjqw" path="res://Scripts/DropGameKit/_Core/clubhouse_server.gd" id="5_5nyte"]
+[ext_resource type="Script" uid="uid://cpmfcu0otccxe" path="res://Scripts/DropGameKit/Utility/RewardCalculations/token_reward_calculator.gd" id="6_v2ytq"]
+
+[node name="ClubhouseProgram" type="Node" node_paths=PackedStringArray("server", "utils")]
+script = ExtResource("1_ga3ja")
+server = NodePath("ClubhouseServer")
+utils = NodePath("ClubhouseUtils")
+
+[node name="AnchorProgram" type="AnchorProgram" parent="."]
+pid = "C1ubv5AC5w7Eh3iHpEt2BXZ1g3eARQtMRgmE2AXfznSg"
+json_file = ExtResource("2_hn8ct")
+idl = {
+"accounts": [{
+"discriminator": [1.0],
+"name": "BaseAssetV1",
+"type": {
+"fields": [{
+"name": "key",
+"type": {
+"defined": "Key"
+}
+}, {
+"name": "owner",
+"type": "publicKey"
+}, {
+"name": "update_authority",
+"type": {
+"defined": "UpdateAuthority"
+}
+}, {
+"name": "name",
+"type": "string"
+}, {
+"name": "uri",
+"type": "string"
+}, {
+"name": "seq",
+"type": {
+"option": "u64"
+}
+}],
+"kind": "struct"
+}
+}, {
+"discriminator": [50.0, 40.0, 49.0, 11.0, 157.0, 220.0, 229.0, 192.0],
+"name": "Campaign",
+"type": {
+"fields": [{
+"name": "auth_bump",
+"type": "u8"
+}, {
+"name": "house",
+"type": "publicKey"
+}, {
+"name": "creator",
+"type": "publicKey"
+}, {
+"name": "manager_mint",
+"type": {
+"option": "publicKey"
+}
+}, {
+"name": "reward_mint",
+"type": "publicKey"
+}, {
+"name": "reward_mint_decimals",
+"type": "u8"
+}, {
+"name": "max_rewards_per_game",
+"type": "u64"
+}, {
+"name": "rewards_claim_fee",
+"type": "u64"
+}, {
+"name": "player_count",
+"type": "u32"
+}, {
+"name": "active_games",
+"type": "u32"
+}, {
+"name": "total_games",
+"type": "u32"
+}, {
+"name": "time_span",
+"type": {
+"defined": "TimeSpan"
+}
+}, {
+"name": "house_config_snapshot",
+"type": {
+"defined": "HouseConfig"
+}
+}, {
+"name": "nft_config",
+"type": {
+"option": {
+"defined": "NftCampaignConfig"
+}
+}
+}, {
+"name": "unclaimed_sol_fees",
+"type": "u64"
+}, {
+"name": "_reserved_config",
+"type": {
+"array": ["u64", 7.0]
+}
+}, {
+"name": "token_config",
+"type": {
+"option": {
+"defined": "TokenCampaignConfig"
+}
+}
+}, {
+"name": "_reserved_for_token",
+"type": {
+"array": ["u64", 3.0]
+}
+}, {
+"name": "rewards_available",
+"type": "u64"
+}, {
+"name": "reserved_rewards",
+"type": "u64"
+}, {
+"name": "campaign_name",
+"type": "string"
+}, {
+"name": "uri",
+"type": {
+"option": "string"
+}
+}],
+"kind": "struct"
+}
+}, {
+"discriminator": [83.0, 45.0, 20.0, 151.0, 77.0, 14.0, 237.0, 46.0],
+"name": "CampaignPlayer",
+"type": {
+"fields": [{
+"name": "player_identity",
+"type": {
+"defined": "PlayerIdentity"
+}
+}, {
+"name": "campaign",
+"type": "publicKey"
+}, {
+"name": "house",
+"type": "publicKey"
+}, {
+"name": "energy",
+"type": "u8"
+}, {
+"name": "recharge_start_time",
+"type": "i64"
+}, {
+"name": "game_start_time",
+"type": "i64"
+}, {
+"name": "games_played",
+"type": "u32"
+}, {
+"name": "in_game",
+"type": "bool"
+}, {
+"name": "rewards_claimed",
+"type": "u64"
+}, {
+"name": "stake_info",
+"type": {
+"option": {
+"defined": "StakeInfo"
+}
+}
+}],
+"kind": "struct"
+}
+}, {
+"discriminator": [21.0, 145.0, 94.0, 109.0, 254.0, 199.0, 210.0, 151.0],
+"name": "House",
+"type": {
+"fields": [{
+"name": "bump",
+"type": "u8"
+}, {
+"name": "house_admin",
+"type": "publicKey"
+}, {
+"docs": ["to create CAMPAIGNS"],
+"name": "manager_collection",
+"type": {
+"option": "publicKey"
+}
+}, {
+"docs": ["paid to create CAMPAIGNS"],
+"name": "house_currency",
+"type": "publicKey"
+}, {
+"docs": ["currency decimals"],
+"name": "house_currency_decimals",
+"type": "u8"
+}, {
+"docs": ["total campaigns created"],
+"name": "total_campaigns",
+"type": "u32"
+}, {
+"docs": ["open campaigns"],
+"name": "open_campaigns",
+"type": "u16"
+}, {
+"docs": ["unique players in house"],
+"name": "unique_players",
+"type": "u32"
+}, {
+"docs": ["total games played in house"],
+"name": "games_played",
+"type": "u32"
+}, {
+"docs": ["creation fees collected total"],
+"name": "unclaimed_sol_fees",
+"type": "u64"
+}, {
+"docs": ["house fees pending withdrawal"],
+"name": "unclaimed_house_fees",
+"type": "u64"
+}, {
+"docs": ["house fees pending withdrawal"],
+"name": "is_active",
+"type": "bool"
+}, {
+"name": "_reserved1",
+"type": {
+"array": ["u64", 16.0]
+}
+}, {
+"name": "config",
+"type": {
+"defined": "HouseConfig"
+}
+}, {
+"name": "_reserved2",
+"type": {
+"array": ["u64", 16.0]
+}
+}, {
+"name": "house_name",
+"type": "string"
+}],
+"kind": "struct"
+}
+}, {
+"discriminator": [66.0, 246.0, 26.0, 109.0, 109.0, 70.0, 195.0, 94.0],
+"docs": ["If the admin is set, the program will check if the caller is the admin, otherwise it should check if the caller is the program authority"],
+"name": "ProgramAdminProof",
+"type": {
+"fields": [{
+"name": "program_admin",
+"type": "publicKey"
+}],
+"kind": "struct"
+}
+}],
+"address": "C1ubv5AC5w7Eh3iHpEt2BXZ1g3eARQtMRgmE2AXfznSg",
+"errors": [{
+"code": 6000.0,
+"msg": "Signer does not match program authority",
+"name": "ProgramAuthorityMismatch"
+}, {
+"code": 6001.0,
+"msg": "Collection Proof is invalid",
+"name": "CollectionProofInvalid"
+}, {
+"code": 6002.0,
+"msg": "Collection Key Mismatch",
+"name": "CollectionKeyMismatch"
+}, {
+"code": 6003.0,
+"msg": "Caller does not own the token account",
+"name": "TokenOwnerMismatch"
+}, {
+"code": 6004.0,
+"msg": "Unexpected metadata account",
+"name": "UnexpectedMetadata"
+}, {
+"code": 6005.0,
+"msg": "Expected metadata account, none provided",
+"name": "MissingMetadata"
+}, {
+"code": 6006.0,
+"msg": "Caller does not own the NFT",
+"name": "OwnerBalanceMismatch"
+}, {
+"code": 6007.0,
+"msg": "Mint is not an NFT",
+"name": "MintNotNft"
+}, {
+"code": 6008.0,
+"msg": "Energy depleted",
+"name": "OutOfEnergy"
+}, {
+"code": 6009.0,
+"msg": "Energy calculation failed",
+"name": "EnergyCalculationFailed"
+}, {
+"code": 6010.0,
+"msg": "Club inactive",
+"name": "ClubInactive"
+}, {
+"code": 6011.0,
+"msg": "Invalid input",
+"name": "InvalidInput"
+}, {
+"code": 6012.0,
+"msg": "Metadata does not match mint",
+"name": "MetadataMismatch"
+}, {
+"code": 6013.0,
+"msg": "Tax above 100%",
+"name": "TaxTooHigh"
+}, {
+"code": 6014.0,
+"msg": "Insufficient funds",
+"name": "InsufficientFunds"
+}, {
+"code": 6015.0,
+"msg": "Amount too high",
+"name": "AmountTooHigh"
+}, {
+"code": 6016.0,
+"msg": "No Authority",
+"name": "NotClubAdmin"
+}, {
+"code": 6017.0,
+"msg": "Player already in a match",
+"name": "PlayerAlreadyInMatch"
+}, {
+"code": 6018.0,
+"msg": "Player identity mismatch",
+"name": "PlayerIdentityMismatch"
+}, {
+"code": 6019.0,
+"msg": "Name starts with punctuation",
+"name": "StartsWithPunctuation"
+}, {
+"code": 6020.0,
+"msg": "Name starts with whitespace",
+"name": "StartsWithWhitespace"
+}, {
+"code": 6021.0,
+"msg": "Name ends with whitespace",
+"name": "EndsWithWhitespace"
+}, {
+"code": 6022.0,
+"msg": "Invalid character in name",
+"name": "InvalidCharacter"
+}, {
+"code": 6023.0,
+"msg": "Consecutive whitespace in name",
+"name": "ConsecutiveWhitespace"
+}, {
+"code": 6024.0,
+"msg": "The string cannot be longer than 32 bytes",
+"name": "StringTooLong"
+}, {
+"code": 6025.0,
+"msg": "The string cannot be shorter than 4 bytes",
+"name": "StringTooShort"
+}, {
+"code": 6026.0,
+"msg": "The vault must be empty",
+"name": "NonZeroVault"
+}, {
+"code": 6027.0,
+"msg": "Active campaigns exist",
+"name": "ActiveCampaigns"
+}, {
+"code": 6028.0,
+"msg": "Campaign is active",
+"name": "ActiveCampaign"
+}, {
+"code": 6029.0,
+"msg": "Campaign is expired",
+"name": "CampaignExpired"
+}, {
+"code": 6030.0,
+"msg": "Invalid time span",
+"name": "InvalidTimeSpan"
+}, {
+"code": 6031.0,
+"msg": "Player is already in a game",
+"name": "PlayerInGame"
+}, {
+"code": 6032.0,
+"msg": "Oracle required",
+"name": "OracleRequired"
+}, {
+"code": 6033.0,
+"msg": "Oracle mismatch",
+"name": "OracleMismatch"
+}, {
+"code": 6034.0,
+"msg": "Game cannot be started due to insufficient rewards",
+"name": "RewardsUnavailable"
+}, {
+"code": 6035.0,
+"msg": "No stake on player",
+"name": "NoStake"
+}],
+"instructions": [{
+"accounts": [{
+"name": "signer",
+"signer": true,
+"writable": true
+}, {
+"name": "program_admin"
+}, {
+"name": "program_data",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [163.0, 172.0, 8.0, 143.0, 167.0, 33.0, 31.0, 74.0, 194.0, 16.0, 203.0, 151.0, 97.0, 129.0, 208.0, 138.0, 22.0, 154.0, 213.0, 199.0, 26.0, 8.0, 12.0, 60.0, 211.0, 162.0, 14.0, 121.0, 84.0, 241.0, 196.0, 237.0]
+}]
+}
+}, {
+"name": "program_admin_proof",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [112.0, 114.0, 111.0, 103.0, 114.0, 97.0, 109.0, 95.0, 97.0, 100.0, 109.0, 105.0, 110.0]
+}, {
+"kind": "account",
+"path": "program_admin"
+}]
+},
+"writable": true
+}, {
+"address": "11111111111111111111111111111111",
+"name": "system_program"
+}],
+"args": [],
+"discriminator": [119.0, 52.0, 37.0, 43.0, 17.0, 188.0, 140.0, 81.0],
+"name": "add_program_admin"
+}, {
+"accounts": [{
+"name": "campaign_player",
+"writable": true
+}, {
+"name": "user",
+"signer": true,
+"writable": true
+}, {
+"name": "campaign_auth",
+"pda": {
+"seeds": [{
+"account": "CampaignPlayer",
+"kind": "account",
+"path": "campaign_player.campaign"
+}]
+}
+}, {
+"name": "game_deposit_vault",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [112.0, 108.0, 97.0, 121.0, 101.0, 114.0, 95.0, 100.0, 101.0, 112.0, 111.0, 115.0, 105.0, 116.0]
+}, {
+"account": "CampaignPlayer",
+"kind": "account",
+"path": "campaign_player.campaign"
+}]
+},
+"writable": true
+}, {
+"name": "stake_recipient_account",
+"pda": {
+"program": {
+"kind": "const",
+"value": [140.0, 151.0, 37.0, 143.0, 78.0, 36.0, 137.0, 241.0, 187.0, 61.0, 16.0, 41.0, 20.0, 142.0, 13.0, 131.0, 11.0, 90.0, 19.0, 153.0, 218.0, 255.0, 16.0, 132.0, 4.0, 142.0, 123.0, 216.0, 219.0, 233.0, 248.0, 89.0]
+},
+"seeds": [{
+"kind": "account",
+"path": "user"
+}, {
+"kind": "account",
+"path": "token_program"
+}, {
+"kind": "account",
+"path": "game_deposit_mint"
+}]
+},
+"writable": true
+}, {
+"name": "game_deposit_mint"
+}, {
+"address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+"name": "associated_token_program"
+}, {
+"name": "token_program"
+}, {
+"address": "11111111111111111111111111111111",
+"name": "system_program"
+}],
+"args": [],
+"discriminator": [62.0, 145.0, 133.0, 242.0, 244.0, 59.0, 53.0, 139.0],
+"name": "claim_stake"
+}, {
+"accounts": [{
+"name": "campaign",
+"writable": true
+}, {
+"name": "campaign_auth"
+}, {
+"docs": ["the account that deposits rewards for the campaign"],
+"name": "reward_withdrawal_account",
+"pda": {
+"program": {
+"kind": "const",
+"value": [140.0, 151.0, 37.0, 143.0, 78.0, 36.0, 137.0, 241.0, 187.0, 61.0, 16.0, 41.0, 20.0, 142.0, 13.0, 131.0, 11.0, 90.0, 19.0, 153.0, 218.0, 255.0, 16.0, 132.0, 4.0, 142.0, 123.0, 216.0, 219.0, 233.0, 248.0, 89.0]
+},
+"seeds": [{
+"kind": "account",
+"path": "creator"
+}, {
+"kind": "account",
+"path": "reward_token_program"
+}, {
+"kind": "account",
+"path": "reward_mint"
+}]
+},
+"writable": true
+}, {
+"docs": ["the vault where the rewards are held to be claimed"],
+"name": "reward_mint"
+}, {
+"name": "reward_vault",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [114.0, 101.0, 119.0, 97.0, 114.0, 100.0, 115.0]
+}, {
+"kind": "account",
+"path": "campaign"
+}]
+},
+"writable": true
+}, {
+"name": "house",
+"relations": ["campaign"],
+"writable": true
+}, {
+"name": "creator",
+"relations": ["campaign"],
+"signer": true,
+"writable": true
+}, {
+"name": "game_deposit_vault",
+"optional": true,
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [112.0, 108.0, 97.0, 121.0, 101.0, 114.0, 95.0, 100.0, 101.0, 112.0, 111.0, 115.0, 105.0, 116.0]
+}, {
+"kind": "account",
+"path": "campaign"
+}]
+},
+"writable": true
+}, {
+"name": "deposit_withdrawal_account",
+"optional": true,
+"pda": {
+"program": {
+"kind": "const",
+"value": [140.0, 151.0, 37.0, 143.0, 78.0, 36.0, 137.0, 241.0, 187.0, 61.0, 16.0, 41.0, 20.0, 142.0, 13.0, 131.0, 11.0, 90.0, 19.0, 153.0, 218.0, 255.0, 16.0, 132.0, 4.0, 142.0, 123.0, 216.0, 219.0, 233.0, 248.0, 89.0]
+},
+"seeds": [{
+"kind": "account",
+"path": "creator"
+}, {
+"kind": "account",
+"path": "deposit_token_program"
+}, {
+"kind": "account",
+"path": "game_mint"
+}]
+},
+"writable": true
+}, {
+"name": "game_mint",
+"optional": true
+}, {
+"name": "deposit_token_program",
+"optional": true
+}, {
+"address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+"name": "associated_token_program"
+}, {
+"name": "reward_token_program"
+}, {
+"address": "11111111111111111111111111111111",
+"name": "system_program"
+}],
+"args": [],
+"discriminator": [65.0, 49.0, 110.0, 7.0, 63.0, 238.0, 206.0, 77.0],
+"name": "close_campaign"
+}, {
+"accounts": [{
+"name": "house",
+"writable": true
+}, {
+"name": "house_admin",
+"relations": ["house"],
+"signer": true,
+"writable": true
+}, {
+"name": "house_currency_vault",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [118.0, 97.0, 117.0, 108.0, 116.0]
+}, {
+"kind": "account",
+"path": "house"
+}]
+},
+"writable": true
+}, {
+"name": "admin_withdraw_account",
+"pda": {
+"program": {
+"kind": "const",
+"value": [140.0, 151.0, 37.0, 143.0, 78.0, 36.0, 137.0, 241.0, 187.0, 61.0, 16.0, 41.0, 20.0, 142.0, 13.0, 131.0, 11.0, 90.0, 19.0, 153.0, 218.0, 255.0, 16.0, 132.0, 4.0, 142.0, 123.0, 216.0, 219.0, 233.0, 248.0, 89.0]
+},
+"seeds": [{
+"kind": "account",
+"path": "house_admin"
+}, {
+"kind": "const",
+"value": [6.0, 221.0, 246.0, 225.0, 215.0, 101.0, 161.0, 147.0, 217.0, 203.0, 225.0, 70.0, 206.0, 235.0, 121.0, 172.0, 28.0, 180.0, 133.0, 237.0, 95.0, 91.0, 55.0, 145.0, 58.0, 140.0, 245.0, 133.0, 126.0, 255.0, 0.0, 169.0]
+}, {
+"kind": "account",
+"path": "house_currency"
+}]
+},
+"writable": true
+}, {
+"name": "house_currency",
+"relations": ["house"]
+}, {
+"address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+"name": "associated_token_program"
+}, {
+"address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+"name": "token_program"
+}, {
+"address": "11111111111111111111111111111111",
+"name": "system_program"
+}],
+"args": [],
+"discriminator": [122.0, 1.0, 139.0, 0.0, 208.0, 240.0, 48.0, 151.0],
+"name": "close_house"
+}, {
+"accounts": [{
+"name": "signer",
+"signer": true,
+"writable": true
+}, {
+"name": "campaign",
+"signer": true,
+"writable": true
+}, {
+"name": "campaign_auth",
+"pda": {
+"seeds": [{
+"kind": "account",
+"path": "campaign"
+}]
+}
+}, {
+"name": "house",
+"writable": true
+}, {
+"docs": ["pays the campaign creation fees"],
+"name": "creation_fee_account",
+"writable": true
+}, {
+"name": "reward_mint"
+}, {
+"docs": ["the vault where we pay the campaign creation fees"],
+"name": "house_vault",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [118.0, 97.0, 117.0, 108.0, 116.0]
+}, {
+"kind": "account",
+"path": "house"
+}]
+},
+"writable": true
+}, {
+"docs": ["the account that deposits rewards for the campaign"],
+"name": "reward_depositor_account",
+"writable": true
+}, {
+"docs": ["the vault where the rewards are held to be claimed"],
+"name": "reward_vault",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [114.0, 101.0, 119.0, 97.0, 114.0, 100.0, 115.0]
+}, {
+"kind": "account",
+"path": "campaign"
+}]
+},
+"writable": true
+}, {
+"name": "game_mint",
+"optional": true
+}, {
+"name": "game_deposit_vault",
+"optional": true,
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [112.0, 108.0, 97.0, 121.0, 101.0, 114.0, 95.0, 100.0, 101.0, 112.0, 111.0, 115.0, 105.0, 116.0]
+}, {
+"kind": "account",
+"path": "campaign"
+}]
+},
+"writable": true
+}, {
+"name": "token_program"
+}, {
+"address": "11111111111111111111111111111111",
+"name": "system_program"
+}],
+"args": [{
+"name": "campaign_name",
+"type": "string"
+}, {
+"name": "custom_data",
+"type": {
+"option": "string"
+}
+}, {
+"name": "fund_amount",
+"type": "u64"
+}, {
+"name": "max_rewards_per_game",
+"type": "u64"
+}, {
+"name": "player_claim_price",
+"type": "u64"
+}, {
+"name": "time_span",
+"type": {
+"defined": "TimeSpan"
+}
+}, {
+"name": "nft_config",
+"type": {
+"option": {
+"defined": "NftCampaignConfig"
+}
+}
+}, {
+"name": "token_config",
+"type": {
+"option": {
+"defined": "TokenCampaignConfig"
+}
+}
+}],
+"discriminator": [111.0, 131.0, 187.0, 98.0, 160.0, 193.0, 114.0, 244.0],
+"name": "create_campaign"
+}, {
+"accounts": [{
+"name": "program_admin",
+"relations": ["program_admin_proof"],
+"signer": true,
+"writable": true
+}, {
+"name": "program_admin_proof",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [112.0, 114.0, 111.0, 103.0, 114.0, 97.0, 109.0, 95.0, 97.0, 100.0, 109.0, 105.0, 110.0]
+}, {
+"kind": "account",
+"path": "program_admin"
+}]
+}
+}, {
+"name": "house",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [104.0, 111.0, 117.0, 115.0, 101.0]
+}, {
+"kind": "arg",
+"path": "house_name"
+}]
+},
+"writable": true
+}, {
+"name": "house_auth",
+"pda": {
+"seeds": [{
+"kind": "account",
+"path": "house"
+}]
+},
+"writable": true
+}, {
+"name": "house_currency_vault",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [118.0, 97.0, 117.0, 108.0, 116.0]
+}, {
+"kind": "account",
+"path": "house"
+}]
+},
+"writable": true
+}, {
+"name": "house_admin"
+}, {
+"name": "house_currency_mint"
+}, {
+"name": "token_program"
+}, {
+"address": "11111111111111111111111111111111",
+"name": "system_program"
+}],
+"args": [{
+"name": "manager_collection",
+"type": {
+"option": "publicKey"
+}
+}, {
+"name": "house_config",
+"type": {
+"defined": "HouseConfig"
+}
+}, {
+"name": "house_name",
+"type": "string"
+}],
+"discriminator": [11.0, 92.0, 141.0, 8.0, 128.0, 45.0, 64.0, 89.0],
+"name": "create_house"
+}, {
+"accounts": [{
+"name": "house",
+"relations": ["campaign"],
+"writable": true
+}, {
+"name": "campaign",
+"writable": true
+}, {
+"name": "campaign_auth",
+"pda": {
+"seeds": [{
+"kind": "account",
+"path": "campaign"
+}]
+}
+}, {
+"name": "campaign_player",
+"writable": true
+}, {
+"name": "player_nft_token_account",
+"optional": true
+}, {
+"name": "player_nft_metadata",
+"optional": true
+}, {
+"name": "player_core_nft",
+"optional": true
+}, {
+"name": "reward_mint",
+"relations": ["campaign"]
+}, {
+"name": "reward_vault",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [114.0, 101.0, 119.0, 97.0, 114.0, 100.0, 115.0]
+}, {
+"kind": "account",
+"path": "campaign"
+}]
+},
+"writable": true
+}, {
+"name": "player_reward_token_account",
+"pda": {
+"program": {
+"kind": "const",
+"value": [140.0, 151.0, 37.0, 143.0, 78.0, 36.0, 137.0, 241.0, 187.0, 61.0, 16.0, 41.0, 20.0, 142.0, 13.0, 131.0, 11.0, 90.0, 19.0, 153.0, 218.0, 255.0, 16.0, 132.0, 4.0, 142.0, 123.0, 216.0, 219.0, 233.0, 248.0, 89.0]
+},
+"seeds": [{
+"kind": "account",
+"path": "user"
+}, {
+"kind": "const",
+"value": [6.0, 221.0, 246.0, 225.0, 215.0, 101.0, 161.0, 147.0, 217.0, 203.0, 225.0, 70.0, 206.0, 235.0, 121.0, 172.0, 28.0, 180.0, 133.0, 237.0, 95.0, 91.0, 55.0, 145.0, 58.0, 140.0, 245.0, 133.0, 126.0, 255.0, 0.0, 169.0]
+}, {
+"kind": "account",
+"path": "reward_mint"
+}]
+},
+"writable": true
+}, {
+"name": "user",
+"signer": true,
+"writable": true
+}, {
+"name": "oracle",
+"optional": true,
+"signer": true
+}, {
+"address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+"name": "associated_token_program"
+}, {
+"address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+"name": "token_program"
+}, {
+"address": "11111111111111111111111111111111",
+"name": "system_program"
+}],
+"args": [{
+"name": "amount_won",
+"type": "u64"
+}],
+"discriminator": [224.0, 135.0, 245.0, 99.0, 67.0, 175.0, 121.0, 252.0],
+"name": "end_game"
+}, {
+"accounts": [{
+"name": "house",
+"writable": true
+}, {
+"name": "campaign",
+"writable": true
+}, {
+"name": "user",
+"signer": true,
+"writable": true
+}, {
+"name": "token_program"
+}, {
+"address": "11111111111111111111111111111111",
+"name": "system_program"
+}, {
+"name": "campaign_player",
+"writable": true
+}, {
+"name": "player_nft_token_account",
+"optional": true
+}, {
+"name": "player_nft_metadata",
+"optional": true
+}, {
+"name": "game_deposit_mint",
+"optional": true,
+"writable": true
+}, {
+"name": "players_deposit_account",
+"optional": true,
+"writable": true
+}, {
+"name": "game_deposit_vault",
+"optional": true,
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [112.0, 108.0, 97.0, 121.0, 101.0, 114.0, 95.0, 100.0, 101.0, 112.0, 111.0, 115.0, 105.0, 116.0]
+}, {
+"kind": "account",
+"path": "campaign"
+}]
+},
+"writable": true
+}, {
+"name": "player_core_nft",
+"optional": true
+}],
+"args": [],
+"discriminator": [249.0, 47.0, 252.0, 172.0, 184.0, 162.0, 245.0, 14.0],
+"name": "start_game"
+}, {
+"accounts": [{
+"name": "house",
+"writable": true
+}, {
+"name": "house_admin",
+"relations": ["house"],
+"signer": true
+}],
+"args": [{
+"name": "house_config",
+"type": {
+"defined": "HouseConfig"
+}
+}],
+"discriminator": [13.0, 153.0, 166.0, 250.0, 48.0, 39.0, 227.0, 200.0],
+"name": "update_house"
+}, {
+"accounts": [{
+"name": "house",
+"writable": true
+}, {
+"name": "house_admin",
+"relations": ["house"],
+"signer": true,
+"writable": true
+}, {
+"name": "house_currency_vault",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [118.0, 97.0, 117.0, 108.0, 116.0]
+}, {
+"kind": "account",
+"path": "house"
+}]
+},
+"writable": true
+}, {
+"name": "admin_withdraw_account",
+"pda": {
+"program": {
+"kind": "const",
+"value": [140.0, 151.0, 37.0, 143.0, 78.0, 36.0, 137.0, 241.0, 187.0, 61.0, 16.0, 41.0, 20.0, 142.0, 13.0, 131.0, 11.0, 90.0, 19.0, 153.0, 218.0, 255.0, 16.0, 132.0, 4.0, 142.0, 123.0, 216.0, 219.0, 233.0, 248.0, 89.0]
+},
+"seeds": [{
+"kind": "account",
+"path": "house_admin"
+}, {
+"kind": "const",
+"value": [6.0, 221.0, 246.0, 225.0, 215.0, 101.0, 161.0, 147.0, 217.0, 203.0, 225.0, 70.0, 206.0, 235.0, 121.0, 172.0, 28.0, 180.0, 133.0, 237.0, 95.0, 91.0, 55.0, 145.0, 58.0, 140.0, 245.0, 133.0, 126.0, 255.0, 0.0, 169.0]
+}, {
+"kind": "account",
+"path": "house_currency"
+}]
+},
+"writable": true
+}, {
+"name": "house_currency",
+"relations": ["house"]
+}, {
+"address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+"name": "associated_token_program"
+}, {
+"name": "token_program"
+}, {
+"address": "11111111111111111111111111111111",
+"name": "system_program"
+}],
+"args": [],
+"discriminator": [100.0, 154.0, 60.0, 5.0, 149.0, 63.0, 203.0, 28.0],
+"name": "withdraw_house_fees"
+}],
+"metadata": {
+"description": "Solana Clubhouse is a program that does club things",
+"name": "clubhouse",
+"spec": "0.1.0",
+"version": "0.1.0"
+},
+"types": [{
+"name": "BaseAssetV1",
+"type": {
+"fields": [{
+"name": "key",
+"type": {
+"defined": "Key"
+}
+}, {
+"name": "owner",
+"type": "publicKey"
+}, {
+"name": "update_authority",
+"type": {
+"defined": "UpdateAuthority"
+}
+}, {
+"name": "name",
+"type": "string"
+}, {
+"name": "uri",
+"type": "string"
+}, {
+"name": "seq",
+"type": {
+"option": "u64"
+}
+}],
+"kind": "struct"
+}
+}, {
+"name": "Campaign",
+"type": {
+"fields": [{
+"name": "auth_bump",
+"type": "u8"
+}, {
+"name": "house",
+"type": "publicKey"
+}, {
+"name": "creator",
+"type": "publicKey"
+}, {
+"name": "manager_mint",
+"type": {
+"option": "publicKey"
+}
+}, {
+"name": "reward_mint",
+"type": "publicKey"
+}, {
+"name": "reward_mint_decimals",
+"type": "u8"
+}, {
+"name": "max_rewards_per_game",
+"type": "u64"
+}, {
+"name": "rewards_claim_fee",
+"type": "u64"
+}, {
+"name": "player_count",
+"type": "u32"
+}, {
+"name": "active_games",
+"type": "u32"
+}, {
+"name": "total_games",
+"type": "u32"
+}, {
+"name": "time_span",
+"type": {
+"defined": "TimeSpan"
+}
+}, {
+"name": "house_config_snapshot",
+"type": {
+"defined": "HouseConfig"
+}
+}, {
+"name": "nft_config",
+"type": {
+"option": {
+"defined": "NftCampaignConfig"
+}
+}
+}, {
+"name": "unclaimed_sol_fees",
+"type": "u64"
+}, {
+"name": "_reserved_config",
+"type": {
+"array": ["u64", 7.0]
+}
+}, {
+"name": "token_config",
+"type": {
+"option": {
+"defined": "TokenCampaignConfig"
+}
+}
+}, {
+"name": "_reserved_for_token",
+"type": {
+"array": ["u64", 3.0]
+}
+}, {
+"name": "rewards_available",
+"type": "u64"
+}, {
+"name": "reserved_rewards",
+"type": "u64"
+}, {
+"name": "campaign_name",
+"type": "string"
+}, {
+"name": "uri",
+"type": {
+"option": "string"
+}
+}],
+"kind": "struct"
+}
+}, {
+"name": "CampaignPlayer",
+"type": {
+"fields": [{
+"name": "player_identity",
+"type": {
+"defined": "PlayerIdentity"
+}
+}, {
+"name": "campaign",
+"type": "publicKey"
+}, {
+"name": "house",
+"type": "publicKey"
+}, {
+"name": "energy",
+"type": "u8"
+}, {
+"name": "recharge_start_time",
+"type": "i64"
+}, {
+"name": "game_start_time",
+"type": "i64"
+}, {
+"name": "games_played",
+"type": "u32"
+}, {
+"name": "in_game",
+"type": "bool"
+}, {
+"name": "rewards_claimed",
+"type": "u64"
+}, {
+"name": "stake_info",
+"type": {
+"option": {
+"defined": "StakeInfo"
+}
+}
+}],
+"kind": "struct"
+}
+}, {
+"name": "House",
+"type": {
+"fields": [{
+"name": "bump",
+"type": "u8"
+}, {
+"name": "house_admin",
+"type": "publicKey"
+}, {
+"docs": ["to create CAMPAIGNS"],
+"name": "manager_collection",
+"type": {
+"option": "publicKey"
+}
+}, {
+"docs": ["paid to create CAMPAIGNS"],
+"name": "house_currency",
+"type": "publicKey"
+}, {
+"docs": ["currency decimals"],
+"name": "house_currency_decimals",
+"type": "u8"
+}, {
+"docs": ["total campaigns created"],
+"name": "total_campaigns",
+"type": "u32"
+}, {
+"docs": ["open campaigns"],
+"name": "open_campaigns",
+"type": "u16"
+}, {
+"docs": ["unique players in house"],
+"name": "unique_players",
+"type": "u32"
+}, {
+"docs": ["total games played in house"],
+"name": "games_played",
+"type": "u32"
+}, {
+"docs": ["creation fees collected total"],
+"name": "unclaimed_sol_fees",
+"type": "u64"
+}, {
+"docs": ["house fees pending withdrawal"],
+"name": "unclaimed_house_fees",
+"type": "u64"
+}, {
+"docs": ["house fees pending withdrawal"],
+"name": "is_active",
+"type": "bool"
+}, {
+"name": "_reserved1",
+"type": {
+"array": ["u64", 16.0]
+}
+}, {
+"name": "config",
+"type": {
+"defined": "HouseConfig"
+}
+}, {
+"name": "_reserved2",
+"type": {
+"array": ["u64", 16.0]
+}
+}, {
+"name": "house_name",
+"type": "string"
+}],
+"kind": "struct"
+}
+}, {
+"name": "HouseConfig",
+"type": {
+"fields": [{
+"name": "oracle_key",
+"type": "publicKey"
+}, {
+"name": "campaign_creation_fee",
+"type": "u64"
+}, {
+"name": "campaign_manager_discount",
+"type": "u64"
+}, {
+"name": "claim_fee",
+"type": "u64"
+}, {
+"name": "rewards_tax",
+"type": "u64"
+}],
+"kind": "struct"
+}
+}, {
+"name": "IdentityType",
+"type": {
+"kind": "enum",
+"variants": [{
+"name": "None"
+}, {
+"name": "Nft"
+}, {
+"name": "User"
+}, {
+"name": "MplCore"
+}]
+}
+}, {
+"name": "Key",
+"type": {
+"kind": "enum",
+"variants": [{
+"name": "Uninitialized"
+}, {
+"name": "AssetV1"
+}, {
+"name": "HashedAssetV1"
+}, {
+"name": "PluginHeaderV1"
+}, {
+"name": "PluginRegistryV1"
+}, {
+"name": "CollectionV1"
+}]
+}
+}, {
+"name": "NftCampaignConfig",
+"type": {
+"fields": [{
+"name": "collection",
+"type": "publicKey"
+}, {
+"name": "max_player_energy",
+"type": "u8"
+}, {
+"name": "energy_recharge_minutes",
+"type": {
+"option": "i64"
+}
+}],
+"kind": "struct"
+}
+}, {
+"name": "PlayerIdentity",
+"type": {
+"fields": [{
+"name": "identity_type",
+"type": {
+"defined": "IdentityType"
+}
+}, {
+"name": "pubkey",
+"type": "publicKey"
+}],
+"kind": "struct"
+}
+}, {
+"docs": ["If the admin is set, the program will check if the caller is the admin, otherwise it should check if the caller is the program authority"],
+"name": "ProgramAdminProof",
+"type": {
+"fields": [{
+"name": "program_admin",
+"type": "publicKey"
+}],
+"kind": "struct"
+}
+}, {
+"name": "StakeInfo",
+"type": {
+"fields": [{
+"name": "amount",
+"type": "u64"
+}, {
+"name": "campaign_end_time",
+"type": "i64"
+}, {
+"name": "staked_mint",
+"type": "publicKey"
+}, {
+"name": "staked_mint_decimals",
+"type": "u8"
+}, {
+"name": "campaign_name",
+"type": "string"
+}],
+"kind": "struct"
+}
+}, {
+"name": "TimeSpan",
+"type": {
+"fields": [{
+"name": "start_time",
+"type": "i64"
+}, {
+"name": "end_time",
+"type": "i64"
+}],
+"kind": "struct"
+}
+}, {
+"name": "TokenCampaignConfig",
+"type": {
+"fields": [{
+"name": "spending_mint",
+"type": "publicKey"
+}, {
+"name": "energy_price",
+"type": "u64"
+}, {
+"name": "spending_mint_decimals",
+"type": "u8"
+}, {
+"name": "token_use",
+"type": {
+"defined": "TokenUse"
+}
+}],
+"kind": "struct"
+}
+}, {
+"name": "TokenUse",
+"type": {
+"kind": "enum",
+"variants": [{
+"name": "Stake"
+}, {
+"name": "Burn"
+}, {
+"name": "Pay"
+}]
+}
+}, {
+"name": "UpdateAuthority",
+"type": {
+"kind": "enum",
+"variants": [{
+"name": "None"
+}, {
+"fields": ["pubkey"],
+"name": "Address"
+}, {
+"fields": ["pubkey"],
+"name": "Collection"
+}]
+}
+}]
+}
+
+[node name="ClubhouseUtils" type="Node" parent="."]
+script = ExtResource("4_85xot")
+devnet_house_id = "2p41ueUZtCKWXPdbMVVKr3aJMSnVWzQDczZFiaV9PXmf"
+mainnet_house_id = "FcxGPktM2MJJ9qTxwiEVKJxHTpvatoFawKGq46SJxviG"
+
+[node name="ClubhouseServer" type="Node" parent="."]
+script = ExtResource("5_5nyte")
+metadata/_custom_type_script = "uid://ddctawf4lsjqw"
+
+[node name="Calculators" type="Node" parent="."]
+
+[node name="DIGGATokenCalculator" type="Node" parent="Calculators"]
+script = ExtResource("4_ljieg")
+holder_list_path = "res://Games/MiningMinigame/Scripts/Web3/MineManagement/Snapshots/nukedapes.json"
+token_allocation_per_nft = 10000.0
+initial_energy = 4
+recharge_rate_in_minutes = 180
+campaign_length_in_days = 2
+claim_fee = 0.0014
+expected_activity = 0.15
+
+[node name="SponsorTokenCalculator" type="Node" parent="Calculators"]
+script = ExtResource("4_ljieg")
+holder_list_path = "res://Games/MiningMinigame/Scripts/Web3/MineManagement/Snapshots/grimsyndicate.json"
+token_allocation_per_nft = 2000.0
+adjust_allocation_by_health = false
+initial_energy = 4
+campaign_length_in_days = 2
+claim_fee = 0.002
+
+[node name="TokenRewardCalculator" type="Node" parent="Calculators"]
+script = ExtResource("6_v2ytq")
+holder_count = 3550
+token_price = 0.0005
+avg_allocation_mined = 0.5

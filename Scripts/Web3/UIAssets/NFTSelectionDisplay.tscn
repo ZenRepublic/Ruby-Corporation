@@ -1,0 +1,183 @@
+[gd_scene load_steps=12 format=3 uid="uid://lgukfb417wvu"]
+
+[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/asset_display_system.gd" id="1_btcd8"]
+[ext_resource type="PackedScene" uid="uid://btmj6a3kagg46" path="res://Scripts/Web3/UIAssets/DisplayableNFTButton.tscn" id="2_xmhd2"]
+[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/NFTCollection/nft_collection.gd" id="3_rk1ve"]
+[ext_resource type="Resource" uid="uid://yts1i1o0c345" path="res://Scripts/Web3/RubiansNFTCollection.tres" id="4_vmypy"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="5_6o7rc"]
+[ext_resource type="Texture2D" uid="uid://cq285gbck81as" path="res://Textures/Icons/AddIcon.png" id="6_mhrye"]
+[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="6_ujc3t"]
+[ext_resource type="Script" path="res://addons/texture_button_colored/texture_button_colored.gd" id="7_jinrh"]
+[ext_resource type="Texture2D" uid="uid://b3003ar1uxa77" path="res://addons/SolanaSDK/Textures/closebutton.jpg.png" id="8_pli40"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xyly"]
+bg_color = Color(0.121569, 0.0627451, 0.164706, 0.941176)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wsw7d"]
+bg_color = Color(0.639216, 0.156863, 0.345098, 1)
+border_width_left = 30
+border_width_top = 10
+border_width_right = 30
+border_width_bottom = 10
+border_color = Color(0.8, 0.258824, 0.368627, 1)
+corner_detail = 2
+
+[node name="NFTSelectionDisplay" type="Control" node_paths=PackedStringArray("container", "no_asset_overlay")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_btcd8")
+container = NodePath("MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer")
+no_asset_overlay = NodePath("MarginContainer/VBoxContainer/Selection/NoNFTOverlay")
+minimum_entry_size = Vector2(168, 168)
+display_entry_scn = ExtResource("2_xmhd2")
+load_all_owned = true
+close_on_select = true
+collection_filter = Array[ExtResource("3_rk1ve")]([ExtResource("4_vmypy")])
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0xyly")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="InfoContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Select" type="Label" parent="MarginContainer/VBoxContainer/InfoContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("5_6o7rc")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 40
+text = "Select Asset"
+vertical_alignment = 2
+
+[node name="CloseButton" type="TextureButton" parent="MarginContainer/VBoxContainer/InfoContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("8_pli40")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Selection" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 700)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_wsw7d")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Selection"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Selection/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_6o7rc")
+horizontal_scroll_mode = 0
+
+[node name="NFTContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 30
+columns = 3
+
+[node name="NoneSelect" type="MarginContainer" parent="MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer" node_paths=PackedStringArray("visual")]
+custom_minimum_size = Vector2(168, 168)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("6_ujc3t")
+visual = NodePath("Visual")
+image_size = 128
+
+[node name="Visual" type="TextureRect" parent="MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer/NoneSelect"]
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer/NoneSelect/Visual"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -20.5
+offset_right = 88.0
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "None"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer/NoneSelect/Visual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_6o7rc")
+theme_type_variation = &"InvisibleButton"
+
+[node name="NoNFTOverlay" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Selection"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Selection/NoNFTOverlay"]
+layout_mode = 2
+theme = ExtResource("5_6o7rc")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 41
+text = "No Rubians found
+ in wallet..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuyRubianButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Selection/NoNFTOverlay"]
+self_modulate = Color(0.8, 0.258824, 0.368627, 1)
+layout_mode = 2
+texture_normal = ExtResource("6_mhrye")
+stretch_mode = 5
+script = ExtResource("7_jinrh")
+theme_override_colors/icon_normal_color = Color(0.8, 0.258824, 0.368627, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(0.917647, 0.384314, 0.384314, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/InfoContainer/CloseButton" to="." method="close"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer/NoneSelect/Visual/Button" to="." method="select_none"]
