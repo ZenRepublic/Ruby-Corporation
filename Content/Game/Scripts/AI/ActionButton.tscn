@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://cvadsamd650sa"]
-
-[node name="ActionButton" type="Button"]
-size_flags_horizontal = 3
-theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 26
-text = "Walk The Dog"

@@ -29,7 +29,8 @@ var is_dropping:bool=false
 var has_collided:bool=false
 var velocity:Vector3
 
-signal on_expired()
+signal on_missed()
+signal on_placed(cargo:Cargo, placement_score:int)
 signal on_connected()
 
 func _ready() -> void:
@@ -101,8 +102,8 @@ func process_collision(collision_data:Dictionary) -> void:
 		if placement_score == 0:
 			handle_miss(collided_object)
 		else:
-			handle_connect(collided_object,hit_pos)
 			structure.apply_cargo(self,placement_score)
+			handle_connect(collided_object,hit_pos)
 	else:
 		handle_miss(collided_object)
 		
@@ -115,12 +116,13 @@ func handle_connect(collided_object, hit_point:Vector3) -> void:
 		
 	stick_pos.z = collided_object.global_position.z
 	score_label.text = str(placement_score)
+	on_placed.emit(self,placement_score)
 	pass
 	
 	
 func handle_miss(hit_obj=null) -> void:
 	if hit_obj == null:
-		on_expired.emit()
+		on_missed.emit()
 		queue_free()
 		return
 	
@@ -139,7 +141,7 @@ func handle_miss(hit_obj=null) -> void:
 	var spin_strength = bounce_direction.length() * spin_angle
 	angular_velocity += -spin_axis.normalized() * spin_strength * 0.5
 	
-	on_expired.emit()
+	on_missed.emit()
 	await get_tree().create_timer(1).timeout
 	queue_free()
 

@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://byrve0vr3ypsy"]
+
+[ext_resource type="Script" uid="uid://bdqo28tuoefon" path="res://Content/LaunchingSoon/Launchpad/launchpad.gd" id="1_jg51g"]
+[ext_resource type="PackedScene" uid="uid://w7mp31uu88ft" path="res://Content/LaunchingSoon/Cargo/RocketParts/BasePart.tscn" id="2_pr74a"]
+[ext_resource type="Script" uid="uid://dkb5enrht5vw3" path="res://Content/LaunchingSoon/Launchpad/cargo_structure.gd" id="3_jk23v"]
+[ext_resource type="Script" uid="uid://cnbq5j46m1vgl" path="res://Content/LaunchingSoon/Launchpad/death_zone.gd" id="4_n3118"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0ctbn"]
+size = Vector3(1.5, 1, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kk0jy"]
+size = Vector3(1.49902, 1, 1.49585)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2r3xa"]
+size = Vector3(8, 1, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2r3xa"]
+size = Vector3(8, 1, 8)
+
+[node name="Launchpad" type="StaticBody3D" node_paths=PackedStringArray("cargo_structure", "death_zone")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_jg51g")
+start_drop_height = 0.6
+cargo_structure = NodePath("CargoStructure")
+base_cargo_scn = ExtResource("2_pr74a")
+death_zone = NodePath("DeathZone")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_0ctbn")
+skeleton = NodePath("../..")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_kk0jy")
+
+[node name="CargoStructure" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("3_jk23v")
+
+[node name="DeathZone" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_n3118")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DeathZone"]
+visible = false
+mesh = SubResource("BoxMesh_2r3xa")
+
+[node name="Collider" type="CollisionShape3D" parent="DeathZone"]
+transform = Transform3D(1, 0, 0, 0, 0.999993, 0, 0, 0, 0.999993, 0, 0, 0)
+shape = SubResource("BoxShape3D_2r3xa")

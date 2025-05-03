@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://dypqi11ijs6lh"]
+
+[ext_resource type="Script" uid="uid://n6g5u8nsidur" path="res://Content/LaunchingSoon/PlayerRig/PlayerRig.gd" id="1_6nauw"]
+[ext_resource type="Texture2D" uid="uid://crkoovodnwd7g" path="res://Textures/Icons/collectible_coin_big_idle_1.png" id="2_00qsx"]
+[ext_resource type="Script" uid="uid://o5e2rjiqntvk" path="res://Content/LaunchingSoon/PlayerRig/cam_controller.gd" id="2_lmnf5"]
+[ext_resource type="Script" uid="uid://ocr0sopy3y7m" path="res://Content/LaunchingSoon/payload.gd" id="3_nl1kf"]
+[ext_resource type="PackedScene" uid="uid://bk1qyvsd3td77" path="res://Content/LaunchingSoon/Cargo/RocketParts/MiddlePart.tscn" id="4_00qsx"]
+[ext_resource type="PackedScene" uid="uid://dsro4jknouore" path="res://Content/LaunchingSoon/Cargo/RocketParts/TopPart.tscn" id="5_li2ld"]
+[ext_resource type="Script" uid="uid://dpwkrxn8hbggv" path="res://Content/LaunchingSoon/token_spawner.gd" id="6_nl1kf"]
+[ext_resource type="PackedScene" uid="uid://cusxwj2lvkbpk" path="res://Content/LaunchingSoon/DisplayToken.tscn" id="7_00qsx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rysxf"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kvfj4"]
+
+[node name="PlayerRig" type="Node3D" node_paths=PackedStringArray("cam", "payload", "token_spawner")]
+script = ExtResource("1_6nauw")
+cam = NodePath("Cam")
+payload = NodePath("Payload")
+token_spawner = NodePath("TokenSpawner")
+token_texture = ExtResource("2_00qsx")
+fly_duration = 1.0
+offset_from_launchpad = Vector3(0, -0.6, 0)
+
+[node name="Cam" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, -0.267)
+script = ExtResource("2_lmnf5")
+shake_frequency = 80.0
+
+[node name="TokenSpawnPoint" type="Node3D" parent="Cam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0385159, -0.440239)
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.26554)
+mesh = SubResource("BoxMesh_rysxf")
+skeleton = NodePath("../..")
+
+[node name="Payload" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.909658, 0.247571)
+script = ExtResource("3_nl1kf")
+main_cargo_parts = Array[PackedScene]([ExtResource("4_00qsx")])
+top_cargo_scn = ExtResource("5_li2ld")
+
+[node name="Mesh" type="MeshInstance3D" parent="Payload"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.357, 0.226)
+mesh = SubResource("BoxMesh_kvfj4")
+skeleton = NodePath("../..")
+
+[node name="Mesh2" type="MeshInstance3D" parent="Payload"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.342, 0.226)
+mesh = SubResource("BoxMesh_kvfj4")
+skeleton = NodePath("../..")
+
+[node name="TokenSpawner" type="Node3D" parent="." node_paths=PackedStringArray("spawn_point")]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, -0.267)
+script = ExtResource("6_nl1kf")
+token_scn = ExtResource("7_00qsx")
+spawn_point = NodePath("../Cam/TokenSpawnPoint")
+spawn_radius = 0.4
+fly_duration = 0.6
+arc_height = 0.5

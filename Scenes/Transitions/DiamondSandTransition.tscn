@@ -1,11 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjjl43eub4i10"]
+[gd_scene load_steps=5 format=3 uid="uid://bjjl43eub4i10"]
 
-[ext_resource type="Shader" path="res://Shaders/diamond_transition.gdshader" id="1_jaa71"]
-[ext_resource type="AudioStream" uid="uid://b1qf5d8foogv2" path="res://Content/Game/Sounds/transitiondiamondout.mp3" id="2_3moet"]
-[ext_resource type="Texture2D" uid="uid://nik2c5k3pmp8" path="res://Content/Game/textures/Background.png" id="2_7gyyw"]
-[ext_resource type="AudioStream" uid="uid://bku770dgbthg0" path="res://Content/Game/Sounds/transitiondiamond.mp3" id="4_qvxjf"]
+[ext_resource type="Shader" uid="uid://b158rkjq5ynhn" path="res://Shaders/diamond_transition.gdshader" id="1_jaa71"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="5_l2dac"]
-
 
 [sub_resource type="GDScript" id="GDScript_oirlt"]
 script/source = "extends TransitionScene
@@ -55,8 +51,6 @@ shader_parameter/forward = true
 [node name="DiamondSandTransition" type="CanvasLayer"]
 layer = 100
 script = SubResource("GDScript_oirlt")
-fade_in_sound = ExtResource("4_qvxjf")
-fade_out_sound = ExtResource("2_3moet")
 fade_duration = 1.0
 
 [node name="TransitionTexture" type="TextureRect" parent="."]
@@ -66,10 +60,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_7gyyw")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_qvxjf")
 bus = &"SFX"
 
 [node name="LoadingInfo" type="VBoxContainer" parent="."]

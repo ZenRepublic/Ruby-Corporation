@@ -1,9 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://opkwvwup8u86"]
 
-[ext_resource type="Texture2D" uid="uid://dm7iln4hubqck" path="res://Content/Game/textures/GUI/MenuSidePanel.png" id="1_xncxa"]
+[ext_resource type="Texture2D" uid="uid://dm7iln4hubqck" path="res://Textures/GUI/MenuSidePanel.png" id="1_xncxa"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="2_yxwqe"]
-[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/priority_fee_option.gd" id="3_3ppe4"]
-[ext_resource type="Script" path="res://Scripts/Menu/game_settings.gd" id="4_em806"]
+[ext_resource type="Script" uid="uid://bv2tntqna6euj" path="res://addons/SolanaSDK/Scripts/Utility/priority_fee_option.gd" id="3_3ppe4"]
+[ext_resource type="Script" uid="uid://bvqf23ivwbe3y" path="res://Scripts/Menu/game_settings.gd" id="4_em806"]
+
 
 [sub_resource type="GDScript" id="GDScript_pvu1n"]
 resource_name = "settings_screen"

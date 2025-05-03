@@ -1,0 +1,136 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8h3ofhnmr4ih"]
+
+[ext_resource type="Script" uid="uid://c4fxv2bctb2up" path="res://Content/LaunchingSoon/GUI/gui.gd" id="1_wc8ld"]
+[ext_resource type="Script" uid="uid://cuhu3ktt1li8j" path="res://Content/LaunchingSoon/GUI/admin_panel.gd" id="2_wvrxf"]
+[ext_resource type="Texture2D" uid="uid://bex3s6kk2tvo2" path="res://addons/SolanaSDK/Textures/warning.png" id="3_vaefn"]
+[ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="4_dgxx7"]
+[ext_resource type="Texture2D" uid="uid://crkoovodnwd7g" path="res://Textures/Icons/collectible_coin_big_idle_1.png" id="5_p3ljt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7s1oc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkdm6"]
+
+[node name="GUI" type="Control" node_paths=PackedStringArray("admin_panel", "win_screen", "lose_screen")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wc8ld")
+admin_panel = NodePath("AdminPanel")
+win_screen = NodePath("WinScreen")
+lose_screen = NodePath("FiredScreen")
+
+[node name="AdminPanel" type="PanelContainer" parent="." node_paths=PackedStringArray("progress_label", "token_visual", "score_label", "warnings_container")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -242.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7s1oc")
+script = ExtResource("2_wvrxf")
+progress_label = NodePath("Content/ProgressContainer/ProgressLabel")
+token_visual = NodePath("Content/HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/TokenVisual")
+score_label = NodePath("Content/HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/Score")
+warnings_container = NodePath("Content/HBoxContainer/PanelContainer/MarginContainer/WarningsContainer")
+warning_visual = ExtResource("3_vaefn")
+
+[node name="Content" type="VBoxContainer" parent="AdminPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AdminPanel/Content"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="AdminPanel/Content/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tkdm6")
+
+[node name="MarginContainer" type="MarginContainer" parent="AdminPanel/Content/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="WarningsContainer" type="HBoxContainer" parent="AdminPanel/Content/HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ScoreContainer" type="PanelContainer" parent="AdminPanel/Content/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="AdminPanel/Content/HBoxContainer/ScoreContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AdminPanel/Content/HBoxContainer/ScoreContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="AdminPanel/Content/HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 71
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_dgxx7")
+
+[node name="TokenVisual" type="TextureRect" parent="AdminPanel/Content/HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_p3ljt")
+expand_mode = 3
+
+[node name="ProgressContainer" type="PanelContainer" parent="AdminPanel/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ProgressLabel" type="Label" parent="AdminPanel/Content/ProgressContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "0 / 30 Parts Placed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinScreen" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="WinScreen"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "LAUNCHING NOW!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FiredScreen" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="FiredScreen"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "YOU ARE FIRED!"
+horizontal_alignment = 1
+vertical_alignment = 1

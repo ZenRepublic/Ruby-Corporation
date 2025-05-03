@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://br1uqoo22tbid"]
+
+[ext_resource type="Script" uid="uid://cv18o0w81gm0o" path="res://Content/LaunchingSoon/_Game/launch_controller.gd" id="1_105k3"]
+[ext_resource type="PackedScene" uid="uid://byrve0vr3ypsy" path="res://Content/LaunchingSoon/Launchpad/Launchpad.tscn" id="3_7u7oj"]
+[ext_resource type="PackedScene" uid="uid://dypqi11ijs6lh" path="res://Content/LaunchingSoon/PlayerRig/PlayerRig.tscn" id="9_78xry"]
+[ext_resource type="PackedScene" uid="uid://bjraw1pe2akjs" path="res://Content/LaunchingSoon/CarrierDrone/CarrierDrone.tscn" id="10_gysdx"]
+[ext_resource type="PackedScene" uid="uid://c8h3ofhnmr4ih" path="res://Content/LaunchingSoon/GUI/GUI.tscn" id="11_0h6bu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ctbn"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_2r3xa"]
+sky_material = SubResource("ProceduralSkyMaterial_0ctbn")
+
+[sub_resource type="Environment" id="Environment_ms4aa"]
+background_mode = 1
+background_color = Color(0.771685, 0.958984, 0.966641, 1)
+sky = SubResource("Sky_2r3xa")
+tonemap_mode = 2
+
+[node name="LaunchingSoonGame" type="Node3D" node_paths=PackedStringArray("launchpad", "player_rig", "gui")]
+script = ExtResource("1_105k3")
+launchpad = NodePath("Launchpad")
+player_rig = NodePath("PlayerRig")
+gui = NodePath("GUI")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ms4aa")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.99889, -0.0154141, 0.0445132, -0.0245071, 0.636954, 0.770512, -0.0402296, -0.770748, 0.635869, 0, 4.00598, 3.9653)
+
+[node name="Launchpad" parent="." instance=ExtResource("3_7u7oj")]
+
+[node name="PlayerRig" parent="." node_paths=PackedStringArray("drone", "launchpad") instance=ExtResource("9_78xry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.597)
+drone = NodePath("../CarrierDrone")
+launchpad = NodePath("../Launchpad")
+
+[node name="CarrierDrone" parent="." instance=ExtResource("10_gysdx")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.28726, 0.740841, 1.9685)
+speed_growth_tick = 0.3
+start_move_range = Vector3(0.15, 0.1, 0)
+max_move_range = Vector3(0.35, 0.3, 0)
+amplitude_growth_tick = Vector3(0.02, 0.01, 0)
+
+[node name="GUI" parent="." instance=ExtResource("11_0h6bu")]

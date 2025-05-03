@@ -5,10 +5,10 @@ class_name Payload
 @export var top_cargo_scn:PackedScene
 
 
-func get_next_cargo_scn(structure:CargoStructure) -> PackedScene:
-	if structure.get_size() == LaunchSettings.CARGO_TO_FULL-1:
+func get_next_cargo_scn(structure_size:int) -> PackedScene:
+	if structure_size == LaunchSettings.CARGO_TO_FULL-1:
 		return top_cargo_scn
-	elif structure.get_size() >= 0 and structure.get_size()<LaunchSettings.CARGO_TO_FULL-1:
+	elif structure_size >= 0 and structure_size<LaunchSettings.CARGO_TO_FULL-1:
 		var random_idx:int = randi_range(0,main_cargo_parts.size()-1)
 		return main_cargo_parts[random_idx]
 	else:

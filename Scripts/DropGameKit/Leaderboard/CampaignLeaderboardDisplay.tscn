@@ -1,13 +1,14 @@
 [gd_scene load_steps=11 format=3 uid="uid://4urmdr7smqjk"]
 
-[ext_resource type="Script" path="res://Scripts/DropGameKit/Leaderboard/campaign_leaderboard.gd" id="1_migni"]
-[ext_resource type="Texture2D" uid="uid://dqvdg68yigsg6" path="res://Content/Game/textures/GUI/Leaderboard/Leaderboard box.png" id="2_7c7p7"]
-[ext_resource type="Texture2D" uid="uid://ckblyelopvfgs" path="res://Content/Game/textures/GUI/Leaderboard/Leaderboard title txt.png" id="3_mtoiy"]
-[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="4_e0sq0"]
+[ext_resource type="Script" uid="uid://bw7bp5xiv4j8l" path="res://Scripts/DropGameKit/Leaderboard/campaign_leaderboard.gd" id="1_migni"]
+[ext_resource type="Texture2D" uid="uid://dqvdg68yigsg6" path="res://Textures/GUI/Leaderboard/Leaderboard box.png" id="2_7c7p7"]
+[ext_resource type="Texture2D" uid="uid://ckblyelopvfgs" path="res://Textures/GUI/Leaderboard/Leaderboard title txt.png" id="3_mtoiy"]
+[ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="4_e0sq0"]
 [ext_resource type="PackedScene" uid="uid://ebyxtunpa1fd" path="res://Scripts/DropGameKit/Leaderboard/LeaderboardEntry.tscn" id="5_a3o4v"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="6_asclf"]
-[ext_resource type="Texture2D" uid="uid://dg1ccxmsneddc" path="res://Content/Game/textures/GUI/Leaderboard/Rock bot left.png" id="7_m1dyg"]
-[ext_resource type="Texture2D" uid="uid://c0rqd450ibi7c" path="res://Content/Game/textures/GUI/Leaderboard/Rock bot right.png" id="8_hxcw0"]
+[ext_resource type="Texture2D" uid="uid://dg1ccxmsneddc" path="res://Textures/GUI/Leaderboard/Rock bot left.png" id="7_m1dyg"]
+[ext_resource type="Texture2D" uid="uid://c0rqd450ibi7c" path="res://Textures/GUI/Leaderboard/Rock bot right.png" id="8_hxcw0"]
+
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1k8r8"]
 bg_color = Color(0.223529, 0.0352941, 0.278431, 1)

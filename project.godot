@@ -10,15 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Big Diggas"
-config/version="v1.0.4"
-run/main_scene="uid://ba0qpa3313x78"
+config/name="Launching Soon"
+config/version="v1.0.0"
+run/main_scene="uid://br1uqoo22tbid"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=60
 run/low_processor_mode=true
-boot_splash/bg_color=Color(0.223529, 0.0352941, 0.278431, 1)
-boot_splash/image="res://Textures/LogosAndTokens/Logo small transparent.png"
-config/icon="res://Textures/LogosAndTokens/Logo bg crack shaded.png"
 
 [audio]
 
@@ -27,7 +24,6 @@ buses/default_bus_layout="res://Scripts/SoundManagement/default_bus_layout.tres"
 [autoload]
 
 SolanaService="*res://addons/SolanaSDK/Autoload/SolanaService.tscn"
-OpenAI="*res://Scripts/OpenAI/OpenAI.tscn"
 SceneManager="*res://Scripts/SceneManagement/SceneManager.tscn"
 MusicManager="*res://Scripts/SoundManagement/MusicManager.tscn"
 ClubhouseProgram="*res://Scripts/DropGameKit/_Core/ClubhouseProgram.tscn"

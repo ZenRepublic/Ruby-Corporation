@@ -1,10 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://cyrmlhn128s53"]
 
-[ext_resource type="Script" path="res://Scripts/Web3/TransactionManagement/transaction_ui_overlay.gd" id="1_f1p7i"]
-[ext_resource type="Script" path="res://Scripts/Utility/screen_manager.gd" id="2_nf61e"]
-[ext_resource type="Shader" path="res://Shaders/scrolling_background.gdshader" id="3_by8ct"]
+[ext_resource type="Script" uid="uid://cqa2c5acr2ydw" path="res://Scripts/Web3/TransactionManagement/transaction_ui_overlay.gd" id="1_f1p7i"]
+[ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="2_nf61e"]
+[ext_resource type="Shader" uid="uid://c8052rjttj7of" path="res://Shaders/scrolling_background.gdshader" id="3_by8ct"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="3_qp2q8"]
-[ext_resource type="Texture2D" uid="uid://duj7xntofu70d" path="res://Content/Game/textures/GUI/treasure_pattern.png" id="4_u3hst"]
+[ext_resource type="Texture2D" uid="uid://duj7xntofu70d" path="res://Textures/GUI/treasure_pattern.png" id="4_u3hst"]
+
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjeht"]
 bg_color = Color(0.121569, 0.0627451, 0.164706, 1)

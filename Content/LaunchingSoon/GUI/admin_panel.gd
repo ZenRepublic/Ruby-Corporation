@@ -7,20 +7,13 @@ class_name AdminPanel
 
 @export var warnings_container:HBoxContainer
 @export var warning_visual:Texture2D
-
-var launch_controller:LaunchController
 	
 func _ready() -> void:	
 	score_label.set_value(0)
+	update_floor_progress(0)
+	#token_visual.texture = ImageTexture.create_from_image(launch_controller.get_token_visual())
 	
-	launch_controller = get_tree().get_first_node_in_group("LaunchController") as LaunchController
-	launch_controller.on_floor_changed.connect(update_floor_progress)
-	launch_controller.on_salary_updated.connect(update_salary_display)
-	launch_controller.on_warning_received.connect(update_warnings_display)
-	
-	token_visual.texture = ImageTexture.create_from_image(launch_controller.get_token_visual())
-	
-func update_salary_display(new_score:float) -> void:
+func update_launchpad_value_display(new_score:float) -> void:
 	score_label.set_value(new_score)
 	
 func update_floor_progress(curr_floor) -> void:

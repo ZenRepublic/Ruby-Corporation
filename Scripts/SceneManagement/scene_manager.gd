@@ -1,6 +1,7 @@
 extends Node
 
 @export var transition_panels:Array[PackedScene]
+@export var debug_window_size:Vector2
 
 @onready var particle_cache:ParticleCache = $ParticleCache
 
@@ -30,6 +31,13 @@ var interscene_data:Dictionary
 func _ready() -> void:
 	curr_scene_path = get_tree().current_scene.scene_file_path
 	
+	if OS.has_feature("debug"):
+		DisplayServer.window_set_size(debug_window_size)  # or any dev-friendly size
+		var screen_middle_point:Vector2 = DisplayServer.screen_get_size() / 2
+		var place_position:Vector2 = screen_middle_point - debug_window_size/2
+		DisplayServer.window_set_position(place_position)
+		
+		
 func _process(_delta: float) -> void:
 	if scene_to_load_path=="":
 		return
