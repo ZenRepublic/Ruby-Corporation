@@ -4,6 +4,7 @@ class_name Payload
 @export var main_cargo_parts:Array[PackedScene]
 @export var top_cargo_scn:PackedScene
 
+
 func get_next_cargo_scn(structure:CargoStructure) -> PackedScene:
 	if structure.get_size() == LaunchSettings.CARGO_TO_FULL-1:
 		return top_cargo_scn

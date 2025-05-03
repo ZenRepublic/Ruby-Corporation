@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cusxwj2lvkbpk"]
+
+[ext_resource type="Texture2D" uid="uid://crkoovodnwd7g" path="res://Textures/Icons/collectible_coin_big_idle_1.png" id="1_rk25b"]
+
+[node name="DisplayToken" type="Sprite3D"]
+texture = ExtResource("1_rk25b")

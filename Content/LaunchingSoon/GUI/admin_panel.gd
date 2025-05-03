@@ -2,7 +2,7 @@ extends Control
 class_name AdminPanel
 
 @export var progress_label:Label
-
+@export var token_visual:TextureRect
 @export var score_label:NumberLabel
 
 @export var warnings_container:HBoxContainer
@@ -18,24 +18,9 @@ func _ready() -> void:
 	launch_controller.on_salary_updated.connect(update_salary_display)
 	launch_controller.on_warning_received.connect(update_warnings_display)
 	
+	token_visual.texture = ImageTexture.create_from_image(launch_controller.get_token_visual())
+	
 func update_salary_display(new_score:float) -> void:
-	var curr_score: float = score_label.get_number_value()
-	var difference: float = new_score - curr_score
-
-	if difference == 0:
-		return
-
-	# Adjust increment based on difference size for consistent animation speed
-	var increment: float = LaunchSettings.get_max_placement_score()/20.0
-	increment = snappedf(increment,0.02)
-	var target_score: float = new_score
-
-	while abs(target_score - curr_score) > abs(increment):
-		curr_score += increment
-		score_label.set_value(curr_score)
-		await get_tree().create_timer(0.03).timeout
-
-	# Set final score to avoid overshooting
 	score_label.set_value(new_score)
 	
 func update_floor_progress(curr_floor) -> void:

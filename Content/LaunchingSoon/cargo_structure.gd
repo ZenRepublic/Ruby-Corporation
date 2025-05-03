@@ -54,7 +54,6 @@ func get_highest_point() -> Vector3:
 	else:
 		top_cargo = curr_cargo[curr_cargo.size()-1]
 	var highest_point:Vector3 = top_cargo.global_position + Vector3(0,top_cargo.height/2,0)
-	print(curr_cargo.size()," ", top_cargo.global_position," ", highest_point)
 	return highest_point
 	
 func is_started() -> bool:

@@ -25,6 +25,8 @@ var placement_score:int
 
 var is_dropping:bool=false
 
+#collision detection only available for the first collision shape detected
+var has_collided:bool=false
 var velocity:Vector3
 
 signal on_expired()
@@ -68,12 +70,16 @@ func _process(delta: float) -> void:
 	
 #	check if shape collision with Cargo.
 	var shape_collision:Dictionary = get_shape_collision()
-	if shape_collision.size() > 0:
+	if !has_collided and shape_collision.size() > 0:
+		has_collided = true
 		var collided_object = shape_collision["collider"]
+		
 		if collided_object is Cargo or collided_object is Launchpad:
 			var collision_data:Dictionary = get_collision_data()
 			if collision_data.size() > 0:
 				process_collision(collision_data)
+			else:
+				handle_miss(collided_object)
 		else:
 			handle_miss(collided_object)
 		
@@ -114,7 +120,9 @@ func handle_connect(collided_object, hit_point:Vector3) -> void:
 	
 func handle_miss(hit_obj=null) -> void:
 	if hit_obj == null:
-		destroy()
+		on_expired.emit()
+		queue_free()
+		return
 	
 	freeze=false
 	
@@ -131,8 +139,9 @@ func handle_miss(hit_obj=null) -> void:
 	var spin_strength = bounce_direction.length() * spin_angle
 	angular_velocity += -spin_axis.normalized() * spin_strength * 0.5
 	
+	on_expired.emit()
 	await get_tree().create_timer(1).timeout
-	destroy()
+	queue_free()
 
 
 func handle_physics_collision(body: Node3D) -> void:
@@ -148,7 +157,11 @@ func get_shape_collision() -> Dictionary:
 	shape_query.shape = shape
 	shape_query.transform = global_transform # Position shape at block's global position
 	# Optionally offset downward to check just below the block
-	shape_query.transform.origin += Vector3(0, -(height / 2.0 + ray_extra_margin), 0)
+	#shape_query.transform.origin += Vector3(0, -(height / 2.0 + ray_extra_margin), 0)
+	
+	var cast_distance = height / 2.0 + ray_extra_margin # Distance to cast
+	shape_query.motion = velocity.normalized() * cast_distance # Set motion vector
+	
 	# Exclude this block and the last RigidBody
 	shape_query.exclude = [self]
 	shape_query.collision_mask = 2 # Check Layer 2
@@ -176,6 +189,11 @@ func set_dimensions(collider:CollisionShape3D) -> void:
 		height = collider.shape.height
 		width = collider.shape.radius*2
 		
-func destroy() -> void:
-	on_expired.emit()
-	queue_free()
+func get_top_point() -> Vector3:
+	# Get the local up vector (Y axis in local space)
+	var local_up = transform.basis.y.normalized()
+	# Calculate the local point offset in the local up direction
+	var local_point = local_up * (height / 2.0)
+	# Convert to global space
+	var global_point = to_global(local_point)
+	return global_point

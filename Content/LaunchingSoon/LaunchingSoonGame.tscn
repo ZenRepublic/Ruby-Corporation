@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://br1uqoo22tbid"]
+[gd_scene load_steps=30 format=3 uid="uid://br1uqoo22tbid"]
 
 [ext_resource type="PackedScene" uid="uid://bjraw1pe2akjs" path="res://Content/LaunchingSoon/CarrierDrone/CarrierDrone.tscn" id="1_0ctbn"]
 [ext_resource type="Script" uid="uid://cv18o0w81gm0o" path="res://Content/LaunchingSoon/launch_controller.gd" id="1_2r3xa"]
@@ -9,8 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://w7mp31uu88ft" path="res://Content/LaunchingSoon/Cargo/RocketParts/BasePart.tscn" id="4_lvne8"]
 [ext_resource type="PackedScene" uid="uid://bk1qyvsd3td77" path="res://Content/LaunchingSoon/Cargo/RocketParts/MiddlePart.tscn" id="5_run4a"]
 [ext_resource type="Script" uid="uid://dkb5enrht5vw3" path="res://Content/LaunchingSoon/cargo_structure.gd" id="6_run4a"]
+[ext_resource type="Script" uid="uid://dpwkrxn8hbggv" path="res://Content/LaunchingSoon/token_spawner.gd" id="6_tkdm6"]
 [ext_resource type="PackedScene" uid="uid://dsro4jknouore" path="res://Content/LaunchingSoon/Cargo/RocketParts/TopPart.tscn" id="6_xu2r4"]
-[ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="10_2jycn"]
+[ext_resource type="PackedScene" uid="uid://cusxwj2lvkbpk" path="res://Content/LaunchingSoon/DisplayToken.tscn" id="7_y1r1t"]
+[ext_resource type="Script" uid="uid://o5e2rjiqntvk" path="res://Content/LaunchingSoon/cam_controller.gd" id="8_tkdm6"]
 [ext_resource type="Script" uid="uid://c4fxv2bctb2up" path="res://Content/LaunchingSoon/GUI/gui.gd" id="10_7s1oc"]
 [ext_resource type="Script" uid="uid://dpbwy1xjqctiu" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="10_xu2r4"]
 [ext_resource type="Script" uid="uid://cuhu3ktt1li8j" path="res://Content/LaunchingSoon/GUI/admin_panel.gd" id="11_8edqq"]
@@ -51,12 +53,14 @@ size = Vector3(8, 1, 8)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkdm6"]
 
-[node name="LaunchingSoonGame" type="Node3D" node_paths=PackedStringArray("structure", "launchpad", "rig", "gui")]
+[node name="LaunchingSoonGame" type="Node3D" node_paths=PackedStringArray("structure", "launchpad", "rig", "token_spawner", "gui")]
 script = ExtResource("1_2r3xa")
 structure = NodePath("Launchpad/CargoStructure")
 launchpad = NodePath("Launchpad")
 rig = NodePath("Sky Rig")
+token_spawner = NodePath("TokenSpawner")
 gui = NodePath("GUI")
+token_texture = ExtResource("12_7s1oc")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ms4aa")
@@ -83,6 +87,15 @@ shape = SubResource("BoxShape3D_kk0jy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("6_run4a")
 
+[node name="TokenSpawner" type="Node3D" parent="." node_paths=PackedStringArray("spawn_point")]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 1, 1.33)
+script = ExtResource("6_tkdm6")
+token_scn = ExtResource("7_y1r1t")
+spawn_point = NodePath("../Sky Rig/Cam/TokenSpawnPoint")
+spawn_radius = 0.4
+fly_duration = 0.6
+arc_height = 0.5
+
 [node name="Sky Rig" type="Node3D" parent="." node_paths=PackedStringArray("cam", "drone", "payload")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.597)
 script = ExtResource("3_4dyoj")
@@ -94,6 +107,11 @@ offset_from_launchpad = Vector3(0, -0.6, 0)
 
 [node name="Cam" type="Camera3D" parent="Sky Rig"]
 transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, -0.267)
+script = ExtResource("8_tkdm6")
+shake_frequency = 80.0
+
+[node name="TokenSpawnPoint" type="Node3D" parent="Sky Rig/Cam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0385159, -0.440239)
 
 [node name="Mesh" type="MeshInstance3D" parent="Sky Rig"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.26554)
@@ -149,7 +167,7 @@ admin_panel = NodePath("AdminPanel")
 win_screen = NodePath("WinScreen")
 lose_screen = NodePath("FiredScreen")
 
-[node name="AdminPanel" type="PanelContainer" parent="GUI" node_paths=PackedStringArray("progress_label", "score_label", "warnings_container")]
+[node name="AdminPanel" type="PanelContainer" parent="GUI" node_paths=PackedStringArray("progress_label", "token_visual", "score_label", "warnings_container")]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -161,6 +179,7 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7s1oc")
 script = ExtResource("11_8edqq")
 progress_label = NodePath("Content/ProgressContainer/ProgressLabel")
+token_visual = NodePath("Content/HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/TokenVisual")
 score_label = NodePath("Content/HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/Score")
 warnings_container = NodePath("Content/HBoxContainer/PanelContainer/MarginContainer/WarningsContainer")
 warning_visual = ExtResource("13_kvfj4")
@@ -193,12 +212,6 @@ alignment = 1
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 8
-
-[node name="DisplayableAsset" type="Node" parent="GUI/AdminPanel/Content/HBoxContainer/ScoreContainer" node_paths=PackedStringArray("visual")]
-script = ExtResource("10_2jycn")
-visual = NodePath("../MarginContainer/HBoxContainer/TokenVisual")
-image_size = 256
-metadata/_custom_type_script = "uid://fyl7vadeoj03"
 
 [node name="MarginContainer" type="MarginContainer" parent="GUI/AdminPanel/Content/HBoxContainer/ScoreContainer"]
 layout_mode = 2

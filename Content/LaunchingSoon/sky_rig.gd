@@ -1,7 +1,7 @@
 extends Node3D
 class_name SkyRig
 
-@export var cam:Camera3D
+@export var cam:CamController
 @export var drone:CarrierDrone
 @export var payload:Payload
 
@@ -54,5 +54,6 @@ func fly_towards(fly_point:Vector3) -> void:
 
 
 func process_failed_drop() -> void:
+	cam.start_shake(0.3,0.05)
 	launch_controller.process_cargo_destroyed()
 	

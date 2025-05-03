@@ -4,10 +4,12 @@ class_name LaunchController
 @export var structure:CargoStructure
 @export var launchpad:Launchpad
 @export var rig:SkyRig
-
+@export var token_spawner:TokenSpawner
 @export var gui:GUI
 
-var curr_score:int=0
+@export var token_texture:Texture2D
+
+var curr_value:float=0.0
 var curr_warnings:int = 0
 
 signal on_floor_changed(curr_floor:int)
@@ -21,21 +23,23 @@ func _ready() -> void:
 	await launchpad.activate()
 	prepare_drop()
 	structure.on_cargo_placed.connect(process_cargo_placed)
-	
+	token_spawner.setup_token_pool(get_token_visual())
+	token_spawner.on_toked_arrived.connect(update_salary)
 	pass
 	
-func process_cargo_placed(cargo:Cargo, placement_score:int) -> void:
-	curr_score += placement_score
-	var curr_salary:float = get_salary(curr_score)
+func get_token_visual() -> Image:
+	return token_texture.get_image()
 	
-	on_salary_updated.emit(curr_salary)
+func process_cargo_placed(cargo:Cargo, placement_score:int) -> void:
+	var tokens_earned:float = get_salary(placement_score)
+	token_spawner.send_tokens(tokens_earned,cargo.get_top_point())
+	
 	on_floor_changed.emit(structure.get_size())
 	
 	if structure.is_complete():
 		send_off()
 	else:
 		prepare_drop()
-	
 	
 func process_cargo_destroyed() -> void:
 	curr_warnings += 1
@@ -52,6 +56,10 @@ func prepare_drop() -> void:
 	var rig_fly_point:Vector3 = (launchpad.get_drop_point() + structure.get_highest_point())/2
 	
 	rig.fly_towards(rig_fly_point)
+	
+func update_salary(change_amount:float) -> void:
+	curr_value += change_amount
+	on_salary_updated.emit(curr_value)
 	
 func get_salary(score:int) -> float:
 #	add score conversion to token
