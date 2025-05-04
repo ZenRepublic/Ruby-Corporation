@@ -32,6 +32,7 @@ environment = SubResource("Environment_ms4aa")
 transform = Transform3D(0.99889, -0.0154141, 0.0445132, -0.0245071, 0.636954, 0.770512, -0.0402296, -0.770748, 0.635869, 0, 4.00598, 3.9653)
 
 [node name="Launchpad" parent="." instance=ExtResource("3_7u7oj")]
+drop_height_increment = 0.01
 
 [node name="PlayerRig" parent="." node_paths=PackedStringArray("drone", "launchpad") instance=ExtResource("9_78xry")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.597)
@@ -40,9 +41,7 @@ launchpad = NodePath("../Launchpad")
 
 [node name="CarrierDrone" parent="." instance=ExtResource("10_gysdx")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.28726, 0.740841, 1.9685)
-speed_growth_tick = 0.3
 start_move_range = Vector3(0.15, 0.1, 0)
 max_move_range = Vector3(0.35, 0.3, 0)
-amplitude_growth_tick = Vector3(0.02, 0.01, 0)
 
 [node name="GUI" parent="." instance=ExtResource("11_0h6bu")]

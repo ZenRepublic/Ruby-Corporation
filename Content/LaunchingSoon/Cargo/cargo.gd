@@ -15,7 +15,6 @@ class_name Cargo
 var height:float
 var width:float
 
-var stick_pos:Vector3 = Vector3.ZERO
 var velocity_at_collision:Vector3
 var time_falling:float=0
 
@@ -24,10 +23,14 @@ var ROTATION_CORRECTION_SPEED:float = 10
 var placement_score:int
 
 var is_dropping:bool=false
+var is_connected:bool=false
 
 #collision detection only available for the first collision shape detected
 var has_collided:bool=false
 var velocity:Vector3
+
+var structure:CargoStructure
+var structure_stick_point:Vector3
 
 signal on_missed()
 signal on_placed(cargo:Cargo, placement_score:int)
@@ -52,14 +55,17 @@ func release(release_velocity: Vector3):
 	is_dropping = true
 	
 func _process(delta: float) -> void:
+	if is_connected:
+		return
+		
 	if !is_dropping:
-		if stick_pos!= Vector3.ZERO:
-			var stick_target_dir:Vector3 = stick_pos - global_position
+		if structure!=null:
+			var stick_pos_world:Vector3 = structure.global_transform*structure_stick_point
+			var stick_target_dir:Vector3 = stick_pos_world - global_position
 			var distance = stick_target_dir.length()
 			if distance<=proximity_threshold:
-				self.global_position = stick_pos
-				stick_pos=Vector3.ZERO
-				on_connected.emit()
+				self.global_position = stick_pos_world
+				handle_connect()
 			else:
 				self.global_position += stick_target_dir*stick_strength*delta
 		return
@@ -73,9 +79,10 @@ func _process(delta: float) -> void:
 	var shape_collision:Dictionary = get_shape_collision()
 	if !has_collided and shape_collision.size() > 0:
 		has_collided = true
+		is_dropping=false
 		var collided_object = shape_collision["collider"]
 		
-		if collided_object is Cargo or collided_object is Launchpad:
+		if collided_object is Cargo:
 			var collision_data:Dictionary = get_collision_data()
 			if collision_data.size() > 0:
 				process_collision(collision_data)
@@ -91,33 +98,31 @@ func _process(delta: float) -> void:
 	
 	
 func process_collision(collision_data:Dictionary) -> void:
-	is_dropping=false	
 	var collided_object = collision_data["collider"]
 	var hit_pos:Vector3 = collision_data["position"]
 	var hit_normal:Vector3 = collision_data["normal"]
 	
-	if collided_object is Cargo:
-		var structure:CargoStructure = collided_object.get_parent() as CargoStructure
-		placement_score = structure.get_placement_score(self,collided_object, hit_pos,hit_normal)
-		if placement_score == 0:
-			handle_miss(collided_object)
-		else:
-			structure.apply_cargo(self,placement_score)
-			handle_connect(collided_object,hit_pos)
-	else:
+	structure = collided_object.get_parent() as CargoStructure
+	placement_score = structure.get_placement_score(self,collided_object, hit_pos,hit_normal)
+	if placement_score == 0:
 		handle_miss(collided_object)
+	else:
+		var place_point:Vector3
+		var place_target_up_dir:Vector3 = collided_object.global_transform.basis.y
+		
+		if placement_score == LaunchSettings.get_max_placement_score():
+			place_point = collided_object.global_position + place_target_up_dir * height
+		else:
+			place_point = hit_pos + place_target_up_dir * (height / 2.0) # Offset by half height
+		place_point.z = collided_object.global_position.z
+		structure_stick_point = structure.global_transform.inverse() * place_point
 		
 	
-func handle_connect(collided_object, hit_point:Vector3) -> void:
-	if placement_score == LaunchSettings.get_max_placement_score():
-		stick_pos = collided_object.global_position + Vector3(0,height,0)
-	else:
-		stick_pos = hit_point + Vector3(0, height / 2.0, 0) # Offset by half height
-		
-	stick_pos.z = collided_object.global_position.z
+func handle_connect() -> void:
+	is_connected=true
 	score_label.text = str(placement_score)
+	structure.apply_cargo(self,placement_score)
 	on_placed.emit(self,placement_score)
-	pass
 	
 	
 func handle_miss(hit_obj=null) -> void:
@@ -176,8 +181,12 @@ func get_shape_collision() -> Dictionary:
 func get_collision_data() -> Dictionary:
 	var space_state = get_world_3d().direct_space_state
 	var origin:Vector3 = self.global_position
+	
 	var ray_length = height / 2.0 + ray_extra_margin # Ray extends to bottom + margin
-	var end = origin + Vector3(0, -ray_length, 0) # Raycast downward
+	 # Use local negative Y-axis direction transformed to global space
+	var direction = -self.global_transform.basis.y
+	var end = origin + direction * ray_length # Raycast downward
+	
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
 	query.exclude = [self] # Exclude the block itself from raycast
 	var result:Dictionary = space_state.intersect_ray(query)

@@ -32,7 +32,7 @@ func get_drop_point() -> Vector3:
 #	the top point may not be in the middle. we NEED middle point of the whole structure
 	top_point.x = self.global_position.x
 	
-	var drop_height:float = start_drop_height + drop_height_increment*cargo_structure.get_child_count()
+	var drop_height:float = start_drop_height + drop_height_increment*get_structure_size()
 	return top_point + Vector3(0,drop_height,0)
 
 func get_rig_fly_point() -> Vector3:

@@ -38,6 +38,7 @@ func _process(delta: float) -> void:
 		drone.try_drop_load()
 		
 func prepare_cargo_drop() -> void:
+	drone.update_difficulty(launchpad.get_structure_size())
 	send_cargo(launchpad.get_drop_point())
 	move_to(launchpad.get_rig_fly_point())
 		
@@ -46,7 +47,7 @@ func send_cargo(deploy_point:Vector3) -> void:
 	var cargo_instance:Cargo = cargo_scn.instantiate()
 	if !drone.is_at_destination:
 		await drone.on_target_reached
-	drone.grab_cargo(cargo_instance,false)
+	drone.grab_cargo(cargo_instance)
 	drone.fly_to(deploy_point, cam.global_position)
 	
 func return_drone(dropped_cargo:Cargo) -> void:

@@ -16,8 +16,9 @@ height = 0.04
 
 [node name="CarrierDrone" type="Node3D" node_paths=PackedStringArray("magnet_puck")]
 script = ExtResource("1_h26ka")
-speed_multiplier_curve = SubResource("Curve_ms4aa")
 magnet_puck = NodePath("Puck")
+base_speed = 1.5
+speed_multiplier_curve = SubResource("Curve_ms4aa")
 
 [node name="Drone" parent="." instance=ExtResource("2_1tmj7")]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://byrve0vr3ypsy"]
+[gd_scene load_steps=10 format=3 uid="uid://byrve0vr3ypsy"]
 
 [ext_resource type="Script" uid="uid://bdqo28tuoefon" path="res://Content/LaunchingSoon/Launchpad/launchpad.gd" id="1_jg51g"]
 [ext_resource type="PackedScene" uid="uid://w7mp31uu88ft" path="res://Content/LaunchingSoon/Cargo/RocketParts/BasePart.tscn" id="2_pr74a"]
 [ext_resource type="Script" uid="uid://dkb5enrht5vw3" path="res://Content/LaunchingSoon/Launchpad/cargo_structure.gd" id="3_jk23v"]
+[ext_resource type="PackedScene" uid="uid://bg1mw3v7s271f" path="res://Content/LaunchingSoon/Launchpad/Launchpad_ball.glb" id="3_pr74a"]
 [ext_resource type="Script" uid="uid://cnbq5j46m1vgl" path="res://Content/LaunchingSoon/Launchpad/death_zone.gd" id="4_n3118"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0ctbn"]
@@ -33,9 +34,14 @@ skeleton = NodePath("../..")
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_kk0jy")
 
-[node name="CargoStructure" type="Node3D" parent="."]
+[node name="CargoStructure" parent="." instance=ExtResource("3_pr74a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("3_jk23v")
+base_spawn_offset = Vector3(0, 0.17, 0)
+sway_speed = 1.2
+
+[node name="BaseSpawn" type="Node3D" parent="CargoStructure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17, 0)
 
 [node name="DeathZone" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

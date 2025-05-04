@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dypqi11ijs6lh"]
 
 [ext_resource type="Script" uid="uid://n6g5u8nsidur" path="res://Content/LaunchingSoon/PlayerRig/PlayerRig.gd" id="1_6nauw"]
-[ext_resource type="Texture2D" uid="uid://crkoovodnwd7g" path="res://Textures/Icons/collectible_coin_big_idle_1.png" id="2_00qsx"]
+[ext_resource type="Texture2D" uid="uid://nljoclj85xe4" path="res://Textures/Icons/Token.PNG" id="2_00qsx"]
 [ext_resource type="Script" uid="uid://o5e2rjiqntvk" path="res://Content/LaunchingSoon/PlayerRig/cam_controller.gd" id="2_lmnf5"]
 [ext_resource type="Script" uid="uid://ocr0sopy3y7m" path="res://Content/LaunchingSoon/payload.gd" id="3_nl1kf"]
 [ext_resource type="PackedScene" uid="uid://bk1qyvsd3td77" path="res://Content/LaunchingSoon/Cargo/RocketParts/MiddlePart.tscn" id="4_00qsx"]

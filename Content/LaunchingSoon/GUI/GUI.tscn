@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cuhu3ktt1li8j" path="res://Content/LaunchingSoon/GUI/admin_panel.gd" id="2_wvrxf"]
 [ext_resource type="Texture2D" uid="uid://bex3s6kk2tvo2" path="res://addons/SolanaSDK/Textures/warning.png" id="3_vaefn"]
 [ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="4_dgxx7"]
-[ext_resource type="Texture2D" uid="uid://crkoovodnwd7g" path="res://Textures/Icons/collectible_coin_big_idle_1.png" id="5_p3ljt"]
+[ext_resource type="Texture2D" uid="uid://nljoclj85xe4" path="res://Textures/Icons/Token.PNG" id="5_wc8ld"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7s1oc"]
 
@@ -89,7 +89,7 @@ script = ExtResource("4_dgxx7")
 
 [node name="TokenVisual" type="TextureRect" parent="AdminPanel/Content/HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("5_p3ljt")
+texture = ExtResource("5_wc8ld")
 expand_mode = 3
 
 [node name="ProgressContainer" type="PanelContainer" parent="AdminPanel/Content"]
