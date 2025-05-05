@@ -72,9 +72,9 @@ func move_to(fly_point:Vector3) -> void:
 	await tween.finished
 	on_rise_complete.emit()
 	
-func process_successful_drop(cargo:Cargo,placement_score:int) -> void:
-	cam.knock_back(cargo.global_position,float(placement_score)/LaunchSettings.get_max_placement_score())
-	var tokens_earned:float = float(placement_score)
+func process_successful_drop(cargo:Cargo,place_tier:LaunchSettings.PLACE_TIER) -> void:
+	cam.knock_back(cargo.global_position,LaunchSettings.get_place_accuracy(place_tier))
+	var tokens_earned:float = LaunchSettings.get_score(place_tier)
 	token_spawner.send_tokens(tokens_earned,cargo.get_top_point())
 	
 	if !launchpad.is_structure_complete():

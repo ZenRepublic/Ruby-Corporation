@@ -21,6 +21,8 @@ var time_falling:float=0
 
 var placement_score:int
 
+var place_tier:LaunchSettings.PLACE_TIER
+
 var is_dropping:bool=false
 var is_connected:bool=false
 
@@ -33,7 +35,7 @@ var structure:CargoStructure
 var structure_stick_point:Vector3
 
 signal on_missed()
-signal on_placed(cargo:Cargo, placement_score:int)
+signal on_placed(cargo:Cargo, place_tier:LaunchSettings.PLACE_TIER)
 signal on_connected()
 
 func _ready() -> void:
@@ -108,15 +110,15 @@ func process_collision(collision_data:Dictionary) -> void:
 		return
 		
 	structure = collided_cargo.get_parent() as CargoStructure
-	placement_score = structure.get_placement_score(self,collided_cargo, hit_pos,hit_normal)
-	if placement_score == 0:
+	place_tier = structure.get_placement_tier(self,collided_cargo, hit_pos,hit_normal)
+	if place_tier == LaunchSettings.PLACE_TIER.NONE:
 		handle_miss(collided_cargo)
 	else:
 		print("PLACING")
-		structure.apply_cargo(self,placement_score)
+		structure.apply_cargo(self)
 		var place_point:Vector3
 		var place_target_up_dir:Vector3 = collided_cargo.transform.basis.y
-		if placement_score == LaunchSettings.get_max_placement_score():
+		if place_tier == LaunchSettings.PLACE_TIER.LEGEND:
 			place_point = collided_cargo.position + place_target_up_dir * height
 		else:
 			place_point = structure.to_local(hit_pos) + place_target_up_dir * (height / 2.0) # Offset by half height
@@ -126,10 +128,10 @@ func process_collision(collision_data:Dictionary) -> void:
 	
 func handle_connect() -> void:
 	is_connected=true
-	score_label.text = str(placement_score)
+	score_label.text = str(LaunchSettings.get_score(place_tier))
 	
 	await tween_placement()
-	on_placed.emit(self,placement_score)
+	on_placed.emit(self,place_tier)
 	
 	
 func handle_miss(hit_obj=null) -> void:
@@ -177,7 +179,7 @@ func tween_placement() -> void:
 		return
 	var end_angle: float = start_up.angle_to(target_up)
 #	duration depends on how poorly it was placed
-	var accuracy:float = float(placement_score)/LaunchSettings.get_max_placement_score()
+	var accuracy:float = LaunchSettings.get_place_accuracy(place_tier)
 	var duration:float = lerpf(stick_tween_duration/5.0,stick_tween_duration,accuracy)
 	var jump_height:float = lerpf(max_jump_height/4.0,max_jump_height,accuracy)
 		
@@ -269,7 +271,7 @@ func get_top_point() -> Vector3:
 	return global_point
 	
 func is_perfect_placement() -> bool:
-	return placement_score == LaunchSettings.get_max_placement_score()
+	return place_tier == LaunchSettings.PLACE_TIER.LEGEND
 	
 func drop_off() -> void:
 	self.reparent(get_tree().root)

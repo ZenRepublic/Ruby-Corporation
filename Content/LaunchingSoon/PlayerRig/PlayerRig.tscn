@@ -24,7 +24,7 @@ fly_duration = 1.0
 offset_from_launchpad = Vector3(0, -0.6, 0)
 
 [node name="Cam" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, -0.267)
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, -0.25)
 script = ExtResource("2_lmnf5")
 shake_frequency = 80.0
 max_knockback_strength = 0.6

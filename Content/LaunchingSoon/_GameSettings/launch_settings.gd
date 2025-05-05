@@ -2,18 +2,42 @@ extends Node
 class_name LaunchSettings
 
 static var CARGO_TO_FULL:int = 20
-static var MAX_PLACEMENT_SCORE:int = 10
-static var PERFECT_DROP_MULTIPLIER:float = 2.0
+static var BASE_PLACEMENT_SCORE:int = 1
 
+enum PLACE_TIER{NONE,SLOPPY, DECENT, BASED, LEGEND}
 static var MAX_PERFECT_PLACE_ACCURACY:float = 0.1
-static var MAX_PLACE_ACCURACY:float = 1.0
+static var LEGEND_PLACE_RANGE:float = 0.1
+static var LEGEND_MULTIPLIER:float = 5.0
+
+static var BASED_PLACE_RANGE:float = 0.4
+static var BASED_MULTIPLIER:float = 3.0
+
+static var DECENT_PLACE_RANGE:float = 0.8
+static var DECENT_MULTIPLIER:float = 2.0
+
+static var SLOPPY_PLACE_RANGE:float = 1.0
+static var SLOPPY_MULTIPLIER:float = 1.0
 
 static var WARNINGS_TO_FIRE:int = 3
 
 static var GRAVITY_STRENGTH:float = 9.8
 
-static func get_max_placement_score() -> int:
-	return ceili(MAX_PLACEMENT_SCORE * PERFECT_DROP_MULTIPLIER)
+static func get_place_accuracy(place_tier:PLACE_TIER) -> float:
+	return float(place_tier)/PLACE_TIER.size()
+	
+static func get_score(place_tier:PLACE_TIER) -> float:
+	match place_tier:
+		PLACE_TIER.LEGEND:
+			return BASE_PLACEMENT_SCORE * LEGEND_MULTIPLIER
+		PLACE_TIER.BASED:
+			return BASE_PLACEMENT_SCORE * BASED_MULTIPLIER
+		PLACE_TIER.DECENT:
+			return BASE_PLACEMENT_SCORE * DECENT_MULTIPLIER
+		PLACE_TIER.SLOPPY:
+			return BASE_PLACEMENT_SCORE * SLOPPY_MULTIPLIER
+		PLACE_TIER.NONE:
+			return 0
+	return 0
 
-static func get_max_total_score() -> int:
-	return ceili(CARGO_TO_FULL * MAX_PLACEMENT_SCORE * PERFECT_DROP_MULTIPLIER)
+static func get_max_placement_score() -> float:
+	return BASE_PLACEMENT_SCORE * LEGEND_MULTIPLIER

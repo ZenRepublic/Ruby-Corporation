@@ -39,29 +39,27 @@ func set_base_cargo(cargo:Cargo) -> void:
 	cargo_base.position += Vector3(0,cargo_base.height/2.0,0)
 	cargo_base.position += base_spawn_offset
 	
-func get_placement_score(cargo:Cargo, collided_cargo:Cargo,hit_pos:Vector3, hit_normal:Vector3) -> int:
+func get_placement_tier(cargo:Cargo, collided_cargo:Cargo,hit_pos:Vector3, hit_normal:Vector3) -> LaunchSettings.PLACE_TIER:
 	if curr_cargo.size()>0 and collided_cargo != curr_cargo[curr_cargo.size()-1]["cargo"]:
-		return 0
+		return LaunchSettings.PLACE_TIER.NONE
 		
 	var distance_to_center:float = abs(collided_cargo.global_position.x - hit_pos.x)
-#	check if good enough to connect
-	var max_distance_to_connect:float = (collided_cargo.width * LaunchSettings.MAX_PLACE_ACCURACY) / 2.0
-	if distance_to_center > max_distance_to_connect:
-		return 0
+	var max_distance_to_connect:float = (collided_cargo.width * LaunchSettings.SLOPPY_PLACE_RANGE) / 2.0
+	var accuracy:float = abs(distance_to_center) / abs(max_distance_to_connect)
 		
-	#calculate accuracy
-	var accuracy:float = 1 - abs(distance_to_center) / abs(max_distance_to_connect)
-	var placement_score:int = ceili(lerpf(0,LaunchSettings.MAX_PLACEMENT_SCORE,accuracy))
+	if accuracy <= LaunchSettings.LEGEND_PLACE_RANGE:
+		return LaunchSettings.PLACE_TIER.LEGEND
+	elif accuracy <= LaunchSettings.BASED_PLACE_RANGE:
+		return LaunchSettings.PLACE_TIER.BASED
+	elif accuracy <= LaunchSettings.DECENT_PLACE_RANGE:
+		return LaunchSettings.PLACE_TIER.DECENT
+	elif accuracy <= LaunchSettings.SLOPPY_PLACE_RANGE:
+		return LaunchSettings.PLACE_TIER.SLOPPY
+	else:
+		return LaunchSettings.PLACE_TIER.NONE
 
-#	check if maybe a perfect connect
-#	divide by 2 because positive/negative distance
-	var max_distance_to_perfect:float = (collided_cargo.width * LaunchSettings.MAX_PERFECT_PLACE_ACCURACY) / 2.0
-	if distance_to_center <= max_distance_to_perfect:
-		return LaunchSettings.get_max_placement_score()
-
-	return placement_score
 	
-func apply_cargo(cargo:Cargo,placement_score:int=0) -> void:
+func apply_cargo(cargo:Cargo) -> void:
 	cargo.reparent(self)
 	var previous_cargo:Cargo
 	if curr_cargo.size() == 0:
@@ -72,7 +70,7 @@ func apply_cargo(cargo:Cargo,placement_score:int=0) -> void:
 	var place_offset:Vector3 = cargo.position-previous_cargo.position
 	var cargo_data:Dictionary = {
 		"cargo":cargo,
-		"place_offset":place_offset.x
+		"place_offset":place_offset.x,
 	}
 	curr_cargo.append(cargo_data)	
 	calculate_sway_strength()
@@ -86,8 +84,7 @@ func drop_cargo() -> void:
 		if top_cargo_idx < 0:
 			break
 		var topmost_cargo:Cargo = curr_cargo[top_cargo_idx]["cargo"]
-		var place_accuracy:float = float(topmost_cargo.placement_score)/LaunchSettings.get_max_placement_score()
-		if place_accuracy < 0.4:
+		if topmost_cargo.place_tier < LaunchSettings.PLACE_TIER.BASED:
 			curr_cargo.remove_at(top_cargo_idx)
 			topmost_cargo.drop_off()
 		else:
