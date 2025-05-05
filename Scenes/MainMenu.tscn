@@ -1,7 +1,7 @@
 [gd_scene load_steps=55 format=3 uid="uid://dmdb8dbmov2cl"]
 
 [ext_resource type="Script" uid="uid://uxfmmvq5egiv" path="res://Scripts/Menu/menu_manager.gd" id="1_l0w8j"]
-[ext_resource type="Script" uid="uid://cmcpmjqe38j7l" path="res://addons/SolanaSDK/Scripts/NFTGating/button_lock_manager.gd" id="2_uhhnb"]
+[ext_resource type="Script" uid="uid://cdjcqclowhb8e" path="res://addons/SolanaSDK/Scripts/NFTGating/button_lock_manager.gd" id="2_uhhnb"]
 [ext_resource type="Shader" uid="uid://c8052rjttj7of" path="res://Shaders/scrolling_background.gdshader" id="3_ngax4"]
 [ext_resource type="Texture2D" uid="uid://b8i1obr6qaasa" path="res://Textures/TransitionPatterns/BoxPattern.png" id="4_2iyto"]
 [ext_resource type="Script" uid="uid://caeh3lfk322j" path="res://Scripts/Menu/menu_panel.gd" id="5_ajji8"]
@@ -18,20 +18,20 @@
 [ext_resource type="Script" uid="uid://vrf04aoisol5" path="res://Scripts/DropGameKit/CampaignManagement/campaign_loader.gd" id="16_7krnb"]
 [ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="17_85f2f"]
 [ext_resource type="PackedScene" uid="uid://bnfq88vw2eksv" path="res://Scripts/DropGameKit/CampaignManagement/CampaignEntry.tscn" id="18_y3qgx"]
-[ext_resource type="Script" uid="uid://cdouwnr2k06gk" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/page_loader.gd" id="19_s07dd"]
+[ext_resource type="Script" uid="uid://u37yyfn35etp" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/page_loader.gd" id="19_s07dd"]
 [ext_resource type="Texture2D" uid="uid://gptwby1tvc0b" path="res://Textures/Icons/Arrow.png" id="20_i5uv2"]
 [ext_resource type="Script" uid="uid://crlraerd8emwt" path="res://Scripts/DropGameKit/CampaignManagement/campaign_interactor.gd" id="21_8rpsb"]
 [ext_resource type="Texture2D" uid="uid://8y8gq03rslv8" path="res://Textures/LogosAndTokens/madlads.jpg" id="23_lyxx4"]
 [ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="24_vxqsd"]
 [ext_resource type="Texture2D" uid="uid://cqad321mes0x8" path="res://Textures/LogosAndTokens/BonkLogo.png" id="25_or3ot"]
-[ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="26_rhk5y"]
+[ext_resource type="Script" uid="uid://dpbwy1xjqctiu" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="26_rhk5y"]
 [ext_resource type="Script" uid="uid://xl86n3733lsl" path="res://Scripts/Utility/timed_button.gd" id="27_smv1r"]
 [ext_resource type="Script" uid="uid://c25ievjhcwp5e" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/nft_campaign_player_manager.gd" id="28_qgddy"]
-[ext_resource type="Script" uid="uid://okfi452wp7yu" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/asset_display_system.gd" id="29_evb28"]
+[ext_resource type="Script" uid="uid://b6n4wtdrcrvb1" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/asset_display_system.gd" id="29_evb28"]
 [ext_resource type="PackedScene" uid="uid://btmj6a3kagg46" path="res://Scripts/Web3/UIAssets/DisplayableNFTButton.tscn" id="30_wghwy"]
 [ext_resource type="Texture2D" uid="uid://csxntm0i2aw6m" path="res://Textures/LogosAndTokens/unnamed (6).png" id="31_ro6se"]
 [ext_resource type="Texture2D" uid="uid://bpt1e8u1buonk" path="res://Textures/BrandingAssets/whosthatrubian.png" id="32_mgtpg"]
-[ext_resource type="Script" uid="uid://cvjs0lluew8kq" path="res://addons/SolanaSDK/Scripts/NFTGating/token_button_lock.gd" id="33_0s4na"]
+[ext_resource type="Script" uid="uid://jfwevf5bxk52" path="res://addons/SolanaSDK/Scripts/NFTGating/token_button_lock.gd" id="33_0s4na"]
 [ext_resource type="Script" uid="uid://8d53ge4w5ku7" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/token_campaign_player_manager.gd" id="34_g4wnk"]
 [ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="35_m856a"]
 [ext_resource type="Script" uid="uid://b4r6x5r133hc" path="res://Scripts/DropGameKit/TokenVault/stake_token_vault.gd" id="36_paax2"]
@@ -39,7 +39,6 @@
 [ext_resource type="PackedScene" uid="uid://5h0xygmo4dvl" path="res://Scripts/DropGameKit/TokenVault/StakeVaultEntry.tscn" id="43_5c1ba"]
 [ext_resource type="PackedScene" uid="uid://opkwvwup8u86" path="res://Scenes/Settings.tscn" id="74_k04pn"]
 [ext_resource type="PackedScene" uid="uid://cyrmlhn128s53" path="res://Scripts/Web3/TransactionManagement/TransactionOverlay.tscn" id="79_ghurn"]
-
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8eq28"]
 shader = ExtResource("3_ngax4")
@@ -1336,7 +1335,6 @@ layout_mode = 1
 
 [node name="TransactionOverlay" parent="." instance=ExtResource("79_ghurn")]
 
-[connection signal="pressed" from="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/Filters/ShowExpired/ShowExpiredCheckbox" to="." method="play_ui_sound" binds= ["Checkbox"]]
 [connection signal="pressed" from="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/VaultButton" to="Content/MainScreen/ScreenManager" method="switch_active_panel" binds= [1]]
 [connection signal="pressed" from="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Buttons/BackButton" to="Content/MainScreen/CampaignSelector/ScreenManager" method="switch_active_panel" binds= [1]]
 [connection signal="pressed" from="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Buttons/LeaderboardButton" to="Content/MainScreen/CampaignSelector/CampaignInteractor" method="load_leaderboard"]

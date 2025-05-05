@@ -27,6 +27,8 @@ offset_from_launchpad = Vector3(0, -0.6, 0)
 transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, -0.267)
 script = ExtResource("2_lmnf5")
 shake_frequency = 80.0
+max_knockback_strength = 0.6
+knockback_duration = 1.0
 
 [node name="TokenSpawnPoint" type="Node3D" parent="Cam"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0385159, -0.440239)

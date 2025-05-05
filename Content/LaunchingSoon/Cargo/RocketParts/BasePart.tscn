@@ -13,9 +13,9 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_7nygl")
 collider = NodePath("Collider")
-ray_extra_margin = 0.2
 stick_strength = 30.0
 proximity_threshold = 0.02
+stick_tween_duration = 0.6
 fall_time_to_kill = 2.0
 score_label = NodePath("ScoreLabel")
 

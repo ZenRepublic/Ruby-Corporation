@@ -1,6 +1,7 @@
 extends Node3D
 class_name CargoStructure
 
+@export var max_cargo_drop_amount:int=3
 @export var base_spawn_offset:Vector3
 @export var sway_speed:float = 1.0
 @export var sway_increase_tick:float = 0.5
@@ -75,6 +76,22 @@ func apply_cargo(cargo:Cargo,placement_score:int=0) -> void:
 	}
 	curr_cargo.append(cargo_data)	
 	calculate_sway_strength()
+	on_height_changed.emit()
+	
+func drop_cargo() -> void:
+#	get cargo starting from the top and if its placement accuracy is less than 50% drop it
+# 	stop if accuracy is higher
+	for i in range(max_cargo_drop_amount):
+		var top_cargo_idx:int = curr_cargo.size()-1
+		if top_cargo_idx < 0:
+			break
+		var topmost_cargo:Cargo = curr_cargo[top_cargo_idx]["cargo"]
+		var place_accuracy:float = float(topmost_cargo.placement_score)/LaunchSettings.get_max_placement_score()
+		if place_accuracy < 0.4:
+			curr_cargo.remove_at(top_cargo_idx)
+			topmost_cargo.drop_off()
+		else:
+			break
 	on_height_changed.emit()
 	
 func get_highest_point() -> Vector3:

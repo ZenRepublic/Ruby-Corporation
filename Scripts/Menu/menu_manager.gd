@@ -22,7 +22,7 @@ func play_ui_sound(sound_name:String) -> void:
 func load_game(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionary) -> void:
 	MusicManager.play_sound("ButtonSimple")
 	SceneManager.load_scene(game_scene_path,true,-1,0.2,{
-		"GameMode":GameManager.GameMode.MINING,
+		#"GameMode":GameManager.GameMode.MINING,
 		"CampaignKey":campaign_key,
 		"CampaignData":campaign_data,
 		"PlayerData":player_data

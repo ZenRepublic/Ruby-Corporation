@@ -73,6 +73,7 @@ func move_to(fly_point:Vector3) -> void:
 	on_rise_complete.emit()
 	
 func process_successful_drop(cargo:Cargo,placement_score:int) -> void:
+	cam.knock_back(cargo.global_position,float(placement_score)/LaunchSettings.get_max_placement_score())
 	var tokens_earned:float = float(placement_score)
 	token_spawner.send_tokens(tokens_earned,cargo.get_top_point())
 	
