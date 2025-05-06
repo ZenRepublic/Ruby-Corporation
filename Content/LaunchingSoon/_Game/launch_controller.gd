@@ -18,11 +18,15 @@ func _ready() -> void:
 	player_rig.on_warning_received.connect(process_warning)
 	launchpad.on_structure_complete.connect(send_off)
 	
+	MusicManager.play_song("Game",true,1)
+	
 	free_play_mode = SceneManager.get_interscene_data("FreePlay")
 	if !free_play_mode:
 		await setup_reward_claimer()
 	await launchpad.activate()
 	setup_complete.emit()
+	
+	
 	
 
 func process_warning(warnings_received:int) -> void:
@@ -40,12 +44,21 @@ func fire_builder() -> void:
 	
 func send_off() -> void:
 #	handle win
+	MusicManager.play_song("Win",true,0.5)
+	MusicManager.on_song_ended.connect(play_win_loop,CONNECT_ONE_SHOT)
+	
 	await player_rig.descend_to_base()
-	await launchpad.launch_structure()
-	print("GAME WIN")
+	
 	narrator.say("Win")
+	await launchpad.launch_structure()
+	
+	print("GAME WIN")
 	gui.handle_win_ui()
 	pass
+
+func play_win_loop() -> void:
+	MusicManager.play_song("WinLoop",false)
+	
 	
 func setup_reward_claimer() -> void:
 	var campaign_key = SceneManager.get_interscene_data("CampaignKey")

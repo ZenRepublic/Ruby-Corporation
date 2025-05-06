@@ -10,8 +10,13 @@ var music_volume:float = 1.0
 var sfx_volume:float = 1.0
 
 var curr_fade_duration:float
+
+var song_queue:Array[AudioStream]
+
+signal on_song_ended()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	music_player.finished.connect(handle_song_finish)
 	pass # Replace with function body.
 	
 func play_sound(sound_name:String,pitch_scale:float=1.0) -> void:
@@ -90,3 +95,6 @@ func fade_out(bus_index:int,max_volume:float) -> void:
 		fade_time_elapsed = clamp(fade_time_elapsed,0,curr_fade_duration)
 		var fade_progress:float = lerp(max_volume,0.0,fade_time_elapsed/curr_fade_duration)
 		AudioServer.set_bus_volume_db(bus_index,linear_to_db(fade_progress))
+		
+func handle_song_finish() -> void:
+	on_song_ended.emit()
