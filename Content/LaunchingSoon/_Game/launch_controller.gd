@@ -38,6 +38,7 @@ func process_warning(warnings_received:int) -> void:
 func fire_builder() -> void:
 # 	handle loss
 	print("GAME LOST")
+	MusicManager.play_song("Lose",true,0.5)
 	narrator.say("Lose")
 	gui.handle_lose_ui()
 	pass
