@@ -60,5 +60,5 @@ script = ExtResource("6_nl1kf")
 token_scn = ExtResource("7_00qsx")
 spawn_point = NodePath("../Cam/TokenSpawnPoint")
 spawn_radius = 0.4
-fly_duration = 0.6
 arc_height = 0.5
+default_token_visual = ExtResource("2_00qsx")

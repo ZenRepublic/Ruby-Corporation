@@ -12,8 +12,13 @@ var shake_timer: float = 0.0
 var original_position: Vector3
 var time_since_last_shake: float = 0.0
 
+var look_target:Node3D
+
 
 func _process(delta):
+	if look_target!=null:
+		look_at(look_target.global_position)
+		
 	if shake_timer > 0:
 		shake_timer -= delta
 		time_since_last_shake += delta
@@ -30,6 +35,9 @@ func _process(delta):
 		# Stop the shake if the timer has expired
 		if shake_timer <= 0:
 			position = original_position
+			
+func set_look_target(target:Node3D) -> void:
+	look_target = target
 
 # Function to start the screen shake
 func start_shake(duration: float = -1.0, strength: float = -1.0, frequency: float = -1.0):

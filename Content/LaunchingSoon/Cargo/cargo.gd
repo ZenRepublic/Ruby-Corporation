@@ -34,9 +34,8 @@ var collided_cargo:Cargo
 var structure:CargoStructure
 var structure_stick_point:Vector3
 
-signal on_missed()
-signal on_placed(cargo:Cargo, place_tier:LaunchSettings.PLACE_TIER)
-signal on_connected()
+signal on_missed(cargo:Cargo)
+signal on_placed(cargo:Cargo)
 
 func _ready() -> void:
 	freeze = true
@@ -114,7 +113,6 @@ func process_collision(collision_data:Dictionary) -> void:
 	if place_tier == LaunchSettings.PLACE_TIER.NONE:
 		handle_miss(collided_cargo)
 	else:
-		print("PLACING")
 		structure.apply_cargo(self)
 		var place_point:Vector3
 		var place_target_up_dir:Vector3 = collided_cargo.transform.basis.y
@@ -131,12 +129,12 @@ func handle_connect() -> void:
 	score_label.text = str(LaunchSettings.get_score(place_tier))
 	
 	await tween_placement()
-	on_placed.emit(self,place_tier)
+	on_placed.emit(self)
 	
 	
 func handle_miss(hit_obj=null) -> void:
 	if hit_obj == null:
-		on_missed.emit()
+		on_missed.emit(self)
 		queue_free()
 		return
 	
@@ -158,7 +156,7 @@ func handle_miss(hit_obj=null) -> void:
 	if hit_obj.get_parent() != null and hit_obj.get_parent() is CargoStructure:
 		hit_obj.get_parent().drop_cargo()
 		
-	on_missed.emit()
+	on_missed.emit(self)
 	await get_tree().create_timer(1).timeout
 	print("DELETING")
 	queue_free()

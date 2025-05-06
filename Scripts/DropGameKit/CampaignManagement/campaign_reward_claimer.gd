@@ -1,10 +1,10 @@
 extends Node
 class_name CampaignRewardClaimer
 
-@export var score_to_max_reward:float = 300
-var house_data
-var campaign_data
-var player_data
+var house_data:Dictionary
+var campaign_data:Dictionary
+var player_data:Dictionary
+
 var campaign_key:Pubkey
 
 var reward_mint_decimals:int
@@ -13,19 +13,16 @@ var max_reward_lamports:int
 var campaign_token:Token
 
 signal on_reward_claimed
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+
+func setup_claimer(campaign_key:Pubkey, campaign_data:Dictionary, player_data:Dictionary) -> void:
 	house_data = await ClubhouseProgram.utils.get_active_house_data()
 	if house_data.size()==0:
 		print("No active house found. Skipping setting rewards")
 		return
 		
-	campaign_key = SceneManager.get_interscene_data("CampaignKey")
-	campaign_data = SceneManager.get_interscene_data("CampaignData")
-	player_data = SceneManager.get_interscene_data("PlayerData")
-	
-	if campaign_data == null or player_data == null:
-		return
+	self.campaign_key = campaign_key
+	self.campaign_data = campaign_data
+	self.player_data = player_data
 		
 	reward_mint_decimals = campaign_data["reward_mint_decimals"]
 	campaign_token = await SolanaService.asset_manager.get_asset_from_mint(campaign_data["reward_mint"],true)
@@ -33,8 +30,8 @@ func _ready() -> void:
 	max_reward_lamports = campaign_data["max_rewards_per_game"]
 
 	
-func get_token_unit_price(in_lamports:bool=true) -> float:
-	var score_point_value_in_reward_lamports:int = floori(max_reward_lamports/score_to_max_reward)
+func get_token_unit_price(max_game_score:float,in_lamports:bool=true) -> float:
+	var score_point_value_in_reward_lamports:int = floori(max_reward_lamports/max_game_score)
 	
 	if in_lamports:
 		return score_point_value_in_reward_lamports

@@ -12,6 +12,12 @@ func _ready() -> void:
 	score_label.set_value(0)
 	update_floor_progress(0)
 	#token_visual.texture = ImageTexture.create_from_image(launch_controller.get_token_visual())
+
+func set_token_visual(token_tex:Texture2D) -> void:
+	if token_tex == null:
+		return
+	
+	token_visual.texture = token_tex
 	
 func update_launchpad_value_display(new_score:float) -> void:
 	score_label.set_value(new_score)

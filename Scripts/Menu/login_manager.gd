@@ -26,4 +26,4 @@ func launch_game_secret(_code_entered:String)-> void:
 	load_free_play_game()
 
 func load_free_play_game() -> void:
-	SceneManager.load_scene(game_scene_path,true,-1,0.0,{"GameMode":GameManager.GameMode.TRAINING})
+	SceneManager.load_scene(game_scene_path,true,-1,0.0,{"FreePlay":true})

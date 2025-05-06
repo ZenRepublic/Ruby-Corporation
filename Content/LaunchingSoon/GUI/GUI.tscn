@@ -1,16 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8h3ofhnmr4ih"]
+[gd_scene load_steps=9 format=3 uid="uid://c8h3ofhnmr4ih"]
 
 [ext_resource type="Script" uid="uid://c4fxv2bctb2up" path="res://Content/LaunchingSoon/GUI/gui.gd" id="1_wc8ld"]
 [ext_resource type="Script" uid="uid://cuhu3ktt1li8j" path="res://Content/LaunchingSoon/GUI/admin_panel.gd" id="2_wvrxf"]
 [ext_resource type="Texture2D" uid="uid://bex3s6kk2tvo2" path="res://addons/SolanaSDK/Textures/warning.png" id="3_vaefn"]
-[ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="4_dgxx7"]
+[ext_resource type="Script" uid="uid://dpbwy1xjqctiu" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="4_dgxx7"]
 [ext_resource type="Texture2D" uid="uid://nljoclj85xe4" path="res://Textures/Icons/Token.PNG" id="5_wc8ld"]
+[ext_resource type="Script" uid="uid://cuykxmsr4l6n3" path="res://Content/LaunchingSoon/GUI/placement_ui.gd" id="6_wvrxf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7s1oc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkdm6"]
 
-[node name="GUI" type="Control" node_paths=PackedStringArray("admin_panel", "win_screen", "lose_screen")]
+[node name="GUI" type="Control" node_paths=PackedStringArray("admin_panel", "placement_ui", "win_screen", "lose_screen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wc8ld")
 admin_panel = NodePath("AdminPanel")
+placement_ui = NodePath("PlacementUI")
 win_screen = NodePath("WinScreen")
 lose_screen = NodePath("FiredScreen")
 
@@ -132,5 +134,105 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
 text = "YOU ARE FIRED!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlacementUI" type="Control" parent="." node_paths=PackedStringArray("tier_ui_panels", "fail_panel")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_wvrxf")
+tier_ui_panels = [NodePath("SloppyEffect"), NodePath("DecentEffect"), NodePath("BasedEffect"), NodePath("LegendEffect")]
+fail_panel = NodePath("FailEffect")
+
+[node name="SloppyEffect" type="PanelContainer" parent="PlacementUI"]
+visible = false
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PlacementUI/SloppyEffect"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "SLOPPY..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DecentEffect" type="PanelContainer" parent="PlacementUI"]
+visible = false
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PlacementUI/DecentEffect"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "DECENT."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BasedEffect" type="PanelContainer" parent="PlacementUI"]
+visible = false
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PlacementUI/BasedEffect"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "BASED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LegendEffect" type="PanelContainer" parent="PlacementUI"]
+visible = false
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PlacementUI/LegendEffect"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "LEGEND!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FailEffect" type="PanelContainer" parent="PlacementUI"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PlacementUI/FailEffect"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "CAREFUL!! ._."
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -1,10 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://br1uqoo22tbid"]
+[gd_scene load_steps=21 format=3 uid="uid://br1uqoo22tbid"]
 
 [ext_resource type="Script" uid="uid://cv18o0w81gm0o" path="res://Content/LaunchingSoon/_Game/launch_controller.gd" id="1_105k3"]
+[ext_resource type="Script" uid="uid://bakjm0lk676ot" path="res://Scripts/DropGameKit/CampaignManagement/campaign_reward_claimer.gd" id="2_xvglk"]
 [ext_resource type="PackedScene" uid="uid://byrve0vr3ypsy" path="res://Content/LaunchingSoon/Launchpad/Launchpad.tscn" id="3_7u7oj"]
+[ext_resource type="Script" uid="uid://b16df6v2vrptv" path="res://Content/LaunchingSoon/Narrator/narrator.gd" id="7_bbao2"]
+[ext_resource type="AudioStream" uid="uid://cajtajuihhmvy" path="res://Content/LaunchingSoon/Narrator/VerySloppy.mp3" id="8_4kssk"]
+[ext_resource type="AudioStream" uid="uid://6jthium08t6t" path="res://Content/LaunchingSoon/Narrator/Groans/Groan1.mp3" id="8_105k3"]
 [ext_resource type="PackedScene" uid="uid://dypqi11ijs6lh" path="res://Content/LaunchingSoon/PlayerRig/PlayerRig.tscn" id="9_78xry"]
+[ext_resource type="AudioStream" uid="uid://fnogkhtvagjt" path="res://Content/LaunchingSoon/Narrator/Decent.mp3" id="9_eu1he"]
+[ext_resource type="AudioStream" uid="uid://bu65pm2iessjt" path="res://Content/LaunchingSoon/Narrator/Groans/Groan2.mp3" id="9_onvip"]
+[ext_resource type="AudioStream" uid="uid://bbk37oaqk10vr" path="res://Content/LaunchingSoon/Narrator/Based.mp3" id="10_78xry"]
 [ext_resource type="PackedScene" uid="uid://bjraw1pe2akjs" path="res://Content/LaunchingSoon/CarrierDrone/CarrierDrone.tscn" id="10_gysdx"]
+[ext_resource type="AudioStream" uid="uid://ba0ikhvq7kq10" path="res://Content/LaunchingSoon/Narrator/Groans/Groan3.mp3" id="10_w3ugp"]
 [ext_resource type="PackedScene" uid="uid://c8h3ofhnmr4ih" path="res://Content/LaunchingSoon/GUI/GUI.tscn" id="11_0h6bu"]
+[ext_resource type="AudioStream" uid="uid://cwcpb8fkjj8ha" path="res://Content/LaunchingSoon/Narrator/Groans/Groan4.mp3" id="11_105k3"]
+[ext_resource type="AudioStream" uid="uid://ggk5vd0r3l73" path="res://Content/LaunchingSoon/Narrator/Legendary.mp3" id="11_gysdx"]
+[ext_resource type="AudioStream" uid="uid://duia2dbjhqua1" path="res://Content/LaunchingSoon/Narrator/GoodLuckWin.mp3" id="12_0h6bu"]
+[ext_resource type="AudioStream" uid="uid://d2707fnp4271v" path="res://Content/LaunchingSoon/Narrator/FiredLose.mp3" id="13_mtvvt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ctbn"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -19,11 +31,31 @@ background_color = Color(0.771685, 0.958984, 0.966641, 1)
 sky = SubResource("Sky_2r3xa")
 tonemap_mode = 2
 
-[node name="LaunchingSoonGame" type="Node3D" node_paths=PackedStringArray("launchpad", "player_rig", "gui")]
+[node name="LaunchingSoonGame" type="Node3D" node_paths=PackedStringArray("launchpad", "player_rig", "gui", "narrator")]
 script = ExtResource("1_105k3")
 launchpad = NodePath("Launchpad")
 player_rig = NodePath("PlayerRig")
 gui = NodePath("GUI")
+narrator = NodePath("Narrator")
+
+[node name="Narrator" type="Node" parent="." node_paths=PackedStringArray("audio_source")]
+script = ExtResource("7_bbao2")
+sound_library = {
+"Lose": ExtResource("13_mtvvt"),
+"Win": ExtResource("12_0h6bu")
+}
+groans = Array[AudioStream]([ExtResource("8_105k3"), ExtResource("9_onvip"), ExtResource("10_w3ugp"), ExtResource("11_105k3")])
+encouragements = Array[AudioStream]([ExtResource("8_4kssk"), ExtResource("9_eu1he"), ExtResource("10_78xry"), ExtResource("11_gysdx")])
+audio_source = NodePath("AudioStreamPlayer")
+metadata/_custom_type_script = "uid://b16df6v2vrptv"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Narrator"]
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="CampaignRewardClaimer" type="Node" parent="."]
+script = ExtResource("2_xvglk")
+metadata/_custom_type_script = "uid://bakjm0lk676ot"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ms4aa")

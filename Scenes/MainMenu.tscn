@@ -127,7 +127,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l0w8j")
 screen_manager = NodePath("Content/MainScreen/ScreenManager")
-game_scene_path = "res://Content/Game/Scenes/BigDiggasGame.tscn"
+game_scene_path = "uid://br1uqoo22tbid"
 campaign_interactor = NodePath("Content/MainScreen/CampaignSelector/CampaignInteractor")
 
 [node name="ButtonLockManager" type="Node" parent="."]

@@ -1,8 +1,9 @@
 extends Node
 class_name LaunchSettings
 
-static var CARGO_TO_FULL:int = 20
-static var BASE_PLACEMENT_SCORE:int = 1
+static var CARGO_TO_FULL:int = 5
+static var BASE_PLACEMENT_SCORE:float = 1.0
+static var PENALTY_VALUE:float = 1.0
 
 enum PLACE_TIER{NONE,SLOPPY, DECENT, BASED, LEGEND}
 static var MAX_PERFECT_PLACE_ACCURACY:float = 0.1

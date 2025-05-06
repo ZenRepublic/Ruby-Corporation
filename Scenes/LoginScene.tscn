@@ -72,7 +72,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iqda5")
 scene_path = "res://Scenes/MainMenu.tscn"
-game_scene_path = "res://Content/Game/Scenes/BigDiggasGame.tscn"
+game_scene_path = "uid://br1uqoo22tbid"
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
 layout_mode = 1

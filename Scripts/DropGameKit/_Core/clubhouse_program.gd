@@ -11,6 +11,7 @@ extends Node
 @onready var program:AnchorProgram = $AnchorProgram
 @export var server:ClubhouseServer
 @export var utils:ClubhouseUtils
+@export var claimer:CampaignRewardClaimer
 
 func get_program() -> AnchorProgram:
 	return program
@@ -80,6 +81,7 @@ func create_house(house_name:String,manager_collection:Pubkey,house_currency:Pub
 		
 func get_create_house_instruction(house_name:String,manager_collection:Pubkey,house_currency:Pubkey,house_config:Dictionary) -> Instruction:
 	var house_pda:Pubkey = ClubhousePDA.get_house_pda(house_name)
+
 	var ix:Instruction = program.build_instruction("create_house",[
 		SolanaService.wallet.get_kp(),
 		ClubhousePDA.get_program_admin_pda(SolanaService.wallet.get_pubkey()),

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d06uexibndcy6"]
+[gd_scene load_steps=8 format=3 uid="uid://d06uexibndcy6"]
 
 [ext_resource type="Script" uid="uid://cnrmvih7tmduv" path="res://Scripts/DropGameKit/_Core/clubhouse_program.gd" id="1_ga3ja"]
 [ext_resource type="JSON" path="res://Scripts/DropGameKit/_Core/clubhouse.json" id="2_hn8ct"]
@@ -6,11 +6,13 @@
 [ext_resource type="Script" uid="uid://dclawv4eq7has" path="res://Scripts/DropGameKit/Utility/RewardCalculations/mine_reward_calculator.gd" id="4_ljieg"]
 [ext_resource type="Script" uid="uid://ddctawf4lsjqw" path="res://Scripts/DropGameKit/_Core/clubhouse_server.gd" id="5_5nyte"]
 [ext_resource type="Script" uid="uid://cpmfcu0otccxe" path="res://Scripts/DropGameKit/Utility/RewardCalculations/token_reward_calculator.gd" id="6_v2ytq"]
+[ext_resource type="Script" uid="uid://bakjm0lk676ot" path="res://Scripts/DropGameKit/CampaignManagement/campaign_reward_claimer.gd" id="7_5nyte"]
 
-[node name="ClubhouseProgram" type="Node" node_paths=PackedStringArray("server", "utils")]
+[node name="ClubhouseProgram" type="Node" node_paths=PackedStringArray("server", "utils", "claimer")]
 script = ExtResource("1_ga3ja")
 server = NodePath("ClubhouseServer")
 utils = NodePath("ClubhouseUtils")
+claimer = NodePath("CampaignRewardClaimer")
 
 [node name="AnchorProgram" type="AnchorProgram" parent="."]
 pid = "C1ubv5AC5w7Eh3iHpEt2BXZ1g3eARQtMRgmE2AXfznSg"
@@ -1493,7 +1495,7 @@ idl = {
 
 [node name="ClubhouseUtils" type="Node" parent="."]
 script = ExtResource("4_85xot")
-devnet_house_id = "2p41ueUZtCKWXPdbMVVKr3aJMSnVWzQDczZFiaV9PXmf"
+devnet_house_id = "9kkwc5h73FZynTBjnM6hrMNviBReqGVLN8sumCQio57t"
 mainnet_house_id = "FcxGPktM2MJJ9qTxwiEVKJxHTpvatoFawKGq46SJxviG"
 
 [node name="ClubhouseServer" type="Node" parent="."]
@@ -1526,3 +1528,7 @@ script = ExtResource("6_v2ytq")
 holder_count = 3550
 token_price = 0.0005
 avg_allocation_mined = 0.5
+
+[node name="CampaignRewardClaimer" type="Node" parent="."]
+script = ExtResource("7_5nyte")
+metadata/_custom_type_script = "uid://bakjm0lk676ot"

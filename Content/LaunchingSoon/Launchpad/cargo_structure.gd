@@ -20,11 +20,16 @@ var target_offset_from_center:float = 0
 var curr_sway_amplitude:float = 0
 var curr_offset_from_center:float = 0
 
+var is_swaying:bool=true
 var sway_time:float
 
 signal on_height_changed()
+signal on_cargo_dropped(cargo:Cargo)
 
 func _process(delta: float) -> void:
+	if !is_swaying:
+		return
+		
 	if target_sway_amplitude > 0:
 		curr_sway_amplitude = lerp(curr_sway_amplitude, target_sway_amplitude, sway_speed * delta)
 		curr_offset_from_center = lerp(curr_offset_from_center, target_offset_from_center, sway_speed * delta)
@@ -86,6 +91,7 @@ func drop_cargo() -> void:
 		var topmost_cargo:Cargo = curr_cargo[top_cargo_idx]["cargo"]
 		if topmost_cargo.place_tier < LaunchSettings.PLACE_TIER.BASED:
 			curr_cargo.remove_at(top_cargo_idx)
+			on_cargo_dropped.emit(topmost_cargo)
 			topmost_cargo.drop_off()
 		else:
 			break
@@ -114,3 +120,22 @@ func calculate_sway_strength() -> void:
 	target_sway_amplitude += total_offset  * offset_weight
 	
 	target_offset_from_center = net_offset * center_offset_weight
+	
+func freeze_swaying(freeze:bool) -> void:
+	is_swaying = !freeze
+	
+func get_combined_structure(snap_offsets_into_place:bool=false) -> Node3D:
+#	invert cargo array to combine from top to bottom
+	var inverted_cargo:Array[Dictionary] = curr_cargo.duplicate()
+	inverted_cargo.reverse()
+	
+	var combined_structure:Node3D = Node3D.new()
+	add_child(combined_structure)
+	for i in range(inverted_cargo.size()):
+		if snap_offsets_into_place:
+			pass
+		inverted_cargo[i]["cargo"].reparent(combined_structure)
+		
+	cargo_base.reparent(combined_structure)
+	return combined_structure
+	

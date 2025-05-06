@@ -20,6 +20,7 @@
 
 [node name="SolanaService" type="Node"]
 script = ExtResource("1_hwc3u")
+rpc_cluster = 1
 mainnet_rpc = "https://mainnet.helius-rpc.com/?api-key=14091e35-f13b-4071-9578-410522205b40"
 devnet_rpc = "https://devnet.helius-rpc.com/?api-key=14091e35-f13b-4071-9578-410522205b40"
 magicblock_rpc = "https://devnet.magicblock.app/"
@@ -27,6 +28,7 @@ honeycomb_rpc = "https://rpc.test.honeycombprotocol.com/"
 
 [node name="WalletService" type="Node" parent="."]
 script = ExtResource("5_f327g")
+use_generated = true
 custom_wallet_path = "C:\\Users\\thoma\\Desktop\\kp\\dev2gUnXyMLh6WyV9NTBaXeNfo1DTn2R4b69VTGNidF.json"
 wallet_adapter_scn = ExtResource("3_wfwmi")
 
