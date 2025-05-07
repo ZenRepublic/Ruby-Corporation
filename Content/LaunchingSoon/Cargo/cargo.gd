@@ -22,8 +22,6 @@ var width:float
 var velocity_at_collision:Vector3
 var time_falling:float=0
 
-var placement_score:int
-
 var place_tier:LaunchSettings.PLACE_TIER
 
 var is_dropping:bool=false
@@ -35,7 +33,7 @@ var velocity:Vector3
 
 var collided_cargo:Cargo
 var structure:CargoStructure
-var structure_stick_point:Vector3
+var structure_stick_point:Vector3=Vector3.ZERO
 
 signal on_missed(cargo:Cargo)
 signal on_placed(cargo:Cargo)
@@ -62,24 +60,32 @@ func _process(delta: float) -> void:
 	if is_connected:
 		return
 		
-	if !is_dropping:
-		if structure!=null:
+	if is_dropping:
+		# Apply gravity to velocity
+		velocity.y -= LaunchSettings.GRAVITY_STRENGTH * delta
+		# Update position based on velocity
+		global_position += velocity * delta
+			
+		time_falling += delta
+		if time_falling>=fall_time_to_kill:
+			print("Load Spent too much time without collision, forcing destroy")
+			handle_miss()
+	else:
+		if structure_stick_point!=Vector3.ZERO and !is_connected:
 			var stick_target_dir:Vector3 = structure_stick_point - position
 			var distance = stick_target_dir.length()
 			if distance<=proximity_threshold:
 				self.position = structure_stick_point
+				is_connected = true
 				handle_connect()
 			else:
 				self.position += stick_target_dir*stick_strength*delta
-		return
-	
-	# Apply gravity to velocity
-	velocity.y -= LaunchSettings.GRAVITY_STRENGTH * delta
-	# Update position based on velocity
-	global_position += velocity * delta
-	
-#	check if shape collision with Cargo.
-	if !has_collided:
+
+
+
+func _physics_process(delta: float) -> void:
+	#	check if shape collision with Cargo.
+	if is_dropping and !has_collided:
 		var shape_collision:Dictionary = get_shape_collision()
 		if shape_collision.size() > 0:
 			has_collided = true
@@ -94,13 +100,8 @@ func _process(delta: float) -> void:
 				else:
 					handle_miss(collided_object)
 			else:
-				print(collided_object.name)
+				print("Collided with non-cargo object: ",collided_object.name)
 				handle_miss(collided_object)
-		
-	time_falling += delta
-	if time_falling>=fall_time_to_kill:
-		print("Load Spent too much time without collision, forcing destroy")
-		handle_miss()
 	
 	
 func process_collision(collision_data:Dictionary) -> void:
@@ -116,24 +117,23 @@ func process_collision(collision_data:Dictionary) -> void:
 	structure = collided_cargo.get_parent() as CargoStructure
 	place_tier = structure.get_placement_tier(self,collided_cargo, hit_pos,hit_normal)
 	if place_tier == LaunchSettings.PLACE_TIER.NONE:
+		print("Off the mark, no score!")
 		handle_miss(collided_cargo)
 		return
 	else:
 		structure.apply_cargo(self)
-		var place_point:Vector3
 		var place_target_up_dir:Vector3 = collided_cargo.transform.basis.y
-		if place_tier == LaunchSettings.PLACE_TIER.LEGEND:
-			place_point = collided_cargo.position + place_target_up_dir * height
-		else:
-			place_point = structure.to_local(hit_pos) + place_target_up_dir * (height / 2.0) # Offset by half height
+		var place_point:Vector3 = collided_cargo.position + place_target_up_dir * height
 		place_point.z = collided_cargo.position.z
+		
+		if place_tier != LaunchSettings.PLACE_TIER.LEGEND:
+			place_point.x = structure.to_local(hit_pos).x
+			
 		structure_stick_point = place_point
 		
 	
 func handle_connect() -> void:
-	is_connected=true
 	score_label.text = str(LaunchSettings.get_score(place_tier))
-	
 	await tween_placement()
 	on_placed.emit(self)
 	
@@ -165,7 +165,6 @@ func handle_miss(hit_obj=null) -> void:
 	on_missed.emit(self)
 	play_sound("collide")
 	await get_tree().create_timer(1).timeout
-	print("DELETING")
 	queue_free()
 	
 func tween_placement() -> void:
@@ -289,7 +288,6 @@ func drop_off() -> void:
 	self.reparent(get_tree().root)
 	freeze = false
 	linear_velocity = Vector3(randf_range(-2,2),randf_range(0.4,0.8),randf_range(-2,2))
-	print(linear_velocity)
 	await get_tree().create_timer(1).timeout
 	queue_free()
 	

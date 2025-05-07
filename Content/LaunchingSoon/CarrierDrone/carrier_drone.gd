@@ -112,7 +112,6 @@ func try_drop_load() -> void:
 	
 	curr_cargo.reparent(get_tree().root)
 	curr_cargo.release(magnet_puck.velocity)
-	
 	on_dropped.emit(curr_cargo)
 	curr_cargo = null
 	
