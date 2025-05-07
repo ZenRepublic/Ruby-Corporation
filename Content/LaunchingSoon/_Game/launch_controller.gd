@@ -18,12 +18,15 @@ func _ready() -> void:
 	player_rig.on_warning_received.connect(process_warning)
 	launchpad.on_structure_complete.connect(send_off)
 	
-	MusicManager.play_song("Game",true,1)
-	
 	free_play_mode = SceneManager.get_interscene_data("FreePlay")
 	if !free_play_mode:
 		await setup_reward_claimer()
+		
 	await launchpad.activate()
+
+	gui.handle_start_ui()
+	await get_tree().create_timer(1.5).timeout
+	MusicManager.play_song("Game",true,1)
 	setup_complete.emit()
 	
 	
@@ -38,23 +41,23 @@ func process_warning(warnings_received:int) -> void:
 func fire_builder() -> void:
 # 	handle loss
 	print("GAME LOST")
-	MusicManager.play_song("Lose",true,0.5)
-	narrator.say("Lose")
+	await MusicManager.stop_song(0.3)
 	gui.handle_lose_ui()
+	await get_tree().create_timer(1.7).timeout
+	
+	MusicManager.play_song("Lose",true,0.5)
 	pass
 	
 func send_off() -> void:
 #	handle win
+	gui.hide_admin_panel()
 	MusicManager.play_song("Win",true,0.5)
 	MusicManager.on_song_ended.connect(play_win_loop,CONNECT_ONE_SHOT)
-	
 	await player_rig.descend_to_base()
 	
-	narrator.say("Win")
-	await launchpad.launch_structure()
-	
-	print("GAME WIN")
 	gui.handle_win_ui()
+	await launchpad.launch_structure()
+	print("GAME WIN")
 	pass
 
 func play_win_loop() -> void:

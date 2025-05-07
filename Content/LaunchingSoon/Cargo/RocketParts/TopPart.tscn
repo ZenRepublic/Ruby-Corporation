@@ -1,14 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsro4jknouore"]
+[gd_scene load_steps=9 format=3 uid="uid://dsro4jknouore"]
 
 [ext_resource type="Script" uid="uid://c2k7lxdt6nker" path="res://Content/LaunchingSoon/Cargo/cargo.gd" id="1_mokvh"]
 [ext_resource type="Script" uid="uid://71mt6y6i6t11" path="res://Content/LaunchingSoon/Cargo/mesh_selector.gd" id="2_5ymhu"]
 [ext_resource type="ArrayMesh" uid="uid://co4ylhfygc358" path="res://Content/LaunchingSoon/Cargo/RocketParts/Segments/meshes/RocketPieces_Cylinder_012.res" id="2_c4kr8"]
+[ext_resource type="AudioStream" uid="uid://b106qa3t61vji" path="res://Content/LaunchingSoon/Cargo/Sounds/jumpupsimple.mp3" id="2_kyje4"]
+[ext_resource type="AudioStream" uid="uid://bre0pape14aqm" path="res://Content/LaunchingSoon/Cargo/Sounds/Jumpupspin.mp3" id="3_w62fq"]
+[ext_resource type="AudioStream" uid="uid://c7tm6qlltf3li" path="res://Content/LaunchingSoon/Cargo/Sounds/placecargo.mp3" id="4_utikx"]
+[ext_resource type="AudioStream" uid="uid://dtn3jiylctieb" path="res://Content/LaunchingSoon/Cargo/Sounds/Collide.mp3" id="5_w62fq"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_c4kr8"]
 height = 0.2
 radius = 0.1
 
-[node name="TopPart" type="RigidBody3D" node_paths=PackedStringArray("collider", "score_label")]
+[node name="TopPart" type="RigidBody3D" node_paths=PackedStringArray("collider", "score_label", "audio_player")]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_mokvh")
@@ -18,6 +22,13 @@ proximity_threshold = 0.02
 stick_tween_duration = 0.6
 fall_time_to_kill = 2.0
 score_label = NodePath("ScoreLabel")
+sounds = {
+"collide": ExtResource("5_w62fq"),
+"jump": ExtResource("2_kyje4"),
+"jump_flip": ExtResource("3_w62fq"),
+"place": ExtResource("4_utikx")
+}
+audio_player = NodePath("AudioStreamPlayer")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_c4kr8")
@@ -34,5 +45,8 @@ skeleton = NodePath("../..")
 [node name="ScoreLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.165205)
 font_size = 20
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="handle_physics_collision"]

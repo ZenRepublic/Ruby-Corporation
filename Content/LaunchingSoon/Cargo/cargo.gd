@@ -13,6 +13,9 @@ class_name Cargo
 
 @export var score_label:Label3D
 
+@export var sounds:Dictionary
+@export var audio_player:AudioStreamPlayer
+
 var height:float
 var width:float
 
@@ -76,21 +79,23 @@ func _process(delta: float) -> void:
 	global_position += velocity * delta
 	
 #	check if shape collision with Cargo.
-	var shape_collision:Dictionary = get_shape_collision()
-	if !has_collided and shape_collision.size() > 0:
-		has_collided = true
-		is_dropping=false
-		var collided_object = shape_collision["collider"]
-		
-		if collided_object is Cargo:
-			var collision_data:Dictionary = get_collision_data()
-			if collision_data.size() > 0:
-				process_collision(collision_data)
+	if !has_collided:
+		var shape_collision:Dictionary = get_shape_collision()
+		if shape_collision.size() > 0:
+			has_collided = true
+			is_dropping=false
+			var collided_object = shape_collision["collider"]
+			
+			if collided_object is Cargo:
+				var collision_data:Dictionary = get_collision_data()
+	#			physics collision is with cargo, but casting a ray after can have a different outcome, make sure its cargo
+				if collision_data.size() > 0 and collision_data["collider"] is Cargo:
+					process_collision(collision_data)
+				else:
+					handle_miss(collided_object)
 			else:
+				print(collided_object.name)
 				handle_miss(collided_object)
-		else:
-			print(collided_object.name)
-			handle_miss(collided_object)
 		
 	time_falling += delta
 	if time_falling>=fall_time_to_kill:
@@ -112,6 +117,7 @@ func process_collision(collision_data:Dictionary) -> void:
 	place_tier = structure.get_placement_tier(self,collided_cargo, hit_pos,hit_normal)
 	if place_tier == LaunchSettings.PLACE_TIER.NONE:
 		handle_miss(collided_cargo)
+		return
 	else:
 		structure.apply_cargo(self)
 		var place_point:Vector3
@@ -157,6 +163,7 @@ func handle_miss(hit_obj=null) -> void:
 		hit_obj.get_parent().drop_cargo()
 		
 	on_missed.emit(self)
+	play_sound("collide")
 	await get_tree().create_timer(1).timeout
 	print("DELETING")
 	queue_free()
@@ -185,6 +192,12 @@ func tween_placement() -> void:
 	
 	var original_position:Vector3 = self.position
 	var jump_position:Vector3 = self.position + self.transform.basis.y.normalized()*0.1
+	
+	if is_perfect_placement():
+		play_sound("jump_flip")
+	else:
+		play_sound("jump")
+		
 	tween.tween_property(self,"position",jump_position,duration*0.7).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_method(
 		Callable(self, "rotate_around_pivot").bind(pivot_offset, start_basis, rotate_axis,end_angle,is_perfect_placement()),
@@ -195,6 +208,7 @@ func tween_placement() -> void:
 	tween.chain()
 	tween.tween_property(self,"position",original_position,duration*0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	await tween.finished
+	play_sound("place")
 	
 # Method to apply rotation around a pivot point
 func rotate_around_pivot(t: float, rotate_offset:Vector3, start_basis:Basis, rotate_axis, end_angle, do_a_flip:bool):
@@ -278,3 +292,7 @@ func drop_off() -> void:
 	print(linear_velocity)
 	await get_tree().create_timer(1).timeout
 	queue_free()
+	
+func play_sound(sound_name) -> void:
+	audio_player.stream = sounds[sound_name]
+	audio_player.play()

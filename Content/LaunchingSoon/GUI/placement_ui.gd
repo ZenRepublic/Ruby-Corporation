@@ -26,6 +26,9 @@ func show_placement_effect(place_tier:LaunchSettings.PLACE_TIER) -> void:
 	curr_active_panel = null
 	
 func show_fail_effect() -> void:
+	var animator:AnimationPlayer = fail_panel.get_child(0) as AnimationPlayer
+	animator.play("Warning")
+	
 	fail_panel.visible=true
 	await get_tree().create_timer(show_time).timeout
 	fail_panel.visible=false

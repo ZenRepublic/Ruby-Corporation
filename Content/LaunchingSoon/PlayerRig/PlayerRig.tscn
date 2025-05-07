@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://n6g5u8nsidur" path="res://Content/LaunchingSoon/PlayerRig/PlayerRig.gd" id="1_6nauw"]
 [ext_resource type="Texture2D" uid="uid://nljoclj85xe4" path="res://Textures/Icons/Token.PNG" id="2_00qsx"]
 [ext_resource type="Script" uid="uid://o5e2rjiqntvk" path="res://Content/LaunchingSoon/PlayerRig/cam_controller.gd" id="2_lmnf5"]
-[ext_resource type="Script" uid="uid://ocr0sopy3y7m" path="res://Content/LaunchingSoon/payload.gd" id="3_nl1kf"]
+[ext_resource type="Script" uid="uid://ocr0sopy3y7m" path="res://Content/LaunchingSoon/PlayerRig/payload.gd" id="3_nl1kf"]
 [ext_resource type="PackedScene" uid="uid://bk1qyvsd3td77" path="res://Content/LaunchingSoon/Cargo/RocketParts/MiddlePart.tscn" id="4_00qsx"]
 [ext_resource type="PackedScene" uid="uid://dsro4jknouore" path="res://Content/LaunchingSoon/Cargo/RocketParts/TopPart.tscn" id="5_li2ld"]
-[ext_resource type="Script" uid="uid://dpwkrxn8hbggv" path="res://Content/LaunchingSoon/token_spawner.gd" id="6_nl1kf"]
-[ext_resource type="PackedScene" uid="uid://cusxwj2lvkbpk" path="res://Content/LaunchingSoon/DisplayToken.tscn" id="7_00qsx"]
+[ext_resource type="Script" uid="uid://dpwkrxn8hbggv" path="res://Content/LaunchingSoon/PlayerRig/TokenSpawner/token_spawner.gd" id="6_nl1kf"]
+[ext_resource type="PackedScene" uid="uid://cusxwj2lvkbpk" path="res://Content/LaunchingSoon/PlayerRig/TokenSpawner/DisplayToken.tscn" id="7_00qsx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_rysxf"]
 size = Vector3(1, 0.2, 1)
@@ -22,6 +22,15 @@ token_spawner = NodePath("TokenSpawner")
 token_texture = ExtResource("2_00qsx")
 fly_duration = 1.0
 offset_from_launchpad = Vector3(0, -0.6, 0)
+
+[node name="TokenSpawner" type="Node3D" parent="." node_paths=PackedStringArray("spawn_point")]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, -0.267)
+script = ExtResource("6_nl1kf")
+token_scn = ExtResource("7_00qsx")
+spawn_point = NodePath("../Cam/TokenSpawnPoint")
+spawn_radius = 0.4
+send_duration = 0.5
+default_token_visual = ExtResource("2_00qsx")
 
 [node name="Cam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, -0.25)
@@ -53,12 +62,3 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.342, 0.226)
 mesh = SubResource("BoxMesh_kvfj4")
 skeleton = NodePath("../..")
-
-[node name="TokenSpawner" type="Node3D" parent="." node_paths=PackedStringArray("spawn_point")]
-transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, -0.267)
-script = ExtResource("6_nl1kf")
-token_scn = ExtResource("7_00qsx")
-spawn_point = NodePath("../Cam/TokenSpawnPoint")
-spawn_radius = 0.4
-arc_height = 0.5
-default_token_visual = ExtResource("2_00qsx")

@@ -1,14 +1,20 @@
 extends Node3D
 class_name CarrierDrone
 
+@onready var line_renderer = $LineRenderer3D
+
 @export var magnet_puck:MagnetPuck
 
 @export var base_speed:float = 2
+@export var max_speed:float = 5
 @export var speed_growth_tick:float = 0.05
 @export var speed_multiplier_curve:Curve
 
 @export var start_move_range:Vector3 = Vector3(0.15,0.02,0.0)
 @export var max_move_range:Vector3 = Vector3(0.4,0.3,0.0)
+
+@export var audio_source:AudioStreamPlayer3D
+@export var pitch_range:Vector2
 var amplitude_growth_tick:Vector3
 
 var curr_speed:float
@@ -37,16 +43,27 @@ func _ready() -> void:
 	prev_pos = self.global_position	
 	curr_speed = base_speed
 	curr_move_range = start_move_range
+	speed = curr_speed
 	
 	amplitude_growth_tick = (max_move_range-start_move_range)/(LaunchSettings.CARGO_TO_FULL/2)
 	
+	line_renderer = $LineRenderer3D
+	
 
 func _process(delta):
+	line_renderer.points[0] = self.global_position
+	line_renderer.points[1] = magnet_puck.global_position
+	
 	if target_point == Vector3.ZERO:
 		return
+		
+	audio_source.pitch_scale = lerpf(pitch_range.x,pitch_range.y,speed/max_speed)
 	
 	if !is_at_destination:
-		speed = curr_speed * 2.0
+		if speed < curr_speed * 2.0:
+			speed *= 1.1
+		else:
+			speed = curr_speed * 2.0
 	else:
 		if speed > curr_speed:
 			speed *= 0.95

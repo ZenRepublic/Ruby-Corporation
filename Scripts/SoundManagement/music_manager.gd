@@ -46,6 +46,22 @@ func play_song(song_name:String,fade_from_previous:bool=true,fade_duration:float
 	
 	if fade_from_previous:
 		await fade_in(audio_bus,music_volume)
+		
+func stop_song(fade_duration:float=-1) -> void:
+	if !music_player.playing:
+		return
+		
+	if fade_duration == -1:
+		curr_fade_duration = default_fade_duration
+	else:
+		curr_fade_duration = fade_duration
+		
+	var original_music_volume = music_volume
+	var audio_bus:int = AudioServer.get_bus_index("Music")
+	if fade_duration>0:
+		await fade_out(audio_bus,music_volume)
+		music_player.stop()
+		set_music_volume(original_music_volume)
 	
 	
 func pause_all_sounds() -> void:
@@ -98,3 +114,5 @@ func fade_out(bus_index:int,max_volume:float) -> void:
 		
 func handle_song_finish() -> void:
 	on_song_ended.emit()
+
+	

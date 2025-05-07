@@ -67,7 +67,7 @@ transform = Transform3D(0.99889, -0.0154141, 0.0445132, -0.0245071, 0.636954, 0.
 drop_height_increment = 0.01
 
 [node name="PlayerRig" parent="." node_paths=PackedStringArray("drone", "launchpad") instance=ExtResource("9_78xry")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.597)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.6)
 drone = NodePath("../CarrierDrone")
 launchpad = NodePath("../Launchpad")
 

@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cusxwj2lvkbpk"]
+[gd_scene load_steps=3 format=3 uid="uid://cusxwj2lvkbpk"]
 
 [ext_resource type="Texture2D" uid="uid://nljoclj85xe4" path="res://Textures/Icons/Token.PNG" id="1_rk25b"]
+[ext_resource type="Script" uid="uid://c04cvn4few3c1" path="res://Content/LaunchingSoon/PlayerRig/TokenSpawner/display_token.gd" id="2_rdbce"]
 
 [node name="DisplayToken" type="Sprite3D"]
 transform = Transform3D(0.07, 0, 0, 0, 0.07, 0, 0, 0, 0.07, 0, 0, 0)
 texture = ExtResource("1_rk25b")
+script = ExtResource("2_rdbce")
+arc_height = 0.8

@@ -2,6 +2,7 @@ extends Control
 class_name AdminPanel
 
 @export var progress_label:Label
+@export var progress_bar:ProgressBar
 @export var token_visual:TextureRect
 @export var score_label:NumberLabel
 
@@ -9,8 +10,12 @@ class_name AdminPanel
 @export var warning_visual:Texture2D
 	
 func _ready() -> void:	
+	progress_label.text = str(LaunchSettings.CARGO_TO_FULL)
+	progress_bar.max_value = LaunchSettings.CARGO_TO_FULL
+	
 	score_label.set_value(0)
 	update_floor_progress(0)
+	
 	#token_visual.texture = ImageTexture.create_from_image(launch_controller.get_token_visual())
 
 func set_token_visual(token_tex:Texture2D) -> void:
@@ -23,7 +28,7 @@ func update_launchpad_value_display(new_score:float) -> void:
 	score_label.set_value(new_score)
 	
 func update_floor_progress(curr_floor) -> void:
-	progress_label.text = "%s / %s Parts Placed" %[curr_floor,LaunchSettings.CARGO_TO_FULL]
+	progress_bar.value = curr_floor
 	
 func update_warnings_display(new_warning_amount:int) -> void:
 	var curr_warnings:int = warnings_container.get_child_count()

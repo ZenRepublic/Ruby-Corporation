@@ -89,7 +89,7 @@ func drop_cargo() -> void:
 		if top_cargo_idx < 0:
 			break
 		var topmost_cargo:Cargo = curr_cargo[top_cargo_idx]["cargo"]
-		if topmost_cargo.place_tier < LaunchSettings.PLACE_TIER.BASED:
+		if topmost_cargo.place_tier < LaunchSettings.PLACE_TIER.LEGEND:
 			curr_cargo.remove_at(top_cargo_idx)
 			on_cargo_dropped.emit(topmost_cargo)
 			topmost_cargo.drop_off()

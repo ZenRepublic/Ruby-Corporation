@@ -32,7 +32,6 @@ func _ready() -> void:
 	drone.global_position = payload.get_random_position_on_surface()
 	drone.on_dropped.connect(return_drone)
 	
-	launchpad.on_setup_complete.connect(prepare_cargo_drop)
 	launchpad.cargo_structure.on_cargo_dropped.connect(apply_destruction_penalty)
 	
 	launch_controller = get_tree().get_first_node_in_group("LaunchController") as LaunchController
@@ -41,6 +40,8 @@ func _ready() -> void:
 func setup_rig() -> void:
 	token_spawner.setup_token_pool(launch_controller.get_reward_token_visual())
 	token_spawner.on_toked_arrived.connect(update_launch_value)
+	
+	prepare_cargo_drop()
 	
 func set_original_pos() -> void:
 	original_pos = self.global_position
@@ -94,7 +95,7 @@ func move_to(fly_point:Vector3, duration:float) -> void:
 func process_successful_drop(cargo:Cargo) -> void:
 	cam.knock_back(cargo.global_position,LaunchSettings.get_place_accuracy(cargo.place_tier))
 	var tokens_earned:float = launch_controller.convert_to_tokens(LaunchSettings.get_score(cargo.place_tier))
-	token_spawner.send_tokens(tokens_earned,cargo.get_top_point())
+	token_spawner.send_tokens(tokens_earned,cargo)
 	
 	launch_controller.narrator.play_encourgement(cargo.place_tier)
 	gui.placement_ui.show_placement_effect(cargo.place_tier)
@@ -103,7 +104,8 @@ func process_successful_drop(cargo:Cargo) -> void:
 	
 	if !launchpad.is_structure_complete():
 		prepare_cargo_drop()
-	pass
+	else:
+		drone.visible=false
 		
 func update_launch_value(change_amount:float) -> void:
 	curr_value += change_amount
@@ -124,9 +126,14 @@ func process_failed_drop(cargo:Cargo) -> void:
 	launchpad.handle_structure_update()
 	
 	if curr_warnings < LaunchSettings.WARNINGS_TO_FIRE:
-		launch_controller.narrator.play_groan()
-		gui.placement_ui.show_fail_effect()
 		prepare_cargo_drop()
+		
+		await get_tree().create_timer(0.2).timeout
+		gui.placement_ui.show_fail_effect()
+		
+#		play the groan after all the other sounds like whistle
+		await get_tree().create_timer(0.3).timeout
+		launch_controller.narrator.play_groan()
 		
 func apply_destruction_penalty(dropped_cargo:Cargo) -> void:
 	var token_value:float = launch_controller.convert_to_tokens(LaunchSettings.get_score(dropped_cargo.place_tier))
