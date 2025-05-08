@@ -1,0 +1,150 @@
+[gd_scene load_steps=7 format=3 uid="uid://3q7tu50f8kyk"]
+
+[ext_resource type="Script" uid="uid://b4r6x5r133hc" path="res://Scripts/DropGameKit/TokenVault/stake_token_vault.gd" id="1_v7pwh"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="2_liuad"]
+[ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="3_ql7kj"]
+[ext_resource type="PackedScene" uid="uid://5h0xygmo4dvl" path="res://Scripts/DropGameKit/TokenVault/StakeVaultEntry.tscn" id="4_7o1cq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu7vw"]
+bg_color = Color(0.121569, 0.0627451, 0.164706, 0.717647)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l3ki1"]
+
+[node name="StakedTokenVault" type="Control" node_paths=PackedStringArray("vault_display_system")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v7pwh")
+vault_display_system = NodePath("Content/VaultDisplay/Content/VaultsDisplaySystem")
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_liuad")
+theme_type_variation = &"PanelNeutral"
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="PanelContainer" parent="Content"]
+layout_mode = 2
+theme = ExtResource("2_liuad")
+theme_type_variation = &"PanelFlatAlt"
+
+[node name="MarginContainer" type="MarginContainer" parent="Content/Header"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Content/Header/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureButton" type="TextureButton" parent="Content/Header/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Content/Header/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_liuad")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 40
+text = "TOKEN VAULT"
+
+[node name="VaultDisplay" type="MarginContainer" parent="Content"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Content" type="VBoxContainer" parent="Content/VaultDisplay"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Info" type="VBoxContainer" parent="Content/VaultDisplay/Content"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Description" type="Label" parent="Content/VaultDisplay/Content/Info"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = ExtResource("2_liuad")
+theme_override_font_sizes/font_size = 24
+text = "Withdraw tokens staked in Drop Game Campaigns"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="VaultsDisplaySystem" type="PanelContainer" parent="Content/VaultDisplay/Content" node_paths=PackedStringArray("container", "no_entries_overlay", "refresh_button")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_qu7vw")
+script = ExtResource("3_ql7kj")
+container = NodePath("MarginContainer/ListContent/VaultScrollContainer/AccountList")
+entry_scn = ExtResource("4_7o1cq")
+no_entries_overlay = NodePath("NoVaultsOverlay")
+bring_new_to_back = false
+refresh_button = NodePath("MarginContainer/ListContent/RefreshButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="Content/VaultDisplay/Content/VaultsDisplaySystem"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ListContent" type="VBoxContainer" parent="Content/VaultDisplay/Content/VaultsDisplaySystem/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VaultScrollContainer" type="ScrollContainer" parent="Content/VaultDisplay/Content/VaultsDisplaySystem/MarginContainer/ListContent"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_liuad")
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="AccountList" type="VBoxContainer" parent="Content/VaultDisplay/Content/VaultsDisplaySystem/MarginContainer/ListContent/VaultScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="StakeVaultEntry" parent="Content/VaultDisplay/Content/VaultsDisplaySystem/MarginContainer/ListContent/VaultScrollContainer/AccountList" instance=ExtResource("4_7o1cq")]
+visible = false
+layout_mode = 2
+
+[node name="RefreshButton" type="Button" parent="Content/VaultDisplay/Content/VaultsDisplaySystem/MarginContainer/ListContent"]
+layout_mode = 2
+theme = ExtResource("2_liuad")
+theme_type_variation = &"ListButtonAlt"
+theme_override_font_sizes/font_size = 35
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l3ki1")
+text = "REFRESH"
+
+[node name="NoVaultsOverlay" type="Label" parent="Content/VaultDisplay/Content/VaultsDisplaySystem"]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("2_liuad")
+text = "No STAKE VAULTS FOUND..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Content/Header/MarginContainer/HBoxContainer/TextureButton" to="." method="close"]

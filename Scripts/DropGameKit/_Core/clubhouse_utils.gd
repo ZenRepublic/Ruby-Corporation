@@ -8,13 +8,23 @@ var active_house_data:Dictionary
 var active_house_id:String
 
 func _ready() -> void:
+	set_house_data(mainnet_house_id,devnet_house_id)
+		
+func get_active_house_key() -> Pubkey:
+	return Pubkey.new_from_string(active_house_id)
+	
+func set_house_data(mainnet_id:String, devnet_id:String) -> void:
+	devnet_house_id = devnet_id
+	mainnet_house_id = mainnet_id
+	print(devnet_house_id)
+	
 	if SolanaService.rpc_cluster == SolanaService.RpcCluster.MAINNET:
 		active_house_id = mainnet_house_id
 	elif SolanaService.rpc_cluster == SolanaService.RpcCluster.DEVNET:
 		active_house_id = devnet_house_id
-		
-func get_active_house_key() -> Pubkey:
-	return Pubkey.new_from_string(active_house_id)
+	
+#	clear if changing house ID
+	active_house_data.clear()
 		
 func get_active_house_data() -> Dictionary:
 	if active_house_id == "":

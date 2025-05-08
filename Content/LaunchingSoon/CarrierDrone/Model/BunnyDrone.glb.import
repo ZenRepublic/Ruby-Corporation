@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ct52ihqc3b62d"
-path="res://.godot/imported/Drone.glb-807b1b401d1a196b4aa11f44af388934.scn"
+uid="uid://cjlfhhu3y0mtp"
+path="res://.godot/imported/BunnyDrone.glb-25ef2e92ea11eebf1f57d87f6e306177.scn"
 
 [deps]
 
-source_file="res://Content/LaunchingSoon/CarrierDrone/BunnyDrone/Drone.glb"
-dest_files=["res://.godot/imported/Drone.glb-807b1b401d1a196b4aa11f44af388934.scn"]
+source_file="res://Content/LaunchingSoon/CarrierDrone/Model/BunnyDrone.glb"
+dest_files=["res://.godot/imported/BunnyDrone.glb-25ef2e92ea11eebf1f57d87f6e306177.scn"]
 
 [params]
 

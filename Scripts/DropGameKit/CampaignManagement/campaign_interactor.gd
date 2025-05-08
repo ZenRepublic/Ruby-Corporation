@@ -8,6 +8,7 @@ class_name CampaignInteractor
 @export var max_reward_label:NumberLabel
 @export var campaign_timer:TimedButton
 @export var campaign_expired_panel:Control
+@export var not_logged_in_panel:Control
 @export var leaderboard_scn:PackedScene
 
 @export_category("NFT Campaign Settings")
@@ -44,6 +45,14 @@ func set_campaign_data(id:String,data:Dictionary) -> void:
 		await setup_nft_campaign()
 	elif data["token_config"] != null:
 		await setup_token_campaign()
+		
+	if SolanaService.wallet.is_logged_in():
+		await campaign_player_manager.setup_player_selection(campaign_key,curr_campaign_data)
+	else:
+		not_logged_in_panel.visible=true
+		campaign_player_manager.visible=false
+		SolanaService.wallet.on_login_success.connect(setup_player_selection)
+		
 	
 	if data["manager_mint"] != null:
 		var manager_asset:WalletAsset = await SolanaService.asset_manager.get_asset_from_mint(data["manager_mint"])
@@ -86,7 +95,6 @@ func setup_nft_campaign() -> void:
 	var mine_gate_asset:WalletAsset = await SolanaService.asset_manager.get_asset_from_mint(curr_campaign_data["nft_config"]["collection"],true)
 	await gate_displayable.set_data(mine_gate_asset)
 	
-	nft_player_manager.setup_player_selection(campaign_key,curr_campaign_data)
 	campaign_player_manager = nft_player_manager
 	pass
 	
@@ -102,10 +110,13 @@ func setup_token_campaign() -> void:
 	var mine_gate_asset:WalletAsset = await SolanaService.asset_manager.get_asset_from_mint(curr_campaign_data["token_config"]["spending_mint"],true)
 	await gate_displayable.set_data(mine_gate_asset)
 	
-	await token_player_manager.setup_player_selection(campaign_key,curr_campaign_data)
 	campaign_player_manager = token_player_manager
 	pass
 	
+func setup_player_selection() -> void:
+	not_logged_in_panel.visible=false
+	await campaign_player_manager.setup_player_selection(campaign_key,curr_campaign_data)
+	campaign_player_manager.visible=true
 		
 func load_leaderboard() -> void:
 	var leaderboard:CampaignLeaderboard = leaderboard_scn.instantiate()

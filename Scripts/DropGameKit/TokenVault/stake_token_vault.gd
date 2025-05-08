@@ -6,13 +6,11 @@ class_name StakeTokenVault
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	vault_display_system.on_account_selected.connect(withdraw_stake)
+	load_vaults()
 	pass # Replace with function body.
 
 
-func load_vaults(force_refresh:bool=false,amount_to_load:int=100) -> void:
-	if !force_refresh and vault_display_system.raw_accounts.size()!=0:
-		return
-	
+func load_vaults(amount_to_load:int=100) -> void:
    #offset 8 by default (bump), and 1 for identity type. Also get only players from specific house
 	var filter:Array = [
 		{"memcmp" : { "offset":9, "bytes": SolanaService.wallet.get_pubkey().to_string()}},
@@ -22,9 +20,6 @@ func load_vaults(force_refresh:bool=false,amount_to_load:int=100) -> void:
 	vault_display_system.set_list(ClubhouseProgram.get_program(),"CampaignPlayer",filter,amount_to_load,false)
 	vault_display_system.refresh_account_list()
 	
-
-func close() -> void:
-	self.visible=false
 	
 func withdraw_stake(selected_vault:StakeVaultEntry) -> void:
 	var player_campaign_pda:Pubkey = Pubkey.new_from_string(selected_vault.account_id)
@@ -34,5 +29,7 @@ func withdraw_stake(selected_vault:StakeVaultEntry) -> void:
 	var tx_data:TransactionData = await ClubhouseProgram.withdraw_stake(player_data["campaign"],player_campaign_pda,player_data["stake_info"]["staked_mint"])
 	
 	if tx_data.is_successful():
-		load_vaults(true,100)
+		load_vaults()
 	
+func close() -> void:
+	queue_free()

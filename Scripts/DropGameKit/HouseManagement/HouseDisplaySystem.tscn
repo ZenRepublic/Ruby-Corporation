@@ -1,0 +1,794 @@
+[gd_scene load_steps=13 format=3 uid="uid://cecstunciplh3"]
+
+[ext_resource type="Script" uid="uid://bsjpys1p766y8" path="res://Scripts/DropGameKit/HouseManagement/house_admin_system.gd" id="1_y2rv2"]
+[ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="2_wkb7b"]
+[ext_resource type="Texture2D" uid="uid://bdjw50vivwoew" path="res://Textures/Icons/CloseIcon.PNG" id="4_a6y72"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="4_ph3hf"]
+[ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="5_npeyf"]
+[ext_resource type="PackedScene" uid="uid://mshskasj5e5j" path="res://Scripts/DropGameKit/HouseManagement/HouseSelectEntry.tscn" id="6_srudh"]
+[ext_resource type="Script" uid="uid://da8rxjycsa60v" path="res://Scripts/DropGameKit/HouseManagement/house_manager.gd" id="7_fk8dk"]
+[ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="8_y3h1l"]
+[ext_resource type="Script" uid="uid://cg67p6ivwwuxa" path="res://addons/SolanaSDK/Scripts/Utility/Input/data_input_system.gd" id="9_1lfvl"]
+[ext_resource type="Script" uid="uid://cja6e8dxjd81x" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="10_mkyy3"]
+[ext_resource type="Script" uid="uid://kegyb1m0ov6c" path="res://Scripts/DropGameKit/HouseManagement/house_creator.gd" id="11_uqs2a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1s1dl"]
+
+[node name="HouseAdminDisplay" type="Control" node_paths=PackedStringArray("screen_manager", "house_selector", "house_creator", "house_manager")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y2rv2")
+screen_manager = NodePath("ScreenManager")
+house_selector = NodePath("Content/HouseSelector")
+house_creator = NodePath("Content/HouseCreator")
+house_manager = NodePath("Content/HouseManager")
+
+[node name="ScreenManager" type="Node" parent="." node_paths=PackedStringArray("starting_panel", "screens")]
+script = ExtResource("2_wkb7b")
+starting_panel = NodePath("../Content/HouseSelector")
+screens = [NodePath("../Content/LoadingScreen"), NodePath("../Content/HouseSelector"), NodePath("../Content/HouseManager"), NodePath("../Content/HouseCreator")]
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"PanelNeutral"
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="PanelContainer" parent="Content"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"PanelFlatAlt"
+
+[node name="MarginContainer" type="MarginContainer" parent="Content/Header"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Content/Header/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureButton" type="TextureButton" parent="Content/Header/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = ExtResource("4_a6y72")
+texture_pressed = ExtResource("4_a6y72")
+texture_hover = ExtResource("4_a6y72")
+texture_disabled = ExtResource("4_a6y72")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Content/Header/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 40
+text = "House Manager"
+
+[node name="LoadingScreen" type="PanelContainer" parent="Content"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1s1dl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/LoadingScreen"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="Content/LoadingScreen/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 70
+text = "Loading"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Content/LoadingScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_ph3hf")
+theme_override_font_sizes/font_size = 35
+text = "Please wait..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HouseSelector" type="MarginContainer" parent="Content" node_paths=PackedStringArray("container")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+script = ExtResource("5_npeyf")
+container = NodePath("VBoxContainer/HouseDisplaySystem/MarginContainer/ScrollContainer/HousesList")
+entry_scn = ExtResource("6_srudh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/HouseSelector"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="Content/HouseSelector/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"HeaderMedium"
+text = "YOUR HOUSES"
+
+[node name="HouseDisplaySystem" type="PanelContainer" parent="Content/HouseSelector/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_ph3hf")
+
+[node name="MarginContainer" type="MarginContainer" parent="Content/HouseSelector/VBoxContainer/HouseDisplaySystem"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Content/HouseSelector/VBoxContainer/HouseDisplaySystem/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="HousesList" type="VBoxContainer" parent="Content/HouseSelector/VBoxContainer/HouseDisplaySystem/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HouseSelectSimple" parent="Content/HouseSelector/VBoxContainer/HouseDisplaySystem/MarginContainer/ScrollContainer/HousesList" instance=ExtResource("6_srudh")]
+visible = false
+layout_mode = 2
+script = null
+
+[node name="CreateNewButton" type="Button" parent="Content/HouseSelector/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"ButtonAlt"
+text = "Create new..."
+
+[node name="HouseManager" type="MarginContainer" parent="Content" node_paths=PackedStringArray("house_name_label", "active_campaigns_label", "total_campaigns_label", "unique_players_label", "house_fees_label", "sol_fees_label", "house_edit_settings")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+script = ExtResource("7_fk8dk")
+house_name_label = NodePath("VBoxContainer/NameContainer/HouseName")
+active_campaigns_label = NodePath("VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer/ActiveCampaigns/Campaigns")
+total_campaigns_label = NodePath("VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer/TotalCampaigns/TotalCampaigns")
+unique_players_label = NodePath("VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer/UniquePlayers/TokensLabel2")
+house_fees_label = NodePath("VBoxContainer/NameContainer/HouseStats/CollectedFees/HouseFees/HouseFeesCollected")
+sol_fees_label = NodePath("VBoxContainer/NameContainer/HouseStats/CollectedFees/SolFees/SolFeesCollected")
+house_edit_settings = NodePath("VBoxContainer/EditableSettings")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/HouseManager"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Buttons" type="HBoxContainer" parent="Content/HouseManager/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Content/HouseManager/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(180, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"ButtonFlat"
+theme_override_font_sizes/font_size = 30
+text = "Back
+"
+
+[node name="DeleteHouseButton2" type="Button" parent="Content/HouseManager/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(320, 70)
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"ButtonFlatAlert"
+text = "Delete HOUSE"
+
+[node name="NameContainer" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="HouseName" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"HeaderSmall"
+text = "BIG DIGGAS HOUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HouseStats" type="HBoxContainer" parent="Content/HouseManager/VBoxContainer/NameContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HouseStatsContainer" type="PanelContainer" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"PanelFlatAlt"
+
+[node name="MarginContainer" type="MarginContainer" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="ActiveCampaigns" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer/ActiveCampaigns"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"LabelInverted"
+text = "Active Campaigns"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Campaigns" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer/ActiveCampaigns"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"HeaderMedium"
+theme_override_colors/font_color = Color(1, 0.772549, 0.352941, 1)
+text = "42"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalCampaigns" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer/TotalCampaigns"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"LabelInverted"
+text = "Total Campaigns"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalCampaigns" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer/TotalCampaigns"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"HeaderMedium"
+theme_override_colors/font_color = Color(1, 0.772549, 0.352941, 1)
+text = "651"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UniquePlayers" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer/UniquePlayers"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"LabelInverted"
+text = "Unique Players"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TokensLabel2" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer/UniquePlayers"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"HeaderMedium"
+theme_override_colors/font_color = Color(1, 0.772549, 0.352941, 1)
+text = "61,8K"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_y3h1l")
+format_mode = 1
+decimal_amount = 1
+
+[node name="CollectedFees" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="FeesText" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 28
+text = "Collected Fees"
+
+[node name="HouseFees" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees/HouseFees"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "Campaign Fees"
+vertical_alignment = 1
+
+[node name="HouseFeesCollected" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees/HouseFees"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 0.384314, 0.352941, 1)
+text = "2.8 SOL"
+vertical_alignment = 1
+
+[node name="SolFees" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees/SolFees"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "Claim Fees"
+vertical_alignment = 1
+
+[node name="SolFeesCollected" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees/SolFees"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(1, 0.384314, 0.352941, 1)
+text = "0.3 SOL"
+vertical_alignment = 1
+
+[node name="ClaimFeesButton" type="Button" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees"]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+theme = ExtResource("4_ph3hf")
+text = "Claim All"
+
+[node name="EditableSettings" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+script = ExtResource("9_1lfvl")
+input_fields = {
+"campaignCreationFee": NodePath("FeesContainer/MineCreationFee/FeeTypes/CampaignCreationFee/CampaignCreationFeeInputField"),
+"campaignManagerDiscount": NodePath("FeesContainer/MineCreationFee/FeeTypes/CampaignManagerDiscount/CampaignManagerDiscountInputField"),
+"claimFee": NodePath("FeesContainer/HouseFees/FeeTypes/ClaimFee/ClaimFeeInputField"),
+"oracleKey": NodePath("Oracle/OracleKeyInputField"),
+"rewardsTax": NodePath("FeesContainer/HouseFees/FeeTypes/RewardTax/RewardTaxInputField")
+}
+
+[node name="MonetizationSettings" type="Label" parent="Content/HouseManager/VBoxContainer/EditableSettings"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"HeaderMedium"
+text = "HOUSE SETTINGS"
+
+[node name="Oracle" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/EditableSettings"]
+layout_mode = 2
+
+[node name="OracleKey" type="Label" parent="Content/HouseManager/VBoxContainer/EditableSettings/Oracle"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "Oracle Key"
+
+[node name="OracleKeyInputField" type="LineEdit" parent="Content/HouseManager/VBoxContainer/EditableSettings/Oracle"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_override_colors/font_outline_color = Color(0.788235, 0.45098, 0.45098, 1)
+placeholder_text = "Provide Oracle Key..."
+max_length = 44
+script = ExtResource("10_mkyy3")
+min_length = 32
+is_optional = true
+is_pubkey = true
+
+[node name="FeesContainer" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/EditableSettings"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MineCreationFee" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CREATIONFEE" type="Label" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/MineCreationFee"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_override_font_sizes/font_size = 28
+text = "Campaign Creation Fee"
+
+[node name="FeeTypes" type="HBoxContainer" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/MineCreationFee"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CampaignCreationFee" type="HBoxContainer" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/MineCreationFee/FeeTypes"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignCreationFee"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "Standard"
+
+[node name="CampaignCreationFeeInputField" type="LineEdit" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignCreationFee"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_ph3hf")
+placeholder_text = "Not Set"
+alignment = 1
+script = ExtResource("10_mkyy3")
+input_type = 2
+is_optional = true
+max_value = -1.0
+
+[node name="CampaignManagerDiscount" type="HBoxContainer" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/MineCreationFee/FeeTypes"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignManagerDiscount"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "Manager"
+
+[node name="CampaignManagerDiscountInputField" type="LineEdit" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignManagerDiscount"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_ph3hf")
+placeholder_text = "Not Set"
+alignment = 1
+max_length = 12
+script = ExtResource("10_mkyy3")
+input_type = 2
+max_value = -1.0
+
+[node name="HouseFees" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="HouseFeesLabel" type="Label" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/HouseFees"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "House SOL Fees"
+
+[node name="FeeTypes" type="HBoxContainer" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/HouseFees"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ClaimFee" type="HBoxContainer" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/HouseFees/FeeTypes"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="ClaimFeeLabel" type="Label" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/HouseFees/FeeTypes/ClaimFee"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "Claim Fee"
+
+[node name="ClaimFeeInputField" type="LineEdit" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/HouseFees/FeeTypes/ClaimFee"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_ph3hf")
+placeholder_text = "Enter..."
+alignment = 1
+script = ExtResource("10_mkyy3")
+input_type = 2
+max_value = -1.0
+
+[node name="RewardTax" type="HBoxContainer" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/HouseFees/FeeTypes"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/HouseFees/FeeTypes/RewardTax"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "reward tax %"
+
+[node name="RewardTaxInputField" type="LineEdit" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/HouseFees/FeeTypes/RewardTax"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_ph3hf")
+placeholder_text = "Enter..."
+alignment = 1
+script = ExtResource("10_mkyy3")
+input_type = 2
+max_value = 100.0
+
+[node name="EditHouseButton" type="Button" parent="Content/HouseManager/VBoxContainer/EditableSettings"]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_ph3hf")
+text = "UPDATE SETTINGS"
+
+[node name="HouseCreator" type="MarginContainer" parent="Content" node_paths=PackedStringArray("house_settings", "input_submit_button")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+script = ExtResource("11_uqs2a")
+house_settings = NodePath("HouseSettings")
+input_submit_button = NodePath("Content/CreateHouseButton")
+
+[node name="HouseSettings" type="Node" parent="Content/HouseCreator"]
+script = ExtResource("9_1lfvl")
+input_fields = {
+"campaignCreationFee": NodePath("../Content/MonetizationSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignCreationFee/CampaignCreationFeeInputField"),
+"campaignManagerDiscount": NodePath("../Content/MonetizationSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignManagerDiscount/CampaignManagerDiscountInputField"),
+"claimFee": NodePath("../Content/MonetizationSettings/FeesContainer/HouseFees/FeeTypes/ClaimFee/ClaimFeeInputField"),
+"houseCurrency": NodePath("../Content/MonetizationSettings/HouseCurrency/HouseCurrencyInputField"),
+"houseName": NodePath("../Content/GeneralSettings/Name/HouseNameInputField"),
+"managerCollection": NodePath("../Content/GeneralSettings/ManagerCollection2/ManagerCollectionInputField"),
+"oracleKey": NodePath("../Content/GeneralSettings/Oracle/OracleKeyInputField"),
+"rewardsTax": NodePath("../Content/MonetizationSettings/FeesContainer/HouseFees/FeeTypes/RewardTax/RewardTaxInputField")
+}
+
+[node name="Content" type="VBoxContainer" parent="Content/HouseCreator"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="BackButton" type="Button" parent="Content/HouseCreator/Content"]
+custom_minimum_size = Vector2(180, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("4_ph3hf")
+theme_type_variation = &"ButtonFlat"
+text = "Back
+"
+
+[node name="GeneralSettings" type="VBoxContainer" parent="Content/HouseCreator/Content"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Name" type="VBoxContainer" parent="Content/HouseCreator/Content/GeneralSettings"]
+layout_mode = 2
+
+[node name="HouseName" type="Label" parent="Content/HouseCreator/Content/GeneralSettings/Name"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_override_font_sizes/font_size = 28
+text = "House Name"
+
+[node name="HouseNameInputField" type="LineEdit" parent="Content/HouseCreator/Content/GeneralSettings/Name"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_override_colors/font_outline_color = Color(0.788235, 0.45098, 0.45098, 1)
+text = "Big Diggas Devnet 1"
+placeholder_text = "Enter House Name..."
+max_length = 28
+script = ExtResource("10_mkyy3")
+min_length = 4
+
+[node name="Oracle" type="VBoxContainer" parent="Content/HouseCreator/Content/GeneralSettings"]
+layout_mode = 2
+
+[node name="OracleKey" type="Label" parent="Content/HouseCreator/Content/GeneralSettings/Oracle"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_override_font_sizes/font_size = 28
+text = "Oracle Key (Extra signer for security)"
+
+[node name="OracleKeyInputField" type="LineEdit" parent="Content/HouseCreator/Content/GeneralSettings/Oracle"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_override_colors/font_outline_color = Color(0.788235, 0.45098, 0.45098, 1)
+text = "rCLEETVnSTqAUU9nC1GDktfyNuhza9Y9tHgdiCeZ12h"
+placeholder_text = "Provide Oracle Key..."
+max_length = 44
+script = ExtResource("10_mkyy3")
+min_length = 32
+is_optional = true
+is_pubkey = true
+
+[node name="ManagerCollection2" type="VBoxContainer" parent="Content/HouseCreator/Content/GeneralSettings"]
+layout_mode = 2
+
+[node name="ManagerCollection" type="Label" parent="Content/HouseCreator/Content/GeneralSettings/ManagerCollection2"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_override_font_sizes/font_size = 28
+text = "Manager Collection"
+
+[node name="ManagerCollectionInputField" type="LineEdit" parent="Content/HouseCreator/Content/GeneralSettings/ManagerCollection2"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "9pg23GZKceX1pfVCwG1cfWXG2qJknbhejWGqkuH8hYY8"
+placeholder_text = "Enter Manager Collection Key..."
+max_length = 44
+script = ExtResource("10_mkyy3")
+min_length = 32
+is_optional = true
+is_pubkey = true
+
+[node name="MonetizationSettings" type="VBoxContainer" parent="Content/HouseCreator/Content"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HouseCurrency" type="VBoxContainer" parent="Content/HouseCreator/Content/MonetizationSettings"]
+layout_mode = 2
+
+[node name="MonetizationSettings" type="Label" parent="Content/HouseCreator/Content/MonetizationSettings/HouseCurrency"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_override_font_sizes/font_size = 28
+text = "House Currency Token Key (Empty for SOL)"
+
+[node name="HouseCurrencyInputField" type="LineEdit" parent="Content/HouseCreator/Content/MonetizationSettings/HouseCurrency"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+placeholder_text = "Enter House Currency Key"
+max_length = 44
+script = ExtResource("10_mkyy3")
+min_length = 32
+is_optional = true
+is_pubkey = true
+
+[node name="FeesContainer" type="VBoxContainer" parent="Content/HouseCreator/Content/MonetizationSettings"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MineCreationFee" type="VBoxContainer" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CREATIONFEE" type="Label" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/MineCreationFee"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "Campaign Creation Fee"
+
+[node name="FeeTypes" type="HBoxContainer" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/MineCreationFee"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CampaignCreationFee" type="HBoxContainer" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/MineCreationFee/FeeTypes"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignCreationFee"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "Standard"
+
+[node name="CampaignCreationFeeInputField" type="LineEdit" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignCreationFee"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_ph3hf")
+text = "0.2"
+placeholder_text = "Not Set"
+alignment = 1
+script = ExtResource("10_mkyy3")
+input_type = 2
+is_optional = true
+max_value = -1.0
+
+[node name="CampaignManagerDiscount" type="HBoxContainer" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/MineCreationFee/FeeTypes"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignManagerDiscount"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "Manager"
+
+[node name="CampaignManagerDiscountInputField" type="LineEdit" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignManagerDiscount"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_ph3hf")
+text = "0"
+placeholder_text = "Not Set"
+alignment = 1
+max_length = 12
+script = ExtResource("10_mkyy3")
+input_type = 2
+max_value = -1.0
+
+[node name="HouseFees" type="VBoxContainer" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="HouseFeesLabel" type="Label" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/HouseFees"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_override_font_sizes/font_size = 28
+text = "House SOL Fees"
+
+[node name="FeeTypes" type="HBoxContainer" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/HouseFees"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ClaimFee" type="HBoxContainer" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/HouseFees/FeeTypes"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="ClaimFeeLabel" type="Label" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/HouseFees/FeeTypes/ClaimFee"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "Claim Fee"
+
+[node name="ClaimFeeInputField" type="LineEdit" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/HouseFees/FeeTypes/ClaimFee"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_ph3hf")
+text = "0.0002"
+placeholder_text = "Enter Amount..."
+alignment = 1
+script = ExtResource("10_mkyy3")
+input_type = 2
+max_value = -1.0
+
+[node name="RewardTax" type="HBoxContainer" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/HouseFees/FeeTypes"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/HouseFees/FeeTypes/RewardTax"]
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+text = "reward tax %"
+
+[node name="RewardTaxInputField" type="LineEdit" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/HouseFees/FeeTypes/RewardTax"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_ph3hf")
+text = "15"
+placeholder_text = "Enter Amount..."
+alignment = 1
+script = ExtResource("10_mkyy3")
+input_type = 2
+max_value = 100.0
+
+[node name="CreateHouseButton" type="Button" parent="Content/HouseCreator/Content"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme = ExtResource("4_ph3hf")
+theme_override_font_sizes/font_size = 30
+text = "CREATE HOUSE"
+
+[connection signal="pressed" from="Content/Header/MarginContainer/HBoxContainer/TextureButton" to="." method="close"]
+[connection signal="pressed" from="Content/HouseSelector/VBoxContainer/CreateNewButton" to="." method="go_create_new_house"]
+[connection signal="pressed" from="Content/HouseManager/VBoxContainer/Buttons/BackButton" to="ScreenManager" method="switch_active_panel" binds= [1]]
+[connection signal="pressed" from="Content/HouseManager/VBoxContainer/Buttons/DeleteHouseButton2" to="Content/HouseManager" method="close_house"]
+[connection signal="pressed" from="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees/ClaimFeesButton" to="Content/HouseManager" method="claim_collected_fees"]
+[connection signal="pressed" from="Content/HouseManager/VBoxContainer/EditableSettings/EditHouseButton" to="Content/HouseManager" method="edit_house"]
+[connection signal="pressed" from="Content/HouseCreator/Content/BackButton" to="ScreenManager" method="switch_active_panel" binds= [1]]

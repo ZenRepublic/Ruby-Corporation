@@ -10,12 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Launching Soon"
+config/name="Ruby Corporation"
 config/version="v1.0.0"
-run/main_scene="uid://ba0qpa3313x78"
+run/main_scene="uid://dmdb8dbmov2cl"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=60
 run/low_processor_mode=true
+config/icon="uid://bpwp0rarwasey"
 
 [audio]
 

@@ -9,9 +9,6 @@ class_name CampaignLoader
 
 @export var campaign_interactor:CampaignInteractor
 
-@export var vault_display:StakeTokenVault
-@export var vault_button:Button
-
 var house_pda:Pubkey
 
 var display_filters:Dictionary
@@ -21,9 +18,7 @@ func _ready() -> void:
 	campaign_type_filter.item_selected.connect(set_campaign_type_filter)
 	set_show_expired_filter()
 	show_expired_filter.pressed.connect(set_show_expired_filter)
-	
-	vault_button.pressed.connect(show_vault_display)
-	await load_campaigns()
+
 	
 func on_visibility_changed() -> void:
 	if self.visible:
@@ -86,7 +81,3 @@ func set_show_expired_filter() -> void:
 	#var utc_timestamp:float = Time.get_unix_time_from_system()
 #
 	#mine_entry.mine_timer_button.disabled = utc_timestamp>mine_end_timestamp or utc_timestamp<mine_start_timestamp
-	
-func show_vault_display() -> void:
-	vault_display.visible=true
-	vault_display.load_vaults(false)

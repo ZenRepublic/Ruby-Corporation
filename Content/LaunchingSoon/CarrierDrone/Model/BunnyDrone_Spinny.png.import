@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf6r2c6gy1ayw"
-path.s3tc="res://.godot/imported/Drone_ColorGradient.png-19852f7e6f64fd3eef358776a427fea5.s3tc.ctex"
-path.etc2="res://.godot/imported/Drone_ColorGradient.png-19852f7e6f64fd3eef358776a427fea5.etc2.ctex"
+uid="uid://bvts8cb3smocw"
+path.s3tc="res://.godot/imported/BunnyDrone_Spinny.png-9702629833f4fa8f1709878a5f62a4e7.s3tc.ctex"
+path.etc2="res://.godot/imported/BunnyDrone_Spinny.png-9702629833f4fa8f1709878a5f62a4e7.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "7b76808e047ee08ebc0046ed91592ac6"
+"md5": "bb94db39a455e2edac5be67c940c8b03"
 }
 
 [deps]
 
-source_file="res://Content/LaunchingSoon/CarrierDrone/BunnyDrone/Drone_ColorGradient.png"
-dest_files=["res://.godot/imported/Drone_ColorGradient.png-19852f7e6f64fd3eef358776a427fea5.s3tc.ctex", "res://.godot/imported/Drone_ColorGradient.png-19852f7e6f64fd3eef358776a427fea5.etc2.ctex"]
+source_file="res://Content/LaunchingSoon/CarrierDrone/Model/BunnyDrone_Spinny.png"
+dest_files=["res://.godot/imported/BunnyDrone_Spinny.png-9702629833f4fa8f1709878a5f62a4e7.s3tc.ctex", "res://.godot/imported/BunnyDrone_Spinny.png-9702629833f4fa8f1709878a5f62a4e7.etc2.ctex"]
 
 [params]
 
@@ -35,5 +35,5 @@ process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
-process/size_limit=0
+process/size_limit=256
 detect_3d/compress_to=0

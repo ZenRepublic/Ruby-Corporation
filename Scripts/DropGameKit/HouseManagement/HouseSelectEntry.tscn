@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://mshskasj5e5j"]
+
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubiansTheme.tres" id="1_tsgya"]
+[ext_resource type="Script" uid="uid://bmxm0jjtail8f" path="res://Scripts/ClubhouseSDK/Utility/simple_select_account.gd" id="2_kldxd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2xnnd"]
+
+[node name="HouseSelectSimple" type="PanelContainer" node_paths=PackedStringArray("label", "button")]
+custom_minimum_size = Vector2(450, 70)
+offset_right = 300.0
+offset_bottom = 50.0
+theme = ExtResource("1_tsgya")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2xnnd")
+script = ExtResource("2_kldxd")
+label = NodePath("MarginContainer/Label")
+label_dict_field = "house_name"
+button = NodePath("Button")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_tsgya")
+theme_type_variation = &"ButtonFlat"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_tsgya")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 28
+text = "BIG DIGGAS DEVNET TEST"
+horizontal_alignment = 1
+vertical_alignment = 1
