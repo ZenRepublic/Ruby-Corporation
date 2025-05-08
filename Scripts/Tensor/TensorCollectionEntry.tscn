@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bav80rv2du2x2"]
 
-[ext_resource type="Script" path="res://Scripts/Tensor/tensor_collection_entry.gd" id="1_50gjt"]
+[ext_resource type="Script" uid="uid://dfxrj0k00f4mf" path="res://Scripts/Tensor/tensor_collection_entry.gd" id="1_50gjt"]
 [ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="1_mus84"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="2_6mrwi"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="2_6mrwi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vq0v"]
 bg_color = Color(0.482353, 0.329412, 0.501961, 1)

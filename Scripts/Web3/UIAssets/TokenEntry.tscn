@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://bvniq0gvi7isd"]
 
-[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="1_7cfu0"]
+[ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="1_7cfu0"]
 [ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="2_oulwk"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="3_orhei"]
-[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="4_650ih"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="3_orhei"]
+[ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="4_650ih"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vq0v"]
 bg_color = Color(0.482353, 0.329412, 0.501961, 1)

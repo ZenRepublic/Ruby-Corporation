@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://btmj6a3kagg46"]
 
-[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="1_4rwe4"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="2_0p8nk"]
+[ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="1_4rwe4"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="2_0p8nk"]
 [ext_resource type="Texture2D" uid="uid://bpt1e8u1buonk" path="res://Textures/BrandingAssets/whosthatrubian.png" id="2_sw3gr"]
 
 

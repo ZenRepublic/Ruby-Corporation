@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://5h0xygmo4dvl"]
 
-[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="1_7ogoa"]
-[ext_resource type="Script" path="res://Scripts/DropGameKit/TokenVault/stake_vault_account.gd" id="1_h0bxn"]
+[ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="1_7ogoa"]
+[ext_resource type="Script" uid="uid://cukwf152d0s76" path="res://Scripts/DropGameKit/TokenVault/stake_vault_account.gd" id="1_h0bxn"]
 [ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="2_m8y1d"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="3_5g5k8"]
-[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="4_w05rh"]
-[ext_resource type="Script" path="res://Scripts/Utility/timed_button.gd" id="5_tykfg"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="3_5g5k8"]
+[ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="4_w05rh"]
+[ext_resource type="Script" uid="uid://xl86n3733lsl" path="res://Scripts/Utility/timed_button.gd" id="5_tykfg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmr7k"]
 bg_color = Color(0.65098, 0.521569, 0.623529, 1)

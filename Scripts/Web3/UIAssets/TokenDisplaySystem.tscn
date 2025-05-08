@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://cq5llwx0h21pr"]
 
-[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/asset_display_system.gd" id="1_bt6o7"]
+[ext_resource type="Script" uid="uid://b6n4wtdrcrvb1" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/asset_display_system.gd" id="1_bt6o7"]
 [ext_resource type="PackedScene" uid="uid://bvniq0gvi7isd" path="res://Scripts/Web3/UIAssets/TokenEntry.tscn" id="2_ljei0"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="3_8wx7s"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="3_8wx7s"]
 [ext_resource type="Texture2D" uid="uid://b3003ar1uxa77" path="res://addons/SolanaSDK/Textures/closebutton.jpg.png" id="4_b3gut"]
-[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="5_fkvt8"]
+[ext_resource type="Script" uid="uid://cja6e8dxjd81x" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="5_fkvt8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kehq"]
 bg_color = Color(0.121569, 0.0627451, 0.164706, 0.941176)

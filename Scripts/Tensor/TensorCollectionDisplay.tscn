@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://lx17th5tw38f"]
 
-[ext_resource type="Script" path="res://Scripts/Tensor/tensor_collection_display.gd" id="1_6bsox"]
+[ext_resource type="Script" uid="uid://b36aty3kmcble" path="res://Scripts/Tensor/tensor_collection_display.gd" id="1_6bsox"]
 [ext_resource type="PackedScene" uid="uid://bav80rv2du2x2" path="res://Scripts/Tensor/TensorCollectionEntry.tscn" id="2_8jyjq"]
-[ext_resource type="Script" path="res://Scripts/Tensor/tensor_api.gd" id="3_tefep"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="4_ixmf5"]
+[ext_resource type="Script" uid="uid://b5n2cu14u0eb6" path="res://Scripts/Tensor/tensor_api.gd" id="3_tefep"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="4_ixmf5"]
 [ext_resource type="Texture2D" uid="uid://b3003ar1uxa77" path="res://addons/SolanaSDK/Textures/closebutton.jpg.png" id="5_5wdy5"]
-[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="6_8epwe"]
+[ext_resource type="Script" uid="uid://cja6e8dxjd81x" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="6_8epwe"]
 [ext_resource type="Texture2D" uid="uid://mwxd7sxmvxmf" path="res://Textures/LogosAndTokens/tensorlogo.png" id="7_e05jc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kehq"]

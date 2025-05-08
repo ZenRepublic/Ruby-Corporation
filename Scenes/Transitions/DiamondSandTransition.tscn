@@ -1,7 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bjjl43eub4i10"]
 
 [ext_resource type="Shader" uid="uid://b158rkjq5ynhn" path="res://Shaders/diamond_transition.gdshader" id="1_jaa71"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="5_l2dac"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="5_l2dac"]
+
 
 [sub_resource type="GDScript" id="GDScript_oirlt"]
 script/source = "extends TransitionScene

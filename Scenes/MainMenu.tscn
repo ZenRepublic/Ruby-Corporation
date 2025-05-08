@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dmdb8dbmov2cl"]
+[gd_scene load_steps=62 format=3 uid="uid://dmdb8dbmov2cl"]
 
 [ext_resource type="Script" uid="uid://uxfmmvq5egiv" path="res://Scripts/Menu/menu_manager.gd" id="1_l0w8j"]
 [ext_resource type="Script" uid="uid://cdjcqclowhb8e" path="res://addons/SolanaSDK/Scripts/NFTGating/button_lock_manager.gd" id="2_uhhnb"]
@@ -6,13 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://b8i1obr6qaasa" path="res://Textures/TransitionPatterns/BoxPattern.png" id="4_2iyto"]
 [ext_resource type="Script" uid="uid://b6v5em4471o67" path="res://Scripts/Menu/menu_header.gd" id="5_lcy8p"]
 [ext_resource type="PackedScene" uid="uid://3q7tu50f8kyk" path="res://Scripts/DropGameKit/TokenVault/StakedTokenVault.tscn" id="6_jvcv6"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="7_eupma"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="7_eupma"]
 [ext_resource type="Script" uid="uid://w7ftxsbvwiax" path="res://addons/SolanaSDK/Scripts/Utility/linked_button.gd" id="8_a02e1"]
 [ext_resource type="AudioStream" uid="uid://cojs82uu73ctv" path="res://Sounds/UI/buttonpress.mp3" id="9_04wh2"]
+[ext_resource type="Texture2D" uid="uid://ddfi4gm8gdquy" path="res://Textures/Icons/SettingsIcon.png" id="9_jvcv6"]
 [ext_resource type="Texture2D" uid="uid://bouy62vdktsrh" path="res://Textures/Socials/Twittericon.png" id="10_47kh5"]
 [ext_resource type="Script" uid="uid://bwchk1fr718eh" path="res://addons/texture_button_colored/texture_button_colored.gd" id="11_ugld7"]
 [ext_resource type="Texture2D" uid="uid://br8u2jj3e2hqp" path="res://Textures/Socials/DiscordIcon.png" id="12_40pcs"]
-[ext_resource type="Texture2D" uid="uid://4dyybngytxd4" path="res://Textures/Icons/settingsgear.png" id="13_5nggk"]
 [ext_resource type="Texture2D" uid="uid://ceptpp844babl" path="res://Textures/Icons/loginicon.png" id="14_jhlh1"]
 [ext_resource type="Texture2D" uid="uid://duj7xntofu70d" path="res://Textures/GUI/treasure_pattern.png" id="14_jvcst"]
 [ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="15_lty6o"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="17_85f2f"]
 [ext_resource type="Script" uid="uid://mnheun5h1lg8" path="res://addons/SolanaSDK/Scripts/NFTGating/button_lock.gd" id="17_r4k1l"]
 [ext_resource type="Script" uid="uid://bvw68c6j808kx" path="res://Scripts/DropGameKit/Utility/GameSelector/drop_game.gd" id="18_jvcv6"]
+[ext_resource type="Texture2D" uid="uid://bpwp0rarwasey" path="res://Textures/LogosAndTokens/Logo no bg.PNG" id="18_lcy8p"]
 [ext_resource type="PackedScene" uid="uid://bnfq88vw2eksv" path="res://Scripts/DropGameKit/CampaignManagement/CampaignEntry.tscn" id="18_y3qgx"]
 [ext_resource type="Texture2D" uid="uid://ci3vupbpeqisu" path="res://Textures/LogosAndTokens/LaunchingSoonLogo.png" id="19_5rj5y"]
 [ext_resource type="Script" uid="uid://u37yyfn35etp" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/page_loader.gd" id="19_s07dd"]
@@ -49,15 +50,15 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8eq28"]
 shader = ExtResource("3_ngax4")
-shader_parameter/scroll_speed = 0.12
-shader_parameter/angle_degrees = 45.0
-shader_parameter/tiling = Vector2(0.6, 0.6)
-shader_parameter/tint = Color(0.223529, 0.0352941, 0.278431, 0.431373)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1ept"]
-bg_color = Color(0.290196, 0.188235, 0.321569, 1)
+shader_parameter/scroll_speed = 0.77
+shader_parameter/angle_degrees = 110.0
+shader_parameter/tiling = Vector2(0.545, -0.02)
+shader_parameter/tint = Color(0.568627, 0.811765, 0.847059, 0.117647)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nagj0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcy8p"]
+bg_color = Color(0.0352941, 0.0627451, 0.054902, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hnhv"]
 bg_color = Color(0.458824, 0.0901961, 0.337255, 1)
@@ -70,11 +71,6 @@ shader_parameter/tiling = Vector2(1, 1)
 shader_parameter/tint = Color(0.8, 0.258824, 0.368627, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwpoy"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2l4xl"]
-bg_color = Color(0.121569, 0.0627451, 0.164706, 0.717647)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jlw4g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqkck"]
 bg_color = Color(0.639216, 0.156863, 0.345098, 1)
@@ -149,7 +145,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.482353, 0.329412, 0.501961, 1)
+color = Color(0, 0.443137, 0.439216, 1)
 
 [node name="BackgroundTexture" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_8eq28")
@@ -174,7 +170,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/separation = 0
 script = ExtResource("5_lcy8p")
-user_address_label = NodePath("PanelContainer/MarginContainer/HBoxContainer/Name/UserAddress")
+user_address_label = NodePath("../MainScreen/GameSelector/Content/Intro/WelcomeText/UserAddress")
 login_button = NodePath("PanelContainer/MarginContainer/HBoxContainer/Buttons/LoginButton")
 token_vault_scn = ExtResource("6_jvcv6")
 vault_button = NodePath("PanelContainer/MarginContainer/HBoxContainer/Buttons/VaultButton")
@@ -184,7 +180,8 @@ settings_button = NodePath("PanelContainer/MarginContainer/HBoxContainer/Buttons
 [node name="PanelContainer" type="PanelContainer" parent="Content/Header"]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_b1ept")
+theme = ExtResource("7_eupma")
+theme_type_variation = &"PanelFlat"
 
 [node name="MarginContainer" type="MarginContainer" parent="Content/Header/PanelContainer"]
 layout_mode = 2
@@ -197,28 +194,11 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Name" type="VBoxContainer" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(250, 0)
+[node name="Logo" type="TextureRect" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-alignment = 1
-
-[node name="AddressLabel" type="Label" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Name"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme = ExtResource("7_eupma")
-theme_override_font_sizes/font_size = 25
-text = "Welcome,"
-vertical_alignment = 1
-
-[node name="UserAddress" type="Label" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Name"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("7_eupma")
-theme_override_colors/font_color = Color(0.988235, 0.937255, 0.552941, 1)
-theme_override_font_sizes/font_size = 38
-text = "GUEST"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture = ExtResource("18_lcy8p")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="Buttons" type="HBoxContainer" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -227,36 +207,22 @@ theme_override_constants/separation = 30
 alignment = 1
 
 [node name="LoginButton" type="Button" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons"]
-custom_minimum_size = Vector2(200, 80)
+custom_minimum_size = Vector2(250, 70)
 layout_mode = 2
 size_flags_vertical = 4
-text = "Login"
+text = "LOGIN"
 icon = ExtResource("14_jhlh1")
 icon_alignment = 2
 expand_icon = true
 
 [node name="VaultButton" type="Button" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons"]
 visible = false
-custom_minimum_size = Vector2(200, 80)
+custom_minimum_size = Vector2(280, 80)
 layout_mode = 2
 size_flags_vertical = 4
-text = "View Token Vault"
+text = "TOKEN VAULT"
 icon_alignment = 2
 expand_icon = true
-
-[node name="SettingsButton" type="TextureButton" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons"]
-self_modulate = Color(0.482353, 0.329412, 0.501961, 1)
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture_normal = ExtResource("13_5nggk")
-ignore_texture_size = true
-stretch_mode = 5
-script = ExtResource("11_ugld7")
-theme_override_colors/icon_normal_color = Color(0.482353, 0.329412, 0.501961, 1)
-theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_color = Color(0.85098, 0.741176, 0.784314, 1)
-theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(0.482353, 0.329412, 0.501961, 0.705882)
 
 [node name="SocialButtons" type="HBoxContainer" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons"]
 visible = false
@@ -313,7 +279,24 @@ theme_override_colors/icon_disabled_color = Color(0.380392, 0.0941176, 0.317647,
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons/SocialButtons/Discord"]
 stream = ExtResource("9_04wh2")
 
+[node name="SettingsButton" type="TextureButton" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture_normal = ExtResource("9_jvcv6")
+texture_pressed = ExtResource("9_jvcv6")
+texture_hover = ExtResource("9_jvcv6")
+texture_disabled = ExtResource("9_jvcv6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Line" type="PanelContainer" parent="Content/Header"]
+visible = false
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lcy8p")
+
 [node name="SidePanel" type="Control" parent="Content/Header"]
+visible = false
 clip_contents = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
@@ -362,83 +345,107 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("16_oor3o")
-drop_games = [NodePath("VBoxContainer/Games/LaunchingSoon")]
+drop_games = [NodePath("Content/Games/LaunchingSoon")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Content/MainScreen/GameSelector"]
+[node name="Content" type="VBoxContainer" parent="Content/MainScreen/GameSelector"]
 layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="Content/MainScreen/GameSelector/VBoxContainer"]
+[node name="Intro" type="VBoxContainer" parent="Content/MainScreen/GameSelector/Content"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="WelcomeText" type="HBoxContainer" parent="Content/MainScreen/GameSelector/Content/Intro"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Content/MainScreen/GameSelector/Content/Intro/WelcomeText"]
+layout_mode = 2
+theme = ExtResource("7_eupma")
+text = "Welcome,"
+
+[node name="UserAddress" type="Label" parent="Content/MainScreen/GameSelector/Content/Intro/WelcomeText"]
+layout_mode = 2
+theme = ExtResource("7_eupma")
+theme_type_variation = &"LabelSpecial"
+text = "GUEST"
+
+[node name="Description" type="Label" parent="Content/MainScreen/GameSelector/Content/Intro"]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme = ExtResource("7_eupma")
-text = "Drop Games are fun minigames created by Rubian community, and effective tools gamified distribution of your token on Solana!"
+text = "In Ruby Planet, there is always work for those who seek it...
+
+Look for available campaigns or create one yourself!"
 autowrap_mode = 2
 
-[node name="LearnMoreButton" type="Button" parent="Content/MainScreen/GameSelector/VBoxContainer"]
-custom_minimum_size = Vector2(300, 80)
+[node name="LearnMoreButton" type="Button" parent="Content/MainScreen/GameSelector/Content/Intro" node_paths=PackedStringArray("button")]
+custom_minimum_size = Vector2(300, 70)
 layout_mode = 2
 size_flags_horizontal = 8
 theme = ExtResource("7_eupma")
-theme_override_font_sizes/font_size = 40
-text = "Learn More"
+theme_type_variation = &"ButtonFlat"
+text = "LEARN MORE"
+script = ExtResource("8_a02e1")
+button = NodePath(".")
+link = "https://drive.google.com/file/d/1-JPs6Ch4ZrH57xQbDo2yE8Ewnuglfm9V/view?usp=drive_link"
 
-[node name="Games" type="VBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer"]
+[node name="Games" type="VBoxContainer" parent="Content/MainScreen/GameSelector/Content"]
 layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="LaunchingSoon" type="PanelContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games" node_paths=PackedStringArray("select_button")]
+[node name="LaunchingSoon" type="PanelContainer" parent="Content/MainScreen/GameSelector/Content/Games" node_paths=PackedStringArray("select_button")]
 layout_mode = 2
+theme = ExtResource("7_eupma")
 script = ExtResource("18_jvcv6")
 mainnet_house_key = "FcxGPktM2MJJ9qTxwiEVKJxHTpvatoFawKGq46SJxviG"
 devnet_house_key = "9kkwc5h73FZynTBjnM6hrMNviBReqGVLN8sumCQio57t"
 select_button = NodePath("Content/GameDetails/Info/Actions/SelectButton")
 game_scene_path = "uid://br1uqoo22tbid"
 
-[node name="Background" type="PanelContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon"]
-layout_mode = 2
-
-[node name="Content" type="MarginContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon"]
+[node name="Content" type="MarginContainer" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="GameDetails" type="HBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content"]
+[node name="GameDetails" type="VBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Logo" type="TextureRect" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails"]
+[node name="Main" type="HBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Logo" type="TextureRect" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Main"]
 custom_minimum_size = Vector2(196, 196)
 layout_mode = 2
 texture = ExtResource("19_5rj5y")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Info" type="VBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails"]
+[node name="TitleContainer" type="VBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Main"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 20
-alignment = 1
+theme_override_constants/separation = 10
 
-[node name="TitleContainer" type="VBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info"]
+[node name="Title" type="HBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Main/TitleContainer"]
 layout_mode = 2
 
-[node name="Title" type="HBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info/TitleContainer"]
-layout_mode = 2
-
-[node name="GameTitle" type="Label" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info/TitleContainer/Title"]
+[node name="GameTitle" type="Label" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Main/TitleContainer/Title"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_type_variation = &"HeaderSmall"
 text = "LAUNCHING SOON"
 
-[node name="SocialButtons" type="HBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info/TitleContainer/Title"]
+[node name="SocialButtons" type="HBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Main/TitleContainer/Title"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/separation = 10
 
-[node name="Twitter" type="PanelContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info/TitleContainer/Title/SocialButtons" node_paths=PackedStringArray("button")]
+[node name="Twitter" type="PanelContainer" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Main/TitleContainer/Title/SocialButtons" node_paths=PackedStringArray("button")]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qwpoy")
@@ -446,10 +453,10 @@ script = ExtResource("8_a02e1")
 button = NodePath("Button")
 link = "https://x.com/RubyCorporation"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info/TitleContainer/Title/SocialButtons/Twitter"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Main/TitleContainer/Title/SocialButtons/Twitter"]
 stream = ExtResource("9_04wh2")
 
-[node name="Button" type="TextureButton" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info/TitleContainer/Title/SocialButtons/Twitter"]
+[node name="Button" type="TextureButton" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Main/TitleContainer/Title/SocialButtons/Twitter"]
 self_modulate = Color(0.0627451, 0.12549, 0.223529, 1)
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
@@ -463,7 +470,7 @@ theme_override_colors/icon_hover_color = Color(0.254902, 0.290196, 0.415686, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.741176, 0.803922, 0.901961, 1)
 theme_override_colors/icon_disabled_color = Color(0.0627451, 0.12549, 0.223529, 0.705882)
 
-[node name="Discord" type="PanelContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info/TitleContainer/Title/SocialButtons" node_paths=PackedStringArray("button")]
+[node name="Discord" type="PanelContainer" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Main/TitleContainer/Title/SocialButtons" node_paths=PackedStringArray("button")]
 visible = false
 layout_mode = 2
 mouse_filter = 2
@@ -472,7 +479,7 @@ script = ExtResource("8_a02e1")
 button = NodePath("Button")
 link = "https://discord.gg/dTKMjfAW8W"
 
-[node name="Button" type="TextureButton" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info/TitleContainer/Title/SocialButtons/Discord"]
+[node name="Button" type="TextureButton" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Main/TitleContainer/Title/SocialButtons/Discord"]
 self_modulate = Color(0.639216, 0.156863, 0.345098, 1)
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
@@ -486,42 +493,45 @@ theme_override_colors/icon_hover_color = Color(0.8, 0.258824, 0.368627, 1)
 theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(0.380392, 0.0941176, 0.317647, 0.6)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info/TitleContainer/Title/SocialButtons/Discord"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Main/TitleContainer/Title/SocialButtons/Discord"]
 stream = ExtResource("9_04wh2")
 
-[node name="GameType2" type="Label" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info/TitleContainer"]
+[node name="GameType2" type="Label" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Main/TitleContainer"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_type_variation = &"LabelSpecial"
-theme_override_colors/font_color = Color(1, 0.384314, 0.352941, 1)
-theme_override_font_sizes/font_size = 24
-text = "3D Stacker game"
+text = "3D Stacker Game"
 
-[node name="Description" type="Label" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info"]
+[node name="Info" type="VBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Description" type="Label" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Info"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme = ExtResource("7_eupma")
-theme_override_font_sizes/font_size = 20
-text = "Build a rocket by dropping its parts onto the structure and earn tokens based on accuracy!"
+text = "Build a rocket by dropping and stacking its parts. The more accurate, the more you earn!"
 autowrap_mode = 2
 
-[node name="Actions" type="HBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info"]
+[node name="Actions" type="HBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Info"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 2
 
-[node name="SelectButton" type="Button" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info/Actions"]
-custom_minimum_size = Vector2(200, 50)
+[node name="SelectButton" type="Button" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Info/Actions"]
+custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("7_eupma")
 theme_type_variation = &"ButtonAlt"
-text = "MANAGE"
+text = "SELECT GAME"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/LaunchingSoon/Content/GameDetails/Info/Actions/SelectButton"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/Content/Games/LaunchingSoon/Content/GameDetails/Info/Actions/SelectButton"]
 stream = ExtResource("9_04wh2")
 
-[node name="BigDiggas" type="PanelContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games" node_paths=PackedStringArray("select_button")]
+[node name="BigDiggas" type="PanelContainer" parent="Content/MainScreen/GameSelector/Content/Games" node_paths=PackedStringArray("select_button")]
 visible = false
 layout_mode = 2
 script = ExtResource("18_jvcv6")
@@ -529,51 +539,51 @@ mainnet_house_key = "FcxGPktM2MJJ9qTxwiEVKJxHTpvatoFawKGq46SJxviG"
 devnet_house_key = "2p41ueUZtCKWXPdbMVVKr3aJMSnVWzQDczZFiaV9PXmf"
 select_button = NodePath("Content/GameDetails/Info/Actions/ManageButton")
 
-[node name="Background" type="PanelContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas"]
+[node name="Background" type="PanelContainer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas"]
 layout_mode = 2
 
-[node name="Content" type="MarginContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas"]
+[node name="Content" type="MarginContainer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="GameDetails" type="HBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content"]
+[node name="GameDetails" type="HBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Logo" type="TextureRect" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails"]
+[node name="Logo" type="TextureRect" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails"]
 custom_minimum_size = Vector2(196, 196)
 layout_mode = 2
 texture = ExtResource("16_7xub0")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Info" type="VBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails"]
+[node name="Info" type="VBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="TitleContainer" type="VBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info"]
+[node name="TitleContainer" type="VBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info"]
 layout_mode = 2
 
-[node name="Title" type="HBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/TitleContainer"]
+[node name="Title" type="HBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/TitleContainer"]
 layout_mode = 2
 
-[node name="GameTitle" type="Label" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title"]
+[node name="GameTitle" type="Label" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_type_variation = &"HeaderSmall"
 text = "BIG DIGGAS"
 
-[node name="SocialButtons" type="HBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title"]
+[node name="SocialButtons" type="HBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_constants/separation = 10
 
-[node name="Twitter" type="PanelContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title/SocialButtons" node_paths=PackedStringArray("button")]
+[node name="Twitter" type="PanelContainer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title/SocialButtons" node_paths=PackedStringArray("button")]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qwpoy")
@@ -581,10 +591,10 @@ script = ExtResource("8_a02e1")
 button = NodePath("Button")
 link = "https://x.com/RubyCorporation"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title/SocialButtons/Twitter"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title/SocialButtons/Twitter"]
 stream = ExtResource("9_04wh2")
 
-[node name="Button" type="TextureButton" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title/SocialButtons/Twitter"]
+[node name="Button" type="TextureButton" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title/SocialButtons/Twitter"]
 self_modulate = Color(0.0627451, 0.12549, 0.223529, 1)
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
@@ -598,7 +608,7 @@ theme_override_colors/icon_hover_color = Color(0.254902, 0.290196, 0.415686, 1)
 theme_override_colors/icon_hover_pressed_color = Color(0.741176, 0.803922, 0.901961, 1)
 theme_override_colors/icon_disabled_color = Color(0.0627451, 0.12549, 0.223529, 0.705882)
 
-[node name="Discord" type="PanelContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title/SocialButtons" node_paths=PackedStringArray("button")]
+[node name="Discord" type="PanelContainer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title/SocialButtons" node_paths=PackedStringArray("button")]
 visible = false
 layout_mode = 2
 mouse_filter = 2
@@ -607,7 +617,7 @@ script = ExtResource("8_a02e1")
 button = NodePath("Button")
 link = "https://discord.gg/dTKMjfAW8W"
 
-[node name="Button" type="TextureButton" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title/SocialButtons/Discord"]
+[node name="Button" type="TextureButton" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title/SocialButtons/Discord"]
 self_modulate = Color(0.639216, 0.156863, 0.345098, 1)
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
@@ -621,10 +631,10 @@ theme_override_colors/icon_hover_color = Color(0.8, 0.258824, 0.368627, 1)
 theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(0.380392, 0.0941176, 0.317647, 0.6)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title/SocialButtons/Discord"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/TitleContainer/Title/SocialButtons/Discord"]
 stream = ExtResource("9_04wh2")
 
-[node name="GameType2" type="Label" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/TitleContainer"]
+[node name="GameType2" type="Label" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/TitleContainer"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_type_variation = &"LabelSpecial"
@@ -632,7 +642,7 @@ theme_override_colors/font_color = Color(1, 0.384314, 0.352941, 1)
 theme_override_font_sizes/font_size = 24
 text = "Mobile Mining Game"
 
-[node name="Description" type="Label" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info"]
+[node name="Description" type="Label" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme = ExtResource("7_eupma")
@@ -640,12 +650,12 @@ theme_override_font_sizes/font_size = 20
 text = "Dig around in a tile-based cave to Uncover precious gems and exchange them for tokens!"
 autowrap_mode = 2
 
-[node name="Actions" type="HBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info"]
+[node name="Actions" type="HBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 2
 
-[node name="ManageButton" type="Button" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/Actions"]
+[node name="ManageButton" type="Button" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/Actions"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -654,10 +664,10 @@ theme_type_variation = &"ButtonAlt"
 text = "MANAGE"
 script = ExtResource("17_r4k1l")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/Actions/ManageButton"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/Actions/ManageButton"]
 stream = ExtResource("9_04wh2")
 
-[node name="PlayButton" type="Button" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/Actions" node_paths=PackedStringArray("button")]
+[node name="PlayButton" type="Button" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/Actions" node_paths=PackedStringArray("button")]
 custom_minimum_size = Vector2(130, 50)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -667,37 +677,35 @@ script = ExtResource("8_a02e1")
 button = NodePath(".")
 link = "https://www.bigdiggas.fun"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/BigDiggas/Content/GameDetails/Info/Actions/PlayButton"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/Content/Games/BigDiggas/Content/GameDetails/Info/Actions/PlayButton"]
 stream = ExtResource("9_04wh2")
 
-[node name="HouseSelector" type="PanelContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games" node_paths=PackedStringArray("manage_button")]
+[node name="HouseSelector" type="PanelContainer" parent="Content/MainScreen/GameSelector/Content/Games" node_paths=PackedStringArray("manage_button")]
 layout_mode = 2
+theme = ExtResource("7_eupma")
 script = ExtResource("22_jhlh1")
 house_manager_scn = ExtResource("23_oor3o")
 manage_button = NodePath("MarginContainer/VBoxContainer/HouseManagerButton")
 
-[node name="Background" type="PanelContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/HouseSelector"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/HouseSelector"]
+[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/GameSelector/Content/Games/HouseSelector"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/HouseSelector/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/MainScreen/GameSelector/Content/Games/HouseSelector/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 30
 
-[node name="GameTitle" type="Label" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/HouseSelector/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+[node name="GameTitle" type="Label" parent="Content/MainScreen/GameSelector/Content/Games/HouseSelector/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 text = "More Drop games coming soon!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HouseManagerButton" type="Button" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/HouseSelector/MarginContainer/VBoxContainer"]
+[node name="HouseManagerButton" type="Button" parent="Content/MainScreen/GameSelector/Content/Games/HouseSelector/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(350, 70)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -707,7 +715,7 @@ text = "GAME CREATOR"
 script = ExtResource("24_h64ul")
 hide_if_locked = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/VBoxContainer/Games/HouseSelector/MarginContainer/VBoxContainer/HouseManagerButton"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GameSelector/Content/Games/HouseSelector/MarginContainer/VBoxContainer/HouseManagerButton"]
 stream = ExtResource("9_04wh2")
 
 [node name="CampaignSelector" type="VBoxContainer" parent="Content/MainScreen" node_paths=PackedStringArray("screen_manager", "campaign_display_system", "campaign_type_filter", "show_expired_filter", "campaign_interactor")]
@@ -730,11 +738,10 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SelectMine" type="Label" parent="Content/MainScreen/CampaignSelector/LoadingPanel"]
+[node name="LoadingText" type="Label" parent="Content/MainScreen/CampaignSelector/LoadingPanel"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_type_variation = &"HeaderMedium"
-theme_override_font_sizes/font_size = 55
 text = "LOADING..."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -758,9 +765,11 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="BackButton" type="Button" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content"]
-custom_minimum_size = Vector2(150, 80)
+custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("7_eupma")
+theme_type_variation = &"ButtonFlat"
 text = "BACK"
 
 [node name="Intro" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content"]
@@ -770,7 +779,6 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_type_variation = &"HeaderMedium"
-theme_override_font_sizes/font_size = 40
 text = "ACTIVE CAMPAIGNS"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -794,7 +802,6 @@ custom_minimum_size = Vector2(180, 50)
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("7_eupma")
-theme_override_font_sizes/font_size = 35
 alignment = 1
 selected = 0
 item_count = 2
@@ -823,7 +830,7 @@ alignment = 1
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_2l4xl")
+theme = ExtResource("7_eupma")
 script = ExtResource("17_85f2f")
 container = NodePath("MarginContainer/ListContent/CampaignList/MineList")
 entry_scn = ExtResource("18_y3qgx")
@@ -865,7 +872,7 @@ prev_page_button = NodePath("Previous")
 next_page_button = NodePath("Next")
 
 [node name="Previous" type="TextureButton" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent/PageLoader"]
-self_modulate = Color(0.427451, 0.501961, 0.980392, 1)
+self_modulate = Color(0, 0.443137, 0.439216, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture_normal = ExtResource("20_i5uv2")
@@ -873,11 +880,11 @@ ignore_texture_size = true
 stretch_mode = 5
 flip_h = true
 script = ExtResource("11_ugld7")
-theme_override_colors/icon_normal_color = Color(0.427451, 0.501961, 0.980392, 1)
+theme_override_colors/icon_normal_color = Color(0, 0.443137, 0.439216, 1)
 theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_color = Color(0.552941, 0.717647, 1, 1)
+theme_override_colors/icon_hover_color = Color(0.00392157, 0.235294, 0.231373, 1)
 theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(0.427451, 0.501961, 0.980392, 0.498039)
+theme_override_colors/icon_disabled_color = Color(0.00392157, 0.235294, 0.231373, 0.631373)
 
 [node name="PageLabel" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent/PageLoader"]
 layout_mode = 2
@@ -888,26 +895,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Next" type="TextureButton" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent/PageLoader"]
-self_modulate = Color(0.427451, 0.501961, 0.980392, 1)
+self_modulate = Color(0, 0.443137, 0.439216, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture_normal = ExtResource("20_i5uv2")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("11_ugld7")
-theme_override_colors/icon_normal_color = Color(0.427451, 0.501961, 0.980392, 1)
+theme_override_colors/icon_normal_color = Color(0, 0.443137, 0.439216, 1)
 theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_color = Color(0.552941, 0.717647, 1, 1)
+theme_override_colors/icon_hover_color = Color(0.00392157, 0.235294, 0.231373, 1)
 theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(0.427451, 0.501961, 0.980392, 0.498039)
+theme_override_colors/icon_disabled_color = Color(0.00392157, 0.235294, 0.231373, 0.631373)
 
 [node name="RefreshButton" type="Button" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("7_eupma")
-theme_type_variation = &"ListButtonAlt"
-theme_override_font_sizes/font_size = 35
-theme_override_styles/focus = SubResource("StyleBoxEmpty_jlw4g")
+theme_type_variation = &"ButtonFlat"
 text = "REFRESH"
 
 [node name="NoCampaignsOverlay" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem"]
@@ -925,14 +930,19 @@ theme_override_constants/separation = 20
 alignment = 2
 
 [node name="Label" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/FreePlayContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-text = "You can also hone your skills in the free play mode!"
+theme = ExtResource("7_eupma")
+text = "Hone your skills in free play mode!"
+horizontal_alignment = 2
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="FreePlayButton" type="Button" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/FreePlayContainer"]
-custom_minimum_size = Vector2(150, 80)
+custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 size_flags_horizontal = 8
+theme = ExtResource("7_eupma")
 text = "PLAY NOW"
 
 [node name="CampaignInteractor" type="MarginContainer" parent="Content/MainScreen/CampaignSelector" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "manager_displayable", "reward_token_displayable", "max_reward_label", "campaign_timer", "campaign_expired_panel", "not_logged_in_panel", "nft_player_manager", "token_player_manager")]

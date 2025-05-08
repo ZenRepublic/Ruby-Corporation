@@ -1,0 +1,1 @@
+{"name":"Ruby Corporation","author":"Thomas Tum","colors":["fee684","09100e","000000","3e3e31","ccdadb","fe2a03","91cfd8","680d04","013c3b","007170","ffffff"]}

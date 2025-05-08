@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://u2oke3207lyv" path="res://Scripts/DropGameKit/Utility/CampaignRewards/rewards_display_ui.gd" id="1_fslop"]
 [ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="2_x46re"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="3_ic711"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="3_ic711"]
 [ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="6_wwpsq"]
 [ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="7_xl37d"]
 [ext_resource type="Script" uid="uid://c25ievjhcwp5e" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/nft_campaign_player_manager.gd" id="8_453q6"]

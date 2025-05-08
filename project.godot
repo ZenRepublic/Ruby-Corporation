@@ -44,7 +44,7 @@ mouse_cursor/custom_image_hotspot=Vector2(5, 13)
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/LineRenderer/plugin.cfg", "res://addons/SolanaSDK/plugin.cfg", "res://addons/advanced_radial_menu/plugin.cfg", "res://addons/custom_theme_overrides/plugin.cfg", "res://addons/texture_button_colored/plugin.cfg")
+enabled=PackedStringArray("res://addons/LineRenderer/plugin.cfg", "res://addons/PaletteTools/plugin.cfg", "res://addons/SolanaSDK/plugin.cfg", "res://addons/advanced_radial_menu/plugin.cfg", "res://addons/custom_theme_overrides/plugin.cfg", "res://addons/texture_button_colored/plugin.cfg")
 
 [input]
 

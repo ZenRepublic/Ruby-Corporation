@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/DropGameKit/CampaignManagement/campaign_admin_system.gd" id="1_ldnsl"]
 [ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="2_5to25"]
 [ext_resource type="Texture2D" uid="uid://bdjw50vivwoew" path="res://Textures/Icons/CloseIcon.PNG" id="3_yrdp3"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="4_txo57"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="4_txo57"]
 [ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="5_l58jm"]
 [ext_resource type="PackedScene" uid="uid://cj0hq5of6bv16" path="res://Scripts/DropGameKit/CampaignManagement/CampaignSelectSimple.tscn" id="6_m5t11"]
 [ext_resource type="Script" uid="uid://d27go0wrna3kn" path="res://addons/SolanaSDK/Scripts/NFTGating/address_button_lock.gd" id="7_3y2xv"]

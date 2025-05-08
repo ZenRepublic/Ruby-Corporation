@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://by1yuc0e2vnu1"]
 
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubiansTheme.tres" id="1_02lij"]
-[ext_resource type="Script" uid="uid://o1e6yjivhyxn" path="res://Scripts/ClubhouseSDK/CampaignManagement/Leaderboard/leaderboard_account.gd" id="2_78g6m"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="1_02lij"]
+[ext_resource type="Script" path="res://Scripts/ClubhouseSDK/CampaignManagement/Leaderboard/leaderboard_account.gd" id="2_78g6m"]
 [ext_resource type="Texture2D" uid="uid://7kqujf7rup2c" path="res://Textures/Icons/Medals/Gold medal.png" id="3_jfoo0"]
 [ext_resource type="Texture2D" uid="uid://bvy8wmpka1ggp" path="res://Textures/Icons/Medals/Silver medal.png" id="4_luld3"]
 [ext_resource type="Texture2D" uid="uid://31n2y7qa30v2" path="res://Textures/Icons/Medals/Bronze medal.png" id="5_1rgmq"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="8_ugy04"]
 [ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="9_chy4o"]
 [ext_resource type="Texture2D" uid="uid://bqif02eekq215" path="res://Textures/Icons/copyicon.png" id="10_vndfj"]
-[ext_resource type="Script" uid="uid://b7ihkieo0wv7f" path="res://addons/texture_button_colored/texture_button_colored.gd" id="11_4xsub"]
+[ext_resource type="Script" uid="uid://bwchk1fr718eh" path="res://addons/texture_button_colored/texture_button_colored.gd" id="11_4xsub"]
 
 [node name="NFTCampaignWinnerEntry" type="PanelContainer" node_paths=PackedStringArray("rank_visual", "rank_id", "player_displayable", "token_visual", "player_score", "copy_address_button")]
 size_flags_vertical = 3

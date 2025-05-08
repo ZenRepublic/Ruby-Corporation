@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bsjpys1p766y8" path="res://Scripts/DropGameKit/HouseManagement/house_admin_system.gd" id="1_y2rv2"]
 [ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="2_wkb7b"]
 [ext_resource type="Texture2D" uid="uid://bdjw50vivwoew" path="res://Textures/Icons/CloseIcon.PNG" id="4_a6y72"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="4_ph3hf"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="4_ph3hf"]
 [ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="5_npeyf"]
 [ext_resource type="PackedScene" uid="uid://mshskasj5e5j" path="res://Scripts/DropGameKit/HouseManagement/HouseSelectEntry.tscn" id="6_srudh"]
 [ext_resource type="Script" uid="uid://da8rxjycsa60v" path="res://Scripts/DropGameKit/HouseManagement/house_manager.gd" id="7_fk8dk"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://3q7tu50f8kyk"]
 
 [ext_resource type="Script" uid="uid://b4r6x5r133hc" path="res://Scripts/DropGameKit/TokenVault/stake_token_vault.gd" id="1_v7pwh"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="2_liuad"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="2_liuad"]
 [ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="3_ql7kj"]
 [ext_resource type="PackedScene" uid="uid://5h0xygmo4dvl" path="res://Scripts/DropGameKit/TokenVault/StakeVaultEntry.tscn" id="4_7o1cq"]
 

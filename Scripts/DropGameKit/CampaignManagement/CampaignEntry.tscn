@@ -1,22 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnfq88vw2eksv"]
+[gd_scene load_steps=8 format=3 uid="uid://bnfq88vw2eksv"]
 
-[ext_resource type="Script" path="res://Scripts/DropGameKit/CampaignManagement/campaign_account.gd" id="2_w5oyl"]
-[ext_resource type="Script" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="3_c34kt"]
+[ext_resource type="Script" uid="uid://csusqoq14ygfl" path="res://Scripts/DropGameKit/CampaignManagement/campaign_account.gd" id="2_w5oyl"]
+[ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="3_c34kt"]
 [ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="4_viqwm"]
-[ext_resource type="Script" path="res://Scripts/Utility/timed_button.gd" id="5_iht2v"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="5_p8jhh"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pamv"]
-bg_color = Color(0.529412, 0.207843, 0.333333, 1)
+[ext_resource type="Script" uid="uid://xl86n3733lsl" path="res://Scripts/Utility/timed_button.gd" id="5_iht2v"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="5_p8jhh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yce1"]
 bg_color = Color(1, 1, 1, 1)
 skew = Vector2(0.56, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmr7k"]
-bg_color = Color(0.65098, 0.521569, 0.623529, 1)
-border_width_top = 5
-border_color = Color(0.482353, 0.329412, 0.501961, 1)
+bg_color = Color(1, 1, 1, 1)
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.886262, 0.886261, 0.886262, 0.831373)
 
 [node name="AccountSelect" type="VBoxContainer" node_paths=PackedStringArray("token_displayable", "mine_gate_displayable", "campaign_name_label", "mine_type_label", "mine_timer_button")]
 custom_minimum_size = Vector2(0, 45)
@@ -34,7 +32,8 @@ mine_timer_button = NodePath("MainDetails/MarginContainer/Content/VBoxContainer/
 
 [node name="Title" type="PanelContainer" parent="."]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1pamv")
+theme = ExtResource("5_p8jhh")
+theme_type_variation = &"PanelFlat"
 
 [node name="MarginContainer" type="MarginContainer" parent="Title"]
 custom_minimum_size = Vector2(0, 48)
@@ -52,7 +51,8 @@ theme_override_constants/separation = 30
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_p8jhh")
-theme_override_font_sizes/font_size = 30
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 35
 text = "CRAZY MINE FOR CRAZY MINER"
 vertical_alignment = 1
 
@@ -97,6 +97,7 @@ vertical_alignment = 1
 
 [node name="MainDetails" type="PanelContainer" parent="."]
 layout_mode = 2
+theme = ExtResource("5_p8jhh")
 theme_override_styles/panel = SubResource("StyleBoxFlat_kmr7k")
 
 [node name="MarginContainer" type="MarginContainer" parent="MainDetails"]
@@ -115,7 +116,6 @@ layout_mode = 2
 script = ExtResource("3_c34kt")
 visual = NodePath("TextureRect")
 image_size = 256
-default_icon_path = "res://addons/SolanaSDK/Textures/missingicon.png"
 name_label = NodePath("../VBoxContainer/Name")
 max_name_length = 22
 
@@ -139,35 +139,45 @@ theme_override_constants/separation = 10
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_p8jhh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_font_sizes/font_size = 18
-text = "Eligible Diggas:"
+text = "Eligible Players:"
 
 [node name="CampaignType" type="Label" parent="MainDetails/MarginContainer/Content/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_p8jhh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_font_sizes/font_size = 18
 text = "Mine Type:"
 
 [node name="type" type="Label" parent="MainDetails/MarginContainer/Content/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_p8jhh")
+theme_type_variation = &"LabelSpecial"
 theme_override_colors/font_color = Color(0.988235, 0.937255, 0.552941, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 25
 text = "-"
+vertical_alignment = 1
 
 [node name="Name" type="Label" parent="MainDetails/MarginContainer/Content/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_p8jhh")
-theme_type_variation = &"HeaderMedium"
-theme_override_font_sizes/font_size = 28
+theme_type_variation = &"LabelSpecial"
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 25
 text = "-"
 
 [node name="TimerButton" type="Button" parent="MainDetails/MarginContainer/Content/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("5_p8jhh")
-theme_type_variation = &"SimpleButton"
-theme_override_font_sizes/font_size = 21
+theme_type_variation = &"ButtonFlat"
 text = "..."
 script = ExtResource("5_iht2v")
 time_left_prefix = "Mine Details"
