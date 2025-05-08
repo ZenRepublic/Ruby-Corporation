@@ -1,0 +1,377 @@
+[gd_scene load_steps=14 format=3 uid="uid://dnww2npv55xyh"]
+
+[ext_resource type="Script" uid="uid://u2oke3207lyv" path="res://Scripts/DropGameKit/Utility/CampaignRewards/rewards_display_ui.gd" id="1_fslop"]
+[ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="2_x46re"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://ToilMines.tres" id="3_ic711"]
+[ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="6_wwpsq"]
+[ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="7_xl37d"]
+[ext_resource type="Script" uid="uid://c25ievjhcwp5e" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/nft_campaign_player_manager.gd" id="8_453q6"]
+[ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="9_kxdh3"]
+[ext_resource type="Script" uid="uid://xl86n3733lsl" path="res://Scripts/Utility/timed_button.gd" id="10_m4sf8"]
+[ext_resource type="Script" uid="uid://jfwevf5bxk52" path="res://addons/SolanaSDK/Scripts/NFTGating/token_button_lock.gd" id="11_fsjh4"]
+[ext_resource type="Script" uid="uid://8d53ge4w5ku7" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/token_campaign_player_manager.gd" id="12_x2gsr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i4kpk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vkea"]
+bg_color = Color(0.223529, 0.0352941, 0.278431, 0.756863)
+border_color = Color(0.513726, 0.301961, 0.768627, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3kt8i"]
+
+[node name="CampaignRewardDisplay" type="Control" node_paths=PackedStringArray("screen_manager", "player_visual", "visual_border", "token_visual", "amount_earned_label", "nft_player_manager", "token_player_manager", "return_button", "save_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fslop")
+screen_manager = NodePath("Content/ScreenManager")
+player_visual = NodePath("Content/Main/PlayerDetails/MarginContainer/PlayerDetails/PlayerVisual")
+visual_border = NodePath("Content/Main/PlayerDetails/MarginContainer/PlayerDetails/PlayerVisual/Border")
+token_visual = NodePath("Content/Main/PlayerDetails/MarginContainer/PlayerDetails/PlayerVisual/MarginContainer/HBoxContainer/TokenVisual")
+amount_earned_label = NodePath("Content/Main/PlayerDetails/MarginContainer/PlayerDetails/PlayerVisual/MarginContainer/HBoxContainer/AmountEarned")
+nft_player_manager = NodePath("Content/Main/PlayerDetails/MarginContainer/PlayerDetails/NFTPlayerManager")
+token_player_manager = NodePath("Content/Main/PlayerDetails/MarginContainer/PlayerDetails/TokenPlayerManager")
+return_button = NodePath("Content/Main/PlayerDetails/MarginContainer/PlayerDetails/ReturnButton")
+save_button = NodePath("Content/Main/Info/SaveImageButton")
+
+[node name="Content" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="ScreenManager" type="Node" parent="Content" node_paths=PackedStringArray("starting_panel", "screens")]
+script = ExtResource("2_x46re")
+starting_panel = NodePath("../Main/PlayerDetails/MarginContainer/PlayerDetails")
+screens = [NodePath("../LoadingContainer"), NodePath("../Main/PlayerDetails/MarginContainer/PlayerDetails")]
+
+[node name="LoadingContainer" type="PanelContainer" parent="Content"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_i4kpk")
+
+[node name="Loading" type="Label" parent="Content/LoadingContainer"]
+layout_mode = 2
+theme = ExtResource("3_ic711")
+theme_override_font_sizes/font_size = 76
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Main" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Info" type="VBoxContainer" parent="Content/Main"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Content/Main/Info"]
+layout_mode = 2
+theme = ExtResource("3_ic711")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 48
+text = "YOU A REAL DIGGA!"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Content/Main/Info"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = ExtResource("3_ic711")
+theme_type_variation = &"TooltipLabel"
+theme_override_font_sizes/font_size = 28
+text = "Save the image and share your incredible performance with friends"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SaveImageButton" type="Button" parent="Content/Main/Info"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("3_ic711")
+theme_type_variation = &"SimpleButtonAlt"
+theme_override_font_sizes/font_size = 40
+text = "SAVE"
+
+[node name="PlayerDetails" type="PanelContainer" parent="Content/Main"]
+custom_minimum_size = Vector2(355, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_3vkea")
+
+[node name="MarginContainer" type="MarginContainer" parent="Content/Main/PlayerDetails"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="PlayerDetails" type="VBoxContainer" parent="Content/Main/PlayerDetails/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="PlayerVisual" type="TextureRect" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails"]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Border" type="TextureRect" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/PlayerVisual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/PlayerVisual"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -53.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 7
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/PlayerVisual/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="TokenVisual" type="TextureRect" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/PlayerVisual/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_wwpsq")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="AmountEarned" type="Label" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/PlayerVisual/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_ic711")
+theme_type_variation = &"HeaderMedium"
+theme_override_colors/font_color = Color(0.988235, 0.937255, 0.552941, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_font_sizes/font_size = 32
+text = "156,28K"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_xl37d")
+format_mode = 1
+decimal_amount = 2
+
+[node name="NFTPlayerManager" type="PanelContainer" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails" node_paths=PackedStringArray("displayable_player", "energy_bar", "energy_bar_label", "recharge_timed_button", "play_button")]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3kt8i")
+script = ExtResource("8_453q6")
+displayable_player = NodePath("Content/PlayerDetails")
+energy_bar = NodePath("Content/PlayerDetails/EnergyBar")
+energy_bar_label = NodePath("Content/PlayerDetails/EnergyBar/Label")
+recharge_timed_button = NodePath("Content/PlayerDetails/RechargeTimeDisplay")
+play_button = NodePath("Content/PlayerDetails/PlayButton")
+
+[node name="Content" type="VBoxContainer" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/NFTPlayerManager"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="PlayerDetails" type="VBoxContainer" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/NFTPlayerManager/Content" node_paths=PackedStringArray("visual", "name_label")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("9_kxdh3")
+visual = NodePath("../../../PlayerVisual")
+image_size = 1024
+name_label = NodePath("NFTNameLabel")
+max_name_length = 13
+
+[node name="NFTNameLabel" type="Label" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/NFTPlayerManager/Content/PlayerDetails"]
+layout_mode = 2
+theme = ExtResource("3_ic711")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 40
+text = "Rubian #123"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnergyBar" type="ProgressBar" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/NFTPlayerManager/Content/PlayerDetails"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 2
+theme = ExtResource("3_ic711")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/NFTPlayerManager/Content/PlayerDetails/EnergyBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -10.885
+offset_right = 20.0
+offset_bottom = 12.115
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ic711")
+theme_type_variation = &"HeaderMedium"
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 1
+theme_override_font_sizes/font_size = 28
+text = "5/5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RechargeTimeDisplay" type="Button" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/NFTPlayerManager/Content/PlayerDetails"]
+layout_mode = 2
+theme = ExtResource("3_ic711")
+theme_type_variation = &"InvisibleButton"
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+disabled = true
+text = "Next in: 20h 48Min 25SeC"
+script = ExtResource("10_m4sf8")
+time_left_prefix = "Next in:"
+enable_on_started = false
+enable_on_finished = false
+
+[node name="PlayButton" type="Button" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/NFTPlayerManager/Content/PlayerDetails"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("3_ic711")
+theme_type_variation = &"SimpleButton"
+theme_override_font_sizes/font_size = 40
+text = "PLAY AGAIN!"
+autowrap_mode = 2
+script = ExtResource("11_fsjh4")
+token_gate_list = {
+"": 0.004
+}
+lock_active = false
+locked_text = "LACK TOKENS"
+
+[node name="TokenPlayerManager" type="VBoxContainer" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails" node_paths=PackedStringArray("balance_displayable", "price_displayable", "price_label", "play_button")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("12_x2gsr")
+balance_displayable = NodePath("BalanceDisplayable")
+price_displayable = NodePath("CostDisplayable")
+price_label = NodePath("CostDisplayable/CostLabel")
+play_button = NodePath("PlayButton")
+
+[node name="BalanceDisplayable" type="HBoxContainer" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/TokenPlayerManager" node_paths=PackedStringArray("visual", "balance_label")]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 2
+script = ExtResource("9_kxdh3")
+visual = NodePath("Visual")
+image_size = 128
+balance_label = NodePath("BalanceLabel")
+
+[node name="Balance" type="Label" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/TokenPlayerManager/BalanceDisplayable"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("3_ic711")
+theme_override_font_sizes/font_size = 28
+text = "Your Balance:"
+vertical_alignment = 1
+
+[node name="Visual" type="TextureRect" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/TokenPlayerManager/BalanceDisplayable"]
+layout_mode = 2
+texture = ExtResource("6_wwpsq")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="BalanceLabel" type="Label" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/TokenPlayerManager/BalanceDisplayable"]
+layout_mode = 2
+theme = ExtResource("3_ic711")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 40
+text = "100"
+script = ExtResource("7_xl37d")
+format_mode = 1
+decimal_amount = 2
+
+[node name="CostDisplayable" type="HBoxContainer" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/TokenPlayerManager" node_paths=PackedStringArray("visual")]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 2
+script = ExtResource("9_kxdh3")
+visual = NodePath("Visual")
+image_size = 128
+
+[node name="Cost" type="Label" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/TokenPlayerManager/CostDisplayable"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("3_ic711")
+theme_override_font_sizes/font_size = 28
+text = "Entry Cost:"
+vertical_alignment = 1
+
+[node name="Visual" type="TextureRect" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/TokenPlayerManager/CostDisplayable"]
+layout_mode = 2
+texture = ExtResource("6_wwpsq")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="CostLabel" type="Label" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/TokenPlayerManager/CostDisplayable"]
+layout_mode = 2
+theme = ExtResource("3_ic711")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 40
+text = "100"
+script = ExtResource("7_xl37d")
+format_mode = 1
+decimal_amount = 2
+
+[node name="PlayButton" type="Button" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/TokenPlayerManager"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("3_ic711")
+theme_type_variation = &"SimpleButton"
+theme_override_font_sizes/font_size = 40
+text = "PLAY AGAIN!"
+autowrap_mode = 2
+script = ExtResource("11_fsjh4")
+token_gate_list = {
+"": 0.004
+}
+lock_active = false
+locked_text = "LACK TOKENS"
+
+[node name="ReturnButton" type="Button" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme = ExtResource("3_ic711")
+theme_type_variation = &"SimpleButtonAlt"
+theme_override_font_sizes/font_size = 40
+text = "RETURN"
+autowrap_mode = 2

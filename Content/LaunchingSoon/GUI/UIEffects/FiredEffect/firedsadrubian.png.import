@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhkmkplauo2f7"
-path.s3tc="res://.godot/imported/firedsadrubian.png-d8d90b0ca7b9eea5ca70083ab251ab91.s3tc.ctex"
-path.etc2="res://.godot/imported/firedsadrubian.png-d8d90b0ca7b9eea5ca70083ab251ab91.etc2.ctex"
+path.s3tc="res://.godot/imported/firedsadrubian.png-34a360f2cbbc9d15276fe02c1f123cf0.s3tc.ctex"
+path.etc2="res://.godot/imported/firedsadrubian.png-34a360f2cbbc9d15276fe02c1f123cf0.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Content/LaunchingSoon/GUI/Fired/firedsadrubian.png"
-dest_files=["res://.godot/imported/firedsadrubian.png-d8d90b0ca7b9eea5ca70083ab251ab91.s3tc.ctex", "res://.godot/imported/firedsadrubian.png-d8d90b0ca7b9eea5ca70083ab251ab91.etc2.ctex"]
+source_file="res://Content/LaunchingSoon/GUI/UIEffects/FiredEffect/firedsadrubian.png"
+dest_files=["res://.godot/imported/firedsadrubian.png-34a360f2cbbc9d15276fe02c1f123cf0.s3tc.ctex", "res://.godot/imported/firedsadrubian.png-34a360f2cbbc9d15276fe02c1f123cf0.etc2.ctex"]
 
 [params]
 

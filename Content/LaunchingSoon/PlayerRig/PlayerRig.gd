@@ -22,6 +22,7 @@ var original_pos:Vector3=Vector3.ZERO
 var gui:GUI
 
 signal on_rise_complete()
+signal on_value_updated(new_value:float)
 signal on_warning_received(warning_amount:int)
 
 func _ready() -> void:
@@ -38,7 +39,7 @@ func _ready() -> void:
 	launch_controller.setup_complete.connect(setup_rig)
 	
 func setup_rig() -> void:
-	token_spawner.setup_token_pool(launch_controller.get_reward_token_visual())
+	token_spawner.setup_token_pool(ClubhouseProgram.claimer.get_reward_token_texture())
 	token_spawner.on_toked_arrived.connect(update_launch_value)
 	
 	prepare_cargo_drop()
@@ -94,11 +95,11 @@ func move_to(fly_point:Vector3, duration:float) -> void:
 	
 func process_successful_drop(cargo:Cargo) -> void:
 	cam.knock_back(cargo.global_position,LaunchSettings.get_place_accuracy(cargo.place_tier))
-	var tokens_earned:float = launch_controller.convert_to_tokens(LaunchSettings.get_score(cargo.place_tier))
+	var tokens_earned:float = LaunchSettings.get_score(cargo.place_tier)
 	token_spawner.send_tokens(tokens_earned,cargo)
 	
 	launch_controller.narrator.play_encourgement(cargo.place_tier)
-	gui.placement_ui.show_placement_effect(cargo.place_tier)
+	gui.do_placement_effect(cargo.place_tier)
 	
 	launchpad.handle_structure_update()
 	
@@ -111,32 +112,23 @@ func update_launch_value(change_amount:float) -> void:
 	curr_value += change_amount
 	if curr_value<0:
 		curr_value = 0
-		
-	gui.admin_panel.update_launchpad_value_display(curr_value)
+	
+	on_value_updated.emit(curr_value)
 
 func process_failed_drop(cargo:Cargo) -> void:
-	var penalty:float = launch_controller.convert_to_tokens(LaunchSettings.PENALTY_VALUE)
-	update_launch_value(-penalty)
+	update_launch_value(-LaunchSettings.PENALTY_VALUE)
 	
 	cam.start_shake(0.3,0.05)
 	curr_warnings += 1
 	on_warning_received.emit(curr_warnings)
-	gui.admin_panel.update_warnings_display(curr_warnings)
 
 	launchpad.handle_structure_update()
 	
 	if curr_warnings < LaunchSettings.WARNINGS_TO_FIRE:
 		prepare_cargo_drop()
 		
-		await get_tree().create_timer(0.2).timeout
-		gui.placement_ui.show_fail_effect()
-		
-#		play the groan after all the other sounds like whistle
-		await get_tree().create_timer(0.3).timeout
-		launch_controller.narrator.play_groan()
-		
 func apply_destruction_penalty(dropped_cargo:Cargo) -> void:
-	var token_value:float = launch_controller.convert_to_tokens(LaunchSettings.get_score(dropped_cargo.place_tier))
-	var base_penalty:float = launch_controller.convert_to_tokens(LaunchSettings.PENALTY_VALUE)
+	var token_value:float = LaunchSettings.get_score(dropped_cargo.place_tier)
+	var base_penalty:float = LaunchSettings.PENALTY_VALUE
 	var final_penalty:float = base_penalty + token_value
 	update_launch_value(-final_penalty)

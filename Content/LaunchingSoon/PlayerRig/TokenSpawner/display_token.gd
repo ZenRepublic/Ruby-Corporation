@@ -1,4 +1,4 @@
-extends Node3D
+extends Sprite3D
 class_name DisplayToken
 
 @export var arc_height: float = 0.5
@@ -37,6 +37,15 @@ func _process(delta: float) -> void:
 		self.global_position = current_end
 		on_target_reached.emit(self)
 		follow_target = null
+		
+func set_visual(token_tex:Texture2D) -> void:
+	if token_tex == null:
+		return
+	
+	var img: Image = token_tex.get_image()
+	img.resize(texture.get_width(), texture.get_height())
+	
+	texture = ImageTexture.create_from_image(img)
 
 func move_to_target(value:float, target_point:Node3D, move_duration:float=1.0) -> void:
 	self.value = value

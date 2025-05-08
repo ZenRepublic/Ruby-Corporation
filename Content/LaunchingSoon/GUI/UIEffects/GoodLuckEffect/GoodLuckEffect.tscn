@@ -1,0 +1,243 @@
+[gd_scene load_steps=7 format=3 uid="uid://beotls8ufokl2"]
+
+[ext_resource type="AudioStream" uid="uid://duia2dbjhqua1" path="res://Content/LaunchingSoon/Narrator/GoodLuckWin.mp3" id="1_cpluh"]
+[ext_resource type="Texture2D" uid="uid://brsp4nit1lt43" path="res://Content/LaunchingSoon/GUI/UIEffects/GoodLuckEffect/speechlines.png" id="2_cvw8p"]
+[ext_resource type="Texture2D" uid="uid://ckrq5vmsemfd8" path="res://Content/LaunchingSoon/GUI/UIEffects/GoodLuckEffect/GoodLuck.png" id="3_q60do"]
+
+[sub_resource type="Animation" id="Animation_obaui"]
+resource_name = "GoodLuck"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoodLuckRubian:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 1.79486, 1.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(82, 1361), Vector2(82, 543), Vector2(82, 543), Vector2(82, 1439)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GoodLuckRubian:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.266667, 0.4, 0.5, 0.666667, 0.821157, 0.954491, 1.05449, 1.22116, 1.30203, 1.43537, 1.53537, 1.70203),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1.12), Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 1), Vector2(1, 1.12), Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 1), Vector2(1, 1.12), Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 1)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_cpluh")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.235583, 0.265492, 0.326882, 0.380402, 0.427925, 0.457833, 0.519224, 0.572743, 0.630259, 0.660167, 0.721558, 0.775077, 0.823291, 0.853199, 0.914589, 0.968109, 1.01632, 1.04623, 1.10762, 1.16114, 1.214, 1.24391, 1.3053, 1.35882, 1.42099, 1.4509, 1.51229, 1.56581, 1.6, 1.62991, 1.6913, 1.74482, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.5, 2.5), Vector2(2.5, 2.5), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(2.5, 2.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.157514, 0.210019, 1.77733, 1.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-611, 322), Vector2(-611, 322), Vector2(46, 322), Vector2(46, 322), Vector2(-532, 322)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.201942),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Label:visible_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.210019, 0.827961, 1.65592),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.42, 1.0]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_07q2e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GoodLuckRubian:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(82, 1361)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GoodLuckRubian:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.5, 2.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-611, 322)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label:visible_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0416667]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1thnu"]
+_data = {
+&"GoodLuck": SubResource("Animation_obaui"),
+&"RESET": SubResource("Animation_07q2e")
+}
+
+[node name="GoodLuckScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1thnu")
+}
+autoplay = "GoodLuck"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -161.0
+offset_top = -13.0
+offset_right = 940.07
+offset_bottom = 1295.0
+scale = Vector2(2.5, 2.5)
+pivot_offset = Vector2(550.535, 654)
+texture = ExtResource("2_cvw8p")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="GoodLuckRubian" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 1361.0
+offset_right = 741.0
+offset_bottom = 2130.0
+pivot_offset = Vector2(329.5, 769)
+texture = ExtResource("3_q60do")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -611.0
+offset_top = 322.0
+offset_right = -154.0
+offset_bottom = 493.0
+theme_override_font_sizes/font_size = 61
+text = "Good luck,
+Mr. Spaceman!"
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

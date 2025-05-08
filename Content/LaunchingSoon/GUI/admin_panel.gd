@@ -18,7 +18,8 @@ func _ready() -> void:
 	
 	#token_visual.texture = ImageTexture.create_from_image(launch_controller.get_token_visual())
 
-func set_token_visual(token_tex:Texture2D) -> void:
+func set_token_visual() -> void:
+	var token_tex:Texture2D = ClubhouseProgram.claimer.get_reward_token_texture()
 	if token_tex == null:
 		return
 	

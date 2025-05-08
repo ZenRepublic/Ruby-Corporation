@@ -1,482 +1,29 @@
-[gd_scene load_steps=31 format=3 uid="uid://c8h3ofhnmr4ih"]
+[gd_scene load_steps=21 format=3 uid="uid://c8h3ofhnmr4ih"]
 
 [ext_resource type="Script" uid="uid://c4fxv2bctb2up" path="res://Content/LaunchingSoon/GUI/gui.gd" id="1_wc8ld"]
 [ext_resource type="Script" uid="uid://cuhu3ktt1li8j" path="res://Content/LaunchingSoon/GUI/admin_panel.gd" id="2_wvrxf"]
 [ext_resource type="Texture2D" uid="uid://bex3s6kk2tvo2" path="res://addons/SolanaSDK/Textures/warning.png" id="3_vaefn"]
-[ext_resource type="Script" uid="uid://dpbwy1xjqctiu" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="4_dgxx7"]
+[ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="4_dgxx7"]
 [ext_resource type="Texture2D" uid="uid://nljoclj85xe4" path="res://Textures/Icons/Token.PNG" id="5_wc8ld"]
-[ext_resource type="Texture2D" uid="uid://bvpufl7tjwy6q" path="res://Content/LaunchingSoon/GUI/Fired/walkshadow.png" id="6_7fpwu"]
-[ext_resource type="AudioStream" uid="uid://6i7w7es68x0t" path="res://Content/LaunchingSoon/GUI/Fired/FiredSound.mp3" id="6_ssmg0"]
-[ext_resource type="Script" uid="uid://cuykxmsr4l6n3" path="res://Content/LaunchingSoon/GUI/placement_ui.gd" id="6_wvrxf"]
-[ext_resource type="AudioStream" uid="uid://d2707fnp4271v" path="res://Content/LaunchingSoon/Narrator/FiredLose.mp3" id="7_5dx1o"]
-[ext_resource type="Texture2D" uid="uid://dnely7k2libl2" path="res://Content/LaunchingSoon/GUI/UIEffects/FailEffect/WarningWhistle.png" id="7_dgxx7"]
-[ext_resource type="Texture2D" uid="uid://dhkmkplauo2f7" path="res://Content/LaunchingSoon/GUI/Fired/firedsadrubian.png" id="7_ssmg0"]
-[ext_resource type="AudioStream" uid="uid://djjt7sx5ded1o" path="res://Content/LaunchingSoon/GUI/UIEffects/FailEffect/whistle.mp3" id="8_p3ljt"]
-[ext_resource type="Texture2D" uid="uid://brsp4nit1lt43" path="res://Content/LaunchingSoon/GUI/UIEffects/GoodLuckEffect/speechlines.png" id="10_uwmnw"]
-[ext_resource type="Texture2D" uid="uid://ckrq5vmsemfd8" path="res://Content/LaunchingSoon/GUI/UIEffects/GoodLuckEffect/GoodLuck.png" id="11_54216"]
-[ext_resource type="AudioStream" uid="uid://duia2dbjhqua1" path="res://Content/LaunchingSoon/Narrator/GoodLuckWin.mp3" id="12_oi844"]
-[ext_resource type="AudioStream" uid="uid://f8x3oa14dfrp" path="res://Content/LaunchingSoon/GUI/UIEffects/StartEffect/worksound.mp3" id="13_1thnu"]
-[ext_resource type="AudioStream" uid="uid://ds6fo8ttc356k" path="res://Content/LaunchingSoon/GUI/UIEffects/StartEffect/TimeToWork.mp3" id="14_hfx3a"]
-[ext_resource type="Texture2D" uid="uid://jmjganhbmvdl" path="res://Content/LaunchingSoon/GUI/UIEffects/StartEffect/StartRubian.png" id="15_py7dd"]
+[ext_resource type="PackedScene" uid="uid://cpt2tkhkq54hh" path="res://Content/LaunchingSoon/GUI/UIEffects/FiredEffect/FiredEffect.tscn" id="6_oi844"]
+[ext_resource type="PackedScene" uid="uid://beotls8ufokl2" path="res://Content/LaunchingSoon/GUI/UIEffects/GoodLuckEffect/GoodLuckEffect.tscn" id="7_obaui"]
+[ext_resource type="PackedScene" uid="uid://b4k6tpdhfvylg" path="res://Content/LaunchingSoon/GUI/UIEffects/StartEffect/StartEffect.tscn" id="8_07q2e"]
+[ext_resource type="PackedScene" uid="uid://cb4rhbpt4uppc" path="res://Content/LaunchingSoon/GUI/UIEffects/WarningEffect/WarningEffect.tscn" id="14_54216"]
+[ext_resource type="PackedScene" uid="uid://dnww2npv55xyh" path="res://Scripts/DropGameKit/Utility/CampaignRewards/CampaignRewardsDisplay.tscn" id="14_oi844"]
+[ext_resource type="Script" uid="uid://b2qavnrlilsxc" path="res://Content/LaunchingSoon/GUI/game_end_ui.gd" id="15_1thnu"]
+[ext_resource type="AudioStream" uid="uid://gia20kjit3e0" path="res://Sounds/UI/calculatepoints.mp3" id="15_07q2e"]
+[ext_resource type="Texture2D" uid="uid://bvpufl7tjwy6q" path="res://Content/LaunchingSoon/GUI/UIEffects/FiredEffect/walkshadow.png" id="15_obaui"]
+[ext_resource type="Texture2D" uid="uid://dhkmkplauo2f7" path="res://Content/LaunchingSoon/GUI/UIEffects/FiredEffect/firedsadrubian.png" id="16_07q2e"]
+[ext_resource type="PackedScene" uid="uid://b60ee7vbwypll" path="res://Content/LaunchingSoon/GUI/UIEffects/_PlacementEffects/SloppyEffect.tscn" id="17_cj5ry"]
+[ext_resource type="PackedScene" uid="uid://ctwc1skjuoj8u" path="res://Content/LaunchingSoon/GUI/UIEffects/_PlacementEffects/DecentEffect.tscn" id="18_sm4ha"]
+[ext_resource type="PackedScene" uid="uid://vdm6apn7n80l" path="res://Content/LaunchingSoon/GUI/UIEffects/_PlacementEffects/BasedEffect.tscn" id="19_sjhri"]
+[ext_resource type="PackedScene" uid="uid://cwgp2465jmnm" path="res://Content/LaunchingSoon/GUI/UIEffects/_PlacementEffects/LegendEffect.tscn" id="20_qwewp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkdm6"]
 
-[sub_resource type="Animation" id="Animation_5dx1o"]
-resource_name = "Fired"
-length = 3.0
-tracks/0/type = "audio"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AudioStreamPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": [{
-"end_offset": 0.05,
-"start_offset": 0.0,
-"stream": ExtResource("6_ssmg0")
-}, {
-"end_offset": 0.28,
-"start_offset": 0.0,
-"stream": ExtResource("7_5dx1o")
-}],
-"times": PackedFloat32Array(0, 1.26667)
-}
-tracks/0/use_blend = true
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_obaui"]
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_uwmnw"]
-_data = {
-&"Fired": SubResource("Animation_5dx1o")
-}
-
-[sub_resource type="Animation" id="Animation_obaui"]
-resource_name = "GoodLuck"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GoodLuckRubian:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 1.79486, 1.96667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(82, 1361), Vector2(82, 543), Vector2(82, 543), Vector2(82, 1439)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GoodLuckRubian:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.266667, 0.4, 0.5, 0.666667, 0.821157, 0.954491, 1.05449, 1.22116, 1.30203, 1.43537, 1.53537, 1.70203),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1.12), Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 1), Vector2(1, 1.12), Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 1), Vector2(1, 1.12), Vector2(1, 1), Vector2(1, 1.2), Vector2(1, 1)]
-}
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AudioStreamPlayer")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("12_oi844")
-}],
-"times": PackedFloat32Array(0.1)
-}
-tracks/2/use_blend = true
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("TextureRect:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.235583, 0.265492, 0.326882, 0.380402, 0.427925, 0.457833, 0.519224, 0.572743, 0.630259, 0.660167, 0.721558, 0.775077, 0.823291, 0.853199, 0.914589, 0.968109, 1.01632, 1.04623, 1.10762, 1.16114, 1.214, 1.24391, 1.3053, 1.35882, 1.42099, 1.4509, 1.51229, 1.56581, 1.6, 1.62991, 1.6913, 1.74482, 1.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(2.5, 2.5), Vector2(2.5, 2.5), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(1.05, 1.05), Vector2(1.2, 1.2), Vector2(1.3, 1.3), Vector2(1.1, 1.1), Vector2(2.5, 2.5)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Label:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.157514, 0.210019, 1.77733, 1.96667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-611, 322), Vector2(-611, 322), Vector2(46, 322), Vector2(46, 322), Vector2(-532, 322)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Label:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.201942),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Label:visible_ratio")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.210019, 0.827961, 1.65592),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.42, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_07q2e"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GoodLuckRubian:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(82, 1361)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GoodLuckRubian:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("TextureRect:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2.5, 2.5)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Label:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-611, 322)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Label:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Label:visible_ratio")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.0416667]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1thnu"]
-_data = {
-&"GoodLuck": SubResource("Animation_obaui"),
-&"RESET": SubResource("Animation_07q2e")
-}
-
-[sub_resource type="Animation" id="Animation_pph3f"]
-resource_name = "Start"
-length = 1.5
-tracks/0/type = "audio"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AudioStreamPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": [{
-"end_offset": 1.11093,
-"start_offset": 0.0123328,
-"stream": ExtResource("13_1thnu")
-}, {
-"end_offset": 0.425661,
-"start_offset": 0.0,
-"stream": ExtResource("13_1thnu")
-}, {
-"end_offset": 0.652509,
-"start_offset": 0.414092,
-"stream": ExtResource("14_hfx3a")
-}],
-"times": PackedFloat32Array(-0.107384, 0, 0.6)
-}
-tracks/0/use_blend = true
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RubianVisual:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.266667, 0.433333, 1.3, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-731, 545), Vector2(-100, 545), Vector2(-16, 545), Vector2(731, 656)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("RubianVisual:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.612475, 0.666667, 0.733333, 0.766667, 0.816842, 0.866667, 0.933333, 0.966667, 1, 1.06667, 1.1, 1.16667, 1.2, 1.26667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1.06), Vector2(1, 1.02), Vector2(1, 1.07), Vector2(1, 1.02), Vector2(1, 1.04), Vector2(1, 1), Vector2(1, 1.06), Vector2(1, 1.02), Vector2(1, 1.07), Vector2(1, 1.02), Vector2(1, 1.04), Vector2(1, 1), Vector2(1, 1.06)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Label:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.566667, 0.666667, 1.36667, 1.48937),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(828, 304), Vector2(838, 304), Vector2(184, 304), Vector2(184, 304), Vector2(181, -298)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Label:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.449923, 0.673355),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_cj5ry"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RubianVisual:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-731, 545)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RubianVisual:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Label:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(828, 304)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Label:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_sm4ha"]
-_data = {
-&"RESET": SubResource("Animation_cj5ry"),
-&"Start": SubResource("Animation_pph3f")
-}
-
-[sub_resource type="Animation" id="Animation_ssmg0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WhistlingManager:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(732, 721)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WatchIt:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-462, 431)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WatchIt:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("WatchIt:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_7fpwu"]
-resource_name = "Warning"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WhistlingManager:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.166667, 0.7, 0.866667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(732, 721), Vector2(200, 541), Vector2(26, 584), Vector2(-75, 584), Vector2(-772, 825)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WatchIt:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.10307, 0.200715, 0.219159, 0.566667, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-462, 431), Vector2(-462, 431), Vector2(266, 431), Vector2(221.42, 431), Vector2(221.42, 431), Vector2(158, 431), Vector2(904, 431)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WatchIt:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.10307, 0.19963, 0.266897, 0.324399, 0.373222),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.619592, -0.0663225, 0.228638, 0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("WatchIt:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.19746, 0.253878, 0.341758),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1.3, 1.3)]
-}
-tracks/4/type = "audio"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AudioPlayer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("8_p3ljt")
-}],
-"times": PackedFloat32Array(0.1)
-}
-tracks/4/use_blend = true
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5dx1o"]
-_data = {
-&"RESET": SubResource("Animation_ssmg0"),
-&"Warning": SubResource("Animation_7fpwu")
-}
-
-[node name="GUI" type="Control" node_paths=PackedStringArray("admin_panel", "placement_ui", "start_screen", "win_screen", "lose_screen")]
+[node name="GUI" type="Control" node_paths=PackedStringArray("admin_panel", "campaign_reward_display", "win_screen", "lose_screen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -485,10 +32,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wc8ld")
 admin_panel = NodePath("AdminPanel")
-placement_ui = NodePath("PlacementUI")
-start_screen = NodePath("StartGameScreen")
-win_screen = NodePath("GoodLuckScreen")
-lose_screen = NodePath("FiredScreen")
+campaign_reward_display = NodePath("CampaignRewardDisplay")
+win_screen = NodePath("WinScreen")
+lose_screen = NodePath("LoseScreen")
+effect_scenes = {
+"Fired": ExtResource("6_oi844"),
+"GoodLuck": ExtResource("7_obaui"),
+"Start": ExtResource("8_07q2e"),
+"Warning": ExtResource("14_54216")
+}
+placement_effect_scenes = Array[PackedScene]([ExtResource("17_cj5ry"), ExtResource("18_sm4ha"), ExtResource("19_sjhri"), ExtResource("20_qwewp")])
 
 [node name="AdminPanel" type="Control" parent="." node_paths=PackedStringArray("progress_label", "progress_bar", "token_visual", "score_label", "warnings_container")]
 layout_mode = 1
@@ -594,7 +147,11 @@ layout_mode = 2
 texture = ExtResource("5_wc8ld")
 expand_mode = 3
 
-[node name="WinScreen" type="PanelContainer" parent="."]
+[node name="CampaignRewardDisplay" parent="." instance=ExtResource("14_oi844")]
+visible = false
+layout_mode = 1
+
+[node name="WinScreen" type="Control" parent="." node_paths=PackedStringArray("score_label", "token_visual", "action_button")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -602,15 +159,86 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("15_1thnu")
+score_label = NodePath("MarginContainer/Content/RewardsContainer/TokenContainer/Label")
+token_visual = NodePath("MarginContainer/Content/RewardsContainer/TokenContainer/TextureRect")
+action_button = NodePath("MarginContainer/Content/RewardsContainer/Button")
 
-[node name="Label" type="Label" parent="WinScreen"]
+[node name="MarginContainer" type="MarginContainer" parent="WinScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Content" type="VBoxContainer" parent="WinScreen/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Congratulate" type="VBoxContainer" parent="WinScreen/MarginContainer/Content"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="WinScreen/MarginContainer/Content/Congratulate"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
-text = "LAUNCHING NOW!"
+text = "Nicely Done!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FiredScreen" type="Control" parent="."]
+[node name="RewardsContainer" type="VBoxContainer" parent="WinScreen/MarginContainer/Content"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="WinScreen/MarginContainer/Content/RewardsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Your Total Earnings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TokenContainer" type="HBoxContainer" parent="WinScreen/MarginContainer/Content/RewardsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Label" type="Label" parent="WinScreen/MarginContainer/Content/RewardsContainer/TokenContainer" node_paths=PackedStringArray("audio_player")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "5.6K"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("4_dgxx7")
+format_mode = 1
+decimal_amount = 2
+audio_player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="WinScreen/MarginContainer/Content/RewardsContainer/TokenContainer/Label"]
+stream = ExtResource("15_07q2e")
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="TextureRect" type="TextureRect" parent="WinScreen/MarginContainer/Content/RewardsContainer/TokenContainer"]
+layout_mode = 2
+texture = ExtResource("5_wc8ld")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="WinScreen/MarginContainer/Content/RewardsContainer"]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 66
+text = "Claim"
+
+[node name="LoseScreen" type="Control" parent="." node_paths=PackedStringArray("score_label", "token_visual", "action_button")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -618,13 +246,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("15_1thnu")
+score_label = NodePath("Content/TokenRewardContainer/VBoxContainer/SeveranceContainer/Label")
+token_visual = NodePath("Content/TokenRewardContainer/VBoxContainer/SeveranceContainer/TextureRect")
+action_button = NodePath("Content/TokenRewardContainer/VBoxContainer/Button")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FiredScreen"]
-libraries = {
-&"": SubResource("AnimationLibrary_uwmnw")
-}
-
-[node name="Content" type="PanelContainer" parent="FiredScreen"]
+[node name="Background" type="PanelContainer" parent="LoseScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -632,10 +259,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Character" type="Control" parent="FiredScreen/Content"]
+[node name="Content" type="VBoxContainer" parent="LoseScreen"]
+layout_mode = 2
+offset_right = 720.0
+offset_bottom = 1280.0
+alignment = 1
+
+[node name="VisualContainer" type="PanelContainer" parent="LoseScreen/Content"]
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_obaui")
+
+[node name="Character" type="Control" parent="LoseScreen/Content/VisualContainer"]
 layout_mode = 2
 
-[node name="shadow" type="TextureRect" parent="FiredScreen/Content/Character"]
+[node name="shadow" type="TextureRect" parent="LoseScreen/Content/VisualContainer/Character"]
 modulate = Color(0.223103, 0.223103, 0.223103, 0.717647)
 layout_mode = 1
 anchors_preset = 8
@@ -644,260 +282,75 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -247.0
-offset_top = 27.0
+offset_top = 271.0
 offset_right = 247.0
-offset_bottom = 196.0
+offset_bottom = 440.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_7fpwu")
+texture = ExtResource("15_obaui")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="RubianSad" type="TextureRect" parent="FiredScreen/Content/Character"]
+[node name="RubianSad" type="TextureRect" parent="LoseScreen/Content/VisualContainer/Character"]
 layout_mode = 2
 offset_left = 20.0
 offset_top = 103.0
 offset_right = 653.0
 offset_bottom = 768.0
-texture = ExtResource("7_ssmg0")
+texture = ExtResource("16_07q2e")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="FiredScreen/Content"]
+[node name="TokenRewardContainer" type="MarginContainer" parent="LoseScreen/Content"]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoseScreen/Content/TokenRewardContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="FiredScreen/Content/VBoxContainer"]
+[node name="Label" type="Label" parent="LoseScreen/Content/TokenRewardContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 615
-
-[node name="Label" type="Label" parent="FiredScreen/Content/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 56
-text = "YOU ARE FIRED!"
+theme_override_font_sizes/font_size = 50
+text = "Your Severance Package"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FiredScreen"]
+[node name="SeveranceContainer" type="HBoxContainer" parent="LoseScreen/Content/TokenRewardContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
 
-[node name="GoodLuckScreen" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Label" type="Label" parent="LoseScreen/Content/TokenRewardContainer/VBoxContainer/SeveranceContainer" node_paths=PackedStringArray("audio_player")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "5.6K"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("4_dgxx7")
+format_mode = 1
+decimal_amount = 2
+audio_player = NodePath("AudioStreamPlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GoodLuckScreen"]
-libraries = {
-&"": SubResource("AnimationLibrary_1thnu")
-}
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="LoseScreen/Content/TokenRewardContainer/VBoxContainer/SeveranceContainer/Label"]
+stream = ExtResource("15_07q2e")
+max_polyphony = 4
+bus = &"SFX"
 
-[node name="TextureRect" type="TextureRect" parent="GoodLuckScreen"]
-layout_mode = 0
-offset_left = -161.0
-offset_top = -13.0
-offset_right = 940.07
-offset_bottom = 1295.0
-scale = Vector2(2.5, 2.5)
-pivot_offset = Vector2(550.535, 654)
-texture = ExtResource("10_uwmnw")
+[node name="TextureRect" type="TextureRect" parent="LoseScreen/Content/TokenRewardContainer/VBoxContainer/SeveranceContainer"]
+layout_mode = 2
+texture = ExtResource("5_wc8ld")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="GoodLuckRubian" type="TextureRect" parent="GoodLuckScreen"]
-layout_mode = 0
-offset_left = 82.0
-offset_top = 1439.0
-offset_right = 741.0
-offset_bottom = 2208.0
-pivot_offset = Vector2(329.5, 769)
-texture = ExtResource("11_54216")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="GoodLuckScreen"]
-layout_mode = 0
-offset_left = -532.0
-offset_top = 322.0
-offset_right = -75.0
-offset_bottom = 493.0
-theme_override_font_sizes/font_size = 61
-text = "Good luck,
-Mr. Spaceman!"
-vertical_alignment = 1
-visible_characters = 0
-visible_ratio = 0.0
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GoodLuckScreen"]
-
-[node name="StartGameScreen" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="StartGameScreen"]
-libraries = {
-&"": SubResource("AnimationLibrary_sm4ha")
-}
-
-[node name="RubianVisual" type="TextureRect" parent="StartGameScreen"]
-layout_mode = 0
-offset_left = -731.0
-offset_top = 545.0
-offset_right = -24.0
-offset_bottom = 1326.0
-pivot_offset = Vector2(353.5, 781)
-texture = ExtResource("15_py7dd")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="StartGameScreen"]
-layout_mode = 0
-offset_left = 828.0
-offset_top = 304.0
-offset_right = 1323.0
-offset_bottom = 445.0
-theme_override_font_sizes/font_size = 62
-text = "TIME TO WORK!"
-vertical_alignment = 1
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StartGameScreen"]
-
-[node name="PlacementUI" type="Control" parent="." node_paths=PackedStringArray("tier_ui_panels", "fail_panel")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_wvrxf")
-tier_ui_panels = [NodePath("SloppyEffect"), NodePath("DecentEffect"), NodePath("BasedEffect"), NodePath("LegendEffect")]
-fail_panel = NodePath("FailEffect")
-
-[node name="SloppyEffect" type="PanelContainer" parent="PlacementUI"]
-visible = false
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="PlacementUI/SloppyEffect"]
+[node name="Button" type="Button" parent="LoseScreen/Content/TokenRewardContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "SLOPPY..."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DecentEffect" type="PanelContainer" parent="PlacementUI"]
-visible = false
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="PlacementUI/DecentEffect"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "DECENT."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BasedEffect" type="PanelContainer" parent="PlacementUI"]
-visible = false
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="PlacementUI/BasedEffect"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "BASED"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="LegendEffect" type="PanelContainer" parent="PlacementUI"]
-visible = false
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="PlacementUI/LegendEffect"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "LEGEND!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="FailEffect" type="Control" parent="PlacementUI"]
-visible = false
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlacementUI/FailEffect"]
-libraries = {
-&"": SubResource("AnimationLibrary_5dx1o")
-}
-
-[node name="WatchIt" type="Label" parent="PlacementUI/FailEffect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 544.0
-offset_top = -209.0
-offset_right = 964.0
-offset_bottom = -99.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(210, 55)
-theme_override_font_sizes/font_size = 80
-text = "WATCH IT!!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WhistlingManager" type="TextureRect" parent="PlacementUI/FailEffect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -772.0
-offset_top = 825.0
-offset_right = -724.0
-offset_bottom = 282.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_dgxx7")
-stretch_mode = 5
-
-[node name="AudioPlayer" type="AudioStreamPlayer" parent="PlacementUI/FailEffect"]
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 66
+text = "Claim"

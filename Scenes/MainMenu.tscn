@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://8y8gq03rslv8" path="res://Textures/LogosAndTokens/madlads.jpg" id="23_lyxx4"]
 [ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="24_vxqsd"]
 [ext_resource type="Texture2D" uid="uid://cqad321mes0x8" path="res://Textures/LogosAndTokens/BonkLogo.png" id="25_or3ot"]
-[ext_resource type="Script" uid="uid://dpbwy1xjqctiu" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="26_rhk5y"]
+[ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="26_rhk5y"]
 [ext_resource type="Script" uid="uid://xl86n3733lsl" path="res://Scripts/Utility/timed_button.gd" id="27_smv1r"]
 [ext_resource type="Script" uid="uid://c25ievjhcwp5e" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/nft_campaign_player_manager.gd" id="28_qgddy"]
 [ext_resource type="Script" uid="uid://b6n4wtdrcrvb1" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/asset_display_system.gd" id="29_evb28"]

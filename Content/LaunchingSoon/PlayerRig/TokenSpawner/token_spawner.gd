@@ -22,7 +22,7 @@ func setup_token_pool(custom_token_visual:Texture2D=null) -> void:
 		var token:DisplayToken = token_scn.instantiate() as DisplayToken
 		add_child(token)
 		token.on_target_reached.connect(return_token_to_pool)
-		token.texture = custom_token_visual if custom_token_visual!=null else default_token_visual
+		token.set_visual(custom_token_visual if custom_token_visual!=null else default_token_visual)
 		token.visible=false
 		token_pool.append(token)
 		

@@ -7,14 +7,18 @@ var player_data:Dictionary
 
 var campaign_key:Pubkey
 
-var reward_mint_decimals:int
-var max_reward_lamports:int
+var reward_mint_decimals:int=0
+var max_reward_lamports:int=0
 
 var campaign_token:Token
 
+var max_game_score:float
+
 signal on_reward_claimed
 
-func setup_claimer(campaign_key:Pubkey, campaign_data:Dictionary, player_data:Dictionary) -> void:
+func setup_claimer(campaign_key:Pubkey, campaign_data:Dictionary, player_data:Dictionary, max_score:float) -> void:
+	max_game_score = max_score
+	
 	house_data = await ClubhouseProgram.utils.get_active_house_data()
 	if house_data.size()==0:
 		print("No active house found. Skipping setting rewards")
@@ -30,7 +34,7 @@ func setup_claimer(campaign_key:Pubkey, campaign_data:Dictionary, player_data:Di
 	max_reward_lamports = campaign_data["max_rewards_per_game"]
 
 	
-func get_token_unit_price(max_game_score:float,in_lamports:bool=true) -> float:
+func get_token_unit_price(in_lamports:bool=true) -> float:
 	var score_point_value_in_reward_lamports:int = floori(max_reward_lamports/max_game_score)
 	
 	if in_lamports:
@@ -39,7 +43,7 @@ func get_token_unit_price(max_game_score:float,in_lamports:bool=true) -> float:
 		var value_in_number:float = float(score_point_value_in_reward_lamports)/pow(10,reward_mint_decimals)
 		return round(value_in_number*pow(10,reward_mint_decimals)) / pow(10,reward_mint_decimals)
 	
-func get_token_value(score:int, in_lamports:bool=true) -> float:
+func get_token_value(score:float, in_lamports:bool=true) -> float:
 	var token_value_in_lamports:int = clamp(get_token_unit_price(true) * score,0,max_reward_lamports)
 	
 	if in_lamports:
@@ -51,6 +55,7 @@ func get_reward_token_texture() -> Texture2D:
 	if campaign_token == null:
 		return null
 	return campaign_token.image
+	
 	
 func get_max_reward() -> float:
 	return float(max_reward_lamports)/pow(10,reward_mint_decimals)

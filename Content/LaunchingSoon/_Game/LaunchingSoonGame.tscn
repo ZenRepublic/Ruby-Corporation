@@ -31,12 +31,14 @@ background_color = Color(0.771685, 0.958984, 0.966641, 1)
 sky = SubResource("Sky_2r3xa")
 tonemap_mode = 2
 
-[node name="LaunchingSoonGame" type="Node3D" node_paths=PackedStringArray("launchpad", "player_rig", "gui", "narrator")]
+[node name="LaunchingSoonGame" type="Node3D" node_paths=PackedStringArray("launchpad", "player_rig", "gui", "narrator", "reward_claimer")]
 script = ExtResource("1_105k3")
+menu_scn_path = "res://Scenes/MainMenu.tscn"
 launchpad = NodePath("Launchpad")
 player_rig = NodePath("PlayerRig")
 gui = NodePath("GUI")
 narrator = NodePath("Narrator")
+reward_claimer = NodePath("CampaignRewardClaimer")
 
 [node name="Narrator" type="Node" parent="." node_paths=PackedStringArray("audio_source")]
 script = ExtResource("7_bbao2")

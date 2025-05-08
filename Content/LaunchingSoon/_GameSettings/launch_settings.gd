@@ -1,8 +1,8 @@
 extends Node
 class_name LaunchSettings
 
-static var CARGO_TO_FULL:int = 30
-static var WARNINGS_TO_FIRE:int = 7
+static var CARGO_TO_FULL:int = 23
+static var WARNINGS_TO_FIRE:int = 3
 static var BASE_PLACEMENT_SCORE:float = 1.0
 static var PENALTY_VALUE:float = 1.0
 
@@ -11,10 +11,10 @@ static var MAX_PERFECT_PLACE_ACCURACY:float = 0.1
 static var LEGEND_PLACE_RANGE:float = 0.1
 static var LEGEND_MULTIPLIER:float = 5.0
 
-static var BASED_PLACE_RANGE:float = 0.4
+static var BASED_PLACE_RANGE:float = 0.35
 static var BASED_MULTIPLIER:float = 3.0
 
-static var DECENT_PLACE_RANGE:float = 0.8
+static var DECENT_PLACE_RANGE:float = 0.75
 static var DECENT_MULTIPLIER:float = 2.0
 
 static var SLOPPY_PLACE_RANGE:float = 1.0
@@ -41,3 +41,10 @@ static func get_score(place_tier:PLACE_TIER) -> float:
 
 static func get_max_placement_score() -> float:
 	return BASE_PLACEMENT_SCORE * LEGEND_MULTIPLIER
+	
+static func get_max_score() -> float:
+	return BASE_PLACEMENT_SCORE * LEGEND_MULTIPLIER * CARGO_TO_FULL
+	
+static func get_lose_score() -> float:
+#	half of lowest possible score achievable through victory
+	return BASE_PLACEMENT_SCORE * CARGO_TO_FULL * 0.5

@@ -2,7 +2,7 @@ extends Node
 class_name PlacementUI
 
 @export var show_time:float = 1.0
-@export var tier_ui_panels:Array[Control]
+@export var tier_ui_panels:Array[PackedScene]
 @export var fail_panel:Control
 
 var curr_active_panel:Control=null
@@ -13,12 +13,8 @@ func _ready() -> void:
 	fail_panel.visible=false
 
 func show_placement_effect(place_tier:LaunchSettings.PLACE_TIER) -> void:
-	if curr_active_panel!=null:
-		curr_active_panel.visible=false
-		
-	var tier_panel:Control = tier_ui_panels[place_tier-1]
-	tier_panel.visible=true
-	curr_active_panel = tier_panel
+	var tier_panel:Control = tier_ui_panels[place_tier-1].instantiate()
+	add_child(tier_panel)
 	
 	await get_tree().create_timer(show_time).timeout
 	
