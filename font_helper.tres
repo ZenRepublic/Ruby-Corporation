@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="FontHelper" load_steps=2 format=3 uid="uid://c6pqjnrhw51jw"]
+
+[ext_resource type="Script" uid="uid://dfknchd7wmlkd" path="res://addons/richtext2/font_helper.gd" id="1_op6q6"]
+
+[resource]
+script = ExtResource("1_op6q6")
+metadata/_custom_type_script = "uid://dfknchd7wmlkd"

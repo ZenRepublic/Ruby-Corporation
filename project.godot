@@ -44,7 +44,7 @@ mouse_cursor/custom_image_hotspot=Vector2(5, 13)
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/LineRenderer/plugin.cfg", "res://addons/PaletteTools/plugin.cfg", "res://addons/SolanaSDK/plugin.cfg", "res://addons/advanced_radial_menu/plugin.cfg", "res://addons/custom_theme_overrides/plugin.cfg", "res://addons/texture_button_colored/plugin.cfg")
+enabled=PackedStringArray("res://addons/LineRenderer/plugin.cfg", "res://addons/PaletteTools/plugin.cfg", "res://addons/SolanaSDK/plugin.cfg", "res://addons/advanced_radial_menu/plugin.cfg", "res://addons/custom_theme_overrides/plugin.cfg", "res://addons/richtext2/plugin.cfg", "res://addons/texture_button_colored/plugin.cfg")
 
 [input]
 
@@ -85,6 +85,26 @@ lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
 textures/default_filters/anisotropic_filtering_level=1
 viewport/hdr_2d=true
 anti_aliasing/screen_space_roughness_limiter/enabled=false
+
+[richer_text_label]
+
+fonts={
+&"Art-nuvo": "res://Fonts/Art-nuvo.otf",
+&"Beyblade Metal Fight Font": "res://Fonts/Beyblade Metal Fight Font.ttf",
+&"Bungee": "res://Fonts/Bungee-Regular.ttf",
+&"Dingos-Stamp_Black": "res://Fonts/Dingos-Stamp_Black.ttf",
+&"GeometrySoftProN": "res://Fonts/GeometrySoftPro-BoldN.otf",
+&"Hergiev": "res://Fonts/Hergiev.ttf",
+&"Jaywalk": "res://Fonts/Jaywalk.ttf",
+&"Kaph": "res://Fonts/Kaph-Regular.ttf",
+&"Masicu-Medium": "res://Fonts/Masicu-Medium.ttf",
+&"Prototype": "res://Fonts/Prototype.ttf",
+&"WaterLemon-5yzwa": "res://Fonts/WaterLemon-5yzwa.otf",
+&"Xirod - new rubian font": "res://Fonts/Xirod - new rubian font.otf",
+&"ZeroCool": "res://Fonts/ZeroCool.ttf",
+&"manolomono": "res://Fonts/manolomono.otf",
+&"panton.black-caps": "res://Fonts/panton.black-caps.otf"
+}
 
 [solana_sdk]
 
