@@ -1,17 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjraw1pe2akjs"]
+[gd_scene load_steps=10 format=3 uid="uid://bjraw1pe2akjs"]
 
 [ext_resource type="Script" uid="uid://de0hhjry8fvwq" path="res://Content/LaunchingSoon/CarrierDrone/carrier_drone.gd" id="1_h26ka"]
 [ext_resource type="PackedScene" uid="uid://ce6muwpheb06" path="res://Content/LaunchingSoon/CarrierDrone/Model/drone.tscn" id="2_bpedh"]
 [ext_resource type="Script" uid="uid://wumrupdj6tl1" path="res://Content/LaunchingSoon/CarrierDrone/magnet_puck.gd" id="2_guq74"]
 [ext_resource type="Script" uid="uid://cayw2jht123qt" path="res://addons/LineRenderer/line_renderer.gd" id="3_bsrqg"]
 [ext_resource type="AudioStream" uid="uid://daoder8igxlph" path="res://Content/LaunchingSoon/CarrierDrone/flyingsound.mp3" id="5_bpedh"]
+[ext_resource type="PackedScene" uid="uid://c7eqyupe33y46" path="res://Content/LaunchingSoon/CarrierDrone/puck_mesh.tscn" id="5_pwh2j"]
 
 [sub_resource type="Curve" id="Curve_ms4aa"]
 _limits = [0.0, 1.0, -1.0, 1.0]
 _data = [Vector2(-1, 1), 0.0, 0.0, 0, 0, Vector2(-0.014, 0.7), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_bpedh"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_pwh2j"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1tmj7"]
 top_radius = 0.08
@@ -29,7 +30,7 @@ pitch_range = Vector2(1.2, 1.8)
 [node name="DroneModel" parent="." instance=ExtResource("2_bpedh")]
 
 [node name="LineRenderer3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("ImmediateMesh_bpedh")
+mesh = SubResource("ImmediateMesh_pwh2j")
 skeleton = NodePath("")
 script = ExtResource("3_bsrqg")
 start_thickness = 0.01
@@ -43,7 +44,11 @@ spawn_point = NodePath("SpawnPoint")
 tether_length = 0.15
 spring_strength = 2.0
 
+[node name="PuckMesh" parent="Puck" instance=ExtResource("5_pwh2j")]
+transform = Transform3D(0.0819305, 0, 0, 0, 0.0819305, 0, 0, 0, 0.0819305, 0, -0.000689685, 0)
+
 [node name="Mesh" type="MeshInstance3D" parent="Puck"]
+visible = false
 mesh = SubResource("CylinderMesh_1tmj7")
 skeleton = NodePath("../..")
 
