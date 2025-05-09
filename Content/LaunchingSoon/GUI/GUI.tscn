@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c8h3ofhnmr4ih"]
+[gd_scene load_steps=33 format=3 uid="uid://c8h3ofhnmr4ih"]
 
 [ext_resource type="Script" uid="uid://c4fxv2bctb2up" path="res://Content/LaunchingSoon/GUI/gui.gd" id="1_wc8ld"]
 [ext_resource type="Script" uid="uid://cuhu3ktt1li8j" path="res://Content/LaunchingSoon/GUI/admin_panel.gd" id="2_wvrxf"]
@@ -15,13 +15,43 @@
 [ext_resource type="Texture2D" uid="uid://bvpufl7tjwy6q" path="res://Content/LaunchingSoon/GUI/UIEffects/FiredEffect/walkshadow.png" id="15_obaui"]
 [ext_resource type="Texture2D" uid="uid://dhkmkplauo2f7" path="res://Content/LaunchingSoon/GUI/UIEffects/FiredEffect/firedsadrubian.png" id="16_07q2e"]
 [ext_resource type="PackedScene" uid="uid://b60ee7vbwypll" path="res://Content/LaunchingSoon/GUI/UIEffects/_PlacementEffects/SloppyEffect.tscn" id="17_cj5ry"]
+[ext_resource type="Shader" uid="uid://c8052rjttj7of" path="res://Shaders/scrolling_background.gdshader" id="17_py7dd"]
+[ext_resource type="Texture2D" uid="uid://b1674uqmaday0" path="res://Textures/TransitionPatterns/9d07a564029080e7b57ac0ea84586006.jpg.png" id="18_sjhri"]
 [ext_resource type="PackedScene" uid="uid://ctwc1skjuoj8u" path="res://Content/LaunchingSoon/GUI/UIEffects/_PlacementEffects/DecentEffect.tscn" id="18_sm4ha"]
 [ext_resource type="PackedScene" uid="uid://vdm6apn7n80l" path="res://Content/LaunchingSoon/GUI/UIEffects/_PlacementEffects/BasedEffect.tscn" id="19_sjhri"]
 [ext_resource type="PackedScene" uid="uid://cwgp2465jmnm" path="res://Content/LaunchingSoon/GUI/UIEffects/_PlacementEffects/LegendEffect.tscn" id="20_qwewp"]
+[ext_resource type="Theme" uid="uid://r8jpsqetce4f" path="res://Content/LaunchingSoon/LaunchingSoonTheme.tres" id="21_qwewp"]
+[ext_resource type="Script" uid="uid://5hv4pjs1xcht" path="res://addons/richtext2/text_effects/anims/rte_fader.gd" id="22_e05qb"]
+[ext_resource type="Script" uid="uid://b61hhau76ckc3" path="res://addons/richtext2/text_effects/effects/rte_heart.gd" id="23_uefu4"]
+[ext_resource type="FontFile" uid="uid://d2qhs7spcw2sj" path="res://Fonts/WaterLemon-5yzwa.otf" id="23_vglbh"]
+[ext_resource type="Script" uid="uid://b6mbstaftpedd" path="res://addons/richtext2/rich_text_animation.gd" id="24_furhi"]
+[ext_resource type="FontFile" uid="uid://bx6xa6d2n4cys" path="res://Fonts/Dingos-Stamp_Black.otf" id="24_uefu4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkdm6"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sm4ha"]
+shader = ExtResource("17_py7dd")
+shader_parameter/scroll_speed = 0.3
+shader_parameter/angle_degrees = 90.0
+shader_parameter/tiling = Vector2(0.765, 0.395)
+shader_parameter/tint = Color(0.269695, 0.221705, 0.283405, 1)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_obaui"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_furhi"]
+bg_color = Color(0.321569, 0.266667, 0.337255, 1)
+border_width_top = 20
+border_color = Color(0.501961, 0.415686, 0.458824, 1)
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_r32iu"]
+resource_name = "fader"
+script = ExtResource("22_e05qb")
+metadata/rt = 92940810683047
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ogrfr"]
+resource_name = "heart"
+script = ExtResource("23_uefu4")
+metadata/rt = 92940810683047
 
 [node name="GUI" type="Control" node_paths=PackedStringArray("admin_panel", "campaign_reward_display", "win_screen", "lose_screen")]
 layout_mode = 3
@@ -239,7 +269,6 @@ theme_override_font_sizes/font_size = 66
 text = "Claim"
 
 [node name="LoseScreen" type="Control" parent="." node_paths=PackedStringArray("score_label", "token_visual", "action_button")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -247,17 +276,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("15_1thnu")
-score_label = NodePath("Content/TokenRewardContainer/VBoxContainer/SeveranceContainer/Label")
-token_visual = NodePath("Content/TokenRewardContainer/VBoxContainer/SeveranceContainer/TextureRect")
-action_button = NodePath("Content/TokenRewardContainer/VBoxContainer/Button")
+score_label = NodePath("Content/PanelContainer/TokenRewardContainer/VBoxContainer/SeveranceContainer/Label")
+token_visual = NodePath("Content/PanelContainer/TokenRewardContainer/VBoxContainer/SeveranceContainer/TextureRect")
+action_button = NodePath("Content/PanelContainer/TokenRewardContainer/VBoxContainer/Button")
 
-[node name="Background" type="PanelContainer" parent="LoseScreen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureRect" type="TextureRect" parent="LoseScreen"]
+material = SubResource("ShaderMaterial_sm4ha")
+layout_mode = 2
+offset_right = 720.0
+offset_bottom = 1280.0
+texture = ExtResource("18_sjhri")
+stretch_mode = 1
 
 [node name="Content" type="VBoxContainer" parent="LoseScreen"]
 layout_mode = 2
@@ -266,7 +295,7 @@ offset_bottom = 1280.0
 alignment = 1
 
 [node name="VisualContainer" type="PanelContainer" parent="LoseScreen/Content"]
-custom_minimum_size = Vector2(0, 800)
+custom_minimum_size = Vector2(0, 750)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_obaui")
 
@@ -274,17 +303,17 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_obaui")
 layout_mode = 2
 
 [node name="shadow" type="TextureRect" parent="LoseScreen/Content/VisualContainer/Character"]
-modulate = Color(0.223103, 0.223103, 0.223103, 0.717647)
+modulate = Color(0.105882, 0.0862745, 0.0901961, 0.815686)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -247.0
-offset_top = 271.0
-offset_right = 247.0
-offset_bottom = 440.0
+offset_left = -260.0
+offset_top = 179.0
+offset_right = 234.0
+offset_bottom = 348.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("15_obaui")
@@ -293,43 +322,158 @@ stretch_mode = 5
 
 [node name="RubianSad" type="TextureRect" parent="LoseScreen/Content/VisualContainer/Character"]
 layout_mode = 2
-offset_left = 20.0
-offset_top = 103.0
-offset_right = 653.0
-offset_bottom = 768.0
+offset_left = 41.0
+offset_top = 42.0
+offset_right = 618.0
+offset_bottom = 648.0
 texture = ExtResource("16_07q2e")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TokenRewardContainer" type="MarginContainer" parent="LoseScreen/Content"]
+[node name="PanelContainer" type="PanelContainer" parent="LoseScreen/Content"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme = ExtResource("21_qwewp")
+theme_override_styles/panel = SubResource("StyleBoxFlat_furhi")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LoseScreen/Content/TokenRewardContainer"]
+[node name="TokenRewardContainer" type="MarginContainer" parent="LoseScreen/Content/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
-alignment = 1
 
-[node name="Label" type="Label" parent="LoseScreen/Content/TokenRewardContainer/VBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 53)
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Your Severance Package"
-horizontal_alignment = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/bold_italics_font_size = 46
+theme_override_font_sizes/italics_font_size = 46
+theme_override_font_sizes/mono_font_size = 46
+theme_override_font_sizes/normal_font_size = 46
+theme_override_font_sizes/bold_font_size = 46
 vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_r32iu"), SubResource("RichTextEffect_ogrfr")]
+script = ExtResource("24_furhi")
+_hold = true
+progress = 1.0
+visible_character = 17
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 37, 43), Transform2D(1, 0, 0, 1, 72, 43), Transform2D(1, 0, 0, 1, 110, 43), Transform2D(1, 0, 0, 1, 145, 43), Transform2D(1, 0, 0, 1, 184, 43), Transform2D(1, 0, 0, 1, 220, 43), Transform2D(1, 0, 0, 1, 260, 43), Transform2D(1, 0, 0, 1, 300, 43), Transform2D(1, 0, 0, 1, 336, 43), Transform2D(1, 0, 0, 1, 361, 43), Transform2D(1, 0, 0, 1, 399, 43), Transform2D(1, 0, 0, 1, 435, 43), Transform2D(1, 0, 0, 1, 474, 43), Transform2D(1, 0, 0, 1, 514, 43), Transform2D(1, 0, 0, 1, 550, 43), Transform2D(1, 0, 0, 1, 588, 43)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(34, 33), Vector2(40, 33), Vector2(34, 33), Vector2(37, 33), Vector2(38, 33), Vector2(39, 33), Vector2(38, 33), Vector2(34, 33), Vector2(0, 33), Vector2(37, 33), Vector2(38, 33), Vector2(38, 33), Vector2(38, 33), Vector2(38, 33), Vector2(36, 33), Vector2(34, 33)])
+_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_forced_finish_delay = -0.0402778
+default_wait_time = 1.0
+play_on_bbcode = true
+play_speed = 30.0
+fade_out = false
+fade_in_speed = 10.0
+fade_out_speed = 120.0
+ctc_offset = Vector2(1, -0.5)
+ctc_on_finished = false
+ctc_on_wait = false
+shortcut_expression = true
+shortcut_bookmark = true
+signal_quotes = true
+signal_stars = true
+bbcode = "[heart]SEVERANCE PACKAGE[]"
+effects = 2
+alignment = 0
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "Kaph"
+font_auto_setup = true
+font_size = 46
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 1.0
+shadow_outline_size = 0.1
+outline_size = 15
+outline_mode = 1
+outline_adjust = 1.0
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://b6mbstaftpedd"
+metadata/rand = Array[int]([891084000, 1633388549, 313669499, 892128309, 4085572298, 4029374625, 2645998053, 848920406, 3823792753, 1779272538, 4241242816, 3106351459, 3615967969, 2847245693, 3025634313, 2094824905, 3613225997])
 
-[node name="SeveranceContainer" type="HBoxContainer" parent="LoseScreen/Content/TokenRewardContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("23_vglbh")
+theme_override_font_sizes/font_size = 30
+text = "You might not be the right fit for us...
+Even so, please accept the payment for your wasted time.
+
+Best regards,"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SeveranceContainer" type="HBoxContainer" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 30
-alignment = 1
 
-[node name="Label" type="Label" parent="LoseScreen/Content/TokenRewardContainer/VBoxContainer/SeveranceContainer" node_paths=PackedStringArray("audio_player")]
+[node name="TextureRect" type="TextureRect" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer/SeveranceContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "5.6K"
+texture = ExtResource("5_wc8ld")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer/SeveranceContainer" node_paths=PackedStringArray("audio_player")]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.933333, 0.898039, 0.639216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("24_uefu4")
+theme_override_font_sizes/font_size = 60
+text = "5.5K"
 horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("4_dgxx7")
@@ -337,20 +481,14 @@ format_mode = 1
 decimal_amount = 2
 audio_player = NodePath("AudioStreamPlayer")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="LoseScreen/Content/TokenRewardContainer/VBoxContainer/SeveranceContainer/Label"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer/SeveranceContainer/Label"]
 stream = ExtResource("15_07q2e")
 max_polyphony = 4
 bus = &"SFX"
 
-[node name="TextureRect" type="TextureRect" parent="LoseScreen/Content/TokenRewardContainer/VBoxContainer/SeveranceContainer"]
-layout_mode = 2
-texture = ExtResource("5_wc8ld")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Button" type="Button" parent="LoseScreen/Content/TokenRewardContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 66
-text = "Claim"
+size_flags_horizontal = 8
+theme = ExtResource("21_qwewp")
+text = "CLAIM"
