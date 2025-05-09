@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://mshskasj5e5j"]
+[gd_scene load_steps=5 format=3 uid="uid://bakwei0jiw7b2"]
 
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="1_tsgya"]
-[ext_resource type="Script" uid="uid://bpi15akveb7al" path="res://Scripts/DropGameKit/Utility/simple_select_account.gd" id="2_kldxd"]
-[ext_resource type="FontFile" uid="uid://bngvp83jfv5b1" path="res://Fonts/Jaywalk.ttf" id="3_ayt43"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="1_11wr0"]
+[ext_resource type="Script" uid="uid://bpi15akveb7al" path="res://Scripts/DropGameKit/Utility/simple_select_account.gd" id="2_bvspj"]
+[ext_resource type="FontFile" uid="uid://bngvp83jfv5b1" path="res://Fonts/Jaywalk.ttf" id="3_342xa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2xnnd"]
 
@@ -10,16 +10,16 @@
 custom_minimum_size = Vector2(450, 70)
 offset_right = 300.0
 offset_bottom = 50.0
-theme = ExtResource("1_tsgya")
+theme = ExtResource("1_11wr0")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2xnnd")
-script = ExtResource("2_kldxd")
+script = ExtResource("2_bvspj")
 label = NodePath("MarginContainer/Label")
-label_dict_field = "house_name"
+label_dict_field = "campaign_name"
 button = NodePath("Button")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
-theme = ExtResource("1_tsgya")
+theme = ExtResource("1_11wr0")
 theme_type_variation = &"ButtonFlat"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -32,9 +32,9 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
-theme = ExtResource("1_tsgya")
+theme = ExtResource("1_11wr0")
 theme_override_colors/font_color = Color(0.996078, 0.901961, 0.517647, 1)
-theme_override_fonts/font = ExtResource("3_ayt43")
+theme_override_fonts/font = ExtResource("3_342xa")
 text = "Big Diggas Devnet"
 horizontal_alignment = 1
 vertical_alignment = 1

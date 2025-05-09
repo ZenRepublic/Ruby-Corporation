@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ClubhouseGig" load_steps=3 format=3 uid="uid://bmg3lqei2j5ka"]
+
+[ext_resource type="Texture2D" uid="uid://ci3vupbpeqisu" path="res://Textures/LogosAndTokens/LaunchingSoonLogo.png" id="1_tvwpv"]
+[ext_resource type="Script" uid="uid://djyqvwe53sm87" path="res://Scripts/DropGameKit/Utility/GigManager/Resources/gig_resource.gd" id="2_tvwpv"]
+
+[resource]
+script = ExtResource("2_tvwpv")
+title = "LAUNCHING SOON"
+tag = "3D STACKER GAME"
+description = "Build a rocket by dropping and stacking its parts. 
+The more accurate, the more you earn!"
+visual = ExtResource("1_tvwpv")
+mainnet_house_id = "FcxGPktM2MJJ9qTxwiEVKJxHTpvatoFawKGq46SJxviG"
+devnet_house_id = "9kkwc5h73FZynTBjnM6hrMNviBReqGVLN8sumCQio57t"
+link_to_game = ""
+path_to_game_scn = "uid://br1uqoo22tbid"
+metadata/_custom_type_script = "uid://djyqvwe53sm87"

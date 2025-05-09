@@ -14,7 +14,7 @@ func load_vaults(amount_to_load:int=100) -> void:
    #offset 8 by default (bump), and 1 for identity type. Also get only players from specific house
 	var filter:Array = [
 		{"memcmp" : { "offset":9, "bytes": SolanaService.wallet.get_pubkey().to_string()}},
-		{"memcmp" : { "offset":73, "bytes": ClubhouseProgram.utils.get_active_house_key().to_string()}}
+		#{"memcmp" : { "offset":73, "bytes": ClubhouseProgram.utils.get_active_house_key().to_string()}}
 	]	
 	#vault_display_system.set_sort_data("time_span.start_time",false,amount_to_load)
 	vault_display_system.set_list(ClubhouseProgram.get_program(),"CampaignPlayer",filter,amount_to_load,false)

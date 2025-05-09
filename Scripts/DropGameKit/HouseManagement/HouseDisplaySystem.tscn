@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cecstunciplh3"]
+[gd_scene load_steps=14 format=3 uid="uid://cecstunciplh3"]
 
 [ext_resource type="Script" uid="uid://bsjpys1p766y8" path="res://Scripts/DropGameKit/HouseManagement/house_admin_system.gd" id="1_y2rv2"]
 [ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="2_wkb7b"]
@@ -11,6 +11,9 @@
 [ext_resource type="Script" uid="uid://cg67p6ivwwuxa" path="res://addons/SolanaSDK/Scripts/Utility/Input/data_input_system.gd" id="9_1lfvl"]
 [ext_resource type="Script" uid="uid://cja6e8dxjd81x" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="10_mkyy3"]
 [ext_resource type="Script" uid="uid://kegyb1m0ov6c" path="res://Scripts/DropGameKit/HouseManagement/house_creator.gd" id="11_uqs2a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6y72"]
+bg_color = Color(0, 0.443137, 0.439216, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1s1dl"]
 
@@ -40,7 +43,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"PanelNeutral"
+theme_override_styles/panel = SubResource("StyleBoxFlat_a6y72")
 
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -53,7 +56,7 @@ grow_vertical = 2
 [node name="Header" type="PanelContainer" parent="Content"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"PanelFlatAlt"
+theme_type_variation = &"PanelFlat"
 
 [node name="MarginContainer" type="MarginContainer" parent="Content/Header"]
 layout_mode = 2
@@ -64,7 +67,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Content/Header/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 50
 
 [node name="TextureButton" type="TextureButton" parent="Content/Header/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
@@ -79,9 +82,8 @@ stretch_mode = 5
 [node name="Label" type="Label" parent="Content/Header/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"HeaderLarge"
-theme_override_font_sizes/font_size = 40
-text = "House Manager"
+theme_type_variation = &"HeaderMedium"
+text = "GAME MANAGER"
 
 [node name="LoadingScreen" type="PanelContainer" parent="Content"]
 visible = false
@@ -99,8 +101,8 @@ alignment = 1
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
 theme_type_variation = &"HeaderMedium"
-theme_override_font_sizes/font_size = 70
-text = "Loading"
+theme_override_font_sizes/font_size = 131
+text = "LOADING"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -108,12 +110,12 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_ph3hf")
-theme_override_font_sizes/font_size = 35
 text = "Please wait..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HouseSelector" type="MarginContainer" parent="Content" node_paths=PackedStringArray("container")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
@@ -129,10 +131,11 @@ layout_mode = 2
 theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Content/HouseSelector/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"HeaderMedium"
-text = "YOUR HOUSES"
+text = "Create new Drop Games and edit their settings."
+autowrap_mode = 2
 
 [node name="HouseDisplaySystem" type="PanelContainer" parent="Content/HouseSelector/VBoxContainer"]
 layout_mode = 2
@@ -141,10 +144,10 @@ theme = ExtResource("4_ph3hf")
 
 [node name="MarginContainer" type="MarginContainer" parent="Content/HouseSelector/VBoxContainer/HouseDisplaySystem"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Content/HouseSelector/VBoxContainer/HouseDisplaySystem/MarginContainer"]
 layout_mode = 2
@@ -156,19 +159,17 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="HouseSelectSimple" parent="Content/HouseSelector/VBoxContainer/HouseDisplaySystem/MarginContainer/ScrollContainer/HousesList" instance=ExtResource("6_srudh")]
-visible = false
 layout_mode = 2
 script = null
 
 [node name="CreateNewButton" type="Button" parent="Content/HouseSelector/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"ButtonAlt"
-text = "Create new..."
+theme_type_variation = &"ButtonFlatAlt"
+text = "CREATE NEW..."
 
 [node name="HouseManager" type="MarginContainer" parent="Content" node_paths=PackedStringArray("house_name_label", "active_campaigns_label", "total_campaigns_label", "unique_players_label", "house_fees_label", "sol_fees_label", "house_edit_settings")]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -187,7 +188,7 @@ house_edit_settings = NodePath("VBoxContainer/EditableSettings")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Content/HouseManager"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 30
 
 [node name="Buttons" type="HBoxContainer" parent="Content/HouseManager/VBoxContainer"]
 layout_mode = 2
@@ -198,10 +199,8 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"ButtonFlat"
-theme_override_font_sizes/font_size = 30
-text = "Back
-"
+theme_type_variation = &"ButtonFlatAlt"
+text = "BACK"
 
 [node name="DeleteHouseButton2" type="Button" parent="Content/HouseManager/VBoxContainer/Buttons"]
 custom_minimum_size = Vector2(320, 70)
@@ -209,18 +208,18 @@ layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("4_ph3hf")
 theme_type_variation = &"ButtonFlatAlert"
-text = "Delete HOUSE"
+text = "DELETE HOUSE"
 
 [node name="NameContainer" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 10
 
 [node name="HouseName" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"HeaderSmall"
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 60
 text = "BIG DIGGAS HOUSE"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HouseStats" type="HBoxContainer" parent="Content/HouseManager/VBoxContainer/NameContainer"]
@@ -261,8 +260,8 @@ vertical_alignment = 1
 [node name="Campaigns" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer/ActiveCampaigns"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"HeaderMedium"
-theme_override_colors/font_color = Color(1, 0.772549, 0.352941, 1)
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 60
 text = "42"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -283,8 +282,8 @@ vertical_alignment = 1
 [node name="TotalCampaigns" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer/TotalCampaigns"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"HeaderMedium"
-theme_override_colors/font_color = Color(1, 0.772549, 0.352941, 1)
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 60
 text = "651"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -305,8 +304,8 @@ vertical_alignment = 1
 [node name="TokensLabel2" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/HouseStatsContainer/MarginContainer/HBoxContainer/UniquePlayers"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"HeaderMedium"
-theme_override_colors/font_color = Color(1, 0.772549, 0.352941, 1)
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 60
 text = "61,8K"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -317,19 +316,18 @@ decimal_amount = 1
 [node name="CollectedFees" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 30
 alignment = 1
 
 [node name="FeesText" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"HeaderSmall"
-theme_override_font_sizes/font_size = 28
-text = "Collected Fees"
+text = "COLLECTED FEES"
 
 [node name="HouseFees" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees/HouseFees"]
 layout_mode = 2
@@ -340,14 +338,14 @@ vertical_alignment = 1
 [node name="HouseFeesCollected" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees/HouseFees"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(1, 0.384314, 0.352941, 1)
+theme_type_variation = &"LabelSpecial"
 text = "2.8 SOL"
 vertical_alignment = 1
 
 [node name="SolFees" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees/SolFees"]
 layout_mode = 2
@@ -358,16 +356,14 @@ vertical_alignment = 1
 [node name="SolFeesCollected" type="Label" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees/SolFees"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(1, 0.384314, 0.352941, 1)
+theme_type_variation = &"LabelSpecial"
 text = "0.3 SOL"
 vertical_alignment = 1
 
 [node name="ClaimFeesButton" type="Button" parent="Content/HouseManager/VBoxContainer/NameContainer/HouseStats/CollectedFees"]
 custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 10
+size_flags_vertical = 2
 theme = ExtResource("4_ph3hf")
 text = "Claim All"
 
@@ -387,7 +383,8 @@ input_fields = {
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
 theme_type_variation = &"HeaderMedium"
-text = "HOUSE SETTINGS"
+theme_override_font_sizes/font_size = 60
+text = "GAME SETTINGS"
 
 [node name="Oracle" type="VBoxContainer" parent="Content/HouseManager/VBoxContainer/EditableSettings"]
 layout_mode = 2
@@ -399,6 +396,7 @@ theme = ExtResource("4_ph3hf")
 text = "Oracle Key"
 
 [node name="OracleKeyInputField" type="LineEdit" parent="Content/HouseManager/VBoxContainer/EditableSettings/Oracle"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
 theme_override_colors/font_outline_color = Color(0.788235, 0.45098, 0.45098, 1)
@@ -439,6 +437,7 @@ theme = ExtResource("4_ph3hf")
 text = "Standard"
 
 [node name="CampaignCreationFeeInputField" type="LineEdit" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignCreationFee"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("4_ph3hf")
@@ -460,7 +459,7 @@ theme = ExtResource("4_ph3hf")
 text = "Manager"
 
 [node name="CampaignManagerDiscountInputField" type="LineEdit" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignManagerDiscount"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("4_ph3hf")
@@ -496,6 +495,7 @@ theme = ExtResource("4_ph3hf")
 text = "Claim Fee"
 
 [node name="ClaimFeeInputField" type="LineEdit" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/HouseFees/FeeTypes/ClaimFee"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("4_ph3hf")
@@ -516,6 +516,7 @@ theme = ExtResource("4_ph3hf")
 text = "reward tax %"
 
 [node name="RewardTaxInputField" type="LineEdit" parent="Content/HouseManager/VBoxContainer/EditableSettings/FeesContainer/HouseFees/FeeTypes/RewardTax"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("4_ph3hf")
@@ -567,7 +568,7 @@ custom_minimum_size = Vector2(180, 70)
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("4_ph3hf")
-theme_type_variation = &"ButtonFlat"
+theme_type_variation = &"ButtonFlatAlt"
 text = "Back
 "
 
@@ -581,10 +582,10 @@ layout_mode = 2
 [node name="HouseName" type="Label" parent="Content/HouseCreator/Content/GeneralSettings/Name"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_override_font_sizes/font_size = 28
 text = "House Name"
 
 [node name="HouseNameInputField" type="LineEdit" parent="Content/HouseCreator/Content/GeneralSettings/Name"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
 theme_override_colors/font_outline_color = Color(0.788235, 0.45098, 0.45098, 1)
@@ -600,10 +601,10 @@ layout_mode = 2
 [node name="OracleKey" type="Label" parent="Content/HouseCreator/Content/GeneralSettings/Oracle"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_override_font_sizes/font_size = 28
-text = "Oracle Key (Extra signer for security)"
+text = "Oracle Key (Extra signer)"
 
 [node name="OracleKeyInputField" type="LineEdit" parent="Content/HouseCreator/Content/GeneralSettings/Oracle"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
 theme_override_colors/font_outline_color = Color(0.788235, 0.45098, 0.45098, 1)
@@ -621,10 +622,10 @@ layout_mode = 2
 [node name="ManagerCollection" type="Label" parent="Content/HouseCreator/Content/GeneralSettings/ManagerCollection2"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_override_font_sizes/font_size = 28
 text = "Manager Collection"
 
 [node name="ManagerCollectionInputField" type="LineEdit" parent="Content/HouseCreator/Content/GeneralSettings/ManagerCollection2"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
 text = "9pg23GZKceX1pfVCwG1cfWXG2qJknbhejWGqkuH8hYY8"
@@ -645,10 +646,10 @@ layout_mode = 2
 [node name="MonetizationSettings" type="Label" parent="Content/HouseCreator/Content/MonetizationSettings/HouseCurrency"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_override_font_sizes/font_size = 28
 text = "House Currency Token Key (Empty for SOL)"
 
 [node name="HouseCurrencyInputField" type="LineEdit" parent="Content/HouseCreator/Content/MonetizationSettings/HouseCurrency"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
 placeholder_text = "Enter House Currency Key"
@@ -664,7 +665,7 @@ theme_override_constants/separation = 20
 
 [node name="MineCreationFee" type="VBoxContainer" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 30
 
 [node name="CREATIONFEE" type="Label" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/MineCreationFee"]
 custom_minimum_size = Vector2(300, 0)
@@ -687,6 +688,7 @@ theme = ExtResource("4_ph3hf")
 text = "Standard"
 
 [node name="CampaignCreationFeeInputField" type="LineEdit" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignCreationFee"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("4_ph3hf")
@@ -709,7 +711,7 @@ theme = ExtResource("4_ph3hf")
 text = "Manager"
 
 [node name="CampaignManagerDiscountInputField" type="LineEdit" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/MineCreationFee/FeeTypes/CampaignManagerDiscount"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("4_ph3hf")
@@ -724,12 +726,11 @@ max_value = -1.0
 [node name="HouseFees" type="VBoxContainer" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 30
 
 [node name="HouseFeesLabel" type="Label" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/HouseFees"]
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-theme_override_font_sizes/font_size = 28
 text = "House SOL Fees"
 
 [node name="FeeTypes" type="HBoxContainer" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/HouseFees"]
@@ -747,6 +748,7 @@ theme = ExtResource("4_ph3hf")
 text = "Claim Fee"
 
 [node name="ClaimFeeInputField" type="LineEdit" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/HouseFees/FeeTypes/ClaimFee"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("4_ph3hf")
@@ -768,6 +770,7 @@ theme = ExtResource("4_ph3hf")
 text = "reward tax %"
 
 [node name="RewardTaxInputField" type="LineEdit" parent="Content/HouseCreator/Content/MonetizationSettings/FeesContainer/HouseFees/FeeTypes/RewardTax"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("4_ph3hf")

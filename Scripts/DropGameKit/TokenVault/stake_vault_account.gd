@@ -1,6 +1,7 @@
 extends AccountDisplayEntry
 class_name StakeVaultEntry
 
+@export var house_name_label:Label
 @export var campaign_name_label:Label
 @export var stake_token_displayable:DisplayableAsset
 
@@ -24,9 +25,11 @@ func setup_account_entry(id:String,account_data:Dictionary,index:int) -> void:
 	if account_data.size() == 0 or account_data["stake_info"] == null:
 		self.visible=false
 		return
+		
+	var house_data:Dictionary = await SolanaService.fetch_program_account_of_type(ClubhouseProgram.get_program(),"House",account_data["house"])
+	house_name_label.text = house_data["house_name"]
 	
 	stake_data = account_data["stake_info"]
-		
 	campaign_name_label.text = stake_data["campaign_name"]
 	
 	var stake_token:Token = await SolanaService.asset_manager.get_asset_from_mint(stake_data["staked_mint"],true)

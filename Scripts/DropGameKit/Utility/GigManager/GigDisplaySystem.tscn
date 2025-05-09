@@ -1,0 +1,236 @@
+[gd_scene load_steps=13 format=3 uid="uid://wg3fgu8qsxb1"]
+
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="1_78f2a"]
+[ext_resource type="Script" uid="uid://tt8vtkx6a7qs" path="res://Scripts/DropGameKit/Utility/GigManager/gig_display.gd" id="1_l6ibn"]
+[ext_resource type="Texture2D" uid="uid://ci3vupbpeqisu" path="res://Textures/LogosAndTokens/LaunchingSoonLogo.png" id="3_5bpuu"]
+[ext_resource type="Script" uid="uid://w7ftxsbvwiax" path="res://addons/SolanaSDK/Scripts/Utility/linked_button.gd" id="4_lfsvt"]
+[ext_resource type="AudioStream" uid="uid://cojs82uu73ctv" path="res://Sounds/UI/buttonpress.mp3" id="5_3ihgx"]
+[ext_resource type="Texture2D" uid="uid://bouy62vdktsrh" path="res://Textures/Socials/Twittericon.png" id="6_ls4qp"]
+[ext_resource type="Script" uid="uid://bwchk1fr718eh" path="res://addons/texture_button_colored/texture_button_colored.gd" id="7_nbtgq"]
+[ext_resource type="Texture2D" uid="uid://br8u2jj3e2hqp" path="res://Textures/Socials/DiscordIcon.png" id="8_4aq6u"]
+[ext_resource type="Texture2D" uid="uid://bdjw50vivwoew" path="res://Textures/Icons/CloseIcon.PNG" id="9_8ts0c"]
+[ext_resource type="Script" uid="uid://d27go0wrna3kn" path="res://addons/SolanaSDK/Scripts/NFTGating/address_button_lock.gd" id="9_l6ibn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oor3o"]
+bg_color = Color(0, 0.443137, 0.439216, 0.945098)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwpoy"]
+
+[node name="GigDisplaySystem" type="Control" node_paths=PackedStringArray("title_label", "tag_label", "description_label", "gig_visual", "create_campaign_button", "view_campaigns_button", "external_visit_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6ibn")
+title_label = NodePath("MarginContainer/GameDisplay/Content/GameDetails/TitleContainer/Title/GameTitle")
+tag_label = NodePath("MarginContainer/GameDisplay/Content/GameDetails/TitleContainer/Tag")
+description_label = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Description")
+gig_visual = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Logo")
+create_campaign_button = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Actions/CreateCampaignButton")
+view_campaigns_button = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Actions/ViewCampaignsButton")
+external_visit_button = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Actions/ExternalGameButton")
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oor3o")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GameDisplay" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_78f2a")
+
+[node name="Content" type="MarginContainer" parent="MarginContainer/GameDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GameDetails" type="VBoxContainer" parent="MarginContainer/GameDisplay/Content"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Logo" type="TextureRect" parent="MarginContainer/GameDisplay/Content/GameDetails"]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 2
+texture = ExtResource("3_5bpuu")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TitleContainer" type="VBoxContainer" parent="MarginContainer/GameDisplay/Content/GameDetails"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="HBoxContainer" parent="MarginContainer/GameDisplay/Content/GameDetails/TitleContainer"]
+layout_mode = 2
+
+[node name="GameTitle" type="Label" parent="MarginContainer/GameDisplay/Content/GameDetails/TitleContainer/Title"]
+layout_mode = 2
+theme = ExtResource("1_78f2a")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 70
+text = "LAUNCHING SOON"
+
+[node name="SocialButtons" type="HBoxContainer" parent="MarginContainer/GameDisplay/Content/GameDetails/TitleContainer/Title"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 10
+
+[node name="Twitter" type="PanelContainer" parent="MarginContainer/GameDisplay/Content/GameDetails/TitleContainer/Title/SocialButtons" node_paths=PackedStringArray("button")]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qwpoy")
+script = ExtResource("4_lfsvt")
+button = NodePath("Button")
+link = "https://x.com/RubyCorporation"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/GameDisplay/Content/GameDetails/TitleContainer/Title/SocialButtons/Twitter"]
+stream = ExtResource("5_3ihgx")
+
+[node name="Button" type="TextureButton" parent="MarginContainer/GameDisplay/Content/GameDetails/TitleContainer/Title/SocialButtons/Twitter"]
+self_modulate = Color(0.0627451, 0.12549, 0.223529, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("6_ls4qp")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_nbtgq")
+theme_override_colors/icon_normal_color = Color(0.0627451, 0.12549, 0.223529, 1)
+theme_override_colors/icon_pressed_color = Color(0.741176, 0.803922, 0.901961, 1)
+theme_override_colors/icon_hover_color = Color(0.254902, 0.290196, 0.415686, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.741176, 0.803922, 0.901961, 1)
+theme_override_colors/icon_disabled_color = Color(0.0627451, 0.12549, 0.223529, 0.705882)
+
+[node name="Discord" type="PanelContainer" parent="MarginContainer/GameDisplay/Content/GameDetails/TitleContainer/Title/SocialButtons" node_paths=PackedStringArray("button")]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qwpoy")
+script = ExtResource("4_lfsvt")
+button = NodePath("Button")
+link = "https://discord.gg/dTKMjfAW8W"
+
+[node name="Button" type="TextureButton" parent="MarginContainer/GameDisplay/Content/GameDetails/TitleContainer/Title/SocialButtons/Discord"]
+self_modulate = Color(0.639216, 0.156863, 0.345098, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("8_4aq6u")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_nbtgq")
+theme_override_colors/icon_normal_color = Color(0.639216, 0.156863, 0.345098, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(0.8, 0.258824, 0.368627, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(0.380392, 0.0941176, 0.317647, 0.6)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/GameDisplay/Content/GameDetails/TitleContainer/Title/SocialButtons/Discord"]
+stream = ExtResource("5_3ihgx")
+
+[node name="Tag" type="Label" parent="MarginContainer/GameDisplay/Content/GameDetails/TitleContainer"]
+layout_mode = 2
+theme = ExtResource("1_78f2a")
+theme_type_variation = &"LabelInverted"
+theme_override_font_sizes/font_size = 35
+text = "3D STACKER GAME"
+
+[node name="Description" type="Label" parent="MarginContainer/GameDisplay/Content/GameDetails"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = ExtResource("1_78f2a")
+theme_type_variation = &"LabelInverted"
+text = "Build a rocket by dropping and stacking its parts. 
+The more accurate, the more you earn!"
+autowrap_mode = 2
+
+[node name="Actions" type="VBoxContainer" parent="MarginContainer/GameDisplay/Content/GameDetails"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CreateCampaignButton" type="Button" parent="MarginContainer/GameDisplay/Content/GameDetails/Actions"]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("1_78f2a")
+text = "CREATE NEW"
+script = ExtResource("9_l6ibn")
+no_auth_text = "LOGIN TO CREATE"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/GameDisplay/Content/GameDetails/Actions/CreateCampaignButton"]
+stream = ExtResource("5_3ihgx")
+
+[node name="ViewCampaignsButton" type="Button" parent="MarginContainer/GameDisplay/Content/GameDetails/Actions"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_78f2a")
+theme_type_variation = &"ButtonFlat"
+text = "VIEW ACTIVE CAMPAIGNS"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/GameDisplay/Content/GameDetails/Actions/ViewCampaignsButton"]
+stream = ExtResource("5_3ihgx")
+
+[node name="ExternalGameButton" type="Button" parent="MarginContainer/GameDisplay/Content/GameDetails/Actions" node_paths=PackedStringArray("button")]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_78f2a")
+theme_type_variation = &"ButtonFlat"
+text = "VISIT SITE"
+script = ExtResource("4_lfsvt")
+button = NodePath(".")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/GameDisplay/Content/GameDetails/Actions/ExternalGameButton"]
+stream = ExtResource("5_3ihgx")
+
+[node name="CloseButton" type="Control" parent="MarginContainer/GameDisplay"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/GameDisplay/CloseButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(48, 48)
+texture_normal = ExtResource("9_8ts0c")
+texture_pressed = ExtResource("9_8ts0c")
+texture_hover = ExtResource("9_8ts0c")
+texture_disabled = ExtResource("9_8ts0c")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="MarginContainer/GameDisplay/Content/GameDetails/Actions/CreateCampaignButton" to="." method="create_campaign"]
+[connection signal="pressed" from="MarginContainer/GameDisplay/Content/GameDetails/Actions/ViewCampaignsButton" to="." method="select"]
+[connection signal="pressed" from="MarginContainer/GameDisplay/CloseButton/TextureButton" to="." method="close"]

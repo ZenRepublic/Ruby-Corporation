@@ -1,6 +1,8 @@
 extends Node
 class_name CampaignCreator
 
+@export var screen_manager:ScreenManager
+
 @export var general_settings:DataInputSystem
 @export var player_settings_manager:TabContainer
 @export var player_settings:Array[DataInputSystem]
@@ -29,6 +31,8 @@ signal on_campaign_created
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	screen_manager.switch_active_panel(0)
+	
 	max_fund_button.pressed.connect(set_max_fund)	
 	token_selector.on_selected.connect(set_mine_token)
 	manager_selector.on_selected.connect(update_manager_selection)
@@ -39,9 +43,17 @@ func _ready() -> void:
 		general_settings.on_fields_updated.connect(handle_input_update)
 		for input_system in player_settings:
 			input_system.on_fields_updated.connect(handle_input_update)
+			
+	house_data = await ClubhouseProgram.utils.get_active_house_data()
+	if house_data.size()==0:
+		print("No active house found. Skipping setting up campaign creator")
+		return	
+	await setup_creator()
 	
-func setup_creator(data:Dictionary) -> void:
-	house_data = data
+	screen_manager.switch_active_panel(1)
+	
+	
+func setup_creator() -> void:
 	var house_config:Dictionary = house_data["config"]
 	var decimals = await SolanaService.get_token_decimals(house_data["house_currency"].to_string())
 	mine_creation_fee = house_config["campaign_creation_fee"]/pow(10,decimals)
@@ -141,4 +153,7 @@ func get_campaign_end_timestamp(start_timestamp:int,campaign_duration_in_hours:i
 	var duration_in_seconds:int = campaign_duration_in_hours*3600
 	var end_timestamp:int = floori(start_timestamp + duration_in_seconds)
 	return end_timestamp
+	
+func close() -> void:
+	queue_free()
 	

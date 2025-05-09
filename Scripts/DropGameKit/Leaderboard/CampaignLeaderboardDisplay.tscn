@@ -1,20 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://4urmdr7smqjk"]
+[gd_scene load_steps=6 format=3 uid="uid://4urmdr7smqjk"]
 
 [ext_resource type="Script" uid="uid://bw7bp5xiv4j8l" path="res://Scripts/DropGameKit/Leaderboard/campaign_leaderboard.gd" id="1_migni"]
-[ext_resource type="Texture2D" uid="uid://dqvdg68yigsg6" path="res://Textures/GUI/Leaderboard/Leaderboard box.png" id="2_7c7p7"]
-[ext_resource type="Texture2D" uid="uid://ckblyelopvfgs" path="res://Textures/GUI/Leaderboard/Leaderboard title txt.png" id="3_mtoiy"]
 [ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="4_e0sq0"]
 [ext_resource type="PackedScene" uid="uid://ebyxtunpa1fd" path="res://Scripts/DropGameKit/Leaderboard/LeaderboardEntry.tscn" id="5_a3o4v"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="6_asclf"]
-[ext_resource type="Texture2D" uid="uid://dg1ccxmsneddc" path="res://Textures/GUI/Leaderboard/Rock bot left.png" id="7_m1dyg"]
-[ext_resource type="Texture2D" uid="uid://c0rqd450ibi7c" path="res://Textures/GUI/Leaderboard/Rock bot right.png" id="8_hxcw0"]
-
-
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1k8r8"]
-bg_color = Color(0.223529, 0.0352941, 0.278431, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0i2jj"]
+bg_color = Color(0, 0.443137, 0.439216, 1)
 
 [node name="CampaignLeaderboardDisplay" type="Control" node_paths=PackedStringArray("leaderboard_display_system")]
 layout_mode = 3
@@ -25,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("1_migni")
-leaderboard_display_system = NodePath("LeaderboardDisplay")
+leaderboard_display_system = NodePath("MarginContainer/VBoxContainer/LeaderboardDisplay")
 
 [node name="Background" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -36,126 +28,79 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1k8r8")
 
-[node name="BoardBG" type="TextureRect" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -52.0
-offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 1.165)
-texture = ExtResource("2_7c7p7")
-expand_mode = 4
-stretch_mode = 5
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
-[node name="BoardTop" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -360.0
-offset_top = 149.0
-offset_right = 359.0
-offset_bottom = 369.0
-grow_horizontal = 2
-texture = ExtResource("3_mtoiy")
-expand_mode = 1
-stretch_mode = 5
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
 
-[node name="LeaderboardDisplay" type="PanelContainer" parent="." node_paths=PackedStringArray("container", "no_entries_overlay")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -321.0
-offset_top = -200.0
-offset_right = 316.0
-offset_bottom = 455.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_0i2jj")
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_asclf")
+theme_type_variation = &"HeaderLarge"
+text = "THE LEADERBOARD"
+vertical_alignment = 1
+
+[node name="Title2" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme = ExtResource("6_asclf")
+text = "Best 10 individual players, based on their cumulative rewards earned over the course of campaign
+
+Top players may be eligible for a bonus prize!"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LeaderboardDisplay" type="PanelContainer" parent="MarginContainer/VBoxContainer" node_paths=PackedStringArray("container", "no_entries_overlay")]
+custom_minimum_size = Vector2(0, 600)
+layout_mode = 2
+theme = ExtResource("6_asclf")
 script = ExtResource("4_e0sq0")
-container = NodePath("ScrollContainer/VBoxContainer")
+container = NodePath("MarginContainer/ScrollContainer/VBoxContainer")
 entry_scn = ExtResource("5_a3o4v")
-no_entries_overlay = NodePath("Overlay")
+no_entries_overlay = NodePath("MarginContainer/Overlay")
 bring_new_to_back = false
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LeaderboardDisplay"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/LeaderboardDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/LeaderboardDisplay/MarginContainer"]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardDisplay/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LeaderboardDisplay/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LeaderboardEntry" parent="LeaderboardDisplay/ScrollContainer/VBoxContainer" instance=ExtResource("5_a3o4v")]
-visible = false
-layout_mode = 2
-
-[node name="Overlay" type="Label" parent="LeaderboardDisplay"]
+[node name="Overlay" type="Label" parent="MarginContainer/VBoxContainer/LeaderboardDisplay/MarginContainer"]
 visible = false
 layout_mode = 2
 theme = ExtResource("6_asclf")
 theme_type_variation = &"HeaderSmall"
-theme_override_font_sizes/font_size = 46
-text = "No Entries Yet!"
+text = "NO ENTRIES YET!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Deco" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -116.0
-offset_bottom = -2.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Deco1" type="TextureRect" parent="Deco"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -457.0
-offset_top = -48.0
-offset_right = -82.0
-offset_bottom = 165.0
-grow_horizontal = 2
-texture = ExtResource("7_m1dyg")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Deco2" type="TextureRect" parent="Deco"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 69.0
-offset_top = -11.0
-offset_right = 439.0
-offset_bottom = 167.0
-grow_horizontal = 2
-texture = ExtResource("8_hxcw0")
-expand_mode = 1
-stretch_mode = 5
-flip_h = true
-
-[node name="CloseButton" type="Button" parent="."]
+[node name="CloseButton" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(250, 70)
-layout_mode = 1
-offset_left = 36.0
-offset_top = 40.0
-offset_right = 286.0
-offset_bottom = 110.0
+layout_mode = 2
 theme = ExtResource("6_asclf")
-theme_type_variation = &"SimpleButtonAlt"
-theme_override_font_sizes/font_size = 30
+theme_type_variation = &"ButtonFlatAlt"
 text = "Close"
 
-[connection signal="pressed" from="CloseButton" to="." method="close"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CloseButton" to="." method="close"]

@@ -1,64 +1,26 @@
-[gd_scene load_steps=29 format=3 uid="uid://bycgsy50wsy4c"]
+[gd_scene load_steps=17 format=3 uid="uid://bycgsy50wsy4c"]
 
-[ext_resource type="Script" path="res://Scripts/DropGameKit/CampaignManagement/campaign_admin_system.gd" id="1_ldnsl"]
+[ext_resource type="Script" uid="uid://bb06meeue71v1" path="res://Scripts/DropGameKit/CampaignManagement/campaign_admin_system.gd" id="1_ldnsl"]
 [ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="2_5to25"]
 [ext_resource type="Texture2D" uid="uid://bdjw50vivwoew" path="res://Textures/Icons/CloseIcon.PNG" id="3_yrdp3"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="4_txo57"]
 [ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="5_l58jm"]
-[ext_resource type="PackedScene" uid="uid://cj0hq5of6bv16" path="res://Scripts/DropGameKit/CampaignManagement/CampaignSelectSimple.tscn" id="6_m5t11"]
-[ext_resource type="Script" uid="uid://d27go0wrna3kn" path="res://addons/SolanaSDK/Scripts/NFTGating/address_button_lock.gd" id="7_3y2xv"]
+[ext_resource type="PackedScene" uid="uid://bakwei0jiw7b2" path="res://Scripts/DropGameKit/CampaignManagement/CampaignSelectEntry.tscn" id="6_2hy6e"]
 [ext_resource type="Script" path="res://Scripts/DropGameKit/CampaignManagement/campaign_manager.gd" id="8_vqr0a"]
 [ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="10_y2hwd"]
 [ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="11_dh37k"]
 [ext_resource type="Texture2D" uid="uid://dchy7ed3ybfi1" path="res://Textures/LogosAndTokens/Zenny token.PNG" id="12_jl7ur"]
 [ext_resource type="Script" uid="uid://bw7bp5xiv4j8l" path="res://Scripts/DropGameKit/Leaderboard/campaign_leaderboard.gd" id="13_j1bf4"]
-[ext_resource type="PackedScene" uid="uid://by1yuc0e2vnu1" path="res://Scripts/DropGameKit/Leaderboard/CampaignWinnerEntry.tscn" id="14_tnhrh"]
+[ext_resource type="PackedScene" uid="uid://ebyxtunpa1fd" path="res://Scripts/DropGameKit/Leaderboard/LeaderboardEntry.tscn" id="14_2hy6e"]
 [ext_resource type="Script" uid="uid://xl86n3733lsl" path="res://Scripts/Utility/timed_button.gd" id="15_3iieg"]
-[ext_resource type="Script" path="res://Scripts/DropGameKit/CampaignManagement/campaign_creator.gd" id="16_1dr1j"]
-[ext_resource type="Script" uid="uid://cg67p6ivwwuxa" path="res://addons/SolanaSDK/Scripts/Utility/Input/data_input_system.gd" id="17_nlaao"]
-[ext_resource type="Script" uid="uid://cja6e8dxjd81x" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="18_8ne2m"]
-[ext_resource type="PackedScene" uid="uid://lx17th5tw38f" path="res://Scripts/Tensor/TensorCollectionDisplay.tscn" id="19_717r1"]
-[ext_resource type="Script" uid="uid://c4mgixhwjwdpj" path="res://addons/SolanaSDK/Scripts/Utility/Input/date_time_selector.gd" id="19_kh4u3"]
-[ext_resource type="Script" uid="uid://blmn40wibff34" path="res://addons/SolanaSDK/Scripts/Utility/Input/asset_selector.gd" id="20_rfoiq"]
-[ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="21_e3rt2"]
-[ext_resource type="PackedScene" uid="uid://cq5llwx0h21pr" path="res://Scripts/Web3/UIAssets/TokenDisplaySystem.tscn" id="22_xiy5y"]
-[ext_resource type="Texture2D" uid="uid://crkoovodnwd7g" path="res://Textures/Icons/collectible_coin_big_idle_1.png" id="23_681rs"]
 [ext_resource type="Texture2D" uid="uid://bpt1e8u1buonk" path="res://Textures/BrandingAssets/whosthatrubian.png" id="24_lm76v"]
-[ext_resource type="PackedScene" uid="uid://lgukfb417wvu" path="res://Scripts/Web3/UIAssets/NFTSelectionDisplay.tscn" id="25_nolp0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skjvp"]
+bg_color = Color(0, 0.443137, 0.439216, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1s1dl"]
 
-[sub_resource type="GDScript" id="GDScript_y310b"]
-resource_name = "tensor_collection_selector"
-script/source = "extends VBoxContainer
-
-@export var tensor_display_scn:PackedScene
-@export var collection_input_field:InputField
-
-var display_instance:TensorCollectionDisplay
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	if SolanaService.rpc_cluster == SolanaService.RpcCluster.MAINNET:
-		collection_input_field.focus_entered.connect(show_display)
-	
-func show_display() -> void:
-	display_instance = tensor_display_scn.instantiate()
-	get_tree().root.add_child(display_instance)
-	display_instance.on_collection_selected.connect(select_collection)
-
-func select_collection(collection_data:Dictionary) -> void:
-	if collection_data[\"onchainId\"] !=null:
-		collection_input_field.text = collection_data[\"onchainId\"]
-	else:
-		collection_input_field.text = \"\"
-		
-	collection_input_field.release_focus()
-"
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y47jn"]
-
-[node name="CampaignAdminDisplay" type="Control" node_paths=PackedStringArray("screen_manager", "campaign_selector", "campaign_creator", "campaign_manager", "create_new_campaign_button")]
+[node name="CampaignAdminDisplay" type="Control" node_paths=PackedStringArray("screen_manager", "campaign_selector", "campaign_manager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,14 +31,12 @@ size_flags_vertical = 3
 script = ExtResource("1_ldnsl")
 screen_manager = NodePath("ScreenManager")
 campaign_selector = NodePath("Content/CampaignDisplay")
-campaign_creator = NodePath("Content/CampaignCreator")
 campaign_manager = NodePath("Content/CampaignManager")
-create_new_campaign_button = NodePath("Content/CampaignDisplay/VboxContainer/CreateNewButton")
 
 [node name="ScreenManager" type="Node" parent="." node_paths=PackedStringArray("starting_panel", "screens")]
 script = ExtResource("2_5to25")
 starting_panel = NodePath("../Content/CampaignDisplay")
-screens = [NodePath("../Content/LoadingScreen"), NodePath("../Content/CampaignDisplay"), NodePath("../Content/CampaignManager"), NodePath("../Content/CampaignCreator")]
+screens = [NodePath("../Content/LoadingScreen"), NodePath("../Content/CampaignDisplay"), NodePath("../Content/CampaignManager")]
 
 [node name="Background" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -86,7 +46,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_txo57")
-theme_type_variation = &"PanelNeutral"
+theme_override_styles/panel = SubResource("StyleBoxFlat_skjvp")
 
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -99,7 +59,7 @@ grow_vertical = 2
 [node name="Header" type="PanelContainer" parent="Content"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-theme_type_variation = &"PanelFlatAlt"
+theme_type_variation = &"PanelFlat"
 
 [node name="MarginContainer" type="MarginContainer" parent="Content/Header"]
 layout_mode = 2
@@ -110,7 +70,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Content/Header/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 50
 
 [node name="TextureButton" type="TextureButton" parent="Content/Header/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
@@ -126,8 +86,8 @@ stretch_mode = 5
 [node name="Label" type="Label" parent="Content/Header/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderLarge"
-text = "Campaign Manager"
+theme_type_variation = &"HeaderMedium"
+text = "CAMPAIGN MANAGER"
 
 [node name="LoadingScreen" type="MarginContainer" parent="Content"]
 visible = false
@@ -152,17 +112,7 @@ alignment = 1
 layout_mode = 2
 theme = ExtResource("4_txo57")
 theme_type_variation = &"HeaderMedium"
-theme_override_font_sizes/font_size = 70
-text = "Loading"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="Content/LoadingScreen/LoadingScreen/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("4_txo57")
-theme_override_font_sizes/font_size = 35
-text = "Please wait..."
+text = "LOADING..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -175,17 +125,18 @@ theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 script = ExtResource("5_l58jm")
 container = NodePath("VboxContainer/ActiveCampaignsContainer/MarginContainer/ScrollContainer/CampaignList")
-entry_scn = ExtResource("6_m5t11")
+entry_scn = ExtResource("6_2hy6e")
 
 [node name="VboxContainer" type="VBoxContainer" parent="Content/CampaignDisplay"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="CampaignsLabel" type="Label" parent="Content/CampaignDisplay/VboxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderMedium"
-text = "Your Campaigns"
+text = "View and manage campaigns you have created for Gigs"
+autowrap_mode = 2
 
 [node name="ActiveCampaignsContainer" type="PanelContainer" parent="Content/CampaignDisplay/VboxContainer"]
 layout_mode = 2
@@ -208,46 +159,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CampaignSelectSimple" parent="Content/CampaignDisplay/VboxContainer/ActiveCampaignsContainer/MarginContainer/ScrollContainer/CampaignList" instance=ExtResource("6_m5t11")]
-visible = false
-layout_mode = 2
-script = null
-
-[node name="CreateNewButton" type="Button" parent="Content/CampaignDisplay/VboxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_type_variation = &"ButtonAlt"
-disabled = true
-text = "Create new..."
-script = ExtResource("7_3y2xv")
-
-[node name="ComingSoon" type="PanelContainer" parent="Content/CampaignDisplay/VboxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_1s1dl")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Content/CampaignDisplay/VboxContainer/ComingSoon"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Label" type="Label" parent="Content/CampaignDisplay/VboxContainer/ComingSoon/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderMedium"
-text = "Coming soon!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="Content/CampaignDisplay/VboxContainer/ComingSoon/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("4_txo57")
-text = "This is gonna be a gamechanger frfr"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="CampaignManager" type="MarginContainer" parent="Content" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "owner_displayable", "campaign_type_label", "treasury_token_displayable", "deposit_token_displayable", "total_games_label", "unique_players_label", "max_reward_label", "leaderboard", "fees_collected", "close_button")]
 visible = false
 layout_mode = 2
@@ -260,8 +171,8 @@ theme_override_constants/margin_bottom = 20
 script = ExtResource("8_vqr0a")
 campaign_name_label = NodePath("Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MineName/MineName")
 gate_displayable = NodePath("Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/CampaignGate")
-owner_displayable = NodePath("Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/CampaignOwner")
-campaign_type_label = NodePath("Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/CampaignType/TypeLabel")
+owner_displayable = NodePath("Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/CampaignOwner")
+campaign_type_label = NodePath("Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/CampaignType/TypeLabel")
 treasury_token_displayable = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/TreasuryBalanceContainer/TreasuryBalanceContainer")
 deposit_token_displayable = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/DepositBalanceContainer/DepositBalanceContainer")
 total_games_label = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/TotalGames/TotalGames")
@@ -290,9 +201,8 @@ custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("4_txo57")
-theme_type_variation = &"ButtonFlat"
-theme_override_font_sizes/font_size = 30
-text = "Back"
+theme_type_variation = &"ButtonFlatAlt"
+text = "BACK"
 
 [node name="MainDetails" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo"]
 layout_mode = 2
@@ -306,7 +216,7 @@ stretch_mode = 5
 
 [node name="DetailsContainer" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
 
 [node name="MineName" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer"]
 layout_mode = 2
@@ -315,31 +225,16 @@ alignment = 2
 [node name="Label" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MineName"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-text = "Name"
+text = "Campaign Name"
 vertical_alignment = 1
 
 [node name="MineName" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MineName"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderSmall"
-theme_override_font_sizes/font_size = 24
+theme_type_variation = &"LabelSpecial"
+theme_override_font_sizes/font_size = 30
 text = "Super Epic Rubian Mine"
 vertical_alignment = 1
-
-[node name="CampaignType" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer"]
-layout_mode = 2
-
-[node name="CampaignType" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/CampaignType"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Campaign Type"
-
-[node name="TypeLabel" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/CampaignType"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderSmall"
-theme_override_font_sizes/font_size = 24
-text = "Token"
 
 [node name="CampaignGate" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer" node_paths=PackedStringArray("visual", "name_label")]
 layout_mode = 2
@@ -356,24 +251,43 @@ text = "Players"
 [node name="GateName" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/CampaignGate"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderSmall"
-theme_override_font_sizes/font_size = 24
+theme_type_variation = &"LabelSpecial"
+theme_override_font_sizes/font_size = 30
 text = "Rubians"
 
-[node name="CampaignOwner" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer"]
+[node name="MoreDetails" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="CampaignType" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails"]
+layout_mode = 2
+
+[node name="CampaignType" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/CampaignType"]
+layout_mode = 2
+theme = ExtResource("4_txo57")
+text = "Type"
+
+[node name="TypeLabel" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/CampaignType"]
+layout_mode = 2
+theme = ExtResource("4_txo57")
+theme_type_variation = &"LabelSpecial"
+theme_override_font_sizes/font_size = 30
+text = "Token"
+
+[node name="CampaignOwner" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails"]
 layout_mode = 2
 script = ExtResource("10_y2hwd")
 
-[node name="CampaignOwner" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/CampaignOwner"]
+[node name="CampaignOwner" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/CampaignOwner"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
 text = "Owner"
 
-[node name="OwnerName" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/CampaignOwner"]
+[node name="OwnerName" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/CampaignOwner"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderSmall"
-theme_override_font_sizes/font_size = 24
+theme_type_variation = &"LabelSpecial"
+theme_override_font_sizes/font_size = 30
 text = "Anon"
 
 [node name="ExtraDetails" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo"]
@@ -412,8 +326,8 @@ vertical_alignment = 1
 [node name="TotalGames" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/TotalGames"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderMedium"
-theme_override_colors/font_color = Color(1, 0.772549, 0.352941, 1)
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 50
 text = "268"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -433,9 +347,8 @@ vertical_alignment = 1
 [node name="UniquePlayers" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/UniquePlayers"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderMedium"
-theme_override_colors/font_color = Color(1, 0.772549, 0.352941, 1)
-theme_override_font_sizes/font_size = 40
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 50
 text = "56"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -455,10 +368,9 @@ vertical_alignment = 1
 [node name="MaxReward" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/MaxReward"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderMedium"
-theme_override_colors/font_color = Color(1, 0.772549, 0.352941, 1)
-theme_override_font_sizes/font_size = 40
-text = "5k"
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 50
+text = "5K"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("11_dh37k")
@@ -477,8 +389,7 @@ layout_mode = 2
 [node name="TreasuryBalance" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/TreasuryBalanceContainer"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-theme_override_font_sizes/font_size = 24
-text = "Campaign Treasury"
+text = "Treasury"
 
 [node name="TreasuryBalanceContainer" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/TreasuryBalanceContainer" node_paths=PackedStringArray("visual", "balance_label")]
 layout_mode = 2
@@ -497,7 +408,8 @@ stretch_mode = 5
 [node name="TokensLabel" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/TreasuryBalanceContainer/TreasuryBalanceContainer"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderSmall"
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 60
 text = "96.25M"
 vertical_alignment = 1
 script = ExtResource("11_dh37k")
@@ -510,7 +422,7 @@ layout_mode = 2
 [node name="DepositBalance" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/DepositBalanceContainer"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-text = "Tokens Earned / Staked"
+text = "Earned / Staked"
 
 [node name="DepositBalanceContainer" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/DepositBalanceContainer" node_paths=PackedStringArray("visual", "balance_label")]
 layout_mode = 2
@@ -529,7 +441,8 @@ stretch_mode = 5
 [node name="TokensLabel" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/DepositBalanceContainer/DepositBalanceContainer"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderSmall"
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 60
 text = "96.25M"
 vertical_alignment = 1
 script = ExtResource("11_dh37k")
@@ -548,8 +461,7 @@ vertical_alignment = 1
 [node name="FeesCollected" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/FeesCollected"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(1, 0.384314, 0.352941, 1)
+theme_type_variation = &"LabelSpecial"
 text = "0.0735 SOL"
 vertical_alignment = 1
 
@@ -564,8 +476,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("4_txo57")
 theme_type_variation = &"HeaderMedium"
-text = "TOP PLAYERS"
-horizontal_alignment = 2
+theme_override_font_sizes/font_size = 60
+text = "CAMPAIGN LEADERS"
 vertical_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/Leaderboard"]
@@ -584,7 +496,7 @@ layout_mode = 2
 horizontal_scroll_mode = 0
 script = ExtResource("5_l58jm")
 container = NodePath("VBoxContainer")
-entry_scn = ExtResource("14_tnhrh")
+entry_scn = ExtResource("14_2hy6e")
 no_entries_overlay = NodePath("Overlay")
 bring_new_to_back = false
 
@@ -602,749 +514,19 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NFTCampaignWinnerEntry" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/Leaderboard/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("14_tnhrh")]
-visible = false
-layout_mode = 2
-script = null
-
 [node name="CampaignCloseButton" type="Button" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo"]
 custom_minimum_size = Vector2(520, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_txo57")
-theme_override_font_sizes/font_size = 30
+theme_type_variation = &"ButtonFlat"
 text = "CLOSE IN: 23h 15m 20s"
 script = ExtResource("15_3iieg")
-time_left_prefix = "Close in:"
-activated_text = "Claim and close"
+pre_start_prefix = "STARTS IN:"
+time_left_prefix = "CLOSE IN:"
+activated_text = "CLAIM AND CLOSE"
 enable_on_started = false
 
-[node name="CampaignCreator" type="MarginContainer" parent="Content" node_paths=PackedStringArray("general_settings", "player_settings_manager", "player_settings", "token_selector", "manager_selector", "fund_input_field", "max_fund_button", "token_visuals", "fee_explanation", "creation_fee_label", "input_submit_button")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-script = ExtResource("16_1dr1j")
-general_settings = NodePath("ScrollContainer/CampaignSettings")
-player_settings_manager = NodePath("ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection")
-player_settings = [NodePath("ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings"), NodePath("ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine")]
-token_selector = NodePath("ScrollContainer/CampaignSettings/TokenSettings/RewardTokenSelector")
-manager_selector = NodePath("ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection")
-fund_input_field = NodePath("ScrollContainer/CampaignSettings/TokenSettings/TokenSelectContainer/FundAmountContainer/FundInputField")
-max_fund_button = NodePath("ScrollContainer/CampaignSettings/TokenSettings/TokenSelectContainer/FundAmountContainer/MaxFundButton")
-token_visuals = [NodePath("ScrollContainer/CampaignSettings/TokenSettings/PayoutLimitContainer/TokenVisual")]
-fee_explanation = NodePath("ScrollContainer/CampaignSettings/RewardClaimFee/FeeExplanation")
-creation_fee_label = NodePath("ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer/ClubCreationFee")
-input_submit_button = NodePath("ScrollContainer/CampaignSettings/OwnerSettings/Actions/CreateMineButton")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Content/CampaignCreator"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("4_txo57")
-horizontal_scroll_mode = 0
-
-[node name="CampaignSettings" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 30
-alignment = 1
-script = ExtResource("17_nlaao")
-input_fields = {
-"campaignDuration": NodePath("TimeSettings/CampaignDuration/HBoxContainer/CampaignLengthInputField"),
-"campaignName": NodePath("GeneralSettings/MineNameInputField"),
-"fundAmount": NodePath("TokenSettings/TokenSelectContainer/FundAmountContainer/FundInputField"),
-"maxReward": NodePath("TokenSettings/PayoutLimitContainer/PayoutLimitInputField"),
-"rewardsTax": NodePath("RewardClaimFee/ClaimFeeContainer/RewardFeeInputField")
-}
-asset_selectors = {
-"rewardCurrency": NodePath("TokenSettings/RewardTokenSelector")
-}
-date_selectors = {
-"campaignStartTime": NodePath("TimeSettings/StartTimeContainer/DateTimeSelector")
-}
-
-[node name="DataInputSystem" type="Node" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings"]
-script = ExtResource("17_nlaao")
-
-[node name="ReturnButton" type="Button" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings"]
-custom_minimum_size = Vector2(200, 70)
-layout_mode = 2
-size_flags_horizontal = 0
-theme = ExtResource("4_txo57")
-theme_type_variation = &"ButtonFlat"
-text = "Back"
-
-[node name="GeneralSettings" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/GeneralSettings"]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Campaign Name"
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="MineNameInputField" type="LineEdit" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/GeneralSettings"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_override_colors/font_outline_color = Color(0.788235, 0.45098, 0.45098, 1)
-placeholder_text = "Enter Campaign Name..."
-max_length = 28
-script = ExtResource("18_8ne2m")
-min_length = 4
-
-[node name="PlayerSettingsContainer" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="PlayerSettings" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer"]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_override_font_sizes/font_size = 28
-text = "Choose Campaign Type"
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="PlayerTypeSelection" type="TabContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_override_font_sizes/font_size = 28
-current_tab = 0
-
-[node name="NFT" type="TabBar" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
-
-[node name="NFTMinerSettings" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-alignment = 1
-script = ExtResource("17_nlaao")
-input_fields = {
-"collection": NodePath("PlayerCollection/CollectionInputField"),
-"maxEnergy": NodePath("CustomizationSettings/MinerEnergyContainer/EnergyCapInputField"),
-"rechargeRate": NodePath("CustomizationSettings/EnergyRecharge/RerchargeTimeInputField")
-}
-
-[node name="PlayerCollection" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings" node_paths=PackedStringArray("collection_input_field")]
-layout_mode = 2
-theme_override_constants/separation = 10
-script = SubResource("GDScript_y310b")
-tensor_display_scn = ExtResource("19_717r1")
-collection_input_field = NodePath("CollectionInputField")
-
-[node name="MinerCollection" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings/PlayerCollection"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Player Collection"
-
-[node name="CollectionInputField" type="LineEdit" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings/PlayerCollection"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_override_colors/font_outline_color = Color(0.788235, 0.45098, 0.45098, 1)
-text = "9pg23GZKceX1pfVCwG1cfWXG2qJknbhejWGqkuH8hYY8"
-placeholder_text = "Enter Collection ID..."
-max_length = 44
-script = ExtResource("18_8ne2m")
-min_length = 4
-is_pubkey = true
-
-[node name="CustomizationSettings" type="HBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings"]
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="MinerEnergyContainer" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings/CustomizationSettings"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="EnergyCap" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings/CustomizationSettings/MinerEnergyContainer"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Max Energy"
-
-[node name="EnergyCapInputField" type="LineEdit" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings/CustomizationSettings/MinerEnergyContainer"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "4"
-alignment = 1
-max_length = 2
-script = ExtResource("18_8ne2m")
-input_type = 1
-min_value = 1.0
-max_value = 10.0
-
-[node name="EnergyRecharge" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings/CustomizationSettings"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="PayoutLimit" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings/CustomizationSettings/EnergyRecharge"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Recharge time (min)"
-
-[node name="RerchargeTimeInputField" type="LineEdit" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings/CustomizationSettings/EnergyRecharge"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "180"
-placeholder_text = "Enter value..."
-alignment = 1
-max_length = 4
-script = ExtResource("18_8ne2m")
-input_type = 1
-is_optional = true
-max_value = 1440.0
-allow_zero = false
-
-[node name="Token" type="TabBar" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection"]
-visible = false
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
-
-[node name="TokenMine" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 10
-alignment = 1
-script = ExtResource("17_nlaao")
-input_fields = {
-"energyPrice": NodePath("CustomizationSettings/EntryPriceContainer/EntryPriceInputField"),
-"tokenMint": NodePath("TokenAddressInputField")
-}
-option_selectors = {
-"tokenUse": NodePath("CustomizationSettings/TokenUseContainer/TokenUseOption")
-}
-
-[node name="Token address" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Token Address"
-
-[node name="TokenAddressInputField" type="LineEdit" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_override_colors/font_outline_color = Color(0.788235, 0.45098, 0.45098, 1)
-theme_override_font_sizes/font_size = 24
-text = "ZENY75w6wyd4GY1Bmk1XXAFXGJaFZmuSpVDT7LLx5C3"
-placeholder_text = "Enter Token Address..."
-max_length = 44
-script = ExtResource("18_8ne2m")
-min_length = 4
-is_pubkey = true
-
-[node name="CustomizationSettings" type="HBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine"]
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="EntryPriceContainer" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine/CustomizationSettings"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="EntryPrice" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine/CustomizationSettings/EntryPriceContainer"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Entry Price"
-
-[node name="EntryPriceInputField" type="LineEdit" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine/CustomizationSettings/EntryPriceContainer"]
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_override_font_sizes/font_size = 35
-placeholder_text = "Enter price..."
-alignment = 1
-max_length = 15
-script = ExtResource("18_8ne2m")
-input_type = 2
-max_value = -1.0
-allow_zero = false
-
-[node name="TokenUseContainer" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine/CustomizationSettings"]
-layout_mode = 2
-
-[node name="TokenUse" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine/CustomizationSettings/TokenUseContainer"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Token Use"
-
-[node name="TokenUseOption" type="OptionButton" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine/CustomizationSettings/TokenUseContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("4_txo57")
-selected = 0
-item_count = 3
-popup/item_0/text = "Stake"
-popup/item_0/id = 0
-popup/item_1/text = "Burn"
-popup/item_1/id = 1
-popup/item_2/text = "Pay"
-popup/item_2/id = 2
-
-[node name="TimeSettings" type="HBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="StartTimeContainer" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="CampaignLength2" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Start Time
-"
-
-[node name="DateTimeSelector" type="HBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer" node_paths=PackedStringArray("year_option", "month_option", "day_option", "hour_option", "minute_option")]
-layout_mode = 2
-theme_override_constants/separation = 10
-script = ExtResource("19_kh4u3")
-use_utc_time = false
-year_option = NodePath("Year/OptionButton")
-month_option = NodePath("Month/OptionButton")
-day_option = NodePath("Day/OptionButton")
-hour_option = NodePath("Hour/OptionButton")
-minute_option = NodePath("Minute/OptionButton")
-
-[node name="Year" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector/Year"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Year"
-vertical_alignment = 1
-
-[node name="OptionButton" type="OptionButton" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector/Year"]
-custom_minimum_size = Vector2(80, 50)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-selected = 0
-item_count = 1
-popup/item_0/text = "2024"
-popup/item_0/id = 0
-
-[node name="Month" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector/Month"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Month"
-vertical_alignment = 1
-
-[node name="OptionButton" type="OptionButton" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector/Month"]
-custom_minimum_size = Vector2(80, 50)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-selected = 0
-item_count = 1
-popup/item_0/text = "mar"
-popup/item_0/id = 0
-
-[node name="Day" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector/Day"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Day"
-vertical_alignment = 1
-
-[node name="OptionButton" type="OptionButton" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector/Day"]
-custom_minimum_size = Vector2(80, 50)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-selected = 0
-item_count = 1
-popup/item_0/text = "30"
-popup/item_0/id = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector"]
-layout_mode = 2
-theme_override_constants/margin_right = 10
-
-[node name="Hour" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector/Hour"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Hour"
-vertical_alignment = 1
-
-[node name="OptionButton" type="OptionButton" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector/Hour"]
-custom_minimum_size = Vector2(80, 50)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-selected = 0
-item_count = 1
-popup/item_0/text = "19"
-popup/item_0/id = 0
-
-[node name="Minute" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector/Minute"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Min"
-vertical_alignment = 1
-
-[node name="OptionButton" type="OptionButton" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector/Minute"]
-custom_minimum_size = Vector2(80, 50)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-selected = 0
-item_count = 1
-popup/item_0/text = "30"
-popup/item_0/id = 0
-
-[node name="CampaignDuration" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 2
-
-[node name="CampaignLength" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/CampaignDuration"]
-custom_minimum_size = Vector2(130, 0)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_override_font_sizes/font_size = 24
-text = "Duration
-"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/CampaignDuration"]
-layout_mode = 2
-
-[node name="CampaignLengthInputField" type="LineEdit" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/CampaignDuration/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("4_txo57")
-text = "48"
-alignment = 1
-max_length = 3
-script = ExtResource("18_8ne2m")
-input_type = 1
-min_length = 1
-min_value = 1.0
-max_value = 168.0
-
-[node name="hours" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TimeSettings/CampaignDuration/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_override_font_sizes/font_size = 24
-text = "Hours"
-horizontal_alignment = 1
-
-[node name="TokenSettings" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="RewardTokenSelector" type="PanelContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings" node_paths=PackedStringArray("displayable_asset", "asset_content", "select_label")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_y47jn")
-script = ExtResource("20_rfoiq")
-displayable_asset = NodePath("DisplayableToken")
-display_system_scn = ExtResource("22_xiy5y")
-asset_content = NodePath("DisplayableToken/MarginContainer/TokenContent")
-select_label = NodePath("SelectLabel")
-
-[node name="DisplayableToken" type="PanelContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/RewardTokenSelector" node_paths=PackedStringArray("visual", "name_label", "select_button", "balance_label")]
-custom_minimum_size = Vector2(0, 45)
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("4_txo57")
-theme_type_variation = &"PanelFlatAlt"
-script = ExtResource("10_y2hwd")
-visual = NodePath("MarginContainer/TokenContent/Visual")
-image_size = 45
-name_label = NodePath("MarginContainer/TokenContent/TokenName")
-select_button = NodePath("../SelectButton")
-balance_label = NodePath("MarginContainer/TokenContent/Balance")
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/RewardTokenSelector/DisplayableToken"]
-layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_right = 15
-
-[node name="TokenContent" type="HBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/RewardTokenSelector/DisplayableToken/MarginContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 30
-
-[node name="Visual" type="TextureRect" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/RewardTokenSelector/DisplayableToken/MarginContainer/TokenContent"]
-custom_minimum_size = Vector2(45, 45)
-layout_mode = 2
-texture = ExtResource("21_e3rt2")
-expand_mode = 4
-stretch_mode = 5
-
-[node name="TokenName" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/RewardTokenSelector/DisplayableToken/MarginContainer/TokenContent"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_type_variation = &"LabelInverted"
-text = "$BONK"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="VerificationMark" type="TextureRect" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/RewardTokenSelector/DisplayableToken/MarginContainer/TokenContent"]
-visible = false
-layout_mode = 2
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Balance" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/RewardTokenSelector/DisplayableToken/MarginContainer/TokenContent"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme = ExtResource("4_txo57")
-theme_type_variation = &"LabelInverted"
-theme_override_font_sizes/font_size = 25
-text = "155000"
-horizontal_alignment = 2
-vertical_alignment = 1
-script = ExtResource("11_dh37k")
-
-[node name="SelectLabel" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/RewardTokenSelector"]
-custom_minimum_size = Vector2(260, 0)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 28
-text = "SELECT REWARD TOKEN"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SelectButton" type="Button" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/RewardTokenSelector"]
-custom_minimum_size = Vector2(0, 45)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_type_variation = &"ButtonInvisible"
-
-[node name="TokenSelectContainer" type="HBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="FundAmountContainer" type="HBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/TokenSelectContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 10
-
-[node name="FundInputField" type="LineEdit" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/TokenSelectContainer/FundAmountContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("4_txo57")
-placeholder_text = "Enter Amount..."
-alignment = 1
-max_length = 15
-script = ExtResource("18_8ne2m")
-input_type = 2
-max_value = -1.0
-allow_zero = false
-
-[node name="MaxFundButton" type="Button" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/TokenSelectContainer/FundAmountContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_type_variation = &"ButtonFlat"
-theme_override_font_sizes/font_size = 20
-text = "max"
-
-[node name="PayoutLimitContainer" type="HBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings"]
-layout_mode = 2
-
-[node name="PayoutLimit" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/PayoutLimitContainer"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_override_font_sizes/font_size = 28
-text = "Max Game Reward:"
-
-[node name="TokenVisual" type="TextureRect" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/PayoutLimitContainer"]
-layout_mode = 2
-texture = ExtResource("23_681rs")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="PayoutLimitInputField" type="LineEdit" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/TokenSettings/PayoutLimitContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("4_txo57")
-placeholder_text = "Enter amount..."
-alignment = 1
-max_length = 12
-script = ExtResource("18_8ne2m")
-input_type = 2
-max_value = -1.0
-allow_zero = false
-
-[node name="RewardClaimFee" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="ClaimFeeContainer" type="HBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/RewardClaimFee"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="ClaimFee" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/RewardClaimFee/ClaimFeeContainer"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Reward Claim Fee:"
-
-[node name="RewardFeeInputField" type="LineEdit" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/RewardClaimFee/ClaimFeeContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "0.0005"
-placeholder_text = "Enter amount..."
-alignment = 1
-script = ExtResource("18_8ne2m")
-input_type = 2
-max_value = -1.0
-
-[node name="ClaimFee2" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/RewardClaimFee/ClaimFeeContainer"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_override_font_sizes/font_size = 28
-text = "SOL"
-
-[node name="FeeExplanation" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/RewardClaimFee"]
-visible = false
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_override_colors/font_color = Color(0.85098, 0.741176, 0.784314, 1)
-theme_override_font_sizes/font_size = 18
-text = "*Claimable after campaign has finished. House Tax of 2% is applied!"
-autowrap_mode = 2
-
-[node name="OwnerSettings" type="HBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings"]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="ManagerSelection" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/OwnerSettings" node_paths=PackedStringArray("displayable_asset")]
-layout_mode = 2
-theme_override_constants/separation = 5
-script = ExtResource("20_rfoiq")
-displayable_asset = NodePath("DisplayableAssetButton")
-display_system_scn = ExtResource("25_nolp0")
-
-[node name="DisplayableAssetButton" type="MarginContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection" node_paths=PackedStringArray("visual", "name_label", "select_button")]
-custom_minimum_size = Vector2(168, 168)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-script = ExtResource("10_y2hwd")
-visual = NodePath("Visual")
-image_size = 256
-name_label = NodePath("../../PriceSettings/MineOwnerSettings/ManagerName")
-select_button = NodePath("Visual/Button")
-
-[node name="Visual" type="TextureRect" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton"]
-layout_mode = 2
-texture = ExtResource("24_lm76v")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="Button" type="Button" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton/Visual"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("4_txo57")
-theme_type_variation = &"ButtonInvisible"
-
-[node name="PriceSettings" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/OwnerSettings"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="MineOwnerSettings" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/MineOwnerSettings"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Campaign Owner"
-vertical_alignment = 1
-
-[node name="ManagerName" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/MineOwnerSettings"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderSmall"
-theme_override_font_sizes/font_size = 28
-text = "SELECT"
-vertical_alignment = 1
-
-[node name="PriceContainer" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings"]
-layout_mode = 2
-alignment = 1
-
-[node name="Cost" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-text = "Price"
-vertical_alignment = 1
-
-[node name="ClubCreationFee" type="Label" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(1, 0.384314, 0.352941, 1)
-text = "0.2 SOL"
-vertical_alignment = 1
-
-[node name="Actions" type="VBoxContainer" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/OwnerSettings"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 2
-
-[node name="CreateMineButton" type="Button" parent="Content/CampaignCreator/ScrollContainer/CampaignSettings/OwnerSettings/Actions"]
-custom_minimum_size = Vector2(180, 70)
-layout_mode = 2
-size_flags_horizontal = 10
-theme = ExtResource("4_txo57")
-text = "CREATE"
-
 [connection signal="pressed" from="Content/Header/MarginContainer/HBoxContainer/TextureButton" to="." method="close"]
-[connection signal="pressed" from="Content/CampaignDisplay/VboxContainer/CreateNewButton" to="ScreenManager" method="switch_active_panel" binds= [3]]
 [connection signal="pressed" from="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/BackButton" to="ScreenManager" method="switch_active_panel" binds= [1]]
 [connection signal="pressed" from="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/CampaignCloseButton" to="Content/CampaignManager" method="close"]
-[connection signal="pressed" from="Content/CampaignCreator/ScrollContainer/CampaignSettings/ReturnButton" to="ScreenManager" method="switch_active_panel" binds= [1]]

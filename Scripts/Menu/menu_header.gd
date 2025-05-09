@@ -6,18 +6,23 @@ extends Node
 @export var token_vault_scn:PackedScene
 @export var vault_button:BaseButton
 
+@export var campaigns_scn:PackedScene
+@export var campaigns_button:BaseButton
+
 @export var settings_screen:Control
 @export var settings_button:BaseButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	vault_button.visible=false
+	campaigns_button.visible=false
 	settings_screen.visible=false
 	
 	SolanaService.wallet.on_login_success.connect(handle_login)
 	
 	login_button.pressed.connect(try_login)
 	vault_button.pressed.connect(open_player_vault)
+	campaigns_button.pressed.connect(open_player_campaigns)
 	settings_button.pressed.connect(show_settings)
 	
 func try_login() -> void:
@@ -26,6 +31,7 @@ func try_login() -> void:
 func handle_login() -> void:
 	login_button.visible=false
 	vault_button.visible=true
+	campaigns_button.visible=true
 	
 	if SolanaService.wallet.get_pubkey()!=null:
 		user_address_label.text = SolanaService.wallet.get_shorthand_address()
@@ -33,6 +39,10 @@ func handle_login() -> void:
 func open_player_vault() -> void:
 	var token_vault_instance:StakeTokenVault = token_vault_scn.instantiate()
 	get_tree().root.add_child(token_vault_instance)
+	
+func open_player_campaigns() -> void:
+	var campaigns_instance:CampaignAdminSystem = campaigns_scn.instantiate()
+	get_tree().root.add_child(campaigns_instance)
 	
 func show_settings() -> void:
 	settings_screen.visible=true
