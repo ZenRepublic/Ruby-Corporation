@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://wumrupdj6tl1" path="res://Content/LaunchingSoon/CarrierDrone/magnet_puck.gd" id="2_guq74"]
 [ext_resource type="Script" uid="uid://cayw2jht123qt" path="res://addons/LineRenderer/line_renderer.gd" id="3_bsrqg"]
 [ext_resource type="AudioStream" uid="uid://daoder8igxlph" path="res://Content/LaunchingSoon/CarrierDrone/flyingsound.mp3" id="5_bpedh"]
-[ext_resource type="PackedScene" uid="uid://c7eqyupe33y46" path="res://Content/LaunchingSoon/CarrierDrone/puck_mesh.tscn" id="5_pwh2j"]
+[ext_resource type="PackedScene" uid="uid://dhhegwss0by37" path="res://Content/LaunchingSoon/CarrierDrone/puck_mesh.tscn" id="5_pwh2j"]
 
 [sub_resource type="Curve" id="Curve_ms4aa"]
 _limits = [0.0, 1.0, -1.0, 1.0]
