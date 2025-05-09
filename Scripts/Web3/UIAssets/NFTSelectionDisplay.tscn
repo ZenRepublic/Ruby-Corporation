@@ -1,26 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://lgukfb417wvu"]
+[gd_scene load_steps=11 format=3 uid="uid://lgukfb417wvu"]
 
 [ext_resource type="Script" uid="uid://b6n4wtdrcrvb1" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/asset_display_system.gd" id="1_btcd8"]
 [ext_resource type="PackedScene" uid="uid://btmj6a3kagg46" path="res://Scripts/Web3/UIAssets/DisplayableNFTButton.tscn" id="2_xmhd2"]
 [ext_resource type="Script" uid="uid://dk34wl0jiheig" path="res://addons/SolanaSDK/Scripts/NFTCollection/nft_collection.gd" id="3_rk1ve"]
 [ext_resource type="Resource" uid="uid://yts1i1o0c345" path="res://Scripts/Web3/RubiansNFTCollection.tres" id="4_vmypy"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="5_6o7rc"]
+[ext_resource type="Texture2D" uid="uid://bdjw50vivwoew" path="res://Textures/Icons/CloseIcon.PNG" id="6_ag12l"]
 [ext_resource type="Texture2D" uid="uid://cq285gbck81as" path="res://Textures/Icons/AddIcon.png" id="6_mhrye"]
 [ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="6_ujc3t"]
 [ext_resource type="Script" uid="uid://bwchk1fr718eh" path="res://addons/texture_button_colored/texture_button_colored.gd" id="7_jinrh"]
-[ext_resource type="Texture2D" uid="uid://b3003ar1uxa77" path="res://addons/SolanaSDK/Textures/closebutton.jpg.png" id="8_pli40"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xyly"]
-bg_color = Color(0.121569, 0.0627451, 0.164706, 0.941176)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wsw7d"]
-bg_color = Color(0.639216, 0.156863, 0.345098, 1)
-border_width_left = 30
-border_width_top = 10
-border_width_right = 30
-border_width_bottom = 10
-border_color = Color(0.8, 0.258824, 0.368627, 1)
-corner_detail = 2
+bg_color = Color(0, 0.443137, 0.439216, 0.94902)
 
 [node name="NFTSelectionDisplay" type="Control" node_paths=PackedStringArray("container", "no_asset_overlay")]
 layout_mode = 3
@@ -31,12 +22,13 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_btcd8")
+display_type = Array[int]([3, 1])
 container = NodePath("MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer")
-no_asset_overlay = NodePath("MarginContainer/VBoxContainer/Selection/NoNFTOverlay")
-minimum_entry_size = Vector2(168, 168)
 display_entry_scn = ExtResource("2_xmhd2")
-load_all_owned = true
+das_assets_only = true
 close_on_select = true
+destroy_on_close = true
+no_asset_overlay = NodePath("MarginContainer/VBoxContainer/Selection/NoNFTOverlay")
 collection_filter = Array[ExtResource("3_rk1ve")]([ExtResource("4_vmypy")])
 
 [node name="Background" type="Panel" parent="."]
@@ -46,6 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_6o7rc")
 theme_override_styles/panel = SubResource("StyleBoxFlat_0xyly")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -73,15 +66,17 @@ layout_mode = 2
 size_flags_vertical = 1
 theme = ExtResource("5_6o7rc")
 theme_type_variation = &"HeaderMedium"
-theme_override_font_sizes/font_size = 40
-text = "Select Asset"
-vertical_alignment = 2
+text = "SELECT ASSET"
+vertical_alignment = 1
 
 [node name="CloseButton" type="TextureButton" parent="MarginContainer/VBoxContainer/InfoContainer"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 10
-texture_normal = ExtResource("8_pli40")
+texture_normal = ExtResource("6_ag12l")
+texture_pressed = ExtResource("6_ag12l")
+texture_hover = ExtResource("6_ag12l")
+texture_disabled = ExtResource("6_ag12l")
 ignore_texture_size = true
 stretch_mode = 4
 
@@ -89,7 +84,7 @@ stretch_mode = 4
 custom_minimum_size = Vector2(0, 700)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_wsw7d")
+theme = ExtResource("5_6o7rc")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Selection"]
 layout_mode = 2
@@ -138,6 +133,7 @@ offset_right = 88.0
 offset_bottom = 20.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_6o7rc")
 text = "None"
 horizontal_alignment = 1
 vertical_alignment = 1

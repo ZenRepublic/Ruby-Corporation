@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="4_650ih"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vq0v"]
-bg_color = Color(0.482353, 0.329412, 0.501961, 1)
+bg_color = Color(0, 0.443137, 0.439216, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_80nu6"]
 
@@ -18,15 +18,15 @@ bg_color = Color(0.482353, 0.329412, 0.501961, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6u03q"]
 
-[node name="TokenEntry" type="PanelContainer" node_paths=PackedStringArray("select_button", "visual", "name_label", "symbol_label", "balance_label")]
+[node name="TokenEntry" type="PanelContainer" node_paths=PackedStringArray("visual", "name_label", "symbol_label", "select_button", "balance_label")]
 custom_minimum_size = Vector2(553, 30)
 theme_override_styles/panel = SubResource("StyleBoxFlat_1vq0v")
 script = ExtResource("1_7cfu0")
-select_button = NodePath("SelectButton")
 visual = NodePath("TokenContent/Visual")
 image_size = 64
 name_label = NodePath("TokenContent/TokenName")
 symbol_label = NodePath("TokenContent/TokenSymbol")
+select_button = NodePath("SelectButton")
 balance_label = NodePath("TokenContent/TokenBalance")
 
 [node name="TokenContent" type="HBoxContainer" parent="."]
@@ -43,7 +43,6 @@ stretch_mode = 5
 [node name="TokenName" type="Label" parent="TokenContent"]
 layout_mode = 2
 theme = ExtResource("3_orhei")
-theme_override_font_sizes/font_size = 24
 text = "BONK"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -51,8 +50,7 @@ vertical_alignment = 1
 [node name="TokenSymbol" type="Label" parent="TokenContent"]
 layout_mode = 2
 theme = ExtResource("3_orhei")
-theme_override_colors/font_color = Color(0.917647, 0.384314, 0.384314, 1)
-theme_override_font_sizes/font_size = 24
+theme_type_variation = &"LabelSpecial"
 text = "$BONK"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -61,13 +59,12 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_orhei")
-theme_override_font_sizes/font_size = 24
 text = "-"
 horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("4_650ih")
 format_mode = 1
-decimal_amount = 1
+decimal_amount = 2
 
 [node name="SelectButton" type="Button" parent="."]
 layout_mode = 2

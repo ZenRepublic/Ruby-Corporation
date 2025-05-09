@@ -1,19 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://cq5llwx0h21pr"]
+[gd_scene load_steps=7 format=3 uid="uid://cq5llwx0h21pr"]
 
 [ext_resource type="Script" uid="uid://b6n4wtdrcrvb1" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/asset_display_system.gd" id="1_bt6o7"]
 [ext_resource type="PackedScene" uid="uid://bvniq0gvi7isd" path="res://Scripts/Web3/UIAssets/TokenEntry.tscn" id="2_ljei0"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="3_8wx7s"]
-[ext_resource type="Texture2D" uid="uid://b3003ar1uxa77" path="res://addons/SolanaSDK/Textures/closebutton.jpg.png" id="4_b3gut"]
+[ext_resource type="Texture2D" uid="uid://bdjw50vivwoew" path="res://Textures/Icons/CloseIcon.PNG" id="4_ble2l"]
 [ext_resource type="Script" uid="uid://cja6e8dxjd81x" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="5_fkvt8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kehq"]
-bg_color = Color(0.121569, 0.0627451, 0.164706, 0.941176)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qac5"]
-bg_color = Color(0.65098, 0.521569, 0.623529, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ble2l"]
+bg_color = Color(0, 0.443137, 0.439216, 0.929412)
 
 [node name="TokenDisplaySystem" type="Control" node_paths=PackedStringArray("container", "no_asset_overlay", "search_bar")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,13 +17,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bt6o7")
-container = NodePath("MarginContainer/Content/TokenPanel/MarginContainer/VBoxContainer/ScrollContainer/TokenContainer")
-no_asset_overlay = NodePath("MarginContainer/Content/TokenPanel/MarginContainer/NoAssetsOverlay")
-minimum_entry_size = Vector2(553, 30)
 display_type = Array[int]([2])
+container = NodePath("MarginContainer/Content/TokenPanel/MarginContainer/VBoxContainer/ScrollContainer/TokenContainer")
 display_entry_scn = ExtResource("2_ljei0")
-search_bar = NodePath("MarginContainer/Content/TokenPanel/MarginContainer/VBoxContainer/Searchbar")
 close_on_select = true
+no_asset_overlay = NodePath("MarginContainer/Content/TokenPanel/MarginContainer/NoAssetsOverlay")
+search_bar = NodePath("MarginContainer/Content/TokenPanel/MarginContainer/VBoxContainer/Searchbar")
 
 [node name="BG" type="Panel" parent="."]
 layout_mode = 1
@@ -36,7 +31,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3kehq")
+theme = ExtResource("3_8wx7s")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ble2l")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -63,10 +59,9 @@ layout_mode = 2
 size_flags_vertical = 1
 theme = ExtResource("3_8wx7s")
 theme_type_variation = &"HeaderMedium"
-theme_override_font_sizes/font_size = 45
-text = "Select Token"
+text = "SELECT TOKEN"
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 
 [node name="CloseContainer" type="HBoxContainer" parent="MarginContainer/Content/Info"]
 layout_mode = 2
@@ -76,13 +71,17 @@ alignment = 2
 [node name="CloseButton" type="TextureButton" parent="MarginContainer/Content/Info/CloseContainer"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
-texture_normal = ExtResource("4_b3gut")
+texture_normal = ExtResource("4_ble2l")
+texture_pressed = ExtResource("4_ble2l")
+texture_hover = ExtResource("4_ble2l")
+texture_disabled = ExtResource("4_ble2l")
 ignore_texture_size = true
 stretch_mode = 4
 
 [node name="TokenPanel" type="PanelContainer" parent="MarginContainer/Content"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3qac5")
+theme = ExtResource("3_8wx7s")
+theme_type_variation = &"PanelFlat"
 
 [node name="Exit" type="Control" parent="MarginContainer/Content/TokenPanel"]
 layout_mode = 2
@@ -101,9 +100,9 @@ layout_mode = 2
 theme_override_constants/separation = 15
 
 [node name="Searchbar" type="LineEdit" parent="MarginContainer/Content/TokenPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("3_8wx7s")
-theme_override_font_sizes/font_size = 35
 placeholder_text = "Search for token..."
 script = ExtResource("5_fkvt8")
 
@@ -115,15 +114,16 @@ layout_mode = 2
 theme = ExtResource("3_8wx7s")
 theme_override_font_sizes/font_size = 28
 text = "Token Details"
+vertical_alignment = 1
 
 [node name="BalanceLabel" type="Label" parent="MarginContainer/Content/TokenPanel/MarginContainer/VBoxContainer/Explainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_8wx7s")
 theme_override_font_sizes/font_size = 28
-text = "Balance
-"
+text = "Balance"
 horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Content/TokenPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
