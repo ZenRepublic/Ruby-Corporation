@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4k6tpdhfvylg"]
+[gd_scene load_steps=12 format=3 uid="uid://b4k6tpdhfvylg"]
 
 [ext_resource type="AudioStream" uid="uid://f8x3oa14dfrp" path="res://Content/LaunchingSoon/GUI/UIEffects/StartEffect/worksound.mp3" id="1_ii7c4"]
 [ext_resource type="AudioStream" uid="uid://ds6fo8ttc356k" path="res://Content/LaunchingSoon/GUI/UIEffects/StartEffect/TimeToWork.mp3" id="2_5ngio"]
 [ext_resource type="Texture2D" uid="uid://jmjganhbmvdl" path="res://Content/LaunchingSoon/GUI/UIEffects/StartEffect/StartRubian.png" id="3_jj4jh"]
+[ext_resource type="Script" uid="uid://lrfhf3xbivhx" path="res://addons/richtext2/text_effects/anims/rte_growin.gd" id="4_2k5xf"]
+[ext_resource type="Script" uid="uid://b8k6548xtwyv6" path="res://addons/richtext2/text_effects/effects/rte_wack.gd" id="5_6ngpo"]
+[ext_resource type="Script" uid="uid://b6mbstaftpedd" path="res://addons/richtext2/rich_text_animation.gd" id="6_17kc5"]
 
 [sub_resource type="Animation" id="Animation_cj5ry"]
 length = 0.001
@@ -53,6 +56,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label:progress")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_pph3f"]
@@ -112,10 +139,10 @@ tracks/3/path = NodePath("Label:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.566667, 0.666667, 1.36667, 1.48937),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.551471, 0.652129, 1.26828),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(828, 304), Vector2(838, 304), Vector2(184, 304), Vector2(184, 304), Vector2(181, -298)]
+"values": [Vector2(-376, -406), Vector2(-376, -406), Vector2(95, 76), Vector2(155, 113)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -124,10 +151,10 @@ tracks/4/path = NodePath("Label:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.449923, 0.673355),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.449923, 0.673355, 1.22253, 1.33539),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1.2, 1.2)]
 }
 tracks/5/type = "method"
 tracks/5/imported = false
@@ -143,12 +170,46 @@ tracks/5/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Label:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.22558, 1.30793),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Label:progress")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.6, 1.13333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sm4ha"]
 _data = {
 &"RESET": SubResource("Animation_cj5ry"),
 &"Start": SubResource("Animation_pph3f")
 }
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_1xcpd"]
+resource_name = "growin"
+script = ExtResource("4_2k5xf")
+metadata/rt = 62133295487954
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_6smp6"]
+resource_name = "wack"
+script = ExtResource("5_6ngpo")
+metadata/rt = 62133295487954
 
 [node name="StartGameScreen" type="Control"]
 layout_mode = 3
@@ -175,14 +236,100 @@ texture = ExtResource("3_jj4jh")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 348)
 layout_mode = 0
 offset_left = 828.0
 offset_top = 304.0
 offset_right = 1323.0
-offset_bottom = 445.0
-theme_override_font_sizes/font_size = 62
-text = "TIME TO WORK!"
+offset_bottom = 652.0
+theme_override_colors/font_outline_color = Color(0.0705882, 0.054902, 0.0588235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25)
+theme_override_constants/outline_size = 55
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_outline_size = 11
+theme_override_font_sizes/bold_italics_font_size = 101
+theme_override_font_sizes/italics_font_size = 101
+theme_override_font_sizes/mono_font_size = 101
+theme_override_font_sizes/normal_font_size = 101
+theme_override_font_sizes/bold_font_size = 101
 vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_1xcpd"), SubResource("RichTextEffect_6smp6")]
+script = ExtResource("6_17kc5")
+animation = "growin"
+progress = 1.0
+visible_character = 13
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(0.927, 0.21041, -0.21041, 0.927, 176.056, 93.8475), Transform2D(1.09102, 0.197167, -0.197167, 1.09102, 217.102, 93.8429), Transform2D(0.966593, -0.0511224, 0.0511224, 0.966593, 323.509, 95.1419), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1.09461, -0.114975, 0.114975, 1.09461, 159.993, 212.344), Transform2D(0.867029, 0.143194, -0.143194, 0.867029, 243.181, 209.168), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1.10286, 0.147726, -0.147726, 1.10286, 33.1808, 326.183), Transform2D(1.09183, 0.0627437, -0.0627437, 1.09183, 152.954, 327.053), Transform2D(0.902222, -0.00428707, 0.00428707, 0.902222, 246.709, 326.473), Transform2D(0.89495, -0.200954, 0.200954, 0.89495, 332.881, 327.808), Transform2D(1.00225, -0.0117501, 0.0117501, 1.00225, 419.059, 327.054)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(35, 74), Vector2(97, 74), Vector2(72, 74), Vector2(0, 0), Vector2(77, 74), Vector2(84, 74), Vector2(0, 0), Vector2(121, 74), Vector2(84, 74), Vector2(79, 74), Vector2(81, 74), Vector2(35, 74)])
+_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_forced_finish_delay = -0.0338527
+animation = "growin"
+default_wait_time = 1.0
+play_on_bbcode = true
+play_speed = 10.0
+fade_out = false
+fade_in_speed = 10.0
+fade_out_speed = 20.0
+ctc_offset = Vector2(1, -0.5)
+ctc_on_finished = false
+ctc_on_wait = false
+shortcut_expression = true
+shortcut_bookmark = true
+signal_quotes = true
+signal_stars = true
+bbcode = "[wack]TIME TO WORK![]"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "Kaph"
+font_auto_setup = true
+font_size = 101
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 55
+outline_mode = 5
+outline_color = Color(0.0705882, 0.054902, 0.0588235, 1)
+outline_adjust = 1.0
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://b6mbstaftpedd"
+metadata/rand = Array[int]([450953096, 2129365700, 157304336, 3240566915, 2465710983, 3426605048, 2938989218, 3473780338, 145560549, 3014200453, 237265126, 1707210143, 866934201])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

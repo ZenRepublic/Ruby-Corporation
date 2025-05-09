@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://beotls8ufokl2"]
+[gd_scene load_steps=12 format=3 uid="uid://beotls8ufokl2"]
 
 [ext_resource type="AudioStream" uid="uid://duia2dbjhqua1" path="res://Content/LaunchingSoon/Narrator/GoodLuckWin.mp3" id="1_cpluh"]
 [ext_resource type="Texture2D" uid="uid://brsp4nit1lt43" path="res://Content/LaunchingSoon/GUI/UIEffects/GoodLuckEffect/speechlines.png" id="2_cvw8p"]
 [ext_resource type="Texture2D" uid="uid://ckrq5vmsemfd8" path="res://Content/LaunchingSoon/GUI/UIEffects/GoodLuckEffect/GoodLuck.png" id="3_q60do"]
+[ext_resource type="Script" uid="uid://bw15kgjjsr5nt" path="res://addons/richtext2/text_effects/anims/rte_fallin.gd" id="4_j0sfg"]
+[ext_resource type="Script" uid="uid://b6mbstaftpedd" path="res://addons/richtext2/rich_text_animation.gd" id="5_j0sfg"]
+[ext_resource type="Script" uid="uid://diw5njl7cgqi5" path="res://addons/richtext2/text_effects/effects/rte_sparkle.gd" id="5_o6er5"]
 
 [sub_resource type="Animation" id="Animation_obaui"]
 resource_name = "GoodLuck"
@@ -65,10 +68,10 @@ tracks/4/path = NodePath("Label:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.157514, 0.210019, 1.77733, 1.96667),
+"times": PackedFloat32Array(0, 0.157514, 0.210019, 1.77733, 1.97365),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-611, 322), Vector2(-611, 322), Vector2(46, 322), Vector2(46, 322), Vector2(-532, 322)]
+"values": [Vector2(-611, 322), Vector2(-611, 322), Vector2(46, 322), Vector2(46, 322), Vector2(-748, 322)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -82,31 +85,31 @@ tracks/5/keys = {
 "update": 0,
 "values": [0.0]
 }
-tracks/6/type = "value"
+tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Label:visible_ratio")
+tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.210019, 0.827961, 1.65592),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 0.42, 1.0]
-}
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath(".")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Label:progress")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.094651, 1.16667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_07q2e"]
@@ -174,14 +177,14 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Label:visible_ratio")
+tracks/5/path = NodePath("Label:progress")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [-0.0416667]
+"values": [1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1thnu"]
@@ -189,6 +192,16 @@ _data = {
 &"GoodLuck": SubResource("Animation_obaui"),
 &"RESET": SubResource("Animation_07q2e")
 }
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_j0sfg"]
+resource_name = "fallin"
+script = ExtResource("4_j0sfg")
+metadata/rt = 69061480381328
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_o6er5"]
+resource_name = "sparkle"
+script = ExtResource("5_o6er5")
+metadata/rt = 69061480381328
 
 [node name="GoodLuckScreen" type="Control"]
 layout_mode = 3
@@ -227,17 +240,101 @@ texture = ExtResource("3_q60do")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 140)
 layout_mode = 0
 offset_left = -611.0
 offset_top = 322.0
-offset_right = -154.0
-offset_bottom = 493.0
-theme_override_font_sizes/font_size = 61
-text = "Good luck,
-Mr. Spaceman!"
+offset_right = 33.0
+offset_bottom = 559.0
+theme_override_colors/default_color = Color(0.835294, 0.639216, 0.792157, 1)
+theme_override_colors/font_outline_color = Color(0.0705882, 0.054902, 0.0588235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25)
+theme_override_constants/outline_size = 35
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_outline_size = 6
+theme_override_font_sizes/bold_italics_font_size = 60
+theme_override_font_sizes/italics_font_size = 60
+theme_override_font_sizes/mono_font_size = 60
+theme_override_font_sizes/normal_font_size = 60
+theme_override_font_sizes/bold_font_size = 60
 vertical_alignment = 1
-visible_characters = 0
-visible_ratio = 0.0
+custom_effects = [SubResource("RichTextEffect_j0sfg"), SubResource("RichTextEffect_o6er5")]
+script = ExtResource("5_j0sfg")
+animation = "fallin"
+progress = 1.0
+visible_character = 24
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 50, 105.5), Transform2D(1, 0, 0, 1, 104, 105.5), Transform2D(1, 0, 0, 1, 159, 105.5), Transform2D(1, 0, 0, 1, 211, 105.5), Transform2D(1, 0, 0, 1, 243, 105.5), Transform2D(1, 0, 0, 1, 290, 105.5), Transform2D(1, 0, 0, 1, 340, 105.5), Transform2D(1, 0, 0, 1, 391, 105.5), Transform2D(1, 0, 0, 1, 443, 105.5), Transform2D(1, 0, 0, 1, 465, 105.5), Transform2D(1, 0, 0, 1, 0, 175.5), Transform2D(1, 0, 0, 1, 62, 175.5), Transform2D(1, 0, 0, 1, 112, 175.5), Transform2D(1, 0, 0, 1, 134, 175.5), Transform2D(1, 0, 0, 1, 166, 175.5), Transform2D(1, 0, 0, 1, 214, 175.5), Transform2D(1, 0, 0, 1, 264, 175.5), Transform2D(1, 0, 0, 1, 310, 175.5), Transform2D(1, 0, 0, 1, 362, 175.5), Transform2D(1, 0, 0, 1, 408, 175.5), Transform2D(1, 0, 0, 1, 470, 175.5), Transform2D(1, 0, 0, 1, 517, 175.5), Transform2D(1, 0, 0, 1, 570, 175.5)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(51, 44), Vector2(51, 44), Vector2(49, 44), Vector2(0, 44), Vector2(45, 44), Vector2(47, 44), Vector2(49, 44), Vector2(50, 44), Vector2(21, 44), Vector2(0, 44), Vector2(59, 44), Vector2(48, 44), Vector2(19, 44), Vector2(0, 44), Vector2(46, 44), Vector2(48, 44), Vector2(49, 44), Vector2(49, 44), Vector2(44, 44), Vector2(59, 44), Vector2(49, 44), Vector2(50, 44), Vector2(22, 44)])
+_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_forced_finish_delay = -0.0397124
+animation = "fallin"
+default_wait_time = 1.0
+play_on_bbcode = true
+play_speed = 30.0
+fade_out = false
+fade_in_speed = 10.0
+fade_out_speed = 120.0
+ctc_offset = Vector2(1, -0.5)
+ctc_on_finished = false
+ctc_on_wait = false
+shortcut_expression = true
+shortcut_bookmark = true
+signal_quotes = true
+signal_stars = true
+bbcode = "[shake][sparkle]Good luck,
+Mr. SPACEMAN![][]"
+effects = 2
+alignment = 0
+color = Color(0.835294, 0.639216, 0.792157, 1)
+emoji_scale = 1.0
+font = "Kaph"
+font_auto_setup = true
+font_size = 60
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 35
+outline_mode = 4
+outline_color = Color(0.0705882, 0.054902, 0.0588235, 1)
+outline_adjust = 1.0
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://b6mbstaftpedd"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
