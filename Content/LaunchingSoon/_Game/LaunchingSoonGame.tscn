@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://br1uqoo22tbid"]
+[gd_scene load_steps=26 format=3 uid="uid://br1uqoo22tbid"]
 
 [ext_resource type="Script" uid="uid://cv18o0w81gm0o" path="res://Content/LaunchingSoon/_Game/launch_controller.gd" id="1_105k3"]
 [ext_resource type="Script" uid="uid://bakjm0lk676ot" path="res://Scripts/DropGameKit/CampaignManagement/campaign_reward_claimer.gd" id="2_xvglk"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://duia2dbjhqua1" path="res://Content/LaunchingSoon/Narrator/GoodLuckWin.mp3" id="12_0h6bu"]
 [ext_resource type="AudioStream" uid="uid://d2707fnp4271v" path="res://Content/LaunchingSoon/Narrator/FiredLose.mp3" id="13_mtvvt"]
 [ext_resource type="PackedScene" uid="uid://7dhu2h0jce8k" path="res://Content/LaunchingSoon/Launchpad/Model/Launchpad.tscn" id="19_78xry"]
+[ext_resource type="Texture2D" uid="uid://bg6rcb6vmuv1m" path="res://Content/LaunchingSoon/Environment/Dune L1.png" id="20_0h6bu"]
 [ext_resource type="Script" uid="uid://cnbq5j46m1vgl" path="res://Content/LaunchingSoon/Launchpad/death_zone.gd" id="20_gysdx"]
 [ext_resource type="PackedScene" uid="uid://dpn20a0307u22" path="res://Content/LaunchingSoon/Environment/Background.glb" id="22_ojuss"]
 
@@ -127,3 +128,7 @@ launchpad = NodePath("../Launchpad")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.28726, 0.740841, 1.9685)
 start_move_range = Vector3(0.15, 0.1, 0)
 max_move_range = Vector3(0.35, 0.3, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 1.86536, 2.74998, 0, -2.48551, 2.06384, 0, 3.3007, -18.7894)
+texture = ExtResource("20_0h6bu")

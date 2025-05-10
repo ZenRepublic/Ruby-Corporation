@@ -1,17 +1,21 @@
-[gd_scene load_steps=37 format=3 uid="uid://c8h3ofhnmr4ih"]
+[gd_scene load_steps=43 format=3 uid="uid://c8h3ofhnmr4ih"]
 
 [ext_resource type="Script" uid="uid://c4fxv2bctb2up" path="res://Content/LaunchingSoon/GUI/gui.gd" id="1_wc8ld"]
-[ext_resource type="Script" uid="uid://cuhu3ktt1li8j" path="res://Content/LaunchingSoon/GUI/admin_panel.gd" id="2_wvrxf"]
+[ext_resource type="Script" uid="uid://cuhu3ktt1li8j" path="res://Content/LaunchingSoon/GUI/AdminPanel/admin_panel.gd" id="2_wvrxf"]
 [ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="4_dgxx7"]
 [ext_resource type="PackedScene" uid="uid://cpt2tkhkq54hh" path="res://Content/LaunchingSoon/GUI/UIEffects/FiredEffect/FiredEffect.tscn" id="6_oi844"]
 [ext_resource type="PackedScene" uid="uid://beotls8ufokl2" path="res://Content/LaunchingSoon/GUI/UIEffects/GoodLuckEffect/GoodLuckEffect.tscn" id="7_obaui"]
 [ext_resource type="PackedScene" uid="uid://b4k6tpdhfvylg" path="res://Content/LaunchingSoon/GUI/UIEffects/StartEffect/StartEffect.tscn" id="8_07q2e"]
 [ext_resource type="Texture2D" uid="uid://bhsr7gg1bej0d" path="res://Textures/Icons/warningIcon.png" id="11_e05qb"]
+[ext_resource type="Texture2D" uid="uid://hnxggemamw2" path="res://Content/LaunchingSoon/GUI/AdminPanel/PB Under.png" id="13_r32iu"]
 [ext_resource type="Texture2D" uid="uid://dchy7ed3ybfi1" path="res://Textures/LogosAndTokens/Zenny token.PNG" id="13_vglbh"]
 [ext_resource type="PackedScene" uid="uid://cb4rhbpt4uppc" path="res://Content/LaunchingSoon/GUI/UIEffects/WarningEffect/WarningEffect.tscn" id="14_54216"]
+[ext_resource type="Texture2D" uid="uid://dra4be131gyu4" path="res://Content/LaunchingSoon/GUI/AdminPanel/Coin Ui.png" id="14_ogrfr"]
 [ext_resource type="PackedScene" uid="uid://dnww2npv55xyh" path="res://Scripts/DropGameKit/Utility/CampaignRewards/CampaignRewardsDisplay.tscn" id="14_oi844"]
+[ext_resource type="Texture2D" uid="uid://datj5scuoaaeu" path="res://Content/LaunchingSoon/GUI/AdminPanel/PB Over.png" id="14_u28q5"]
 [ext_resource type="Script" uid="uid://lrfhf3xbivhx" path="res://addons/richtext2/text_effects/anims/rte_growin.gd" id="14_vglbh"]
 [ext_resource type="Script" uid="uid://b2qavnrlilsxc" path="res://Content/LaunchingSoon/GUI/game_end_ui.gd" id="15_1thnu"]
+[ext_resource type="Texture2D" uid="uid://epul8fjntxls" path="res://Content/LaunchingSoon/GUI/AdminPanel/PBar.png" id="15_43kcm"]
 [ext_resource type="Texture2D" uid="uid://bvpufl7tjwy6q" path="res://Content/LaunchingSoon/GUI/UIEffects/FiredEffect/walkshadow.png" id="15_obaui"]
 [ext_resource type="Texture2D" uid="uid://dhkmkplauo2f7" path="res://Content/LaunchingSoon/GUI/UIEffects/FiredEffect/firedsadrubian.png" id="16_07q2e"]
 [ext_resource type="PackedScene" uid="uid://b60ee7vbwypll" path="res://Content/LaunchingSoon/GUI/UIEffects/_PlacementEffects/SloppyEffect.tscn" id="17_cj5ry"]
@@ -27,27 +31,31 @@
 [ext_resource type="Script" uid="uid://b6mbstaftpedd" path="res://addons/richtext2/rich_text_animation.gd" id="24_furhi"]
 [ext_resource type="AudioStream" uid="uid://chbhjf02h1dit" path="res://Content/LaunchingSoon/PlayerRig/TokenSpawner/Sounds/TokenPlace.mp3" id="27_vglbh"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r32iu"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkdm6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_furhi"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_e05qb"]
 resource_name = "growin"
 script = ExtResource("14_vglbh")
-metadata/rt = 76448304031312
+metadata/rt = 12482030699723
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_vglbh"]
 resource_name = "growin"
 script = ExtResource("14_vglbh")
-metadata/rt = 76450183079463
+metadata/rt = 12483909736102
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_uefu4"]
 resource_name = "heart"
 script = ExtResource("23_uefu4")
-metadata/rt = 76450183079463
+metadata/rt = 12483909736102
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_furhi"]
 resource_name = "sin"
 script = ExtResource("20_uefu4")
-metadata/rt = 76450183079463
+metadata/rt = 12483909736102
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sm4ha"]
 shader = ExtResource("17_py7dd")
@@ -66,12 +74,12 @@ border_color = Color(0.501961, 0.415686, 0.458824, 1)
 [sub_resource type="RichTextEffect" id="RichTextEffect_r32iu"]
 resource_name = "fader"
 script = ExtResource("22_e05qb")
-metadata/rt = 76451172935184
+metadata/rt = 12484899589179
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_ogrfr"]
 resource_name = "heart"
 script = ExtResource("23_uefu4")
-metadata/rt = 76451172935184
+metadata/rt = 12484899589179
 
 [node name="GUI" type="Control" node_paths=PackedStringArray("admin_panel", "campaign_reward_display", "win_screen", "lose_screen")]
 layout_mode = 3
@@ -102,10 +110,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_wvrxf")
 progress_label = NodePath("BuildProgress/VBoxContainer/Label")
-progress_bar = NodePath("BuildProgress/VBoxContainer/ProgressBar")
-token_visual = NodePath("HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/TokenVisual")
-score_label = NodePath("HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/Score")
-warnings_container = NodePath("HBoxContainer/WarningContainer/MarginContainer/WarningsContainer")
+progress_bar = NodePath("BuildProgress/VBoxContainer/TextureProgressBar")
+token_visual = NodePath("ScoreContainer/PanelContainer/HBoxContainer/TokenVisual")
+score_label = NodePath("ScoreContainer/PanelContainer/HBoxContainer/Score")
+warnings_container = NodePath("WarningContainer/MarginContainer/WarningsContainer")
 warning_visual = ExtResource("11_e05qb")
 explanation_text = NodePath("ExplanationText")
 
@@ -115,86 +123,111 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 24.0
-offset_top = 146.0
-offset_right = 74.0
-offset_bottom = 469.0
+offset_top = -58.0
+offset_right = 109.0
+offset_bottom = 516.0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r32iu")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="AdminPanel/BuildProgress"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="AdminPanel/BuildProgress/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "20"
+theme = ExtResource("21_qwewp")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 35
+text = "23"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="AdminPanel/BuildProgress/VBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+[node name="TextureProgressBar" type="TextureProgressBar" parent="AdminPanel/BuildProgress/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-max_value = 20.0
-step = 1.0
-value = 5.0
+size_flags_horizontal = 4
+max_value = 23.0
+value = 23.0
 fill_mode = 3
-show_percentage = false
+texture_under = ExtResource("13_r32iu")
+texture_over = ExtResource("14_u28q5")
+texture_progress = ExtResource("15_43kcm")
+texture_progress_offset = Vector2(0.495, 1.285)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="AdminPanel"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -1257.0
-offset_bottom = -1140.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="WarningContainer" type="PanelContainer" parent="AdminPanel/HBoxContainer"]
+[node name="WarningContainer" type="PanelContainer" parent="AdminPanel"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+offset_top = 66.0
+offset_right = 720.0
+offset_bottom = 183.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_tkdm6")
 
-[node name="MarginContainer" type="MarginContainer" parent="AdminPanel/HBoxContainer/WarningContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="AdminPanel/WarningContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="WarningsContainer" type="HBoxContainer" parent="AdminPanel/HBoxContainer/WarningContainer/MarginContainer"]
+[node name="WarningsContainer" type="HBoxContainer" parent="AdminPanel/WarningContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
+
+[node name="ScoreContainer" type="Control" parent="AdminPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -309.0
+offset_top = 54.0
+offset_right = -9.0
+offset_bottom = 171.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="AdminPanel/ScoreContainer"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = -14.0
+offset_right = 294.194
+offset_bottom = 137.0
+texture = ExtResource("14_ogrfr")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="AdminPanel/ScoreContainer"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 13.0
+offset_top = -37.5
+offset_right = -35.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_furhi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AdminPanel/ScoreContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
 alignment = 1
 
-[node name="ScoreContainer" type="PanelContainer" parent="AdminPanel/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
+[node name="Score" type="Label" parent="AdminPanel/ScoreContainer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(145, 0)
 layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="MarginContainer" type="MarginContainer" parent="AdminPanel/HBoxContainer/ScoreContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="AdminPanel/HBoxContainer/ScoreContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Score" type="Label" parent="AdminPanel/HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 71
-text = "50"
+theme = ExtResource("21_qwewp")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 33
+text = "50.5K"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("4_dgxx7")
+format_mode = 1
+decimal_amount = 1
 
-[node name="TokenVisual" type="TextureRect" parent="AdminPanel/HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer"]
+[node name="TokenVisual" type="TextureRect" parent="AdminPanel/ScoreContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 8
 texture = ExtResource("13_vglbh")
 expand_mode = 3
 
@@ -206,10 +239,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 65.0
-offset_top = -110.0
-offset_right = -61.0
-offset_bottom = 104.0
+offset_left = 157.0
+offset_top = 126.0
+offset_right = -68.0
+offset_bottom = 340.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0.0352941, 0.0627451, 0.054902, 1)
@@ -232,10 +265,10 @@ script = ExtResource("24_furhi")
 animation = "growin"
 progress = 1.0
 visible_character = 66
-_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 87, 64), Transform2D(1, 0, 0, 1, 112, 64), Transform2D(1, 0, 0, 1, 136, 64), Transform2D(1, 0, 0, 1, 160, 64), Transform2D(1, 0, 0, 1, 184, 64), Transform2D(1, 0, 0, 1, 200, 64), Transform2D(1, 0, 0, 1, 224, 64), Transform2D(1, 0, 0, 1, 249, 64), Transform2D(1, 0, 0, 1, 272, 64), Transform2D(1, 0, 0, 1, 298, 64), Transform2D(1, 0, 0, 1, 321, 64), Transform2D(1, 0, 0, 1, 337, 64), Transform2D(1, 0, 0, 1, 364, 64), Transform2D(1, 0, 0, 1, 390, 64), Transform2D(1, 0, 0, 1, 406, 64), Transform2D(1, 0, 0, 1, 431, 64), Transform2D(1, 0, 0, 1, 458, 64), Transform2D(1, 0, 0, 1, 483, 64), Transform2D(1, 0, 0, 1, 508, 64), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 95, 100), Transform2D(1, 0, 0, 1, 118, 100), Transform2D(1, 0, 0, 1, 145, 100), Transform2D(1, 0, 0, 1, 168, 100), Transform2D(1, 0, 0, 1, 204, 100), Transform2D(1, 0, 0, 1, 228, 100), Transform2D(1, 0, 0, 1, 251, 100), Transform2D(1, 0, 0, 1, 276, 100), Transform2D(1, 0, 0, 1, 300, 100), Transform2D(1, 0, 0, 1, 316, 100), Transform2D(1, 0, 0, 1, 341, 100), Transform2D(1, 0, 0, 1, 368, 100), Transform2D(1, 0, 0, 1, 384, 100), Transform2D(1, 0, 0, 1, 410, 100), Transform2D(1, 0, 0, 1, 435, 100), Transform2D(1, 0, 0, 1, 462, 100), Transform2D(1, 0, 0, 1, 487, 100), Transform2D(1, 0, 0, 1, 498, 100), Transform2D(1, 0, 0, 1, 297, 136), Transform2D(1, 0, 0, 1, 4, 172), Transform2D(1, 0, 0, 1, 29, 172), Transform2D(1, 0, 0, 1, 45, 172), Transform2D(1, 0, 0, 1, 80, 172), Transform2D(1, 0, 0, 1, 104, 172), Transform2D(1, 0, 0, 1, 129, 172), Transform2D(1, 0, 0, 1, 156, 172), Transform2D(1, 0, 0, 1, 168, 172), Transform2D(1, 0, 0, 1, 195, 172), Transform2D(1, 0, 0, 1, 220, 172), Transform2D(1, 0, 0, 1, 244, 172), Transform2D(1, 0, 0, 1, 260, 172), Transform2D(1, 0, 0, 1, 283, 172), Transform2D(1, 0, 0, 1, 310, 172), Transform2D(1, 0, 0, 1, 336, 172), Transform2D(1, 0, 0, 1, 352, 172), Transform2D(1, 0, 0, 1, 376, 172), Transform2D(1, 0, 0, 1, 403, 172), Transform2D(1, 0, 0, 1, 427, 172), Transform2D(1, 0, 0, 1, 436, 172), Transform2D(1, 0, 0, 1, 462, 172), Transform2D(0, 0, 0, 0, 489.5, 167.25), Transform2D(0, 0, 0, 0, 508.5, 167.25), Transform2D(0, 0, 0, 0, 535, 167.25), Transform2D(0, 0, 0, 0, 560, 167.25), Transform2D(0, 0, 0, 0, 581.5, 167.25)])
-_char_size = Array[Vector2]([Vector2(0, 0), Vector2(25, 22), Vector2(23, 22), Vector2(24, 22), Vector2(24, 22), Vector2(0, 22), Vector2(24, 22), Vector2(25, 22), Vector2(26, 22), Vector2(26, 22), Vector2(23, 22), Vector2(0, 22), Vector2(27, 22), Vector2(25, 22), Vector2(0, 22), Vector2(25, 22), Vector2(27, 22), Vector2(25, 22), Vector2(26, 22), Vector2(24, 22), Vector2(0, 0), Vector2(26, 22), Vector2(27, 22), Vector2(26, 22), Vector2(38, 22), Vector2(24, 22), Vector2(23, 22), Vector2(25, 22), Vector2(23, 22), Vector2(0, 22), Vector2(25, 22), Vector2(27, 22), Vector2(0, 22), Vector2(26, 22), Vector2(25, 22), Vector2(27, 22), Vector2(25, 22), Vector2(11, 22), Vector2(0, 22), Vector2(0, 22), Vector2(25, 22), Vector2(0, 22), Vector2(38, 22), Vector2(26, 22), Vector2(25, 22), Vector2(27, 22), Vector2(12, 22), Vector2(27, 22), Vector2(25, 22), Vector2(24, 22), Vector2(0, 22), Vector2(26, 22), Vector2(27, 22), Vector2(26, 22), Vector2(0, 22), Vector2(26, 22), Vector2(27, 22), Vector2(25, 22), Vector2(9, 22), Vector2(25, 22), Vector2(23, 22), Vector2(0, 22), Vector2(27, 22), Vector2(25, 22), Vector2(25, 22), Vector2(12, 22)])
-_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0])
-_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 37, 46), Transform2D(1, 0, 0, 1, 62, 46), Transform2D(1, 0, 0, 1, 86, 46), Transform2D(1, 0, 0, 1, 110, 46), Transform2D(1, 0, 0, 1, 134, 46), Transform2D(1, 0, 0, 1, 150, 46), Transform2D(1, 0, 0, 1, 174, 46), Transform2D(1, 0, 0, 1, 199, 46), Transform2D(1, 0, 0, 1, 222, 46), Transform2D(1, 0, 0, 1, 248, 46), Transform2D(1, 0, 0, 1, 271, 46), Transform2D(1, 0, 0, 1, 287, 46), Transform2D(1, 0, 0, 1, 314, 46), Transform2D(1, 0, 0, 1, 340, 46), Transform2D(1, 0, 0, 1, 356, 46), Transform2D(1, 0, 0, 1, 381, 46), Transform2D(1, 0, 0, 1, 408, 46), Transform2D(1, 0, 0, 1, 433, 46), Transform2D(1, 0, 0, 1, 458, 46), Transform2D(1, 0, 0, 1, 160, 65), Transform2D(1, 0, 0, 1, 46, 82), Transform2D(1, 0, 0, 1, 69, 82), Transform2D(1, 0, 0, 1, 96, 82), Transform2D(1, 0, 0, 1, 119, 82), Transform2D(1, 0, 0, 1, 155, 82), Transform2D(1, 0, 0, 1, 179, 82), Transform2D(1, 0, 0, 1, 202, 82), Transform2D(1, 0, 0, 1, 227, 82), Transform2D(1, 0, 0, 1, 251, 82), Transform2D(1, 0, 0, 1, 267, 82), Transform2D(1, 0, 0, 1, 292, 82), Transform2D(1, 0, 0, 1, 319, 82), Transform2D(1, 0, 0, 1, 335, 82), Transform2D(1, 0, 0, 1, 361, 82), Transform2D(1, 0, 0, 1, 386, 82), Transform2D(1, 0, 0, 1, 413, 82), Transform2D(1, 0, 0, 1, 438, 82), Transform2D(1, 0, 0, 1, 449, 82), Transform2D(1, 0, 0, 1, 247, 118), Transform2D(1, 0, 0, 1, 81, 154), Transform2D(1, 0, 0, 1, 106, 154), Transform2D(1, 0, 0, 1, 122, 154), Transform2D(1, 0, 0, 1, 157, 154), Transform2D(1, 0, 0, 1, 181, 154), Transform2D(1, 0, 0, 1, 206, 154), Transform2D(1, 0, 0, 1, 233, 154), Transform2D(1, 0, 0, 1, 245, 154), Transform2D(1, 0, 0, 1, 272, 154), Transform2D(1, 0, 0, 1, 297, 154), Transform2D(1, 0, 0, 1, 321, 154), Transform2D(1, 0, 0, 1, 337, 154), Transform2D(1, 0, 0, 1, 360, 154), Transform2D(1, 0, 0, 1, 387, 154), Transform2D(1, 0, 0, 1, 340, 154), Transform2D(1, 0, 0, 1, 128, 190), Transform2D(1, 0, 0, 1, 152, 190), Transform2D(1, 0, 0, 1, 179, 190), Transform2D(1, 0, 0, 1, 203, 190), Transform2D(1, 0, 0, 1, 212, 190), Transform2D(1, 0, 0, 1, 238, 190), Transform2D(1, 0, 0, 1, 261, 190), Transform2D(1, 0, 0, 1, 277, 190), Transform2D(1, 0, 0, 1, 304, 190), Transform2D(1, 0, 0, 1, 329, 190), Transform2D(1, 0, 0, 1, 354, 190)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(25, 22), Vector2(23, 22), Vector2(24, 22), Vector2(24, 22), Vector2(0, 22), Vector2(24, 22), Vector2(25, 22), Vector2(26, 22), Vector2(26, 22), Vector2(23, 22), Vector2(0, 22), Vector2(27, 22), Vector2(25, 22), Vector2(0, 22), Vector2(25, 22), Vector2(27, 22), Vector2(25, 22), Vector2(26, 22), Vector2(24, 22), Vector2(0, 22), Vector2(26, 22), Vector2(27, 22), Vector2(26, 22), Vector2(38, 22), Vector2(24, 22), Vector2(23, 22), Vector2(25, 22), Vector2(23, 22), Vector2(0, 22), Vector2(25, 22), Vector2(27, 22), Vector2(0, 22), Vector2(26, 22), Vector2(25, 22), Vector2(27, 22), Vector2(25, 22), Vector2(11, 22), Vector2(0, 22), Vector2(0, 22), Vector2(25, 22), Vector2(0, 22), Vector2(38, 22), Vector2(26, 22), Vector2(25, 22), Vector2(27, 22), Vector2(12, 22), Vector2(27, 22), Vector2(25, 22), Vector2(24, 22), Vector2(0, 22), Vector2(26, 22), Vector2(27, 22), Vector2(26, 22), Vector2(0, 22), Vector2(26, 22), Vector2(27, 22), Vector2(25, 22), Vector2(9, 22), Vector2(25, 22), Vector2(23, 22), Vector2(0, 22), Vector2(27, 22), Vector2(25, 22), Vector2(25, 22), Vector2(12, 22)])
+_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _forced_finish_delay = -0.0446169
 animation = "growin"
 default_wait_time = 1.0
@@ -346,7 +379,7 @@ alignment = 1
 
 [node name="Title3" type="RichTextLabel" parent="WinScreen/MarginContainer/Content/Congratulate"]
 clip_contents = false
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(0, 840)
 layout_mode = 2
 size_flags_vertical = 4
 theme = ExtResource("21_qwewp")
@@ -371,8 +404,8 @@ script = ExtResource("24_furhi")
 animation = "growin"
 progress = 1.0
 visible_character = 12
-_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 127, 57), Transform2D(1, 0, 0, 1, 152, 57), Transform2D(1, 0, 0, 1, 204, 57), Transform2D(1, 0, 0, 1, 250, 57), Transform2D(1, 0, 0, 1, 297, 57), Transform2D(1, 0, 0, 1, 344, 57), Transform2D(1, 0, 0, 1, 376, 57), Transform2D(1, 0, 0, 1, 428, 57), Transform2D(1, 0, 0, 1, 482, 57), Transform2D(1, 0, 0, 1, 535, 57), Transform2D(1, 0, 0, 1, 582, 57)])
-_char_size = Array[Vector2]([Vector2(0, 0), Vector2(22, 44), Vector2(49, 44), Vector2(44, 44), Vector2(45, 44), Vector2(50, 44), Vector2(0, 44), Vector2(49, 44), Vector2(51, 44), Vector2(50, 44), Vector2(44, 44), Vector2(22, 44)])
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 _alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _forced_finish_delay = -0.0379089
@@ -575,7 +608,7 @@ theme_override_constants/separation = 20
 
 [node name="Label4" type="RichTextLabel" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
 clip_contents = false
-custom_minimum_size = Vector2(0, 53)
+custom_minimum_size = Vector2(0, 901)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
