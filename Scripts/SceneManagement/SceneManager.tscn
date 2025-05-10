@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://dyidk1vxcpwe4"]
 
 [ext_resource type="Script" uid="uid://p0uimtow0ouh" path="res://Scripts/SceneManagement/scene_manager.gd" id="1_lsbho"]
-[ext_resource type="PackedScene" uid="uid://bjjl43eub4i10" path="res://Scenes/Transitions/DiamondSandTransition.tscn" id="2_kwcg0"]
+[ext_resource type="PackedScene" uid="uid://bjjl43eub4i10" path="res://Scripts/SceneManagement/Transitions/LinesTransition.tscn" id="2_kwcg0"]
 [ext_resource type="Script" uid="uid://blirail02xv24" path="res://Scripts/SceneManagement/particles_cache.gd" id="3_saj7b"]
+
 
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_lsbho")

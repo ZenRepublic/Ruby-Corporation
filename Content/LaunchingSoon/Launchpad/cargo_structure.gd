@@ -40,9 +40,11 @@ func _process(delta: float) -> void:
 	
 func set_base_cargo(cargo:Cargo) -> void:
 	cargo_base = cargo
-	add_child(cargo_base)
-	cargo_base.position += Vector3(0,cargo_base.height/2.0,0)
-	cargo_base.position += base_spawn_offset
+	get_tree().root.add_child(cargo_base)
+	cargo_base.reparent(self)
+	#add_child(cargo_base)
+	cargo_base.position = Vector3(0,cargo_base.height/2.0,0)
+	cargo_base.position = base_spawn_offset
 	
 func get_placement_tier(cargo:Cargo, collided_cargo:Cargo,hit_pos:Vector3, hit_normal:Vector3) -> LaunchSettings.PLACE_TIER:
 	if curr_cargo.size()>0 and collided_cargo != curr_cargo[curr_cargo.size()-1]["cargo"]:

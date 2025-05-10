@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_tvwpv")
 title = "LAUNCHING SOON"
-tag = "3D STACKER GAME"
+tag = "3D STACKER GIG"
 description = "Build a rocket by dropping and stacking its parts. 
 The more accurate, the more you earn!"
 visual = ExtResource("1_tvwpv")

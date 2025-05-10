@@ -13,8 +13,11 @@ class_name Cargo
 
 @export var score_label:Label3D
 
+@export var particle_spawn_point:Node3D
+
 @export var sounds:Dictionary
 @export var audio_player:AudioStreamPlayer
+@export var animator:AnimationPlayer
 
 var height:float
 var width:float
@@ -135,6 +138,10 @@ func process_collision(collision_data:Dictionary) -> void:
 func handle_connect() -> void:
 	score_label.text = str(LaunchSettings.get_score(place_tier))
 	await tween_placement()
+	
+	if animator!=null:
+		animator.play("open")
+		
 	on_placed.emit(self)
 	
 	
@@ -184,7 +191,7 @@ func tween_placement() -> void:
 	var end_angle: float = start_up.angle_to(target_up)
 #	duration depends on how poorly it was placed
 	var accuracy:float = LaunchSettings.get_place_accuracy(place_tier)
-	var duration:float = lerpf(stick_tween_duration/5.0,stick_tween_duration,accuracy)
+	var duration:float = lerpf(stick_tween_duration/2.0,stick_tween_duration,accuracy)
 	var jump_height:float = lerpf(max_jump_height/4.0,max_jump_height,accuracy)
 		
 	var tween = create_tween()
@@ -207,7 +214,11 @@ func tween_placement() -> void:
 	tween.chain()
 	tween.tween_property(self,"position",original_position,duration*0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	await tween.finished
-	play_sound("place")
+	
+	if is_perfect_placement():
+		play_sound("perfect_place")
+	else:
+		play_sound("place")
 	
 # Method to apply rotation around a pivot point
 func rotate_around_pivot(t: float, rotate_offset:Vector3, start_basis:Basis, rotate_axis, end_angle, do_a_flip:bool):

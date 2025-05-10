@@ -4,6 +4,7 @@ class_name LaunchController
 @export var menu_scn_path:String
 @export var launchpad:Launchpad
 @export var player_rig:PlayerRig
+@export var start_rig_point:Node3D
 @export var gui:GUI
 @export var narrator:Narrator
 
@@ -18,6 +19,8 @@ func _init() -> void:
 	add_to_group("LaunchController")
 
 func _ready() -> void:
+	MusicManager.play_song("Game",true,1)
+	
 	player_rig.on_warning_received.connect(process_warning)
 	player_rig.on_value_updated.connect(display_score)
 	launchpad.on_structure_complete.connect(send_off)
@@ -27,10 +30,12 @@ func _ready() -> void:
 		await setup_reward_claimer()
 		
 	await launchpad.activate()
-
+	
+	player_rig.move_to(start_rig_point.global_position,1.5)
+	await get_tree().create_timer(0.5).timeout
 	gui.do_effect("Start")
-	await get_tree().create_timer(1.5).timeout
-	MusicManager.play_song("Game",true,1)
+	await get_tree().create_timer(1.0).timeout
+	
 	setup_complete.emit()
 	
 

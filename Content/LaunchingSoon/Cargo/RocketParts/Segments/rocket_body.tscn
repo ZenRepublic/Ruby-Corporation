@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://uqc07cdw5bho"]
+
+[ext_resource type="Script" uid="uid://dsdr2ouay0eu2" path="res://Content/LaunchingSoon/Cargo/body_configurator.gd" id="1_63fik"]
+[ext_resource type="PackedScene" uid="uid://w43fjwpaicpx" path="res://Content/LaunchingSoon/Cargo/RocketParts/ForStickies/Fueselage.glb" id="1_sl7ge"]
+[ext_resource type="Material" uid="uid://dgdqrxbrkenl5" path="res://Content/LaunchingSoon/Cargo/RocketParts/Segments/RocketMaterial.tscn.tres" id="2_63fik"]
+
+
+[node name="RocketBody" type="Node3D"]
+script = ExtResource("1_63fik")
+
+[node name="Fueselage" parent="." instance=ExtResource("1_sl7ge")]
+
+[node name="Rocket_Body" parent="Fueselage" index="0"]
+surface_material_override/0 = ExtResource("2_63fik")
+
+[node name="Rocket_BodyPanel_A" parent="Fueselage/Rocket_Body" index="2"]
+surface_material_override/0 = ExtResource("2_63fik")
+
+[node name="Rocket_BodyPanel_B" parent="Fueselage/Rocket_Body" index="3"]
+surface_material_override/0 = ExtResource("2_63fik")
+
+[editable path="Fueselage"]

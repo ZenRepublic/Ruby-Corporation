@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_nc3m0")
 title = "BIG DIGGAS"
-tag = "2D MINING GAME"
+tag = "2D MINING GIG"
 description = "Dig around in a tile-based cave to uncover precious gems and exchange them for tokens!"
 visual = ExtResource("1_nvd4y")
 mainnet_house_id = "FcxGPktM2MJJ9qTxwiEVKJxHTpvatoFawKGq46SJxviG"

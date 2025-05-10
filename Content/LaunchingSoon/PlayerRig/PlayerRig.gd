@@ -95,6 +95,7 @@ func move_to(fly_point:Vector3, duration:float) -> void:
 	
 func process_successful_drop(cargo:Cargo) -> void:
 	cam.knock_back(cargo.global_position,LaunchSettings.get_place_accuracy(cargo.place_tier))
+	
 	var tokens_earned:float = LaunchSettings.get_score(cargo.place_tier)
 	token_spawner.send_tokens(tokens_earned,cargo)
 	
@@ -108,6 +109,12 @@ func process_successful_drop(cargo:Cargo) -> void:
 	else:
 		drone.visible=false
 		
+	if cargo.animator!=null:
+		await get_tree().create_timer(token_spawner.send_duration).timeout
+		cargo.animator.play("depositing")
+		await token_spawner.on_send_finished
+		cargo.animator.play("close")
+		
 func update_launch_value(change_amount:float) -> void:
 	curr_value += change_amount
 	if curr_value<0:
@@ -118,7 +125,7 @@ func update_launch_value(change_amount:float) -> void:
 func process_failed_drop(cargo:Cargo) -> void:
 	update_launch_value(-LaunchSettings.PENALTY_VALUE)
 	
-	cam.start_shake(0.3,0.05)
+	cam.start_shake(0.6,0.08)
 	curr_warnings += 1
 	on_warning_received.emit(curr_warnings)
 

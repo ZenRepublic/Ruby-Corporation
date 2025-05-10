@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvjfxvk2hp8a7"]
+
+[ext_resource type="AudioStream" uid="uid://de61v7gmfvgtr" path="res://Content/LaunchingSoon/Cargo/Sounds/Rocket/RocketAscend.mp3" id="1_skan8"]
+
+[sub_resource type="Animation" id="Animation_ggeqv"]
+resource_name = "burst"
+length = 2.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_skan8")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.03333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oy7md"]
+_data = {
+&"burst": SubResource("Animation_ggeqv")
+}
+
+[node name="RocketBurstParticles" type="Node3D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_oy7md")
+}
+autoplay = "burst"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

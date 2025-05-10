@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds0uguvwd104x"]
+
+[ext_resource type="AudioStream" uid="uid://de61v7gmfvgtr" path="res://Content/LaunchingSoon/Cargo/Sounds/Rocket/RocketAscend.mp3" id="1_a37qr"]
+[ext_resource type="AudioStream" uid="uid://bhhh524mu4cpq" path="res://Content/LaunchingSoon/Cargo/Sounds/Rocket/RocketFlyZoom.mp3" id="2_xbxh0"]
+
+[sub_resource type="Animation" id="Animation_ggeqv"]
+resource_name = "burst"
+length = 2.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_a37qr")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.03333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xfmak"]
+resource_name = "zoom"
+length = 2.8
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.75,
+"start_offset": 0.0,
+"stream": ExtResource("2_xbxh0")
+}],
+"times": PackedFloat32Array(0.0333334)
+}
+tracks/0/use_blend = true
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.73333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oy7md"]
+_data = {
+&"burst": SubResource("Animation_ggeqv"),
+&"zoom": SubResource("Animation_xfmak")
+}
+
+[node name="RocketZoomParticles" type="Node3D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_oy7md")
+}
+autoplay = "zoom"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

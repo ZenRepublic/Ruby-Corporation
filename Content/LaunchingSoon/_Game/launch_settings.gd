@@ -1,7 +1,7 @@
 extends Node
 class_name LaunchSettings
 
-static var CARGO_TO_FULL:int = 23
+static var CARGO_TO_FULL:int = 3
 static var WARNINGS_TO_FIRE:int = 3
 static var BASE_PLACEMENT_SCORE:float = 1.0
 static var PENALTY_VALUE:float = 1.0

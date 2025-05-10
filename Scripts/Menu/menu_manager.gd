@@ -35,7 +35,7 @@ func play_ui_sound(sound_name:String) -> void:
 	
 func load_game(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionary) -> void:
 	MusicManager.play_sound("ButtonSimple")
-	SceneManager.load_scene(gig_manager.active_gig.path_to_game_scn,true,-1,0.2,{
+	SceneManager.load_scene(gig_manager.active_gig.path_to_game_scn,true,-1,1.0,{
 		"FreePlay":false,
 		"CampaignKey":campaign_key,
 		"CampaignData":campaign_data,
@@ -44,4 +44,4 @@ func load_game(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictiona
 		
 func load_game_free_mode() -> void:
 	MusicManager.play_sound("ButtonSimple")
-	SceneManager.load_scene(gig_manager.active_gig.path_to_game_scn,true,-1,0.0,{"FreePlay":true})
+	SceneManager.load_scene(gig_manager.active_gig.path_to_game_scn,true,-1,0.8,{"FreePlay":true})

@@ -7,8 +7,12 @@ class_name Launchpad
 @export var cargo_structure:CargoStructure
 @export var base_cargo_scn:PackedScene
 
-@export var death_zone:Node3D
+@export var death_zone:StaticBody3D
 var death_zone_offset:Vector3
+
+@export var burst_particles_scn:PackedScene
+@export var zoom_particles_scn:PackedScene
+@export var sparkle_out_scn:PackedScene
 
 var gui:GUI
 
@@ -65,9 +69,21 @@ func launch_structure() -> void:
 	var ascend_spring_position:Vector3 = complete_structure.global_position + complete_structure.transform.basis.y * 1.05
 	var final_fly_position:Vector3 = complete_structure.global_position + complete_structure.transform.basis.y * 40
 #	first slowly ascend to get the fire to show
+	var fire_instance = burst_particles_scn.instantiate()
+	cargo_structure.cargo_base.particle_spawn_point.add_child(fire_instance)
 	tween.tween_property(complete_structure,"global_position",ascend_fly_position,2.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+	
 	tween.tween_property(complete_structure,"global_position",ascend_spring_position,1.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	await tween.finished
+	
+	var zoom_instance = zoom_particles_scn.instantiate()
+	cargo_structure.cargo_base.particle_spawn_point.add_child(zoom_instance)
+	tween = create_tween()
 	tween.tween_property(complete_structure,"global_position",final_fly_position,1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	await tween.finished
+	var sparkle_instance = sparkle_out_scn.instantiate()
+	get_tree().root.add_child(sparkle_instance)
+	sparkle_instance.global_position = cargo_structure.cargo_base.particle_spawn_point.global_position
 	complete_structure.visible=false
+	await get_tree().create_timer(1.2).timeout
