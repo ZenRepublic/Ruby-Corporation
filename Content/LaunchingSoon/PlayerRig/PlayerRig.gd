@@ -46,11 +46,14 @@ func setup_rig() -> void:
 	
 func set_original_pos() -> void:
 	original_pos = self.global_position
-	
-func _process(delta: float) -> void:
-	# Drop block on input
-	if Input.is_action_just_pressed("ui_accept"): # Spacebar
-		drone.try_drop_load()
+		
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		if event.is_pressed():
+			drone.try_drop_load()
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_SPACE:
+			drone.try_drop_load()
 		
 func prepare_cargo_drop() -> void:
 	drone.update_difficulty(launchpad.get_structure_size())
@@ -71,6 +74,9 @@ func send_cargo(deploy_point:Vector3) -> void:
 	drone.fly_to(deploy_point, cam.global_position)
 	
 func return_drone(dropped_cargo:Cargo) -> void:
+	if gui.admin_panel.explanation_text!=null:
+		gui.admin_panel.explanation_text.queue_free()
+	
 	dropped_cargo.on_missed.connect(process_failed_drop,CONNECT_ONE_SHOT)
 	dropped_cargo.on_placed.connect(process_successful_drop,CONNECT_ONE_SHOT)
 	if !drone.is_at_destination:

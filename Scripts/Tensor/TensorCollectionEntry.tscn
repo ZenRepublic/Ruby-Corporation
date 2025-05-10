@@ -4,12 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="1_mus84"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="2_6mrwi"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vq0v"]
-bg_color = Color(0.482353, 0.329412, 0.501961, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prac7"]
+bg_color = Color(0, 0.443137, 0.439216, 1)
 
 [node name="TensorCollectionEntry" type="PanelContainer" node_paths=PackedStringArray("visual", "name_label", "select_button")]
 custom_minimum_size = Vector2(400, 30)
-theme_override_styles/panel = SubResource("StyleBoxFlat_1vq0v")
+theme = ExtResource("2_6mrwi")
+theme_override_styles/panel = SubResource("StyleBoxFlat_prac7")
 script = ExtResource("1_50gjt")
 visual = NodePath("MarginContainer/Content/Visual")
 name_label = NodePath("MarginContainer/Content/TokenName")
@@ -34,17 +35,16 @@ stretch_mode = 5
 [node name="TokenName" type="Label" parent="MarginContainer/Content"]
 layout_mode = 2
 theme = ExtResource("2_6mrwi")
-theme_override_font_sizes/font_size = 24
 text = "-"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="MarginContainer/Content"]
-custom_minimum_size = Vector2(120, 40)
+custom_minimum_size = Vector2(140, 50)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
 theme = ExtResource("2_6mrwi")
-theme_type_variation = &"SimpleButton"
+theme_type_variation = &"ButtonFlatAlt"
 theme_override_font_sizes/font_size = 21
 text = "SELECT"

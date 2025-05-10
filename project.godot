@@ -16,7 +16,9 @@ run/main_scene="uid://dmdb8dbmov2cl"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=60
 run/low_processor_mode=true
-config/icon="uid://bpwp0rarwasey"
+boot_splash/bg_color=Color(0, 0.443137, 0.439216, 1)
+boot_splash/image="uid://bpwp0rarwasey"
+config/icon="uid://dfv4g2wd54x0p"
 
 [audio]
 
@@ -63,6 +65,11 @@ Escape={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+Space={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
+]
+}
 
 [input_devices]
 
@@ -89,21 +96,14 @@ anti_aliasing/screen_space_roughness_limiter/enabled=false
 [richer_text_label]
 
 fonts={
-&"Art-nuvo": "res://Fonts/Art-nuvo.otf",
-&"Beyblade Metal Fight Font": "res://Fonts/Beyblade Metal Fight Font.ttf",
-&"Bungee": "res://Fonts/Bungee-Regular.ttf",
 &"Dingos-Stamp_Black": "res://Fonts/Dingos-Stamp_Black.ttf",
-&"GeometrySoftProN": "res://Fonts/GeometrySoftPro-BoldN.otf",
 &"Hergiev": "res://Fonts/Hergiev.ttf",
 &"Jaywalk": "res://Fonts/Jaywalk.ttf",
 &"Kaph": "res://Fonts/Kaph-Regular.ttf",
-&"Masicu-Medium": "res://Fonts/Masicu-Medium.ttf",
-&"Prototype": "res://Fonts/Prototype.ttf",
 &"WaterLemon-5yzwa": "res://Fonts/WaterLemon-5yzwa.otf",
 &"Xirod - new rubian font": "res://Fonts/Xirod - new rubian font.otf",
 &"ZeroCool": "res://Fonts/ZeroCool.ttf",
-&"manolomono": "res://Fonts/manolomono.otf",
-&"panton.black-caps": "res://Fonts/panton.black-caps.otf"
+&"manolomono": "res://Fonts/manolomono.otf"
 }
 
 [solana_sdk]

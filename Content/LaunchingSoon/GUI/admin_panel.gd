@@ -8,6 +8,8 @@ class_name AdminPanel
 
 @export var warnings_container:HBoxContainer
 @export var warning_visual:Texture2D
+
+@export var explanation_text:Control
 	
 func _ready() -> void:	
 	progress_label.text = str(LaunchSettings.CARGO_TO_FULL)

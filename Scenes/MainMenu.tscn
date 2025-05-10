@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dmdb8dbmov2cl"]
+[gd_scene load_steps=60 format=3 uid="uid://dmdb8dbmov2cl"]
 
 [ext_resource type="Script" uid="uid://uxfmmvq5egiv" path="res://Scripts/Menu/menu_manager.gd" id="1_l0w8j"]
 [ext_resource type="Script" uid="uid://cdjcqclowhb8e" path="res://addons/SolanaSDK/Scripts/NFTGating/button_lock_manager.gd" id="2_uhhnb"]
@@ -15,7 +15,6 @@
 [ext_resource type="Script" uid="uid://bwchk1fr718eh" path="res://addons/texture_button_colored/texture_button_colored.gd" id="11_ugld7"]
 [ext_resource type="Texture2D" uid="uid://br8u2jj3e2hqp" path="res://Textures/Socials/DiscordIcon.png" id="12_40pcs"]
 [ext_resource type="Texture2D" uid="uid://ceptpp844babl" path="res://Textures/Icons/loginicon.png" id="14_jhlh1"]
-[ext_resource type="Texture2D" uid="uid://duj7xntofu70d" path="res://Textures/GUI/treasure_pattern.png" id="14_jvcst"]
 [ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="15_lty6o"]
 [ext_resource type="Script" uid="uid://vrf04aoisol5" path="res://Scripts/DropGameKit/CampaignManagement/campaign_loader.gd" id="16_7krnb"]
 [ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="17_85f2f"]
@@ -62,16 +61,6 @@ shader_parameter/tint = Color(0.568627, 0.811765, 0.847059, 0.117647)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcy8p"]
 bg_color = Color(0.0352941, 0.0627451, 0.054902, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hnhv"]
-bg_color = Color(0.458824, 0.0901961, 0.337255, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3ojb"]
-shader = ExtResource("3_ngax4")
-shader_parameter/scroll_speed = 0.2
-shader_parameter/angle_degrees = 0.0
-shader_parameter/tiling = Vector2(1, 1)
-shader_parameter/tint = Color(0.8, 0.258824, 0.368627, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqkck"]
 bg_color = Color(0.00392157, 0.235294, 0.231373, 1)
@@ -295,38 +284,6 @@ stretch_mode = 5
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lcy8p")
-
-[node name="SidePanel" type="Control" parent="Content/Header"]
-visible = false
-clip_contents = true
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="SideScrollerBG" type="Panel" parent="Content/Header/SidePanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3hnhv")
-
-[node name="SideScroller" type="TextureRect" parent="Content/Header/SidePanel"]
-material = SubResource("ShaderMaterial_v3ojb")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = 10.0
-offset_right = -167.0
-offset_bottom = -22.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("14_jvcst")
-stretch_mode = 1
 
 [node name="MainScreen" type="VBoxContainer" parent="Content"]
 layout_mode = 2

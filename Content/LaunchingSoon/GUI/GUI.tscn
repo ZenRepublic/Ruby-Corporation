@@ -1,15 +1,16 @@
-[gd_scene load_steps=33 format=3 uid="uid://c8h3ofhnmr4ih"]
+[gd_scene load_steps=39 format=3 uid="uid://c8h3ofhnmr4ih"]
 
 [ext_resource type="Script" uid="uid://c4fxv2bctb2up" path="res://Content/LaunchingSoon/GUI/gui.gd" id="1_wc8ld"]
 [ext_resource type="Script" uid="uid://cuhu3ktt1li8j" path="res://Content/LaunchingSoon/GUI/admin_panel.gd" id="2_wvrxf"]
-[ext_resource type="Texture2D" uid="uid://bex3s6kk2tvo2" path="res://addons/SolanaSDK/Textures/warning.png" id="3_vaefn"]
 [ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="4_dgxx7"]
 [ext_resource type="Texture2D" uid="uid://nljoclj85xe4" path="res://Textures/Icons/Token.PNG" id="5_wc8ld"]
 [ext_resource type="PackedScene" uid="uid://cpt2tkhkq54hh" path="res://Content/LaunchingSoon/GUI/UIEffects/FiredEffect/FiredEffect.tscn" id="6_oi844"]
 [ext_resource type="PackedScene" uid="uid://beotls8ufokl2" path="res://Content/LaunchingSoon/GUI/UIEffects/GoodLuckEffect/GoodLuckEffect.tscn" id="7_obaui"]
 [ext_resource type="PackedScene" uid="uid://b4k6tpdhfvylg" path="res://Content/LaunchingSoon/GUI/UIEffects/StartEffect/StartEffect.tscn" id="8_07q2e"]
+[ext_resource type="Texture2D" uid="uid://bhsr7gg1bej0d" path="res://Textures/Icons/warningIcon.png" id="11_e05qb"]
 [ext_resource type="PackedScene" uid="uid://cb4rhbpt4uppc" path="res://Content/LaunchingSoon/GUI/UIEffects/WarningEffect/WarningEffect.tscn" id="14_54216"]
 [ext_resource type="PackedScene" uid="uid://dnww2npv55xyh" path="res://Scripts/DropGameKit/Utility/CampaignRewards/CampaignRewardsDisplay.tscn" id="14_oi844"]
+[ext_resource type="Script" uid="uid://lrfhf3xbivhx" path="res://addons/richtext2/text_effects/anims/rte_growin.gd" id="14_vglbh"]
 [ext_resource type="Script" uid="uid://b2qavnrlilsxc" path="res://Content/LaunchingSoon/GUI/game_end_ui.gd" id="15_1thnu"]
 [ext_resource type="Texture2D" uid="uid://bvpufl7tjwy6q" path="res://Content/LaunchingSoon/GUI/UIEffects/FiredEffect/walkshadow.png" id="15_obaui"]
 [ext_resource type="Texture2D" uid="uid://dhkmkplauo2f7" path="res://Content/LaunchingSoon/GUI/UIEffects/FiredEffect/firedsadrubian.png" id="16_07q2e"]
@@ -19,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://ctwc1skjuoj8u" path="res://Content/LaunchingSoon/GUI/UIEffects/_PlacementEffects/DecentEffect.tscn" id="18_sm4ha"]
 [ext_resource type="PackedScene" uid="uid://vdm6apn7n80l" path="res://Content/LaunchingSoon/GUI/UIEffects/_PlacementEffects/BasedEffect.tscn" id="19_sjhri"]
 [ext_resource type="PackedScene" uid="uid://cwgp2465jmnm" path="res://Content/LaunchingSoon/GUI/UIEffects/_PlacementEffects/LegendEffect.tscn" id="20_qwewp"]
+[ext_resource type="Script" uid="uid://i8bg2nawwnn0" path="res://addons/richtext2/text_effects/effects/rte_sin.gd" id="20_uefu4"]
 [ext_resource type="Theme" uid="uid://r8jpsqetce4f" path="res://Content/LaunchingSoon/LaunchingSoonTheme.tres" id="21_qwewp"]
 [ext_resource type="Script" uid="uid://5hv4pjs1xcht" path="res://addons/richtext2/text_effects/anims/rte_fader.gd" id="22_e05qb"]
 [ext_resource type="Script" uid="uid://b61hhau76ckc3" path="res://addons/richtext2/text_effects/effects/rte_heart.gd" id="23_uefu4"]
@@ -28,6 +30,26 @@
 [ext_resource type="AudioStream" uid="uid://chbhjf02h1dit" path="res://Content/LaunchingSoon/PlayerRig/TokenSpawner/Sounds/TokenPlace.mp3" id="27_vglbh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkdm6"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_furhi"]
+resource_name = "growin"
+script = ExtResource("14_vglbh")
+metadata/rt = 2467005812967
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_r32iu"]
+resource_name = "growin"
+script = ExtResource("14_vglbh")
+metadata/rt = 2468868084040
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ogrfr"]
+resource_name = "heart"
+script = ExtResource("23_uefu4")
+metadata/rt = 2468868084040
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_u28q5"]
+resource_name = "sin"
+script = ExtResource("20_uefu4")
+metadata/rt = 2468868084040
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sm4ha"]
 shader = ExtResource("17_py7dd")
@@ -43,15 +65,15 @@ bg_color = Color(0.321569, 0.266667, 0.337255, 1)
 border_width_top = 20
 border_color = Color(0.501961, 0.415686, 0.458824, 1)
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_e05qb"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_43kcm"]
 resource_name = "fader"
 script = ExtResource("22_e05qb")
-metadata/rt = 2466032734551
+metadata/rt = 2469841162612
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_vglbh"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_hdbwk"]
 resource_name = "heart"
 script = ExtResource("23_uefu4")
-metadata/rt = 2466032734551
+metadata/rt = 2469841162612
 
 [node name="GUI" type="Control" node_paths=PackedStringArray("admin_panel", "campaign_reward_display", "win_screen", "lose_screen")]
 layout_mode = 3
@@ -73,7 +95,8 @@ effect_scenes = {
 }
 placement_effect_scenes = Array[PackedScene]([ExtResource("17_cj5ry"), ExtResource("18_sm4ha"), ExtResource("19_sjhri"), ExtResource("20_qwewp")])
 
-[node name="AdminPanel" type="Control" parent="." node_paths=PackedStringArray("progress_label", "progress_bar", "token_visual", "score_label", "warnings_container")]
+[node name="AdminPanel" type="Control" parent="." node_paths=PackedStringArray("progress_label", "progress_bar", "token_visual", "score_label", "warnings_container", "explanation_text")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,7 +109,8 @@ progress_bar = NodePath("BuildProgress/VBoxContainer/ProgressBar")
 token_visual = NodePath("HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/TokenVisual")
 score_label = NodePath("HBoxContainer/ScoreContainer/MarginContainer/HBoxContainer/Score")
 warnings_container = NodePath("HBoxContainer/WarningContainer/MarginContainer/WarningsContainer")
-warning_visual = ExtResource("3_vaefn")
+warning_visual = ExtResource("11_e05qb")
+explanation_text = NodePath("ExplanationText")
 
 [node name="BuildProgress" type="PanelContainer" parent="AdminPanel"]
 layout_mode = 1
@@ -177,6 +201,113 @@ layout_mode = 2
 texture = ExtResource("5_wc8ld")
 expand_mode = 3
 
+[node name="ExplanationText" type="RichTextLabel" parent="AdminPanel"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 144)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 65.0
+offset_top = -110.0
+offset_right = -61.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.0352941, 0.0627451, 0.054902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_furhi")]
+script = ExtResource("24_furhi")
+animation = "growin"
+progress = 1.0
+visible_character = 66
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
+_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_forced_finish_delay = -0.0446169
+animation = "growin"
+default_wait_time = 1.0
+play_on_bbcode = true
+play_speed = 120.0
+fade_out = false
+fade_in_speed = 50.0
+fade_out_speed = 10.0
+ctc_offset = Vector2(1, -0.5)
+ctc_on_finished = false
+ctc_on_wait = false
+shortcut_expression = true
+shortcut_bookmark = true
+signal_quotes = true
+signal_stars = true
+bbcode = "[pulse]Press Space or touch anywhere to drop.
+
+3 warnings and you're out!"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "Kaph"
+font_auto_setup = true
+font_size = 30
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 10
+outline_mode = 4
+outline_color = Color(0.0352941, 0.0627451, 0.054902, 1)
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://b6mbstaftpedd"
+
 [node name="CampaignRewardDisplay" parent="." instance=ExtResource("14_oi844")]
 visible = false
 layout_mode = 1
@@ -190,9 +321,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("15_1thnu")
-score_label = NodePath("MarginContainer/Content/RewardsContainer/TokenContainer/Label")
+score_label = NodePath("MarginContainer/Content/RewardsContainer/TokenContainer/ScoreLabel")
 token_visual = NodePath("MarginContainer/Content/RewardsContainer/TokenContainer/TextureRect")
-action_button = NodePath("MarginContainer/Content/RewardsContainer/Button")
+action_button = NodePath("MarginContainer/Content/Button")
 
 [node name="MarginContainer" type="MarginContainer" parent="WinScreen"]
 layout_mode = 1
@@ -208,19 +339,109 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Content" type="VBoxContainer" parent="WinScreen/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 60
 alignment = 1
 
 [node name="Congratulate" type="VBoxContainer" parent="WinScreen/MarginContainer/Content"]
 layout_mode = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="WinScreen/MarginContainer/Content/Congratulate"]
+[node name="Title" type="RichTextLabel" parent="WinScreen/MarginContainer/Content/Congratulate"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
-theme_override_font_sizes/font_size = 56
-text = "Nicely Done!"
+theme = ExtResource("21_qwewp")
+theme_override_colors/default_color = Color(0.835294, 0.639216, 0.792157, 1)
+theme_override_colors/font_outline_color = Color(0.694118, 0.627451, 0.592157, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25)
+theme_override_constants/outline_size = 20
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_outline_size = 6
+theme_override_font_sizes/bold_italics_font_size = 60
+theme_override_font_sizes/italics_font_size = 60
+theme_override_font_sizes/mono_font_size = 60
+theme_override_font_sizes/normal_font_size = 60
+theme_override_font_sizes/bold_font_size = 60
+bbcode_enabled = true
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_r32iu"), SubResource("RichTextEffect_ogrfr"), SubResource("RichTextEffect_u28q5")]
+script = ExtResource("24_furhi")
+animation = "growin"
+progress = 1.0
+visible_character = 12
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 127, 57), Transform2D(1, 0, 0, 1, 152, 57), Transform2D(1, 0, 0, 1, 204, 57), Transform2D(1, 0, 0, 1, 250, 57), Transform2D(1, 0, 0, 1, 297, 57), Transform2D(1, 0, 0, 1, 344, 57), Transform2D(1, 0, 0, 1, 376, 57), Transform2D(1, 0, 0, 1, 428, 57), Transform2D(1, 0, 0, 1, 482, 57), Transform2D(1, 0, 0, 1, 535, 57), Transform2D(1, 0, 0, 1, 582, 57)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(22, 44), Vector2(49, 44), Vector2(44, 44), Vector2(45, 44), Vector2(50, 44), Vector2(0, 44), Vector2(49, 44), Vector2(51, 44), Vector2(50, 44), Vector2(44, 44), Vector2(22, 44)])
+_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_forced_finish_delay = -0.0379089
+animation = "growin"
+default_wait_time = 1.0
+play_on_bbcode = true
+play_speed = 30.0
+fade_out = false
+fade_in_speed = 15.0
+fade_out_speed = 5.0
+ctc_offset = Vector2(1, -0.5)
+ctc_on_finished = false
+ctc_on_wait = false
+shortcut_expression = true
+shortcut_bookmark = true
+signal_quotes = true
+signal_stars = true
+bbcode = "[heart][sin]NICELY DONE![][]"
+effects = 2
+alignment = 1
+color = Color(0.835294, 0.639216, 0.792157, 1)
+emoji_scale = 1.0
+font = "Kaph"
+font_auto_setup = true
+font_size = 60
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 20
+outline_mode = 4
+outline_color = Color(0.694118, 0.627451, 0.592157, 1)
+outline_adjust = 0.73
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://b6mbstaftpedd"
 
 [node name="RewardsContainer" type="VBoxContainer" parent="WinScreen/MarginContainer/Content"]
 layout_mode = 2
@@ -229,6 +450,10 @@ alignment = 1
 
 [node name="Label" type="Label" parent="WinScreen/MarginContainer/Content/RewardsContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("23_vglbh")
 theme_override_font_sizes/font_size = 50
 text = "Your Total Earnings"
 horizontal_alignment = 1
@@ -239,10 +464,23 @@ layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="Label" type="Label" parent="WinScreen/MarginContainer/Content/RewardsContainer/TokenContainer" node_paths=PackedStringArray("audio_player")]
+[node name="TextureRect" type="TextureRect" parent="WinScreen/MarginContainer/Content/RewardsContainer/TokenContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "5.6K"
+texture = ExtResource("5_wc8ld")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ScoreLabel" type="Label" parent="WinScreen/MarginContainer/Content/RewardsContainer/TokenContainer" node_paths=PackedStringArray("audio_player")]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.933333, 0.898039, 0.639216, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("24_uefu4")
+theme_override_font_sizes/font_size = 60
+text = "5.5K"
 horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("4_dgxx7")
@@ -250,26 +488,20 @@ format_mode = 1
 decimal_amount = 2
 audio_player = NodePath("AudioStreamPlayer")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="WinScreen/MarginContainer/Content/RewardsContainer/TokenContainer/Label"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="WinScreen/MarginContainer/Content/RewardsContainer/TokenContainer/ScoreLabel"]
 stream = ExtResource("27_vglbh")
-pitch_scale = 0.8
 max_polyphony = 4
 bus = &"SFX"
 
-[node name="TextureRect" type="TextureRect" parent="WinScreen/MarginContainer/Content/RewardsContainer/TokenContainer"]
-layout_mode = 2
-texture = ExtResource("5_wc8ld")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Button" type="Button" parent="WinScreen/MarginContainer/Content/RewardsContainer"]
+[node name="Button" type="Button" parent="WinScreen/MarginContainer/Content"]
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 66
+theme = ExtResource("21_qwewp")
 text = "Claim"
 
 [node name="LoseScreen" type="Control" parent="." node_paths=PackedStringArray("score_label", "token_visual", "action_button")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -351,7 +583,7 @@ theme_override_constants/separation = 20
 
 [node name="Label" type="RichTextLabel" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
 clip_contents = false
-custom_minimum_size = Vector2(0, 53)
+custom_minimum_size = Vector2(0, 901)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -367,13 +599,13 @@ theme_override_font_sizes/bold_font_size = 46
 bbcode_enabled = true
 fit_content = true
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_e05qb"), SubResource("RichTextEffect_vglbh")]
+custom_effects = [SubResource("RichTextEffect_43kcm"), SubResource("RichTextEffect_hdbwk")]
 script = ExtResource("24_furhi")
 _hold = true
 progress = 1.0
 visible_character = 17
-_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 37, 43), Transform2D(1, 0, 0, 1, 72, 43), Transform2D(1, 0, 0, 1, 110, 43), Transform2D(1, 0, 0, 1, 145, 43), Transform2D(1, 0, 0, 1, 184, 43), Transform2D(1, 0, 0, 1, 220, 43), Transform2D(1, 0, 0, 1, 260, 43), Transform2D(1, 0, 0, 1, 300, 43), Transform2D(1, 0, 0, 1, 336, 43), Transform2D(1, 0, 0, 1, 361, 43), Transform2D(1, 0, 0, 1, 399, 43), Transform2D(1, 0, 0, 1, 435, 43), Transform2D(1, 0, 0, 1, 474, 43), Transform2D(1, 0, 0, 1, 514, 43), Transform2D(1, 0, 0, 1, 550, 43), Transform2D(1, 0, 0, 1, 588, 43)])
-_char_size = Array[Vector2]([Vector2(0, 0), Vector2(34, 33), Vector2(40, 33), Vector2(34, 33), Vector2(37, 33), Vector2(38, 33), Vector2(39, 33), Vector2(38, 33), Vector2(34, 33), Vector2(0, 33), Vector2(37, 33), Vector2(38, 33), Vector2(38, 33), Vector2(38, 33), Vector2(38, 33), Vector2(36, 33), Vector2(34, 33)])
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 _alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _forced_finish_delay = -0.0402778
