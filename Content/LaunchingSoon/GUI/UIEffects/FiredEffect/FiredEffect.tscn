@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cpt2tkhkq54hh"]
+[gd_scene load_steps=16 format=3 uid="uid://cpt2tkhkq54hh"]
 
 [ext_resource type="AudioStream" uid="uid://6i7w7es68x0t" path="res://Content/LaunchingSoon/GUI/UIEffects/FiredEffect/FiredSound.mp3" id="1_2ntla"]
 [ext_resource type="AudioStream" uid="uid://d2707fnp4271v" path="res://Content/LaunchingSoon/Narrator/FiredLose.mp3" id="2_jfcgk"]
+[ext_resource type="Texture2D" uid="uid://dp5xg6gqmujq1" path="res://Textures/Icons/stopicon.png" id="3_cklho"]
 [ext_resource type="Script" uid="uid://i8bg2nawwnn0" path="res://addons/richtext2/text_effects/effects/rte_sin.gd" id="4_cklho"]
 [ext_resource type="Script" uid="uid://bw15kgjjsr5nt" path="res://addons/richtext2/text_effects/anims/rte_fallin.gd" id="4_u23f1"]
 [ext_resource type="Script" uid="uid://4mittkdxo7ig" path="res://addons/richtext2/text_effects/effects/rte_cuss.gd" id="5_yrhwc"]
@@ -95,6 +96,42 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(0.321569, 0.266667, 0.337255, 0), Color(0.321569, 0.266667, 0.337255, 0.827451), Color(0.321569, 0.266667, 0.337255, 0.937255), Color(0.321569, 0.266667, 0.337255, 0.937255), Color(0.321569, 0.266667, 0.337255, 0)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Stop:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.048466, 0.10501, 0.391767, 0.533333, 0.646213, 1.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1e-05, 1e-05), Vector2(1.1, 1.1), Vector2(1.1, 1.1), Vector2(0.8, 0.8), Vector2(0.8, 0.8), Vector2(1.4, 1.4)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Stop:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.4, 0.533333, 0.638135, 1.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 3.14159, 6.28319]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Stop:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.815844, 1.43333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_t6hyw"]
 length = 0.001
@@ -146,6 +183,42 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(0.321569, 0.266667, 0.337255, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Stop:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Stop:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Stop:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uwmnw"]
 _data = {
@@ -191,6 +264,19 @@ libraries = {
 }
 autoplay = "Fired"
 
+[node name="Stop" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 269.0
+offset_right = 697.0
+offset_bottom = 886.0
+rotation = 3.14159
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(337, 308.5)
+texture = ExtResource("3_cklho")
+expand_mode = 2
+stretch_mode = 5
+
 [node name="RubianAngry" type="TextureRect" parent="."]
 layout_mode = 2
 offset_left = 20.0
@@ -212,10 +298,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 425.0
-offset_top = -452.0
-offset_right = 1145.0
-offset_bottom = 22.0
+offset_left = -1217.0
+offset_top = -665.0
+offset_right = -497.0
+offset_bottom = -191.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.139626
@@ -239,8 +325,8 @@ script = ExtResource("6_py07t")
 animation = "fallin"
 progress = 1.0
 visible_character = 23
-_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
-_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 274, 146.5), Transform2D(1, 0, 0, 1, 379, 146.5), Transform2D(1, 0, 0, 1, 475, 146.5), Transform2D(1, 0, 0, 1, 537, 146.5), Transform2D(1, 0, 0, 1, 4, 279.5), Transform2D(1, 0, 0, 1, 66, 279.5), Transform2D(1, 0, 0, 1, 128, 279.5), Transform2D(1, 0, 0, 1, 190, 279.5), Transform2D(1, 0, 0, 1, 252, 279.5), Transform2D(1, 0, 0, 1, 314, 279.5), Transform2D(1, 0, 0, 1, 376, 279.5), Transform2D(1, 0, 0, 1, 466, 279.5), Transform2D(1, 0, 0, 1, 564, 279.5), Transform2D(1, 0, 0, 1, 653, 279.5), Transform2D(1, 0, 0, 1, 715, 279.5), Transform2D(1, 0, 0, 1, 92, 412.5), Transform2D(1, 0, 0, 1, 154, 412.5), Transform2D(1, 0, 0, 1, 244, 412.5), Transform2D(1, 0, 0, 1, 292, 412.5), Transform2D(1, 0, 0, 1, 390, 412.5), Transform2D(1, 0, 0, 1, 479, 412.5), Transform2D(1, 0, 0, 1, 579, 412.5)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(89, 85), Vector2(85, 85), Vector2(0, 85), Vector2(0, 85), Vector2(0, 85), Vector2(0, 85), Vector2(0, 85), Vector2(0, 85), Vector2(0, 85), Vector2(110, 85), Vector2(110, 85), Vector2(90, 85), Vector2(96, 85), Vector2(0, 85), Vector2(0, 85), Vector2(0, 85), Vector2(82, 85), Vector2(96, 85), Vector2(90, 85), Vector2(85, 85), Vector2(91, 85), Vector2(39, 85)])
 _alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _forced_finish_delay = -0.0461726
