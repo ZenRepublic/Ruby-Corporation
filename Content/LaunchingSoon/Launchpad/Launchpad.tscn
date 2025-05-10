@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://byrve0vr3ypsy"]
+[gd_scene load_steps=12 format=3 uid="uid://byrve0vr3ypsy"]
 
 [ext_resource type="Script" uid="uid://bdqo28tuoefon" path="res://Content/LaunchingSoon/Launchpad/launchpad.gd" id="1_jg51g"]
 [ext_resource type="PackedScene" uid="uid://w7mp31uu88ft" path="res://Content/LaunchingSoon/Cargo/RocketParts/BasePart.tscn" id="2_pr74a"]
 [ext_resource type="Script" uid="uid://dkb5enrht5vw3" path="res://Content/LaunchingSoon/Launchpad/cargo_structure.gd" id="3_jk23v"]
 [ext_resource type="PackedScene" uid="uid://bg1mw3v7s271f" path="res://Content/LaunchingSoon/Launchpad/Launchpad_ball.glb" id="3_pr74a"]
 [ext_resource type="Script" uid="uid://cnbq5j46m1vgl" path="res://Content/LaunchingSoon/Launchpad/death_zone.gd" id="4_n3118"]
+[ext_resource type="PackedScene" uid="uid://dpn20a0307u22" path="res://Content/LaunchingSoon/Launchpad/Background.glb" id="6_n3118"]
+[ext_resource type="PackedScene" uid="uid://c1nlndqk3by2o" path="res://Content/LaunchingSoon/Launchpad/Launchpad.glb" id="7_gtoah"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0ctbn"]
 size = Vector3(1.5, 1, 1.5)
@@ -28,6 +30,7 @@ base_cargo_scn = ExtResource("2_pr74a")
 death_zone = NodePath("DeathZone")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_0ctbn")
 skeleton = NodePath("../..")
 
@@ -59,5 +62,11 @@ mesh = SubResource("BoxMesh_2r3xa")
 [node name="Collider" type="CollisionShape3D" parent="DeathZone"]
 transform = Transform3D(1, 0, 0, 0, 0.999993, 0, 0, 0, 0.999993, 0, 0, 0)
 shape = SubResource("BoxShape3D_2r3xa")
+
+[node name="Background" parent="." instance=ExtResource("6_n3118")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.47435, 0)
+
+[node name="Launchpad" parent="." instance=ExtResource("7_gtoah")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.462002, 0)
 
 [editable path="CargoStructure"]
