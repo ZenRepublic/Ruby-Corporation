@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bk1qyvsd3td77"]
+[gd_scene load_steps=13 format=3 uid="uid://bk1qyvsd3td77"]
 
 [ext_resource type="Script" uid="uid://c2k7lxdt6nker" path="res://Content/LaunchingSoon/Cargo/cargo.gd" id="1_u43ee"]
 [ext_resource type="AudioStream" uid="uid://b106qa3t61vji" path="res://Content/LaunchingSoon/Cargo/Sounds/jumpupsimple.mp3" id="2_kku7b"]
@@ -10,6 +10,150 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wbt1n"]
 height = 0.2
 radius = 0.1
+
+[sub_resource type="Animation" id="Animation_wbt1n"]
+resource_name = "open"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RocketBody/Fueselage/Rocket_Body/Rocket_BodyPanel_A:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.91986), Vector3(0, 0, 1.65806)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RocketBody/Fueselage/Rocket_Body/Rocket_BodyPanel_B:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.91986), Vector3(0, 0, -1.64061)]
+}
+
+[sub_resource type="Animation" id="Animation_fc3w6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RocketBody/Fueselage/Rocket_Body/Rocket_BodyPanel_A:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RocketBody/Fueselage/Rocket_Body/Rocket_BodyPanel_B:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RocketBody/Fueselage/Rocket_Body:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.125, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kku7b"]
+resource_name = "close"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RocketBody/Fueselage/Rocket_Body/Rocket_BodyPanel_A:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 1.65806), Vector3(0, 0, 1.91986), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RocketBody/Fueselage/Rocket_Body/Rocket_BodyPanel_B:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.64061), Vector3(0, 0, -1.91986), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_efqw1"]
+resource_name = "depositing"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RocketBody/Fueselage/Rocket_Body/Rocket_BodyPanel_A:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0644064, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 1.65806), Vector3(0, 0, 1.50556), Vector3(0, 0, 1.75318), Vector3(0, 0, 1.65806)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RocketBody/Fueselage/Rocket_Body/Rocket_BodyPanel_B:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0644064, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.64061), Vector3(0, 0, -1.43442), Vector3(0, 0, -1.71081), Vector3(0, 0, -1.64061)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RocketBody/Fueselage/Rocket_Body:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 0.466516, 1),
+"update": 0,
+"values": [Vector3(1.125, 1, 1), Vector3(1.3, 1, 1), Vector3(1.125, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kku7b"]
+_data = {
+&"RESET": SubResource("Animation_fc3w6"),
+&"close": SubResource("Animation_kku7b"),
+&"depositing": SubResource("Animation_efqw1"),
+&"open": SubResource("Animation_wbt1n")
+}
 
 [node name="RocketPart" type="RigidBody3D" node_paths=PackedStringArray("collider", "score_label", "audio_player")]
 collision_layer = 2
@@ -32,6 +176,12 @@ audio_player = NodePath("AudioStreamPlayer")
 [node name="RocketBody" parent="." instance=ExtResource("6_wv7ol")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
+[node name="Rocket_BodyPanel_A" parent="RocketBody/Fueselage/Rocket_Body" index="2"]
+transform = Transform3D(0.888889, 0, 0, 0, 1, 0, 0, 0, 1, -0.893185, 1.00116, 0)
+
+[node name="Rocket_BodyPanel_B" parent="RocketBody/Fueselage/Rocket_Body" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.893185, 1.00116, 0)
+
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_wbt1n")
 
@@ -42,4 +192,12 @@ font_size = 20
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kku7b")
+}
+
 [connection signal="body_entered" from="." to="." method="handle_physics_collision"]
+
+[editable path="RocketBody"]
+[editable path="RocketBody/Fueselage"]
