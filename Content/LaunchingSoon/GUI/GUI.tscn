@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c8h3ofhnmr4ih"]
+[gd_scene load_steps=37 format=3 uid="uid://c8h3ofhnmr4ih"]
 
 [ext_resource type="Script" uid="uid://c4fxv2bctb2up" path="res://Content/LaunchingSoon/GUI/gui.gd" id="1_wc8ld"]
 [ext_resource type="Script" uid="uid://cuhu3ktt1li8j" path="res://Content/LaunchingSoon/GUI/admin_panel.gd" id="2_wvrxf"]
@@ -24,32 +24,30 @@
 [ext_resource type="Theme" uid="uid://r8jpsqetce4f" path="res://Content/LaunchingSoon/LaunchingSoonTheme.tres" id="21_qwewp"]
 [ext_resource type="Script" uid="uid://5hv4pjs1xcht" path="res://addons/richtext2/text_effects/anims/rte_fader.gd" id="22_e05qb"]
 [ext_resource type="Script" uid="uid://b61hhau76ckc3" path="res://addons/richtext2/text_effects/effects/rte_heart.gd" id="23_uefu4"]
-[ext_resource type="FontFile" uid="uid://d2qhs7spcw2sj" path="res://Fonts/WaterLemon-5yzwa.otf" id="23_vglbh"]
 [ext_resource type="Script" uid="uid://b6mbstaftpedd" path="res://addons/richtext2/rich_text_animation.gd" id="24_furhi"]
-[ext_resource type="FontFile" uid="uid://bx6xa6d2n4cys" path="res://Fonts/Dingos-Stamp_Black.otf" id="24_uefu4"]
 [ext_resource type="AudioStream" uid="uid://chbhjf02h1dit" path="res://Content/LaunchingSoon/PlayerRig/TokenSpawner/Sounds/TokenPlace.mp3" id="27_vglbh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkdm6"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_furhi"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_e05qb"]
 resource_name = "growin"
 script = ExtResource("14_vglbh")
-metadata/rt = 2467005812967
+metadata/rt = 64472408499867
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_r32iu"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_vglbh"]
 resource_name = "growin"
 script = ExtResource("14_vglbh")
-metadata/rt = 2468868084040
+metadata/rt = 64474287546980
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_ogrfr"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_uefu4"]
 resource_name = "heart"
 script = ExtResource("23_uefu4")
-metadata/rt = 2468868084040
+metadata/rt = 64474287546980
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_u28q5"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_furhi"]
 resource_name = "sin"
 script = ExtResource("20_uefu4")
-metadata/rt = 2468868084040
+metadata/rt = 64474287546980
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sm4ha"]
 shader = ExtResource("17_py7dd")
@@ -65,15 +63,15 @@ bg_color = Color(0.321569, 0.266667, 0.337255, 1)
 border_width_top = 20
 border_color = Color(0.501961, 0.415686, 0.458824, 1)
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_43kcm"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_r32iu"]
 resource_name = "fader"
 script = ExtResource("22_e05qb")
-metadata/rt = 2469841162612
+metadata/rt = 64475277402659
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_hdbwk"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_ogrfr"]
 resource_name = "heart"
 script = ExtResource("23_uefu4")
-metadata/rt = 2469841162612
+metadata/rt = 64475277402659
 
 [node name="GUI" type="Control" node_paths=PackedStringArray("admin_panel", "campaign_reward_display", "win_screen", "lose_screen")]
 layout_mode = 3
@@ -230,7 +228,7 @@ bbcode_enabled = true
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_furhi")]
+custom_effects = [SubResource("RichTextEffect_e05qb")]
 script = ExtResource("24_furhi")
 animation = "growin"
 progress = 1.0
@@ -309,7 +307,6 @@ override_fitContent = true
 metadata/_custom_type_script = "uid://b6mbstaftpedd"
 
 [node name="CampaignRewardDisplay" parent="." instance=ExtResource("14_oi844")]
-visible = false
 layout_mode = 1
 
 [node name="WinScreen" type="Control" parent="." node_paths=PackedStringArray("score_label", "token_visual", "action_button")]
@@ -344,12 +341,14 @@ alignment = 1
 
 [node name="Congratulate" type="VBoxContainer" parent="WinScreen/MarginContainer/Content"]
 layout_mode = 2
+size_flags_vertical = 4
 alignment = 1
 
-[node name="Title" type="RichTextLabel" parent="WinScreen/MarginContainer/Content/Congratulate"]
+[node name="Title2" type="RichTextLabel" parent="WinScreen/MarginContainer/Content/Congratulate"]
 clip_contents = false
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(0, 840)
 layout_mode = 2
+size_flags_vertical = 4
 theme = ExtResource("21_qwewp")
 theme_override_colors/default_color = Color(0.835294, 0.639216, 0.792157, 1)
 theme_override_colors/font_outline_color = Color(0.694118, 0.627451, 0.592157, 1)
@@ -367,13 +366,13 @@ bbcode_enabled = true
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_r32iu"), SubResource("RichTextEffect_ogrfr"), SubResource("RichTextEffect_u28q5")]
+custom_effects = [SubResource("RichTextEffect_vglbh"), SubResource("RichTextEffect_uefu4"), SubResource("RichTextEffect_furhi")]
 script = ExtResource("24_furhi")
 animation = "growin"
 progress = 1.0
 visible_character = 12
-_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 127, 57), Transform2D(1, 0, 0, 1, 152, 57), Transform2D(1, 0, 0, 1, 204, 57), Transform2D(1, 0, 0, 1, 250, 57), Transform2D(1, 0, 0, 1, 297, 57), Transform2D(1, 0, 0, 1, 344, 57), Transform2D(1, 0, 0, 1, 376, 57), Transform2D(1, 0, 0, 1, 428, 57), Transform2D(1, 0, 0, 1, 482, 57), Transform2D(1, 0, 0, 1, 535, 57), Transform2D(1, 0, 0, 1, 582, 57)])
-_char_size = Array[Vector2]([Vector2(0, 0), Vector2(22, 44), Vector2(49, 44), Vector2(44, 44), Vector2(45, 44), Vector2(50, 44), Vector2(0, 44), Vector2(49, 44), Vector2(51, 44), Vector2(50, 44), Vector2(44, 44), Vector2(22, 44)])
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 _alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _forced_finish_delay = -0.0379089
@@ -450,10 +449,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="WinScreen/MarginContainer/Content/RewardsContainer"]
 layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("23_vglbh")
+theme = ExtResource("21_qwewp")
 theme_override_font_sizes/font_size = 50
 text = "Your Total Earnings"
 horizontal_alignment = 1
@@ -473,12 +469,8 @@ stretch_mode = 5
 [node name="ScoreLabel" type="Label" parent="WinScreen/MarginContainer/Content/RewardsContainer/TokenContainer" node_paths=PackedStringArray("audio_player")]
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.933333, 0.898039, 0.639216, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 5
-theme_override_constants/shadow_offset_y = 5
-theme_override_constants/outline_size = 0
-theme_override_fonts/font = ExtResource("24_uefu4")
+theme = ExtResource("21_qwewp")
+theme_type_variation = &"HeaderSmall"
 theme_override_font_sizes/font_size = 60
 text = "5.5K"
 horizontal_alignment = 2
@@ -575,13 +567,13 @@ size_flags_vertical = 3
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 0
+theme_override_constants/margin_bottom = 30
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="RichTextLabel" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
+[node name="Label3" type="RichTextLabel" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
 clip_contents = false
 custom_minimum_size = Vector2(0, 901)
 layout_mode = 2
@@ -599,7 +591,7 @@ theme_override_font_sizes/bold_font_size = 46
 bbcode_enabled = true
 fit_content = true
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_43kcm"), SubResource("RichTextEffect_hdbwk")]
+custom_effects = [SubResource("RichTextEffect_r32iu"), SubResource("RichTextEffect_ogrfr")]
 script = ExtResource("24_furhi")
 _hold = true
 progress = 1.0
@@ -677,15 +669,9 @@ metadata/rand = Array[int]([891084000, 1633388549, 313669499, 892128309, 4085572
 [node name="Label2" type="Label" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = ExtResource("23_vglbh")
-theme_override_font_sizes/font_size = 30
+theme = ExtResource("21_qwewp")
 text = "You might not be the right fit for us...
-Even so, please accept the payment for your wasted time.
-
-Best regards,"
+Even so, please accept the payment for your wasted time."
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -702,12 +688,8 @@ stretch_mode = 5
 [node name="Label" type="Label" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer/SeveranceContainer" node_paths=PackedStringArray("audio_player")]
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.933333, 0.898039, 0.639216, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 5
-theme_override_constants/shadow_offset_y = 5
-theme_override_constants/outline_size = 0
-theme_override_fonts/font = ExtResource("24_uefu4")
+theme = ExtResource("21_qwewp")
+theme_type_variation = &"HeaderSmall"
 theme_override_font_sizes/font_size = 60
 text = "5.5K"
 horizontal_alignment = 2
@@ -726,5 +708,6 @@ bus = &"SFX"
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 10
 theme = ExtResource("21_qwewp")
 text = "CLAIM"

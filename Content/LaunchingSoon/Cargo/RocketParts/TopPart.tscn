@@ -49,6 +49,7 @@ surface_material_override/0 = ExtResource("8_b0o3m")
 
 [node name="ScoreLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.165205)
+visible = false
 font_size = 20
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
