@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjr3ae6pamt1r"
-path="res://.godot/imported/borderbad.png-32b14b409e361a2255f2a7b417890aa9.ctex"
+path.s3tc="res://.godot/imported/borderbad.png-32b14b409e361a2255f2a7b417890aa9.s3tc.ctex"
+path.etc2="res://.godot/imported/borderbad.png-32b14b409e361a2255f2a7b417890aa9.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Content/LaunchingSoon/GUI/borderbad.png"
-dest_files=["res://.godot/imported/borderbad.png-32b14b409e361a2255f2a7b417890aa9.ctex"]
+dest_files=["res://.godot/imported/borderbad.png-32b14b409e361a2255f2a7b417890aa9.s3tc.ctex", "res://.godot/imported/borderbad.png-32b14b409e361a2255f2a7b417890aa9.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

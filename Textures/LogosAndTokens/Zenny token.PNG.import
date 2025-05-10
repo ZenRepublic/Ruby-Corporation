@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dchy7ed3ybfi1"
-path="res://.godot/imported/Zenny token.PNG-994ea5fe508e12fed0d709af15da3708.ctex"
+path.s3tc="res://.godot/imported/Zenny token.PNG-994ea5fe508e12fed0d709af15da3708.s3tc.ctex"
+path.etc2="res://.godot/imported/Zenny token.PNG-994ea5fe508e12fed0d709af15da3708.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://Textures/LogosAndTokens/Zenny token.PNG"
-dest_files=["res://.godot/imported/Zenny token.PNG-994ea5fe508e12fed0d709af15da3708.ctex"]
+dest_files=["res://.godot/imported/Zenny token.PNG-994ea5fe508e12fed0d709af15da3708.s3tc.ctex", "res://.godot/imported/Zenny token.PNG-994ea5fe508e12fed0d709af15da3708.etc2.ctex"]
 
 [params]
 
-compress/mode=4
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
