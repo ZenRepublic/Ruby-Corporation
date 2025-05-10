@@ -7,7 +7,6 @@ class_name PlayerRig
 @export var launchpad:Launchpad
 
 @export var token_spawner:TokenSpawner
-@export var token_texture:Texture2D
 
 @export var fly_duration:float=0.6
 

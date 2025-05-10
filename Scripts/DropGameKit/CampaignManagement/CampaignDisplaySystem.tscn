@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="4_txo57"]
 [ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="5_l58jm"]
 [ext_resource type="PackedScene" uid="uid://bakwei0jiw7b2" path="res://Scripts/DropGameKit/CampaignManagement/CampaignSelectEntry.tscn" id="6_2hy6e"]
-[ext_resource type="Script" path="res://Scripts/DropGameKit/CampaignManagement/campaign_manager.gd" id="8_vqr0a"]
+[ext_resource type="Script" uid="uid://5u0rbfhxfmmv" path="res://Scripts/DropGameKit/CampaignManagement/campaign_manager.gd" id="8_vqr0a"]
 [ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="10_y2hwd"]
 [ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="11_dh37k"]
 [ext_resource type="Texture2D" uid="uid://dchy7ed3ybfi1" path="res://Textures/LogosAndTokens/Zenny token.PNG" id="12_jl7ur"]
@@ -117,6 +117,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CampaignDisplay" type="MarginContainer" parent="Content" node_paths=PackedStringArray("container")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
@@ -160,7 +161,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CampaignManager" type="MarginContainer" parent="Content" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "owner_displayable", "campaign_type_label", "treasury_token_displayable", "deposit_token_displayable", "total_games_label", "unique_players_label", "max_reward_label", "leaderboard", "fees_collected", "close_button")]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

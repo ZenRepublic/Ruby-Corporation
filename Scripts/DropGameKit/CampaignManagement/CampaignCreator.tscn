@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bpt1e8u1buonk" path="res://Textures/BrandingAssets/whosthatrubian.png" id="9_k7g2c"]
 [ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="10_mi3qm"]
 [ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="11_110pg"]
+[ext_resource type="Texture2D" uid="uid://dchy7ed3ybfi1" path="res://Textures/LogosAndTokens/Zenny token.PNG" id="15_fn7e4"]
 [ext_resource type="Script" uid="uid://dtgnqfycdtl2x" path="res://Scripts/DropGameKit/CampaignManagement/campaign_creator.gd" id="16_r1l70"]
-[ext_resource type="Script" uid="uid://cg67p6ivwwuxa" path="res://addons/SolanaSDK/Scripts/Utility/Input/data_input_system.gd" id="17_1dqib"]
+[ext_resource type="Script" uid="uid://ufej552thaov" path="res://addons/SolanaSDK/Scripts/Utility/Input/data_input_system.gd" id="17_1dqib"]
 [ext_resource type="Script" uid="uid://cja6e8dxjd81x" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="18_j2cfb"]
 [ext_resource type="PackedScene" uid="uid://lx17th5tw38f" path="res://Scripts/Tensor/TensorCollectionDisplay.tscn" id="19_n6sd1"]
 [ext_resource type="Script" uid="uid://be604csg3c63g" path="res://addons/SolanaSDK/Scripts/Utility/Input/date_time_selector.gd" id="20_bxu81"]
@@ -15,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://cq5llwx0h21pr" path="res://Scripts/Web3/UIAssets/TokenDisplaySystem.tscn" id="22_dwgll"]
 [ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="23_2kj55"]
 [ext_resource type="FontFile" uid="uid://bngvp83jfv5b1" path="res://Fonts/Jaywalk.ttf" id="24_q6tgd"]
-[ext_resource type="Texture2D" uid="uid://crkoovodnwd7g" path="res://Textures/Icons/collectible_coin_big_idle_1.png" id="25_nlk72"]
 [ext_resource type="PackedScene" uid="uid://lgukfb417wvu" path="res://Scripts/Web3/UIAssets/NFTSelectionDisplay.tscn" id="26_3f2n7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skjvp"]
@@ -712,7 +712,7 @@ text = "Max Reward"
 
 [node name="TokenVisual" type="TextureRect" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/PayoutLimitContainer"]
 layout_mode = 2
-texture = ExtResource("25_nlk72")
+texture = ExtResource("15_fn7e4")
 expand_mode = 3
 stretch_mode = 5
 

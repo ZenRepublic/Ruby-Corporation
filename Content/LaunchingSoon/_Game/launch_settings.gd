@@ -1,7 +1,7 @@
 extends Node
 class_name LaunchSettings
 
-static var CARGO_TO_FULL:int = 3
+static var CARGO_TO_FULL:int = 23
 static var WARNINGS_TO_FIRE:int = 3
 static var BASE_PLACEMENT_SCORE:float = 1.0
 static var PENALTY_VALUE:float = 1.0
@@ -11,10 +11,10 @@ static var MAX_PERFECT_PLACE_ACCURACY:float = 0.1
 static var LEGEND_PLACE_RANGE:float = 0.1
 static var LEGEND_MULTIPLIER:float = 5.0
 
-static var BASED_PLACE_RANGE:float = 0.35
+static var BASED_PLACE_RANGE:float = 0.3
 static var BASED_MULTIPLIER:float = 3.0
 
-static var DECENT_PLACE_RANGE:float = 0.75
+static var DECENT_PLACE_RANGE:float = 0.7
 static var DECENT_MULTIPLIER:float = 2.0
 
 static var SLOPPY_PLACE_RANGE:float = 1.0
