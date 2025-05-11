@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://u2oke3207lyv" path="res://Scripts/DropGameKit/Utility/CampaignRewards/rewards_display_ui.gd" id="1_fslop"]
 [ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="2_x46re"]
 [ext_resource type="Theme" uid="uid://r8jpsqetce4f" path="res://Content/LaunchingSoon/LaunchingSoonTheme.tres" id="3_bpntc"]
-[ext_resource type="Texture2D" uid="uid://cjr3ae6pamt1r" path="res://Content/LaunchingSoon/GUI/borderbad.png" id="4_fslop"]
 [ext_resource type="Texture2D" uid="uid://p4qmqgo24lyr" path="res://Textures/BrandingAssets/RubianExpo.png" id="4_x46re"]
+[ext_resource type="Texture2D" uid="uid://b1l7pcjlokpjr" path="res://Content/LaunchingSoon/GUI/Frame.png" id="5_x46re"]
 [ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="6_wwpsq"]
 [ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="7_xl37d"]
 [ext_resource type="Script" uid="uid://c25ievjhcwp5e" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/nft_campaign_player_manager.gd" id="8_453q6"]
@@ -143,20 +143,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-texture = ExtResource("4_fslop")
+texture = ExtResource("5_x46re")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/PlayerVisual"]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -80.0
-offset_right = -74.0
-offset_bottom = -37.0
-grow_horizontal = 2
+offset_left = 14.0
+offset_top = -66.0
+offset_right = 226.0
+offset_bottom = -15.0
 grow_vertical = 0
 theme_override_constants/margin_bottom = 7
 
@@ -167,21 +166,20 @@ alignment = 1
 
 [node name="TokenVisual" type="TextureRect" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/PlayerVisual/MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 texture = ExtResource("6_wwpsq")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="AmountEarned" type="Label" parent="Content/Main/PlayerDetails/MarginContainer/PlayerDetails/PlayerVisual/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme = ExtResource("3_bpntc")
 theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.513726, 0.301961, 0.764706, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 25
-text = "156,28K"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 32
+text = "155.56K"
 vertical_alignment = 1
 script = ExtResource("7_xl37d")
 format_mode = 1

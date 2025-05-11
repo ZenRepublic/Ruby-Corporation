@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://c8h3ofhnmr4ih"]
+[gd_scene load_steps=47 format=3 uid="uid://c8h3ofhnmr4ih"]
 
 [ext_resource type="Script" uid="uid://c4fxv2bctb2up" path="res://Content/LaunchingSoon/GUI/gui.gd" id="1_wc8ld"]
 [ext_resource type="Script" uid="uid://cuhu3ktt1li8j" path="res://Content/LaunchingSoon/GUI/AdminPanel/admin_panel.gd" id="2_wvrxf"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://i8bg2nawwnn0" path="res://addons/richtext2/text_effects/effects/rte_sin.gd" id="20_uefu4"]
 [ext_resource type="Theme" uid="uid://r8jpsqetce4f" path="res://Content/LaunchingSoon/LaunchingSoonTheme.tres" id="21_qwewp"]
 [ext_resource type="Script" uid="uid://5hv4pjs1xcht" path="res://addons/richtext2/text_effects/anims/rte_fader.gd" id="22_e05qb"]
+[ext_resource type="Texture2D" uid="uid://bc7bi0cwpsvju" path="res://Content/LaunchingSoon/GUI/Splash bang.png" id="23_ogrfr"]
 [ext_resource type="Script" uid="uid://b61hhau76ckc3" path="res://addons/richtext2/text_effects/effects/rte_heart.gd" id="23_uefu4"]
 [ext_resource type="Script" uid="uid://b6mbstaftpedd" path="res://addons/richtext2/rich_text_animation.gd" id="24_furhi"]
 [ext_resource type="AudioStream" uid="uid://chbhjf02h1dit" path="res://Content/LaunchingSoon/PlayerRig/TokenSpawner/Sounds/TokenPlace.mp3" id="27_vglbh"]
@@ -37,25 +38,63 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_furhi"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_e05qb"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_ogrfr"]
 resource_name = "growin"
 script = ExtResource("14_vglbh")
-metadata/rt = 12482030699723
+metadata/rt = 2408369441923
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_vglbh"]
+[sub_resource type="Animation" id="Animation_ogrfr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpinningSun:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_43kcm"]
+resource_name = "Win"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpinningSun:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hdbwk"]
+_data = {
+&"RESET": SubResource("Animation_ogrfr"),
+&"Win": SubResource("Animation_43kcm")
+}
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_u28q5"]
 resource_name = "growin"
 script = ExtResource("14_vglbh")
-metadata/rt = 12483909736102
+metadata/rt = 2410298821913
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_uefu4"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_43kcm"]
 resource_name = "heart"
 script = ExtResource("23_uefu4")
-metadata/rt = 12483909736102
+metadata/rt = 2410298821913
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_furhi"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_hdbwk"]
 resource_name = "sin"
 script = ExtResource("20_uefu4")
-metadata/rt = 12483909736102
+metadata/rt = 2410298821913
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sm4ha"]
 shader = ExtResource("17_py7dd")
@@ -71,15 +110,15 @@ bg_color = Color(0.321569, 0.266667, 0.337255, 1)
 border_width_top = 20
 border_color = Color(0.501961, 0.415686, 0.458824, 1)
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_r32iu"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_y3llc"]
 resource_name = "fader"
 script = ExtResource("22_e05qb")
-metadata/rt = 12484899589179
+metadata/rt = 2411288677701
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_ogrfr"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_lgx8i"]
 resource_name = "heart"
 script = ExtResource("23_uefu4")
-metadata/rt = 12484899589179
+metadata/rt = 2411288677701
 
 [node name="GUI" type="Control" node_paths=PackedStringArray("admin_panel", "campaign_reward_display", "win_screen", "lose_screen")]
 layout_mode = 3
@@ -102,6 +141,7 @@ effect_scenes = {
 placement_effect_scenes = Array[PackedScene]([ExtResource("17_cj5ry"), ExtResource("18_sm4ha"), ExtResource("19_sjhri"), ExtResource("20_qwewp")])
 
 [node name="AdminPanel" type="Control" parent="." node_paths=PackedStringArray("progress_label", "progress_bar", "token_visual", "score_label", "warnings_container", "explanation_text")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -233,7 +273,7 @@ expand_mode = 3
 
 [node name="ExplanationText" type="RichTextLabel" parent="AdminPanel"]
 clip_contents = false
-custom_minimum_size = Vector2(0, 144)
+custom_minimum_size = Vector2(0, 180)
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -260,13 +300,13 @@ bbcode_enabled = true
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_e05qb")]
+custom_effects = [SubResource("RichTextEffect_ogrfr")]
 script = ExtResource("24_furhi")
 animation = "growin"
 progress = 1.0
 visible_character = 66
-_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 37, 46), Transform2D(1, 0, 0, 1, 62, 46), Transform2D(1, 0, 0, 1, 86, 46), Transform2D(1, 0, 0, 1, 110, 46), Transform2D(1, 0, 0, 1, 134, 46), Transform2D(1, 0, 0, 1, 150, 46), Transform2D(1, 0, 0, 1, 174, 46), Transform2D(1, 0, 0, 1, 199, 46), Transform2D(1, 0, 0, 1, 222, 46), Transform2D(1, 0, 0, 1, 248, 46), Transform2D(1, 0, 0, 1, 271, 46), Transform2D(1, 0, 0, 1, 287, 46), Transform2D(1, 0, 0, 1, 314, 46), Transform2D(1, 0, 0, 1, 340, 46), Transform2D(1, 0, 0, 1, 356, 46), Transform2D(1, 0, 0, 1, 381, 46), Transform2D(1, 0, 0, 1, 408, 46), Transform2D(1, 0, 0, 1, 433, 46), Transform2D(1, 0, 0, 1, 458, 46), Transform2D(1, 0, 0, 1, 160, 65), Transform2D(1, 0, 0, 1, 46, 82), Transform2D(1, 0, 0, 1, 69, 82), Transform2D(1, 0, 0, 1, 96, 82), Transform2D(1, 0, 0, 1, 119, 82), Transform2D(1, 0, 0, 1, 155, 82), Transform2D(1, 0, 0, 1, 179, 82), Transform2D(1, 0, 0, 1, 202, 82), Transform2D(1, 0, 0, 1, 227, 82), Transform2D(1, 0, 0, 1, 251, 82), Transform2D(1, 0, 0, 1, 267, 82), Transform2D(1, 0, 0, 1, 292, 82), Transform2D(1, 0, 0, 1, 319, 82), Transform2D(1, 0, 0, 1, 335, 82), Transform2D(1, 0, 0, 1, 361, 82), Transform2D(1, 0, 0, 1, 386, 82), Transform2D(1, 0, 0, 1, 413, 82), Transform2D(1, 0, 0, 1, 438, 82), Transform2D(1, 0, 0, 1, 449, 82), Transform2D(1, 0, 0, 1, 247, 118), Transform2D(1, 0, 0, 1, 81, 154), Transform2D(1, 0, 0, 1, 106, 154), Transform2D(1, 0, 0, 1, 122, 154), Transform2D(1, 0, 0, 1, 157, 154), Transform2D(1, 0, 0, 1, 181, 154), Transform2D(1, 0, 0, 1, 206, 154), Transform2D(1, 0, 0, 1, 233, 154), Transform2D(1, 0, 0, 1, 245, 154), Transform2D(1, 0, 0, 1, 272, 154), Transform2D(1, 0, 0, 1, 297, 154), Transform2D(1, 0, 0, 1, 321, 154), Transform2D(1, 0, 0, 1, 337, 154), Transform2D(1, 0, 0, 1, 360, 154), Transform2D(1, 0, 0, 1, 387, 154), Transform2D(1, 0, 0, 1, 340, 154), Transform2D(1, 0, 0, 1, 128, 190), Transform2D(1, 0, 0, 1, 152, 190), Transform2D(1, 0, 0, 1, 179, 190), Transform2D(1, 0, 0, 1, 203, 190), Transform2D(1, 0, 0, 1, 212, 190), Transform2D(1, 0, 0, 1, 238, 190), Transform2D(1, 0, 0, 1, 261, 190), Transform2D(1, 0, 0, 1, 277, 190), Transform2D(1, 0, 0, 1, 304, 190), Transform2D(1, 0, 0, 1, 329, 190), Transform2D(1, 0, 0, 1, 354, 190)])
-_char_size = Array[Vector2]([Vector2(0, 0), Vector2(25, 22), Vector2(23, 22), Vector2(24, 22), Vector2(24, 22), Vector2(0, 22), Vector2(24, 22), Vector2(25, 22), Vector2(26, 22), Vector2(26, 22), Vector2(23, 22), Vector2(0, 22), Vector2(27, 22), Vector2(25, 22), Vector2(0, 22), Vector2(25, 22), Vector2(27, 22), Vector2(25, 22), Vector2(26, 22), Vector2(24, 22), Vector2(0, 22), Vector2(26, 22), Vector2(27, 22), Vector2(26, 22), Vector2(38, 22), Vector2(24, 22), Vector2(23, 22), Vector2(25, 22), Vector2(23, 22), Vector2(0, 22), Vector2(25, 22), Vector2(27, 22), Vector2(0, 22), Vector2(26, 22), Vector2(25, 22), Vector2(27, 22), Vector2(25, 22), Vector2(11, 22), Vector2(0, 22), Vector2(0, 22), Vector2(25, 22), Vector2(0, 22), Vector2(38, 22), Vector2(26, 22), Vector2(25, 22), Vector2(27, 22), Vector2(12, 22), Vector2(27, 22), Vector2(25, 22), Vector2(24, 22), Vector2(0, 22), Vector2(26, 22), Vector2(27, 22), Vector2(26, 22), Vector2(0, 22), Vector2(26, 22), Vector2(27, 22), Vector2(25, 22), Vector2(9, 22), Vector2(25, 22), Vector2(23, 22), Vector2(0, 22), Vector2(27, 22), Vector2(25, 22), Vector2(25, 22), Vector2(12, 22)])
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 _alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _forced_finish_delay = -0.0446169
@@ -355,6 +395,21 @@ score_label = NodePath("MarginContainer/Content/RewardsContainer/TokenContainer/
 token_visual = NodePath("MarginContainer/Content/RewardsContainer/TokenContainer/TextureRect")
 action_button = NodePath("MarginContainer/Content/Button")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WinScreen"]
+libraries = {
+&"": SubResource("AnimationLibrary_hdbwk")
+}
+autoplay = "Win"
+
+[node name="SpinningSun" type="TextureRect" parent="WinScreen"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 231.0
+offset_right = 389.0
+offset_bottom = 546.0
+pivot_offset = Vector2(157.5, 157.5)
+texture = ExtResource("23_ogrfr")
+
 [node name="MarginContainer" type="MarginContainer" parent="WinScreen"]
 layout_mode = 1
 anchors_preset = 15
@@ -377,7 +432,7 @@ layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Title3" type="RichTextLabel" parent="WinScreen/MarginContainer/Content/Congratulate"]
+[node name="Title4" type="RichTextLabel" parent="WinScreen/MarginContainer/Content/Congratulate"]
 clip_contents = false
 custom_minimum_size = Vector2(0, 840)
 layout_mode = 2
@@ -399,7 +454,7 @@ bbcode_enabled = true
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_vglbh"), SubResource("RichTextEffect_uefu4"), SubResource("RichTextEffect_furhi")]
+custom_effects = [SubResource("RichTextEffect_u28q5"), SubResource("RichTextEffect_43kcm"), SubResource("RichTextEffect_hdbwk")]
 script = ExtResource("24_furhi")
 animation = "growin"
 progress = 1.0
@@ -526,7 +581,6 @@ theme = ExtResource("21_qwewp")
 text = "Claim"
 
 [node name="LoseScreen" type="Control" parent="." node_paths=PackedStringArray("score_label", "token_visual", "action_button")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -606,9 +660,9 @@ theme_override_constants/margin_bottom = 30
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label4" type="RichTextLabel" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
+[node name="Label5" type="RichTextLabel" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
 clip_contents = false
-custom_minimum_size = Vector2(0, 901)
+custom_minimum_size = Vector2(0, 53)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -624,13 +678,13 @@ theme_override_font_sizes/bold_font_size = 46
 bbcode_enabled = true
 fit_content = true
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_r32iu"), SubResource("RichTextEffect_ogrfr")]
+custom_effects = [SubResource("RichTextEffect_y3llc"), SubResource("RichTextEffect_lgx8i")]
 script = ExtResource("24_furhi")
 _hold = true
 progress = 1.0
 visible_character = 17
-_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
-_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 37, 43), Transform2D(1, 0, 0, 1, 72, 43), Transform2D(1, 0, 0, 1, 110, 43), Transform2D(1, 0, 0, 1, 145, 43), Transform2D(1, 0, 0, 1, 184, 43), Transform2D(1, 0, 0, 1, 220, 43), Transform2D(1, 0, 0, 1, 260, 43), Transform2D(1, 0, 0, 1, 300, 43), Transform2D(1, 0, 0, 1, 336, 43), Transform2D(1, 0, 0, 1, 361, 43), Transform2D(1, 0, 0, 1, 399, 43), Transform2D(1, 0, 0, 1, 435, 43), Transform2D(1, 0, 0, 1, 474, 43), Transform2D(1, 0, 0, 1, 514, 43), Transform2D(1, 0, 0, 1, 550, 43), Transform2D(1, 0, 0, 1, 588, 43)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(34, 33), Vector2(40, 33), Vector2(34, 33), Vector2(37, 33), Vector2(38, 33), Vector2(39, 33), Vector2(38, 33), Vector2(34, 33), Vector2(0, 33), Vector2(37, 33), Vector2(38, 33), Vector2(38, 33), Vector2(38, 33), Vector2(38, 33), Vector2(36, 33), Vector2(34, 33)])
 _alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _forced_finish_delay = -0.0402778

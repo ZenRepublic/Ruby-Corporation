@@ -438,7 +438,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CampaignSelect" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
@@ -615,7 +614,8 @@ visible = false
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("7_eupma")
-text = "No active mines found..."
+theme_type_variation = &"LabelInverted"
+text = "No active campaigns found..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -641,6 +641,7 @@ theme = ExtResource("7_eupma")
 text = "PLAY NOW!"
 
 [node name="CampaignInteractor" type="MarginContainer" parent="Content/MainScreen/CampaignSelector" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "manager_displayable", "reward_token_displayable", "max_reward_label", "campaign_timer", "campaign_expired_panel", "not_logged_in_panel", "nft_player_manager", "token_player_manager")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
