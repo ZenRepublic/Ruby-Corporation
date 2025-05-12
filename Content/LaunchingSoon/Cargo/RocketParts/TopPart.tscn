@@ -10,15 +10,14 @@
 [ext_resource type="ArrayMesh" uid="uid://c6pxh6luca4b5" path="res://Content/LaunchingSoon/Cargo/RocketParts/Segments/meshes/RocketTop.res" id="7_utikx"]
 [ext_resource type="Material" uid="uid://dgdqrxbrkenl5" path="res://Content/LaunchingSoon/Cargo/RocketParts/Segments/RocketMaterial.tscn.tres" id="8_b0o3m"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_c4kr8"]
-height = 0.2
-radius = 0.1
+[sub_resource type="BoxShape3D" id="BoxShape3D_wcrq1"]
+size = Vector3(0.21311, 0.199072, 0.203784)
 
 [node name="TopPart" type="RigidBody3D" node_paths=PackedStringArray("collider", "score_label", "particle_spawn_point", "audio_player")]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_mokvh")
-collider = NodePath("Collider")
+collider = NodePath("Collider2")
 stick_strength = 30.0
 proximity_threshold = 0.02
 stick_tween_duration = 0.4
@@ -34,8 +33,9 @@ sounds = {
 }
 audio_player = NodePath("AudioStreamPlayer")
 
-[node name="Collider" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_c4kr8")
+[node name="Collider2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.000207514)
+shape = SubResource("BoxShape3D_wcrq1")
 
 [node name="MeshOptions" type="Node3D" parent="." node_paths=PackedStringArray("mesh_options")]
 script = ExtResource("2_5ymhu")

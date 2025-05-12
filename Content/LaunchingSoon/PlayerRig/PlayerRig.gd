@@ -37,6 +37,12 @@ func _ready() -> void:
 	launch_controller = get_tree().get_first_node_in_group("LaunchController") as LaunchController
 	launch_controller.setup_complete.connect(setup_rig)
 	
+	var pool_size:int = LaunchSettings.CARGO_TO_FULL + 5
+	payload.setup_cargo_pool(pool_size)
+	for cargo in payload.cargo_pool:
+		cargo.on_missed.connect(process_failed_drop,CONNECT_ONE_SHOT)
+		cargo.on_placed.connect(process_successful_drop,CONNECT_ONE_SHOT)
+	
 func setup_rig() -> void:
 	token_spawner.setup_token_pool(ClubhouseProgram.claimer.get_reward_token_texture())
 	token_spawner.on_toked_arrived.connect(update_launch_value)
@@ -65,10 +71,17 @@ func prepare_cargo_drop() -> void:
 	move_to(target_pos,fly_duration)
 		
 func send_cargo(deploy_point:Vector3) -> void:
-	var cargo_scn:PackedScene = payload.get_next_cargo_scn(launchpad.get_structure_size())
-	var cargo_instance:Cargo = cargo_scn.instantiate()
+	var cargo_instance:Cargo 
+	if launchpad.get_structure_size() == LaunchSettings.CARGO_TO_FULL - 1:
+		cargo_instance = payload.get_top_cargo()
+		cargo_instance.on_missed.connect(process_failed_drop,CONNECT_ONE_SHOT)
+		cargo_instance.on_placed.connect(process_successful_drop,CONNECT_ONE_SHOT)
+	else:
+		cargo_instance = payload.grab_cargo_from_pool()
+		
 	if !drone.is_at_destination:
 		await drone.on_target_reached
+		
 	drone.grab_cargo(cargo_instance)
 	drone.fly_to(deploy_point, cam.global_position)
 	
@@ -76,8 +89,8 @@ func return_drone(dropped_cargo:Cargo) -> void:
 	if gui.admin_panel.explanation_text!=null:
 		gui.admin_panel.explanation_text.queue_free()
 	
-	dropped_cargo.on_missed.connect(process_failed_drop,CONNECT_ONE_SHOT)
-	dropped_cargo.on_placed.connect(process_successful_drop,CONNECT_ONE_SHOT)
+	#dropped_cargo.on_missed.connect(process_failed_drop,CONNECT_ONE_SHOT)
+	#dropped_cargo.on_placed.connect(process_successful_drop,CONNECT_ONE_SHOT)
 	if !drone.is_at_destination:
 		await drone.on_target_reached
 	drone.fly_to(payload.get_random_position_on_surface())

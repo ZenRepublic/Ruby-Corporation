@@ -21,7 +21,7 @@ var curr_speed:float
 var curr_move_range:Vector3
 var curr_cargo:Cargo
 
-var velocity:Vector3 = Vector3.ZERO
+#var velocity:Vector3 = Vector3.ZERO
 var prev_pos:Vector3
 #used for oscillation
 var oscillation_time:float=0
@@ -70,26 +70,25 @@ func _process(delta):
 		else:
 			speed = curr_speed
 			
-	var target_pos:Vector3 = target_point
-	if curr_cargo!=null:
-		target_pos = apply_oscillation(target_pos)
-		if is_at_destination:
-			oscillation_time+=delta
+	
+	var target_pos:Vector3 = target_point if !is_at_destination else apply_oscillation(target_point)
+	if is_at_destination and curr_cargo != null:
+		oscillation_time += delta
 		
 	var dir_to_target:Vector3 = (target_pos - self.global_position)
 	var distance_to_target: float = dir_to_target.length()
 	
 	var new_position:Vector3 = self.global_position.move_toward(target_pos, speed * delta)
-	velocity = (new_position - self.global_position).normalized() * speed * delta
-	
+	prev_pos = global_position
 	global_position = new_position
+	
+	
 	if look_target!=Vector3.ZERO:
 		look_at_target(look_target, 50 * delta)
 	
-	if !is_at_destination and distance_to_target < 0.02:
+	if !is_at_destination and distance_to_target < 0.03:
 		self.global_position = target_pos
 		is_at_destination=true
-		#oscillation_time=0
 		on_target_reached.emit()
 	
 func fly_to(position:Vector3, look_target:Vector3 = Vector3.ZERO) -> void:
@@ -101,8 +100,9 @@ func fly_to(position:Vector3, look_target:Vector3 = Vector3.ZERO) -> void:
 	is_at_destination=false
 	
 func grab_cargo(cargo:Cargo) -> void:		
-	magnet_puck.spawn_point.add_child(cargo)
-	cargo.position += Vector3(0,-cargo.height/2,0)
+	cargo.reparent(magnet_puck.spawn_point)
+	cargo.position = Vector3(0,-cargo.height/2,0)
+	cargo.rotation = Vector3.ZERO
 	curr_cargo = cargo
 	self.visible = true
 
@@ -121,19 +121,18 @@ func update_difficulty(structure_size:int) -> void:
 	curr_move_range = curr_move_range.clamp(start_move_range,max_move_range)
 	
 func apply_oscillation(target_position:Vector3) -> Vector3:
-	var oscillation: Vector3
-	oscillation.x = sin(oscillation_time * curr_speed)
-	oscillation.y = sin(oscillation_time * curr_speed) * cos(oscillation_time * curr_speed)
-	
-#   oscilates from -1 to 1 to guide drone
-	target_position.x += oscillation.x * curr_move_range.x # Apply scaled oscillation
-	target_position.y += oscillation.y * curr_move_range.y
+	var osc_x = sin(oscillation_time * curr_speed)
+	var osc_y = sin(oscillation_time * curr_speed) * cos(oscillation_time * curr_speed)
+
+	target_position.x += osc_x * curr_move_range.x
+	target_position.y += osc_y * curr_move_range.y
+	return target_position
 	
 	## make the movement speed irregular based on oscillation	
 	#var x_position:float = (self.global_position.x - target_point.x) / curr_move_range.x  # Normalize x-position to [-1, 1]
 	#x_position = clamp(x_position, -1.0, 1.0)  # Ensure it stays in range
 	#speed *= speed_multiplier_curve.sample(x_position)
-	return target_position
+	#return target_position
 	
 func look_at_target(target:Vector3, rotation_speed:float) -> void:
 	var forward_dir:Vector3 = (target - global_position).normalized()
@@ -142,6 +141,8 @@ func look_at_target(target:Vector3, rotation_speed:float) -> void:
 	
 	
 	var tilt_quat = Quaternion.IDENTITY	
+	
+	var velocity:Vector3 = get_velocity()
 	if velocity.length() > 0.01:
 		# Work in the local space of the look direction
 		var right = look_basis.x.normalized()
@@ -163,3 +164,6 @@ func look_at_target(target:Vector3, rotation_speed:float) -> void:
 	var current_quat = global_transform.basis.get_rotation_quaternion()
 	var new_quat = current_quat.slerp(target_quat, rotation_speed)
 	global_transform.basis = Basis(new_quat)
+	
+func get_velocity() -> Vector3:
+	return prev_pos - self.global_position

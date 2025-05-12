@@ -46,18 +46,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.26554)
 mesh = SubResource("BoxMesh_rysxf")
 skeleton = NodePath("../..")
 
-[node name="Payload" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.909658, 0.247571)
+[node name="Payload" type="Node3D" parent="." node_paths=PackedStringArray("cargo_spawn_points")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.25)
 script = ExtResource("3_nl1kf")
 main_cargo_parts = Array[PackedScene]([ExtResource("4_00qsx")])
 top_cargo_scn = ExtResource("5_li2ld")
+cargo_spawn_points = [NodePath("CargoSpawnPoints/Mesh"), NodePath("CargoSpawnPoints/Mesh2")]
 
-[node name="Mesh" type="MeshInstance3D" parent="Payload"]
+[node name="CargoSpawnPoints" type="Node3D" parent="Payload"]
+
+[node name="Mesh" type="MeshInstance3D" parent="Payload/CargoSpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.357, 0.226)
 mesh = SubResource("BoxMesh_kvfj4")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="Mesh2" type="MeshInstance3D" parent="Payload"]
+[node name="Mesh2" type="MeshInstance3D" parent="Payload/CargoSpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.342, 0.226)
 mesh = SubResource("BoxMesh_kvfj4")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")

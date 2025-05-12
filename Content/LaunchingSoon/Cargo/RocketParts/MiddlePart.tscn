@@ -8,9 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://bk5cdnw0emxsl" path="res://Content/LaunchingSoon/Cargo/Sounds/perfectplacecargo.mp3" id="6_fc3w6"]
 [ext_resource type="PackedScene" uid="uid://uqc07cdw5bho" path="res://Content/LaunchingSoon/Cargo/RocketParts/Segments/rocket_body.tscn" id="6_wv7ol"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_wbt1n"]
-height = 0.2
-radius = 0.1
+[sub_resource type="BoxShape3D" id="BoxShape3D_wcrq1"]
+size = Vector3(0.21311, 0.199072, 0.203784)
 
 [sub_resource type="Animation" id="Animation_fc3w6"]
 length = 0.001
@@ -160,7 +159,7 @@ _data = {
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_u43ee")
-collider = NodePath("Collider")
+collider = NodePath("Collider2")
 stick_strength = 30.0
 proximity_threshold = 0.02
 stick_tween_duration = 0.4
@@ -228,8 +227,9 @@ cast_shadow = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.893185, 1.00116, 0)
 cast_shadow = 0
 
-[node name="Collider" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_wbt1n")
+[node name="Collider2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000903323, 0)
+shape = SubResource("BoxShape3D_wcrq1")
 
 [node name="ScoreLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.165205)

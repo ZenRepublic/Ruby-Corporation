@@ -40,6 +40,7 @@ var structure_stick_point:Vector3=Vector3.ZERO
 
 signal on_missed(cargo:Cargo)
 signal on_placed(cargo:Cargo)
+signal on_reset(cargo:Cargo)
 
 func _ready() -> void:
 	freeze = true
@@ -148,7 +149,8 @@ func handle_connect() -> void:
 func handle_miss(hit_obj=null) -> void:
 	if hit_obj == null:
 		on_missed.emit(self)
-		queue_free()
+		reset()
+		#queue_free()
 		return
 	
 	freeze=false
@@ -172,7 +174,9 @@ func handle_miss(hit_obj=null) -> void:
 	on_missed.emit(self)
 	play_sound("collide")
 	await get_tree().create_timer(1).timeout
-	queue_free()
+	reset()
+	#queue_free()
+	
 	
 func tween_placement() -> void:
 	# Calculate the pivot transform (rotate around hitpoint)
@@ -300,8 +304,21 @@ func drop_off() -> void:
 	freeze = false
 	linear_velocity = Vector3(randf_range(-2,2),randf_range(0.4,0.8),randf_range(-2,2))
 	await get_tree().create_timer(1).timeout
-	queue_free()
+	reset()
+	#queue_free()
 	
 func play_sound(sound_name) -> void:
 	audio_player.stream = sounds[sound_name]
 	audio_player.play()
+	
+func reset() -> void:
+	is_connected=false
+	is_dropping=false
+	has_collided=false
+	freeze=true
+	linear_velocity = Vector3.ZERO
+	time_falling=0
+	collided_cargo=null
+	structure=null
+	structure_stick_point=Vector3.ZERO
+	on_reset.emit(self)

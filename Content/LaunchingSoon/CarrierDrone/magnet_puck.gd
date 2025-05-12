@@ -30,7 +30,7 @@ func _process(delta):
 	velocity += force * delta
 
 	# Add some inertia based on drone velocity
-	velocity += drone.velocity * swing_intertia * delta
+	velocity += drone.get_velocity() * swing_intertia * delta
 
 	# Apply damping to smooth out the motion
 	velocity -= velocity * damping * delta

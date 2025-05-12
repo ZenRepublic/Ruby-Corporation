@@ -30,20 +30,25 @@ func grab_token_from_pool() -> DisplayToken:
 	for i in range(token_pool.size()):
 		if token_pool[i]!=null:
 			var token:DisplayToken = token_pool[i]
-			token_pool[i] = null
 			token.visible=true
+			token_pool.pop_at(i)
 			return token
 	return null
 	
 func return_token_to_pool(token:DisplayToken) -> void:
-	for i in range(token_pool.size()):
-		if token_pool[i]==null:	
-			token.visible=false
-			token.position = Vector3.ZERO
-			token.rotation = Vector3.ZERO
-			token_pool[i] = token
-			on_toked_arrived.emit(token.value)
-			return
+	token.visible=false
+	token.position = Vector3.ZERO
+	token.rotation = Vector3.ZERO
+	token_pool.append(token)
+	on_toked_arrived.emit(token.value)
+	#for i in range(token_pool.size()):
+		#if token_pool[i]==null:	
+			#token.visible=false
+			#token.position = Vector3.ZERO
+			#token.rotation = Vector3.ZERO
+			#token_pool.append(token)
+			#on_toked_arrived.emit(token.value)
+			#return
 			
 
 func send_tokens(tokens_earned:float, target:Node3D) -> void:
