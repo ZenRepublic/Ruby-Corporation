@@ -41,7 +41,7 @@
 [sub_resource type="RichTextEffect" id="RichTextEffect_ogrfr"]
 resource_name = "growin"
 script = ExtResource("14_vglbh")
-metadata/rt = 2408369441923
+metadata/rt = 21663899040965
 
 [sub_resource type="Animation" id="Animation_ogrfr"]
 length = 0.001
@@ -84,17 +84,17 @@ _data = {
 [sub_resource type="RichTextEffect" id="RichTextEffect_u28q5"]
 resource_name = "growin"
 script = ExtResource("14_vglbh")
-metadata/rt = 2410298821913
+metadata/rt = 21665861975039
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_43kcm"]
 resource_name = "heart"
 script = ExtResource("23_uefu4")
-metadata/rt = 2410298821913
+metadata/rt = 21665861975039
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_hdbwk"]
 resource_name = "sin"
 script = ExtResource("20_uefu4")
-metadata/rt = 2410298821913
+metadata/rt = 21665861975039
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sm4ha"]
 shader = ExtResource("17_py7dd")
@@ -113,12 +113,12 @@ border_color = Color(0.501961, 0.415686, 0.458824, 1)
 [sub_resource type="RichTextEffect" id="RichTextEffect_y3llc"]
 resource_name = "fader"
 script = ExtResource("22_e05qb")
-metadata/rt = 2411288677701
+metadata/rt = 21666851830823
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_lgx8i"]
 resource_name = "heart"
 script = ExtResource("23_uefu4")
-metadata/rt = 2411288677701
+metadata/rt = 21666851830823
 
 [node name="GUI" type="Control" node_paths=PackedStringArray("admin_panel", "campaign_reward_display", "win_screen", "lose_screen")]
 layout_mode = 3
@@ -141,7 +141,6 @@ effect_scenes = {
 placement_effect_scenes = Array[PackedScene]([ExtResource("17_cj5ry"), ExtResource("18_sm4ha"), ExtResource("19_sjhri"), ExtResource("20_qwewp")])
 
 [node name="AdminPanel" type="Control" parent="." node_paths=PackedStringArray("progress_label", "progress_bar", "token_visual", "score_label", "warnings_container", "explanation_text")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -305,8 +304,8 @@ script = ExtResource("24_furhi")
 animation = "growin"
 progress = 1.0
 visible_character = 66
-_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
-_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 37, 46), Transform2D(1, 0, 0, 1, 62, 46), Transform2D(1, 0, 0, 1, 86, 46), Transform2D(1, 0, 0, 1, 110, 46), Transform2D(1, 0, 0, 1, 134, 46), Transform2D(1, 0, 0, 1, 150, 46), Transform2D(1, 0, 0, 1, 174, 46), Transform2D(1, 0, 0, 1, 199, 46), Transform2D(1, 0, 0, 1, 222, 46), Transform2D(1, 0, 0, 1, 248, 46), Transform2D(1, 0, 0, 1, 271, 46), Transform2D(1, 0, 0, 1, 287, 46), Transform2D(1, 0, 0, 1, 314, 46), Transform2D(1, 0, 0, 1, 340, 46), Transform2D(1, 0, 0, 1, 356, 46), Transform2D(1, 0, 0, 1, 381, 46), Transform2D(1, 0, 0, 1, 408, 46), Transform2D(1, 0, 0, 1, 433, 46), Transform2D(1, 0, 0, 1, 458, 46), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 46, 82), Transform2D(1, 0, 0, 1, 69, 82), Transform2D(1, 0, 0, 1, 96, 82), Transform2D(1, 0, 0, 1, 119, 82), Transform2D(1, 0, 0, 1, 155, 82), Transform2D(1, 0, 0, 1, 179, 82), Transform2D(1, 0, 0, 1, 202, 82), Transform2D(1, 0, 0, 1, 227, 82), Transform2D(1, 0, 0, 1, 251, 82), Transform2D(1, 0, 0, 1, 267, 82), Transform2D(1, 0, 0, 1, 292, 82), Transform2D(1, 0, 0, 1, 319, 82), Transform2D(1, 0, 0, 1, 335, 82), Transform2D(1, 0, 0, 1, 361, 82), Transform2D(1, 0, 0, 1, 386, 82), Transform2D(1, 0, 0, 1, 413, 82), Transform2D(1, 0, 0, 1, 438, 82), Transform2D(1, 0, 0, 1, 449, 82), Transform2D(1, 0, 0, 1, 247, 118), Transform2D(1, 0, 0, 1, 81, 154), Transform2D(1, 0, 0, 1, 106, 154), Transform2D(1, 0, 0, 1, 122, 154), Transform2D(1, 0, 0, 1, 157, 154), Transform2D(1, 0, 0, 1, 181, 154), Transform2D(1, 0, 0, 1, 206, 154), Transform2D(1, 0, 0, 1, 233, 154), Transform2D(1, 0, 0, 1, 245, 154), Transform2D(1, 0, 0, 1, 272, 154), Transform2D(1, 0, 0, 1, 297, 154), Transform2D(1, 0, 0, 1, 321, 154), Transform2D(1, 0, 0, 1, 337, 154), Transform2D(1, 0, 0, 1, 360, 154), Transform2D(1, 0, 0, 1, 387, 154), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 128, 190), Transform2D(1, 0, 0, 1, 152, 190), Transform2D(1, 0, 0, 1, 179, 190), Transform2D(1, 0, 0, 1, 203, 190), Transform2D(1, 0, 0, 1, 212, 190), Transform2D(1, 0, 0, 1, 238, 190), Transform2D(1, 0, 0, 1, 261, 190), Transform2D(1, 0, 0, 1, 277, 190), Transform2D(1, 0, 0, 1, 304, 190), Transform2D(1, 0, 0, 1, 329, 190), Transform2D(1, 0, 0, 1, 354, 190)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(25, 22), Vector2(23, 22), Vector2(24, 22), Vector2(24, 22), Vector2(0, 22), Vector2(24, 22), Vector2(25, 22), Vector2(26, 22), Vector2(26, 22), Vector2(23, 22), Vector2(0, 22), Vector2(27, 22), Vector2(25, 22), Vector2(0, 22), Vector2(25, 22), Vector2(27, 22), Vector2(25, 22), Vector2(26, 22), Vector2(24, 22), Vector2(0, 0), Vector2(26, 22), Vector2(27, 22), Vector2(26, 22), Vector2(38, 22), Vector2(24, 22), Vector2(23, 22), Vector2(25, 22), Vector2(23, 22), Vector2(0, 22), Vector2(25, 22), Vector2(27, 22), Vector2(0, 22), Vector2(26, 22), Vector2(25, 22), Vector2(27, 22), Vector2(25, 22), Vector2(11, 22), Vector2(0, 22), Vector2(0, 22), Vector2(25, 22), Vector2(0, 22), Vector2(38, 22), Vector2(26, 22), Vector2(25, 22), Vector2(27, 22), Vector2(12, 22), Vector2(27, 22), Vector2(25, 22), Vector2(24, 22), Vector2(0, 22), Vector2(26, 22), Vector2(27, 22), Vector2(26, 22), Vector2(0, 0), Vector2(26, 22), Vector2(27, 22), Vector2(25, 22), Vector2(9, 22), Vector2(25, 22), Vector2(23, 22), Vector2(0, 22), Vector2(27, 22), Vector2(25, 22), Vector2(25, 22), Vector2(12, 22)])
 _alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _forced_finish_delay = -0.0446169
@@ -581,6 +580,7 @@ theme = ExtResource("21_qwewp")
 text = "Claim"
 
 [node name="LoseScreen" type="Control" parent="." node_paths=PackedStringArray("score_label", "token_visual", "action_button")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -662,7 +662,7 @@ theme_override_constants/separation = 20
 
 [node name="Label5" type="RichTextLabel" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
 clip_contents = false
-custom_minimum_size = Vector2(0, 53)
+custom_minimum_size = Vector2(0, 901)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -683,8 +683,8 @@ script = ExtResource("24_furhi")
 _hold = true
 progress = 1.0
 visible_character = 17
-_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 37, 43), Transform2D(1, 0, 0, 1, 72, 43), Transform2D(1, 0, 0, 1, 110, 43), Transform2D(1, 0, 0, 1, 145, 43), Transform2D(1, 0, 0, 1, 184, 43), Transform2D(1, 0, 0, 1, 220, 43), Transform2D(1, 0, 0, 1, 260, 43), Transform2D(1, 0, 0, 1, 300, 43), Transform2D(1, 0, 0, 1, 336, 43), Transform2D(1, 0, 0, 1, 361, 43), Transform2D(1, 0, 0, 1, 399, 43), Transform2D(1, 0, 0, 1, 435, 43), Transform2D(1, 0, 0, 1, 474, 43), Transform2D(1, 0, 0, 1, 514, 43), Transform2D(1, 0, 0, 1, 550, 43), Transform2D(1, 0, 0, 1, 588, 43)])
-_char_size = Array[Vector2]([Vector2(0, 0), Vector2(34, 33), Vector2(40, 33), Vector2(34, 33), Vector2(37, 33), Vector2(38, 33), Vector2(39, 33), Vector2(38, 33), Vector2(34, 33), Vector2(0, 33), Vector2(37, 33), Vector2(38, 33), Vector2(38, 33), Vector2(38, 33), Vector2(38, 33), Vector2(36, 33), Vector2(34, 33)])
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 _alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _forced_finish_delay = -0.0402778

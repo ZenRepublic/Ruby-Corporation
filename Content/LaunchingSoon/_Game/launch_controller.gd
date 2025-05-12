@@ -118,6 +118,6 @@ func restart_game() -> void:
 	})
 	
 func return_to_menu() -> void:
-	SceneManager.load_scene(menu_scn_path,true,-1,0.2)
+	SceneManager.load_scene(menu_scn_path,true,-1,0.0)
 	
 	

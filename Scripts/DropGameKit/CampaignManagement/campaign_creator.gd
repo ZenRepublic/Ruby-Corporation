@@ -147,6 +147,7 @@ func create_campaign() -> void:
 	
 	if tx_data.is_successful():
 		on_campaign_created.emit()
+		close()
 		
 func get_campaign_end_timestamp(start_timestamp:int,campaign_duration_in_hours:int) -> int:
 	#timestamp is in seconds, so we need to convert hours to seconds and add it to the timestamp

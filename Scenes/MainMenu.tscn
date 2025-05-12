@@ -295,7 +295,6 @@ starting_panel = NodePath("../GigManager")
 screens = [NodePath("../GigManager"), NodePath("../CampaignSelector")]
 
 [node name="GigManager" type="MarginContainer" parent="Content/MainScreen" node_paths=PackedStringArray("mini_gig_spawn")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 20
@@ -345,7 +344,7 @@ layout_mode = 2
 theme = ExtResource("7_eupma")
 text = "In Ruby Planet, there is always work for those who seek it...
 
-Select a gig and check if there are any job listings active for it!"
+Select a gig and check if there are any campaigns active for it!"
 autowrap_mode = 2
 
 [node name="LearnMoreButton" type="Button" parent="Content/MainScreen/GigManager/Content/Intro" node_paths=PackedStringArray("button")]
@@ -357,7 +356,7 @@ theme_type_variation = &"ButtonFlatAlt"
 text = "LEARN MORE"
 script = ExtResource("8_a02e1")
 button = NodePath(".")
-link = "https://drive.google.com/file/d/1-JPs6Ch4ZrH57xQbDo2yE8Ewnuglfm9V/view?usp=drive_link"
+link = "https://www.canva.com/design/DAGnKPy0j2c/4bk8DUaf3fmGv10FugV23w/edit?utm_content=DAGnKPy0j2c&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Content/MainScreen/GigManager/Content"]
 layout_mode = 2
@@ -410,6 +409,7 @@ hide_if_locked = true
 stream = ExtResource("9_04wh2")
 
 [node name="CampaignSelector" type="VBoxContainer" parent="Content/MainScreen" node_paths=PackedStringArray("screen_manager", "campaign_display_system", "campaign_type_filter", "show_expired_filter", "campaign_interactor")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("16_7krnb")
@@ -473,7 +473,7 @@ size_flags_horizontal = 3
 theme = ExtResource("7_eupma")
 text = "Select an active campaign to play. 
 
-Note that you can only participate if  you meet the requested conditions!"
+Note: you can only participate if you hold the desired assets!"
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -755,8 +755,8 @@ text = "Players"
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_type_variation = &"LabelSpecial"
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
 text = "MADLADS"
 
 [node name="MineTreasury" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer"]
@@ -785,9 +785,8 @@ stretch_mode = 5
 [node name="TokensLabel" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer/MineTreasury/TreasuryContainer"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
-theme_type_variation = &"HeaderMedium"
-theme_override_colors/font_color = Color(0.988235, 0.937255, 0.552941, 1)
-theme_override_font_sizes/font_size = 40
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 50
 text = "100M"
 script = ExtResource("26_rhk5y")
 format_mode = 1
@@ -814,8 +813,8 @@ text = "Manager"
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_type_variation = &"LabelSpecial"
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
 text = "ANON"
 
 [node name="MaxReward" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer"]
@@ -835,9 +834,8 @@ layout_mode = 2
 [node name="RewardLabel" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/MaxReward/RewardContainer"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
-theme_type_variation = &"HeaderMedium"
-theme_override_colors/font_color = Color(0.988235, 0.937255, 0.552941, 1)
-theme_override_font_sizes/font_size = 40
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 50
 text = "50K"
 script = ExtResource("26_rhk5y")
 format_mode = 1
@@ -1008,7 +1006,7 @@ theme_type_variation = &"HeaderSmall"
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 1
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "4/5"
 horizontal_alignment = 1
 vertical_alignment = 1

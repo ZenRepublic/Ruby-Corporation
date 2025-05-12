@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dnww2npv55xyh"]
+[gd_scene load_steps=19 format=3 uid="uid://dnww2npv55xyh"]
 
 [ext_resource type="Script" uid="uid://u2oke3207lyv" path="res://Scripts/DropGameKit/Utility/CampaignRewards/rewards_display_ui.gd" id="1_fslop"]
 [ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="2_x46re"]
@@ -13,6 +13,9 @@
 [ext_resource type="FontFile" uid="uid://d2qhs7spcw2sj" path="res://Fonts/WaterLemon-5yzwa.otf" id="10_x46re"]
 [ext_resource type="Script" uid="uid://cvjs0lluew8kq" path="res://addons/SolanaSDK/Scripts/NFTGating/token_button_lock.gd" id="11_fsjh4"]
 [ext_resource type="Script" uid="uid://8d53ge4w5ku7" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/token_campaign_player_manager.gd" id="12_x2gsr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x46re"]
+bg_color = Color(0.290196, 0.454902, 0.678431, 0.901961)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i4kpk"]
 
@@ -41,6 +44,15 @@ nft_player_manager = NodePath("Content/Main/PlayerDetails/MarginContainer/Player
 token_player_manager = NodePath("Content/Main/PlayerDetails/MarginContainer/PlayerDetails/TokenPlayerManager")
 return_button = NodePath("Content/Main/PlayerDetails/MarginContainer/PlayerDetails/ReturnButton")
 save_button = NodePath("Content/Main/Info/SaveImageButton")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x46re")
 
 [node name="Content" type="MarginContainer" parent="."]
 layout_mode = 1

@@ -235,9 +235,10 @@ autowrap_mode = 3
 [node name="PlayerTypeSelection" type="TabContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer"]
 layout_mode = 2
 theme = ExtResource("3_if3s2")
-current_tab = 0
+current_tab = 1
 
 [node name="NFT" type="TabBar" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection"]
+visible = false
 custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
 metadata/_tab_index = 0
@@ -339,7 +340,6 @@ max_value = 1440.0
 allow_zero = false
 
 [node name="Token" type="TabBar" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection"]
-visible = false
 custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
 metadata/_tab_index = 1
@@ -426,11 +426,11 @@ size_flags_vertical = 3
 theme = ExtResource("3_if3s2")
 selected = 0
 item_count = 3
-popup/item_0/text = "STAKE"
+popup/item_0/text = "Stake"
 popup/item_0/id = 0
-popup/item_1/text = "BURN"
+popup/item_1/text = "Burn"
 popup/item_1/id = 1
-popup/item_2/text = "PAY"
+popup/item_2/text = "Pay"
 popup/item_2/id = 2
 
 [node name="TimeSettings" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings"]

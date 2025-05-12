@@ -116,8 +116,7 @@ text = "LOADING..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CampaignDisplay" type="MarginContainer" parent="Content" node_paths=PackedStringArray("container")]
-visible = false
+[node name="CampaignDisplay" type="MarginContainer" parent="Content" node_paths=PackedStringArray("container", "no_entries_overlay")]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
@@ -127,6 +126,7 @@ theme_override_constants/margin_bottom = 30
 script = ExtResource("5_l58jm")
 container = NodePath("VboxContainer/ActiveCampaignsContainer/MarginContainer/ScrollContainer/CampaignList")
 entry_scn = ExtResource("6_2hy6e")
+no_entries_overlay = NodePath("VboxContainer/ActiveCampaignsContainer/NoFound")
 
 [node name="VboxContainer" type="VBoxContainer" parent="Content/CampaignDisplay"]
 layout_mode = 2
@@ -136,7 +136,7 @@ theme_override_constants/separation = 20
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme = ExtResource("4_txo57")
-text = "View and manage campaigns you have created for Gigs"
+text = "View and manage the campaigns you have created for Gigs"
 autowrap_mode = 2
 
 [node name="ActiveCampaignsContainer" type="PanelContainer" parent="Content/CampaignDisplay/VboxContainer"]
@@ -160,7 +160,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="NoFound" type="Label" parent="Content/CampaignDisplay/VboxContainer/ActiveCampaignsContainer"]
+visible = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme = ExtResource("4_txo57")
+theme_type_variation = &"LabelInverted"
+text = "No campaigns found..."
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="CampaignManager" type="MarginContainer" parent="Content" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "owner_displayable", "campaign_type_label", "treasury_token_displayable", "deposit_token_displayable", "total_games_label", "unique_players_label", "max_reward_label", "leaderboard", "fees_collected", "close_button")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

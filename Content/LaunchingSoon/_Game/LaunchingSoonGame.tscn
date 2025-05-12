@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://br1uqoo22tbid"]
+[gd_scene load_steps=27 format=3 uid="uid://br1uqoo22tbid"]
 
 [ext_resource type="Script" uid="uid://cv18o0w81gm0o" path="res://Content/LaunchingSoon/_Game/launch_controller.gd" id="1_105k3"]
 [ext_resource type="Script" uid="uid://bakjm0lk676ot" path="res://Scripts/DropGameKit/CampaignManagement/campaign_reward_claimer.gd" id="2_xvglk"]
+[ext_resource type="PackedScene" uid="uid://cyrmlhn128s53" path="res://Scripts/Web3/TransactionManagement/TransactionOverlay.tscn" id="3_0h6bu"]
 [ext_resource type="Script" uid="uid://b16df6v2vrptv" path="res://Content/LaunchingSoon/Narrator/narrator.gd" id="7_bbao2"]
 [ext_resource type="AudioStream" uid="uid://cajtajuihhmvy" path="res://Content/LaunchingSoon/Narrator/VerySloppy.mp3" id="8_4kssk"]
 [ext_resource type="AudioStream" uid="uid://6jthium08t6t" path="res://Content/LaunchingSoon/Narrator/Groans/Groan1.mp3" id="8_105k3"]
@@ -62,6 +63,8 @@ light_volumetric_fog_energy = 0.0
 sky_mode = 1
 
 [node name="GUI" parent="." instance=ExtResource("11_0h6bu")]
+
+[node name="TransactionOverlay" parent="." instance=ExtResource("3_0h6bu")]
 
 [node name="Narrator" type="Node" parent="." node_paths=PackedStringArray("audio_source")]
 script = ExtResource("7_bbao2")

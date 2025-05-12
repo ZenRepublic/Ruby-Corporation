@@ -31,4 +31,5 @@ func handle_fade_out() -> void:
 	if fade_out_sound!=null:
 		audio_player.stream= fade_out_sound
 		audio_player.play()
+	await get_tree().create_timer(0.3).timeout
 	loading_panel.visible=false

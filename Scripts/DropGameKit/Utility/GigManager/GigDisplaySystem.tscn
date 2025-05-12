@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bwchk1fr718eh" path="res://addons/texture_button_colored/texture_button_colored.gd" id="7_nbtgq"]
 [ext_resource type="Texture2D" uid="uid://br8u2jj3e2hqp" path="res://Textures/Socials/DiscordIcon.png" id="8_4aq6u"]
 [ext_resource type="Texture2D" uid="uid://bdjw50vivwoew" path="res://Textures/Icons/CloseIcon.PNG" id="9_8ts0c"]
-[ext_resource type="Script" uid="uid://d27go0wrna3kn" path="res://addons/SolanaSDK/Scripts/NFTGating/address_button_lock.gd" id="9_l6ibn"]
+[ext_resource type="Script" uid="uid://7q7s8ljh1dfh" path="res://addons/SolanaSDK/Scripts/NFTGating/address_button_lock.gd" id="9_l6ibn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oor3o"]
 bg_color = Color(0, 0.443137, 0.439216, 0.945098)
@@ -170,13 +170,12 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="CreateCampaignButton" type="Button" parent="MarginContainer/GameDisplay/Content/GameDetails/Actions"]
-custom_minimum_size = Vector2(300, 70)
+custom_minimum_size = Vector2(400, 70)
 layout_mode = 2
 size_flags_horizontal = 8
 theme = ExtResource("1_78f2a")
-text = "CREATE NEW"
+text = "CREATE CAMPAIGN"
 script = ExtResource("9_l6ibn")
-no_auth_text = "LOGIN TO CREATE"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/GameDisplay/Content/GameDetails/Actions/CreateCampaignButton"]
 stream = ExtResource("5_3ihgx")
