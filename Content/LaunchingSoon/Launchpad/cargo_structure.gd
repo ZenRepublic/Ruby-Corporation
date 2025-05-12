@@ -4,7 +4,8 @@ class_name CargoStructure
 @export var max_cargo_drop_amount:int=3
 @export var base_spawn_offset:Vector3
 @export var sway_speed:float = 1.0
-@export var sway_increase_tick:float = 0.5
+@export var speed_increase_tick:float = 0.03
+@export var amplitude_increase_tick:float = 0.5
 @export var offset_weight = 0.1 # Weight of offset in amplitude
 @export var center_offset_weight = 0.2 # Weight of net offset in shifting pendulum center
 
@@ -17,6 +18,8 @@ var net_offset = 0.0
 var target_sway_amplitude:float = 0
 var target_offset_from_center:float = 0
 
+var curr_sway_speed:float
+
 var curr_sway_amplitude:float = 0
 var curr_offset_from_center:float = 0
 
@@ -25,6 +28,9 @@ var sway_time:float
 
 signal on_height_changed()
 signal on_cargo_dropped(cargo:Cargo)
+
+func _ready() -> void:
+	curr_sway_speed = sway_speed
 
 func _process(delta: float) -> void:
 	if !is_swaying:
@@ -118,7 +124,8 @@ func calculate_sway_strength() -> void:
 #		signed offset to determine leaning side if any
 		net_offset += place_offset
 		
-	target_sway_amplitude = curr_cargo.size() * sway_increase_tick
+	curr_sway_speed = sway_speed + speed_increase_tick * curr_cargo.size()
+	target_sway_amplitude = curr_cargo.size() * amplitude_increase_tick
 	target_sway_amplitude += total_offset  * offset_weight
 	
 	target_offset_from_center = net_offset * center_offset_weight
