@@ -181,11 +181,52 @@ animator = NodePath("AnimationPlayer")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 max_stickers = 4
 
+[node name="Rocket_Body" parent="RocketBody/Fueselage" index="0"]
+cast_shadow = 0
+
+[node name="panel_01" parent="RocketBody/Fueselage/Rocket_Body/Panels" index="0"]
+cast_shadow = 0
+
+[node name="panel_02" parent="RocketBody/Fueselage/Rocket_Body/Panels" index="1"]
+cast_shadow = 0
+
+[node name="panel_03" parent="RocketBody/Fueselage/Rocket_Body/Panels" index="2"]
+cast_shadow = 0
+
+[node name="panel_04" parent="RocketBody/Fueselage/Rocket_Body/Panels" index="3"]
+cast_shadow = 0
+
+[node name="panel_05" parent="RocketBody/Fueselage/Rocket_Body/Panels" index="4"]
+cast_shadow = 0
+
+[node name="panel_06" parent="RocketBody/Fueselage/Rocket_Body/Panels" index="5"]
+cast_shadow = 0
+
+[node name="panel_07" parent="RocketBody/Fueselage/Rocket_Body/Panels" index="6"]
+cast_shadow = 0
+
+[node name="panel_08" parent="RocketBody/Fueselage/Rocket_Body/Panels" index="7"]
+cast_shadow = 0
+
+[node name="panel_09" parent="RocketBody/Fueselage/Rocket_Body/Panels" index="8"]
+cast_shadow = 0
+
+[node name="panel_10" parent="RocketBody/Fueselage/Rocket_Body/Panels" index="9"]
+cast_shadow = 0
+
+[node name="panel_11" parent="RocketBody/Fueselage/Rocket_Body/Panels" index="10"]
+cast_shadow = 0
+
+[node name="panel_12" parent="RocketBody/Fueselage/Rocket_Body/Panels" index="11"]
+cast_shadow = 0
+
 [node name="Rocket_BodyPanel_A" parent="RocketBody/Fueselage/Rocket_Body" index="2"]
 transform = Transform3D(0.888889, 0, 0, 0, 1, 0, 0, 0, 1, -0.893185, 1.00116, 0)
+cast_shadow = 0
 
 [node name="Rocket_BodyPanel_B" parent="RocketBody/Fueselage/Rocket_Body" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.893185, 1.00116, 0)
+cast_shadow = 0
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_wbt1n")

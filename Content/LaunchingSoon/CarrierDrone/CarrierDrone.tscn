@@ -53,6 +53,7 @@ transform = Transform3D(0.0819305, 0, 0, 0, 0.0819305, 0, 0, 0, 0.0819305, 0, -0
 
 [node name="Mesh" type="MeshInstance3D" parent="Puck"]
 visible = false
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_1tmj7")
 skeleton = NodePath("../..")
 

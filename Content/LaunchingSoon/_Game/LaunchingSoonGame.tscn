@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://br1uqoo22tbid"]
+[gd_scene load_steps=26 format=3 uid="uid://br1uqoo22tbid"]
 
 [ext_resource type="Script" uid="uid://cv18o0w81gm0o" path="res://Content/LaunchingSoon/_Game/launch_controller.gd" id="1_105k3"]
 [ext_resource type="Script" uid="uid://bakjm0lk676ot" path="res://Scripts/DropGameKit/CampaignManagement/campaign_reward_claimer.gd" id="2_xvglk"]
@@ -18,7 +18,6 @@
 [ext_resource type="AudioStream" uid="uid://duia2dbjhqua1" path="res://Content/LaunchingSoon/Narrator/GoodLuckWin.mp3" id="12_0h6bu"]
 [ext_resource type="AudioStream" uid="uid://d2707fnp4271v" path="res://Content/LaunchingSoon/Narrator/FiredLose.mp3" id="13_mtvvt"]
 [ext_resource type="PackedScene" uid="uid://7dhu2h0jce8k" path="res://Content/LaunchingSoon/Launchpad/Model/Launchpad.tscn" id="19_78xry"]
-[ext_resource type="Texture2D" uid="uid://bg6rcb6vmuv1m" path="res://Content/LaunchingSoon/Environment/Dune L1.png" id="20_0h6bu"]
 [ext_resource type="Script" uid="uid://cnbq5j46m1vgl" path="res://Content/LaunchingSoon/Launchpad/death_zone.gd" id="20_gysdx"]
 [ext_resource type="PackedScene" uid="uid://dpn20a0307u22" path="res://Content/LaunchingSoon/Environment/Background.glb" id="22_ojuss"]
 
@@ -60,6 +59,7 @@ transform = Transform3D(0.999877, 0.0133783, -0.00823041, -0.00197953, 0.627135,
 light_color = Color(0.843115, 0.856597, 0.792914, 1)
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
+directional_shadow_mode = 0
 sky_mode = 1
 
 [node name="GUI" parent="." instance=ExtResource("11_0h6bu")]
@@ -116,6 +116,81 @@ shape = SubResource("BoxShape3D_gysdx")
 [node name="Background" parent="." instance=ExtResource("22_ojuss")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.474, 0)
 
+[node name="GamePalace" parent="Background" index="0"]
+cast_shadow = 0
+
+[node name="tallStone_002" parent="Background" index="1"]
+cast_shadow = 0
+
+[node name="brokenStone_001" parent="Background" index="2"]
+cast_shadow = 0
+
+[node name="Plane" parent="Background" index="3"]
+cast_shadow = 0
+
+[node name="brokenStone_002" parent="Background" index="4"]
+cast_shadow = 0
+
+[node name="tallStone_001" parent="Background" index="5"]
+cast_shadow = 0
+
+[node name="brokenStone_003" parent="Background" index="6"]
+cast_shadow = 0
+
+[node name="brokenStone_004" parent="Background" index="7"]
+cast_shadow = 0
+
+[node name="MetalTower" parent="Background" index="8"]
+cast_shadow = 0
+
+[node name="MetalTower_001" parent="Background" index="9"]
+cast_shadow = 0
+
+[node name="MetalTower_002" parent="Background" index="10"]
+cast_shadow = 0
+
+[node name="MetalTower_003" parent="Background" index="11"]
+cast_shadow = 0
+
+[node name="MetalTower_004" parent="Background" index="12"]
+cast_shadow = 0
+
+[node name="MetalTower_005" parent="Background" index="13"]
+cast_shadow = 0
+
+[node name="MetalTower_006" parent="Background" index="14"]
+cast_shadow = 0
+
+[node name="MetalTower_007" parent="Background" index="15"]
+cast_shadow = 0
+
+[node name="MagmaApartament2P" parent="Background" index="16"]
+cast_shadow = 0
+
+[node name="Entrance" parent="Background/MagmaApartament2P" index="0"]
+cast_shadow = 0
+
+[node name="House1" parent="Background/MagmaApartament2P" index="1"]
+cast_shadow = 0
+
+[node name="House2" parent="Background/MagmaApartament2P" index="2"]
+cast_shadow = 0
+
+[node name="Lounge" parent="Background/MagmaApartament2P" index="3"]
+cast_shadow = 0
+
+[node name="brokenStone_005" parent="Background" index="17"]
+cast_shadow = 0
+
+[node name="brokenStone_006" parent="Background" index="18"]
+cast_shadow = 0
+
+[node name="brokenStone_007" parent="Background" index="19"]
+cast_shadow = 0
+
+[node name="brokenStone_008" parent="Background" index="20"]
+cast_shadow = 0
+
 [node name="StartRigPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.6)
 
@@ -132,6 +207,4 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.287
 start_move_range = Vector3(0.15, 0.1, 0)
 max_move_range = Vector3(0.35, 0.3, 0)
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 1.86536, 2.74998, 0, -2.48551, 2.06384, 0, 3.3007, -18.7894)
-texture = ExtResource("20_0h6bu")
+[editable path="Background"]

@@ -3,7 +3,4 @@
 [ext_resource type="Texture2D" uid="uid://dsupn4fwyy6e7" path="res://Content/LaunchingSoon/Cargo/RocketParts/ForStickies/Fueselage_Rocket_Texture.png" id="1_sn6gu"]
 
 [resource]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("1_sn6gu")

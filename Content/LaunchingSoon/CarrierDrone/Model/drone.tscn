@@ -19,6 +19,7 @@ shader_parameter/uv_offset = Vector2(0, 0)
 [node name="BunnyDrone" parent="." instance=ExtResource("1_d0gms")]
 
 [node name="RabbitDrone" parent="BunnyDrone/Armature/Skeleton3D" index="0"]
+cast_shadow = 0
 surface_material_override/0 = SubResource("ShaderMaterial_4qt7m")
 
 [node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="BunnyDrone/Armature/Skeleton3D" index="1"]

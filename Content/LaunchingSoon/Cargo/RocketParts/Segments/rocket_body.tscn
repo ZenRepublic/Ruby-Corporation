@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://w43fjwpaicpx" path="res://Content/LaunchingSoon/Cargo/RocketParts/ForStickies/Fueselage.glb" id="1_sl7ge"]
 [ext_resource type="Material" uid="uid://dgdqrxbrkenl5" path="res://Content/LaunchingSoon/Cargo/RocketParts/Segments/RocketMaterial.tscn.tres" id="2_63fik"]
 
-
 [node name="RocketBody" type="Node3D"]
 script = ExtResource("1_63fik")
 

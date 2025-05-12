@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://0x147x7ebyta"]
-
-[ext_resource type="PackedScene" uid="uid://bwx24ff007tl3" path="res://Content/LaunchingSoon/Cargo/RocketParts/Segments/RocketPieces.glb" id="1_mbdgu"]
-
-[node name="Rocket" type="Node3D"]
-
-[node name="RocketPieces" parent="." instance=ExtResource("1_mbdgu")]
