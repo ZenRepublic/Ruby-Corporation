@@ -10,7 +10,7 @@ tag = "3D STACKER GIG"
 description = "Build a rocket by dropping and stacking its parts. 
 The more accurate, the more you earn!"
 visual = ExtResource("1_tvwpv")
-mainnet_house_id = "FcxGPktM2MJJ9qTxwiEVKJxHTpvatoFawKGq46SJxviG"
+mainnet_house_id = "7UPVZYfZxrryiBJ1zHzqofJU8KWRm46J3wvesrdQLigJ"
 devnet_house_id = "9kkwc5h73FZynTBjnM6hrMNviBReqGVLN8sumCQio57t"
 link_to_game = ""
 path_to_game_scn = "uid://br1uqoo22tbid"

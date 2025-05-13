@@ -16,7 +16,6 @@ func get_active_house_key() -> Pubkey:
 func set_house_data(mainnet_id:String, devnet_id:String) -> void:
 	devnet_house_id = devnet_id
 	mainnet_house_id = mainnet_id
-	print(devnet_house_id)
 	
 	if SolanaService.rpc_cluster == SolanaService.RpcCluster.MAINNET:
 		active_house_id = mainnet_house_id

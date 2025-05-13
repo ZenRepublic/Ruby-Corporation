@@ -117,6 +117,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CampaignDisplay" type="MarginContainer" parent="Content" node_paths=PackedStringArray("container", "no_entries_overlay")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
@@ -171,7 +172,6 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="CampaignManager" type="MarginContainer" parent="Content" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "owner_displayable", "campaign_type_label", "treasury_token_displayable", "deposit_token_displayable", "total_games_label", "unique_players_label", "max_reward_label", "leaderboard", "fees_collected", "close_button")]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -190,7 +190,7 @@ total_games_label = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/S
 unique_players_label = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/UniquePlayers/UniquePlayers")
 max_reward_label = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/MaxReward/MaxReward")
 leaderboard = NodePath("Content/ScrollContainer/GeneralInfo/Leaderboard")
-fees_collected = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/FeesCollected/FeesCollected")
+fees_collected = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/PriceContainer/Cost/EarnedFeesLabel")
 close_button = NodePath("Content/ScrollContainer/GeneralInfo/CampaignCloseButton")
 
 [node name="Content" type="VBoxContainer" parent="Content/CampaignManager"]
@@ -460,20 +460,38 @@ script = ExtResource("11_dh37k")
 format_mode = 1
 decimal_amount = 2
 
-[node name="FeesCollected" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails"]
+[node name="PriceContainer" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails"]
 layout_mode = 2
+alignment = 1
 
-[node name="Label" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/FeesCollected"]
+[node name="PriceLabel" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/PriceContainer"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-text = "Fees collected"
+text = "Collected Fees"
 vertical_alignment = 1
 
-[node name="FeesCollected" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/FeesCollected"]
+[node name="Cost" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/PriceContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="EarnedFeesLabel" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/PriceContainer/Cost"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme = ExtResource("4_txo57")
+theme_type_variation = &"LabelSpecial"
+text = "0.2"
+vertical_alignment = 1
+script = ExtResource("11_dh37k")
+format_mode = 1
+decimal_amount = 2
+metadata/_custom_type_script = "uid://bnket1c06w8fq"
+
+[node name="Symbol" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/PriceContainer/Cost"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
 theme_type_variation = &"LabelSpecial"
-text = "0.0735 SOL"
+text = "SOL"
 vertical_alignment = 1
 
 [node name="Leaderboard" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo" node_paths=PackedStringArray("leaderboard_display_system")]
@@ -531,11 +549,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_txo57")
 theme_type_variation = &"ButtonFlat"
-text = "CLOSE IN: 23h 15m 20s"
+disabled = true
+text = "Close in: 23h 15m 20s"
 script = ExtResource("15_3iieg")
-pre_start_prefix = "STARTS IN:"
-time_left_prefix = "CLOSE IN:"
-activated_text = "CLAIM AND CLOSE"
+time_left_prefix = "Close in:"
+activated_text = "Claim and Close"
 enable_on_started = false
 
 [connection signal="pressed" from="Content/Header/MarginContainer/HBoxContainer/TextureButton" to="." method="close"]

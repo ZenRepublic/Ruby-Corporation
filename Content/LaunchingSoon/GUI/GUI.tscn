@@ -38,10 +38,10 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_furhi"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_ogrfr"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_hdbwk"]
 resource_name = "growin"
 script = ExtResource("14_vglbh")
-metadata/rt = 21663899040965
+metadata/rt = 76868992744177
 
 [sub_resource type="Animation" id="Animation_ogrfr"]
 length = 0.001
@@ -81,20 +81,20 @@ _data = {
 &"Win": SubResource("Animation_43kcm")
 }
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_u28q5"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_y3llc"]
 resource_name = "growin"
 script = ExtResource("14_vglbh")
-metadata/rt = 21665861975039
+metadata/rt = 76870955656115
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_43kcm"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_lgx8i"]
 resource_name = "heart"
 script = ExtResource("23_uefu4")
-metadata/rt = 21665861975039
+metadata/rt = 76870955656115
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_hdbwk"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_8e86u"]
 resource_name = "sin"
 script = ExtResource("20_uefu4")
-metadata/rt = 21665861975039
+metadata/rt = 76870955656115
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sm4ha"]
 shader = ExtResource("17_py7dd")
@@ -110,15 +110,15 @@ bg_color = Color(0.321569, 0.266667, 0.337255, 1)
 border_width_top = 20
 border_color = Color(0.501961, 0.415686, 0.458824, 1)
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_y3llc"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_ta8l6"]
 resource_name = "fader"
 script = ExtResource("22_e05qb")
-metadata/rt = 21666851830823
+metadata/rt = 76871945511895
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_lgx8i"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_1687p"]
 resource_name = "heart"
 script = ExtResource("23_uefu4")
-metadata/rt = 21666851830823
+metadata/rt = 76871945511895
 
 [node name="GUI" type="Control" node_paths=PackedStringArray("admin_panel", "campaign_reward_display", "win_screen", "lose_screen")]
 layout_mode = 3
@@ -239,9 +239,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 13.0
-offset_top = -37.5
+offset_top = -32.5
 offset_right = -35.0
-offset_bottom = 46.5
+offset_bottom = 39.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_furhi")
@@ -299,7 +299,7 @@ bbcode_enabled = true
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_ogrfr")]
+custom_effects = [SubResource("RichTextEffect_hdbwk")]
 script = ExtResource("24_furhi")
 animation = "growin"
 progress = 1.0
@@ -453,7 +453,7 @@ bbcode_enabled = true
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_u28q5"), SubResource("RichTextEffect_43kcm"), SubResource("RichTextEffect_hdbwk")]
+custom_effects = [SubResource("RichTextEffect_y3llc"), SubResource("RichTextEffect_lgx8i"), SubResource("RichTextEffect_8e86u")]
 script = ExtResource("24_furhi")
 animation = "growin"
 progress = 1.0
@@ -660,7 +660,7 @@ theme_override_constants/margin_bottom = 30
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label5" type="RichTextLabel" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
+[node name="Label6" type="RichTextLabel" parent="LoseScreen/Content/PanelContainer/TokenRewardContainer/VBoxContainer"]
 clip_contents = false
 custom_minimum_size = Vector2(0, 901)
 layout_mode = 2
@@ -678,7 +678,7 @@ theme_override_font_sizes/bold_font_size = 46
 bbcode_enabled = true
 fit_content = true
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_y3llc"), SubResource("RichTextEffect_lgx8i")]
+custom_effects = [SubResource("RichTextEffect_ta8l6"), SubResource("RichTextEffect_1687p")]
 script = ExtResource("24_furhi")
 _hold = true
 progress = 1.0

@@ -25,9 +25,8 @@
 background_mode = 1
 background_color = Color(0.544045, 0.800243, 0.916233, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.674815, 0.674815, 0.674814, 1)
+ambient_light_color = Color(0.886262, 0.886262, 0.886261, 1)
 ambient_light_sky_contribution = 0.8
-tonemap_mode = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_0h6bu"]
 size = Vector3(8, 1, 8)
@@ -56,7 +55,7 @@ environment = SubResource("Environment_ms4aa")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.999877, 0.0133783, -0.00823041, -0.00197953, 0.627135, 0.778908, 0.0155821, -0.778796, 0.627084, -2.20943, 9.72706, 3.9653)
-light_color = Color(0.843115, 0.856597, 0.792914, 1)
+light_color = Color(0.892364, 0.878021, 0.832701, 1)
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 directional_shadow_mode = 0

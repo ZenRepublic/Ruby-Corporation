@@ -46,10 +46,10 @@ func set_visual(token_tex:Texture2D) -> void:
 	if token_tex == null:
 		return
 	
-	var img: Image = token_tex.get_image()
-	img.resize(texture.get_width(), texture.get_height())
-	
-	texture = ImageTexture.create_from_image(img)
+	#var img: Image = token_tex.get_image()
+	#img.resize(texture.get_width(), texture.get_height())
+	material_override.set_shader_parameter("tex",token_tex)
+	#texture = ImageTexture.create_from_image(img)
 
 func move_to_target(value:float, target_point:Node3D, move_duration:float=1.0) -> void:
 	self.value = value

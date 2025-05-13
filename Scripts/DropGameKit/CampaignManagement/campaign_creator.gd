@@ -16,13 +16,16 @@ class_name CampaignCreator
 @export var token_visuals:Array[TextureRect]
 
 @export var fee_explanation:Label
-@export var creation_fee_label:Label
+@export var creation_fee_label:NumberLabel
+
+@export var payment_displayable:DisplayableAsset
 
 @export var input_submit_button:BaseButton
 
 var selected_token:Token
 
-var mine_creation_fee:float
+var house_currency_mint:Pubkey
+var campaign_creation_fee:float
 var manager_creation_fee:float
 
 var house_data:Dictionary
@@ -55,9 +58,19 @@ func _ready() -> void:
 	
 func setup_creator() -> void:
 	var house_config:Dictionary = house_data["config"]
-	var decimals = await SolanaService.get_token_decimals(house_data["house_currency"].to_string())
-	mine_creation_fee = house_config["campaign_creation_fee"]/pow(10,decimals)
+	house_currency_mint = house_data["house_currency"]
+	var decimals = await SolanaService.get_token_decimals(house_currency_mint.to_string())
+	campaign_creation_fee = house_config["campaign_creation_fee"]/pow(10,decimals)
 	manager_creation_fee = (house_config["campaign_creation_fee"]-house_config["campaign_manager_discount"])/pow(10,decimals)
+	
+	if house_currency_mint==null:
+		payment_displayable.symbol_label.text = "SOL"
+	else:
+		var payment_token:Token = await SolanaService.asset_manager.get_asset_from_mint(house_currency_mint)
+		if payment_token!=null:
+			await payment_displayable.set_data(payment_token)
+		
+	
 	update_manager_selection(null)
 	
 	var claim_tax_percentage:float = house_config["rewards_tax"]/10.0
@@ -98,11 +111,9 @@ func set_mine_token(selected_asset:WalletAsset) -> void:
 	
 func update_manager_selection(selected_asset:WalletAsset) -> void:
 	if selected_asset == null:
-		creation_fee_label.text = "%s SOL" % str(mine_creation_fee)
-		return
-	
-	var manager_fee_text:String = "FREE" if manager_creation_fee==0 else "%s SOL" % str(manager_creation_fee)
-	creation_fee_label.text = manager_fee_text
+		creation_fee_label.set_value(campaign_creation_fee)
+	else:
+		creation_fee_label.set_value(manager_creation_fee)
 	
 func create_campaign() -> void:
 	var general_data:Dictionary = general_settings.get_input_data()

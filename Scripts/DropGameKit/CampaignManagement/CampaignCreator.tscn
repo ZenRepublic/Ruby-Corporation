@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ku1agbhqaohs"]
+[gd_scene load_steps=23 format=3 uid="uid://ku1agbhqaohs"]
 
 [ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="2_p72g2"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="3_if3s2"]
@@ -53,7 +53,10 @@ func select_collection(collection_data:Dictionary) -> void:
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y47jn"]
 
-[node name="CampaignCreator" type="Control" node_paths=PackedStringArray("screen_manager", "general_settings", "player_settings_manager", "player_settings", "token_selector", "manager_selector", "fund_input_field", "max_fund_button", "token_visuals", "fee_explanation", "creation_fee_label", "input_submit_button")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn7e4"]
+bg_color = Color(0.0352941, 0.0627451, 0.054902, 0.709804)
+
+[node name="CampaignCreator" type="Control" node_paths=PackedStringArray("screen_manager", "general_settings", "player_settings_manager", "player_settings", "token_selector", "manager_selector", "fund_input_field", "max_fund_button", "token_visuals", "fee_explanation", "creation_fee_label", "payment_displayable", "input_submit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,7 +75,8 @@ fund_input_field = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSetti
 max_fund_button = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/TokenSelectContainer/FundAmountContainer/MaxFundButton")
 token_visuals = [NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/PayoutLimitContainer/TokenVisual")]
 fee_explanation = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/RewardClaimFee/FeeExplanation")
-creation_fee_label = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer/ClubCreationFee")
+creation_fee_label = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer/Cost/ClubCreationFee")
+payment_displayable = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer/Cost")
 input_submit_button = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/Actions/CreateMineButton")
 
 [node name="ScreenManager" type="Node" parent="." node_paths=PackedStringArray("starting_panel", "screens")]
@@ -235,10 +239,9 @@ autowrap_mode = 3
 [node name="PlayerTypeSelection" type="TabContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer"]
 layout_mode = 2
 theme = ExtResource("3_if3s2")
-current_tab = 1
+current_tab = 0
 
 [node name="NFT" type="TabBar" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection"]
-visible = false
 custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
 metadata/_tab_index = 0
@@ -340,6 +343,7 @@ max_value = 1440.0
 allow_zero = false
 
 [node name="Token" type="TabBar" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection"]
+visible = false
 custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
 metadata/_tab_index = 1
@@ -746,9 +750,10 @@ text = "Reward Claim Fee"
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("3_if3s2")
-text = "0.0005"
+text = "0"
 placeholder_text = "Enter amount..."
 alignment = 1
+editable = false
 script = ExtResource("18_j2cfb")
 input_type = 2
 max_value = -1.0
@@ -808,6 +813,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_if3s2")
 theme_type_variation = &"InvisibleButton"
+disabled = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton/Visual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_if3s2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_fn7e4")
+
+[node name="Label" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton"]
+layout_mode = 2
+theme = ExtResource("3_if3s2")
+text = "SOON"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PriceSettings" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings"]
 layout_mode = 2
@@ -835,18 +858,36 @@ vertical_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="Cost" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer"]
+[node name="PriceLabel" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer"]
 layout_mode = 2
 theme = ExtResource("3_if3s2")
 text = "Price"
 vertical_alignment = 1
 
-[node name="ClubCreationFee" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer"]
+[node name="Cost" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer" node_paths=PackedStringArray("symbol_label")]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_constants/separation = 20
+script = ExtResource("10_mi3qm")
+symbol_label = NodePath("Symbol")
+
+[node name="ClubCreationFee" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer/Cost"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
 theme = ExtResource("3_if3s2")
 theme_type_variation = &"LabelSpecial"
-text = "0.2 SOL"
+text = "0.2"
+vertical_alignment = 1
+script = ExtResource("11_110pg")
+format_mode = 1
+decimal_amount = 2
+metadata/_custom_type_script = "uid://bnket1c06w8fq"
+
+[node name="Symbol" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer/Cost"]
+layout_mode = 2
+theme = ExtResource("3_if3s2")
+theme_type_variation = &"LabelSpecial"
+text = "SOL"
 vertical_alignment = 1
 
 [node name="Actions" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings"]

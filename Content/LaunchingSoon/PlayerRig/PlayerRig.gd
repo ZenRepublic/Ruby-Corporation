@@ -89,8 +89,6 @@ func return_drone(dropped_cargo:Cargo) -> void:
 	if gui.admin_panel.explanation_text!=null:
 		gui.admin_panel.explanation_text.queue_free()
 	
-	#dropped_cargo.on_missed.connect(process_failed_drop,CONNECT_ONE_SHOT)
-	#dropped_cargo.on_placed.connect(process_successful_drop,CONNECT_ONE_SHOT)
 	if !drone.is_at_destination:
 		await drone.on_target_reached
 	drone.fly_to(payload.get_random_position_on_surface())
@@ -125,7 +123,7 @@ func process_successful_drop(cargo:Cargo) -> void:
 	if !launchpad.is_structure_complete():
 		prepare_cargo_drop()
 	else:
-		drone.visible=false
+		drone.terminate()
 		
 	if cargo.animator!=null:
 		await get_tree().create_timer(token_spawner.send_duration).timeout

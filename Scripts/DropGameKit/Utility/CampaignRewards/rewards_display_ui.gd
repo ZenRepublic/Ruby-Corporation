@@ -28,6 +28,7 @@ func _ready() -> void:
 
 
 func setup_rewards_display() -> void:
+	screen_manager.switch_active_panel(0)
 #	to do: handle replay for token campaign
 	if reward_claimer.player_data["player_identity"]["identity_type"] == 1 or reward_claimer.player_data["player_identity"]["identity_type"] == 3:
 		await setup_nft_campaign_display()

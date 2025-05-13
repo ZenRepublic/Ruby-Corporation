@@ -59,6 +59,5 @@ func do_placement_effect(place_tier:LaunchSettings.PLACE_TIER) -> void:
 	add_child(effect_instance)
 	await get_tree().create_timer(1.0).timeout
 	effect_instance.queue_free()
-
 	
 	

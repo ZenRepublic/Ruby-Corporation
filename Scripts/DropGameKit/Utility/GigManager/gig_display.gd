@@ -10,6 +10,7 @@ class_name GigDisplay
 
 @export var create_campaign_button:ButtonLock
 @export var view_campaigns_button:BaseButton
+@export var free_play_button:BaseButton
 @export var external_visit_button:LinkedButton
 
 var gig:ClubhouseGig
@@ -20,6 +21,8 @@ signal on_selected(display:GigDisplay, gig:ClubhouseGig)
 func _ready() -> void:
 	if view_campaigns_button!=null:
 		view_campaigns_button.visible=false
+	if free_play_button!=null:
+		free_play_button.visible=false
 	if external_visit_button!=null:
 		external_visit_button.visible=false
 		
@@ -42,6 +45,7 @@ func setup_full(gig:ClubhouseGig) -> void:
 		external_visit_button.visible=true
 	else:
 		view_campaigns_button.visible=true
+		free_play_button.visible=true
 	
 	
 func set_basic_fields(gig:ClubhouseGig) -> void:
@@ -53,6 +57,11 @@ func set_basic_fields(gig:ClubhouseGig) -> void:
 	#
 	#gig_visual.texture = ImageTexture.create_from_image(image)
 	gig_visual.texture = gig.visual
+	
+func free_play() -> void:
+	var menu_manager:MenuManager = get_tree().get_first_node_in_group("MenuManager")
+	menu_manager.load_game_free_mode(gig.path_to_game_scn)
+	close()
 
 func select() -> void:
 	on_selected.emit(self,gig)

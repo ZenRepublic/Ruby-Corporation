@@ -295,6 +295,7 @@ starting_panel = NodePath("../GigManager")
 screens = [NodePath("../GigManager"), NodePath("../CampaignSelector")]
 
 [node name="GigManager" type="MarginContainer" parent="Content/MainScreen" node_paths=PackedStringArray("mini_gig_spawn")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 20
@@ -302,7 +303,7 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("18_jhlh1")
-gigs = Array[ExtResource("19_h64ul")]([ExtResource("20_y41we"), ExtResource("21_drl2p")])
+gigs = Array[ExtResource("19_h64ul")]([ExtResource("21_drl2p"), ExtResource("20_y41we")])
 mini_gig_spawn = NodePath("Content/ScrollContainer/Gigs")
 mini_gig_display_scn = ExtResource("20_jvcv6")
 display_scn = ExtResource("23_ydj5n")
@@ -409,7 +410,6 @@ hide_if_locked = true
 stream = ExtResource("9_04wh2")
 
 [node name="CampaignSelector" type="VBoxContainer" parent="Content/MainScreen" node_paths=PackedStringArray("screen_manager", "campaign_display_system", "campaign_type_filter", "show_expired_filter", "campaign_interactor")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("16_7krnb")
@@ -620,6 +620,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FreePlayContainer" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 2
@@ -1305,6 +1306,5 @@ layout_mode = 1
 [node name="TransactionOverlay" parent="." instance=ExtResource("79_ghurn")]
 
 [connection signal="pressed" from="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/BackButton" to="Content/MainScreen/ScreenManager" method="switch_active_panel" binds= [0]]
-[connection signal="pressed" from="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/FreePlayContainer/FreePlayButton" to="." method="load_game_free_mode"]
 [connection signal="pressed" from="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Buttons/BackButton" to="Content/MainScreen/CampaignSelector/ScreenManager" method="switch_active_panel" binds= [1]]
 [connection signal="pressed" from="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Buttons/LeaderboardButton" to="Content/MainScreen/CampaignSelector/CampaignInteractor" method="load_leaderboard"]

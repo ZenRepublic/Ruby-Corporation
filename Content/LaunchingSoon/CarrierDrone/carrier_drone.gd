@@ -167,3 +167,7 @@ func look_at_target(target:Vector3, rotation_speed:float) -> void:
 	
 func get_velocity() -> Vector3:
 	return prev_pos - self.global_position
+	
+func terminate() -> void:
+	self.visible=false
+	audio_source.stop()

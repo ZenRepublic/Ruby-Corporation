@@ -13,7 +13,7 @@ class_name CampaignManager
 
 @export var leaderboard:CampaignLeaderboard
 
-@export var fees_collected:Label
+@export var fees_collected:NumberLabel
 
 @export var close_button:TimedButton
 
@@ -49,7 +49,6 @@ func set_campaign(campaign_id:String,campaign_data:Dictionary) -> void:
 			
 		
 	var campaign_token:Token = await SolanaService.asset_manager.get_asset_from_mint(campaign_data["reward_mint"],true)
-	print(campaign_token)
 	campaign_token.token_account = ClubhousePDA.get_campaign_vault_pda(campaign_key)
 	campaign_token.decimals = campaign_data["reward_mint_decimals"]
 	await treasury_token_displayable.set_data(campaign_token)
@@ -68,8 +67,16 @@ func set_campaign(campaign_id:String,campaign_data:Dictionary) -> void:
 	unique_players_label.text = str(campaign_data["player_count"])
 	max_reward_label.set_value(campaign_data["max_rewards_per_game"]/pow(10,campaign_data["reward_mint_decimals"]))
 	
-	fees_collected.text = "%s SOL" % str(campaign_data["unclaimed_sol_fees"]/pow(10,9))
 	
+	fees_collected.set_value(campaign_data["unclaimed_sol_fees"]/pow(10,9))
+	
+#	allow only program admins to end campaign before it expires
+	var program_admins:Array[Pubkey] = await ClubhouseProgram.utils.get_program_admin_list()
+	for admin in program_admins:
+		if admin.to_string() == SolanaService.wallet.get_pubkey().to_string():
+			close_button.disabled=false
+			break
+		
 	close_button.start_timer(campaign_data["time_span"]["start_time"],campaign_data["time_span"]["end_time"])
 	
 	leaderboard.load_leaderboard(campaign_key,curr_campaign_data,false,5)

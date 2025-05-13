@@ -25,6 +25,7 @@ script = ExtResource("1_7cfu0")
 visual = NodePath("TokenContent/Visual")
 image_size = 64
 name_label = NodePath("TokenContent/TokenName")
+max_name_length = 18
 symbol_label = NodePath("TokenContent/TokenSymbol")
 select_button = NodePath("SelectButton")
 balance_label = NodePath("TokenContent/TokenBalance")

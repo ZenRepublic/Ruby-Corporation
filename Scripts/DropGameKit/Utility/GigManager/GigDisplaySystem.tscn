@@ -16,7 +16,7 @@ bg_color = Color(0, 0.443137, 0.439216, 0.945098)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwpoy"]
 
-[node name="GigDisplaySystem" type="Control" node_paths=PackedStringArray("title_label", "tag_label", "description_label", "gig_visual", "create_campaign_button", "view_campaigns_button", "external_visit_button")]
+[node name="GigDisplaySystem" type="Control" node_paths=PackedStringArray("title_label", "tag_label", "description_label", "gig_visual", "create_campaign_button", "view_campaigns_button", "free_play_button", "external_visit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,6 +30,7 @@ description_label = NodePath("MarginContainer/GameDisplay/Content/GameDetails/De
 gig_visual = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Logo")
 create_campaign_button = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Actions/CreateCampaignButton")
 view_campaigns_button = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Actions/ViewCampaignsButton")
+free_play_button = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Actions/FreePlayMode")
 external_visit_button = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Actions/ExternalGameButton")
 
 [node name="Background" type="PanelContainer" parent="."]
@@ -71,7 +72,7 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="Logo" type="TextureRect" parent="MarginContainer/GameDisplay/Content/GameDetails"]
-custom_minimum_size = Vector2(512, 512)
+custom_minimum_size = Vector2(400, 512)
 layout_mode = 2
 texture = ExtResource("3_5bpuu")
 expand_mode = 3
@@ -191,6 +192,17 @@ text = "VIEW ACTIVE CAMPAIGNS"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/GameDisplay/Content/GameDetails/Actions/ViewCampaignsButton"]
 stream = ExtResource("5_3ihgx")
 
+[node name="FreePlayMode" type="Button" parent="MarginContainer/GameDisplay/Content/GameDetails/Actions"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_78f2a")
+theme_type_variation = &"ButtonFlat"
+text = "FREE PLAY!"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/GameDisplay/Content/GameDetails/Actions/FreePlayMode"]
+stream = ExtResource("5_3ihgx")
+
 [node name="ExternalGameButton" type="Button" parent="MarginContainer/GameDisplay/Content/GameDetails/Actions" node_paths=PackedStringArray("button")]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
@@ -232,4 +244,5 @@ stretch_mode = 5
 
 [connection signal="pressed" from="MarginContainer/GameDisplay/Content/GameDetails/Actions/CreateCampaignButton" to="." method="create_campaign"]
 [connection signal="pressed" from="MarginContainer/GameDisplay/Content/GameDetails/Actions/ViewCampaignsButton" to="." method="select"]
+[connection signal="pressed" from="MarginContainer/GameDisplay/Content/GameDetails/Actions/FreePlayMode" to="." method="free_play"]
 [connection signal="pressed" from="MarginContainer/GameDisplay/CloseButton/TextureButton" to="." method="close"]

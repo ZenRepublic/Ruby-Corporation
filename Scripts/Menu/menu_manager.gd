@@ -42,6 +42,6 @@ func load_game(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictiona
 		"PlayerData":player_data
 		})
 		
-func load_game_free_mode() -> void:
+func load_game_free_mode(game_scene_path:String) -> void:
 	MusicManager.play_sound("ButtonSimple")
-	SceneManager.load_scene(gig_manager.active_gig.path_to_game_scn,true,-1,0.0,{"FreePlay":true})
+	SceneManager.load_scene(game_scene_path,true,-1,0.0,{"FreePlay":true})

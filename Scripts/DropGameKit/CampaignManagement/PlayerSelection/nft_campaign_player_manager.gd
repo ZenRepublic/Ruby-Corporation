@@ -111,7 +111,7 @@ func start_game() -> void:
 	curr_player_data = await get_player_data(selected_player)
 	
 	var reward_mint:Pubkey = campaign_data["reward_mint"]
-	var house_data:Dictionary = await ClubhouseProgram.utils.get_house_data(campaign_data["house"])
+	var house_data:Dictionary = await ClubhouseProgram.utils.get_active_house_data()
 	var oracle:Pubkey = house_data["config"]["oracle_key"]
 	
 	var game_data:Dictionary = {

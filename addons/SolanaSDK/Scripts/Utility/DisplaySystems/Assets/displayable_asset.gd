@@ -39,13 +39,14 @@ func set_data(asset:WalletAsset) -> void:
 	if name_label!=null:
 		name_label.text = truncate_name(asset.asset_name)
 	if symbol_label!=null:
-		symbol_label.text = "$%s" % asset.symbol
+		symbol_label.text = asset.symbol
 	
-	if asset.image!=null and image_size <= asset.image.get_size().x and image_size <= asset.image.get_size().y:
-		visual.texture = asset.image
-	else:
-		asset.on_image_loaded.connect(handle_image_load_complete,CONNECT_ONE_SHOT)
-		asset.try_load_image(image_size)
+	if visual!=null:
+		if asset.image!=null and image_size <= asset.image.get_size().x and image_size <= asset.image.get_size().y:
+			visual.texture = asset.image
+		else:
+			asset.on_image_loaded.connect(handle_image_load_complete,CONNECT_ONE_SHOT)
+			asset.try_load_image(image_size)
 			
 	if asset is Token:
 		var token = asset as Token

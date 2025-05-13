@@ -201,15 +201,15 @@ _data = {
 &"Start": SubResource("Animation_pph3f")
 }
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_1xcpd"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_2k5xf"]
 resource_name = "growin"
 script = ExtResource("4_2k5xf")
-metadata/rt = 62133295487954
+metadata/rt = 52018429412952
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_6smp6"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_6ngpo"]
 resource_name = "wack"
 script = ExtResource("5_6ngpo")
-metadata/rt = 62133295487954
+metadata/rt = 52018429412952
 
 [node name="StartGameScreen" type="Control"]
 layout_mode = 3
@@ -237,6 +237,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="Label" type="RichTextLabel" parent="."]
+clip_contents = false
 custom_minimum_size = Vector2(0, 348)
 layout_mode = 0
 offset_left = 828.0
@@ -254,13 +255,15 @@ theme_override_font_sizes/italics_font_size = 101
 theme_override_font_sizes/mono_font_size = 101
 theme_override_font_sizes/normal_font_size = 101
 theme_override_font_sizes/bold_font_size = 101
+bbcode_enabled = true
+fit_content = true
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_1xcpd"), SubResource("RichTextEffect_6smp6")]
+custom_effects = [SubResource("RichTextEffect_2k5xf"), SubResource("RichTextEffect_6ngpo")]
 script = ExtResource("6_17kc5")
 animation = "growin"
 progress = 1.0
 visible_character = 13
-_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(0.927, 0.21041, -0.21041, 0.927, 176.056, 93.8475), Transform2D(1.09102, 0.197167, -0.197167, 1.09102, 217.102, 93.8429), Transform2D(0.966593, -0.0511224, 0.0511224, 0.966593, 323.509, 95.1419), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1.09461, -0.114975, 0.114975, 1.09461, 159.993, 212.344), Transform2D(0.867029, 0.143194, -0.143194, 0.867029, 243.181, 209.168), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1.10286, 0.147726, -0.147726, 1.10286, 33.1808, 326.183), Transform2D(1.09183, 0.0627437, -0.0627437, 1.09183, 152.954, 327.053), Transform2D(0.902222, -0.00428707, 0.00428707, 0.902222, 246.709, 326.473), Transform2D(0.89495, -0.200954, 0.200954, 0.89495, 332.881, 327.808), Transform2D(1.00225, -0.0117501, 0.0117501, 1.00225, 419.059, 327.054)])
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1.12328, 0.0218085, -0.0218085, 1.12328, 176.444, 95.6264), Transform2D(0.889831, -0.00362478, 0.00362478, 0.889831, 219.957, 94.4029), Transform2D(1.11668, -0.0766938, 0.0766938, 1.11668, 322.679, 96.1636), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1.00338, 0.107436, -0.107436, 1.00338, 159.364, 210.267), Transform2D(1.06955, 0.21225, -0.21225, 1.06955, 241.269, 209.805), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(0.890737, -0.0786196, 0.0786196, 0.890737, 36.4861, 327.124), Transform2D(1.02017, -5.14768e-05, 5.14768e-05, 1.02017, 153.849, 327.115), Transform2D(0.976601, 0.137285, -0.137285, 0.976601, 245.381, 325.906), Transform2D(1.12335, -0.00767501, 0.00767501, 1.12335, 330.18, 327.757), Transform2D(0.889113, 0.0833627, -0.0833627, 0.889113, 418.913, 326.076)])
 _char_size = Array[Vector2]([Vector2(0, 0), Vector2(35, 74), Vector2(97, 74), Vector2(72, 74), Vector2(0, 0), Vector2(77, 74), Vector2(84, 74), Vector2(0, 0), Vector2(121, 74), Vector2(84, 74), Vector2(79, 74), Vector2(81, 74), Vector2(35, 74)])
 _alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])

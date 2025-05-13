@@ -16,6 +16,7 @@ visual = NodePath("MarginContainer/Content/Visual")
 name_label = NodePath("MarginContainer/Content/TokenName")
 max_name_length = 15
 select_button = NodePath("MarginContainer/Content/Button")
+allow_core = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

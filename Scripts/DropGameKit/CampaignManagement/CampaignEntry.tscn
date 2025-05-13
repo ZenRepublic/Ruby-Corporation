@@ -16,7 +16,7 @@ border_width_right = 6
 border_width_bottom = 6
 border_color = Color(0.886262, 0.886261, 0.886262, 0.831373)
 
-[node name="AccountSelect" type="VBoxContainer" node_paths=PackedStringArray("token_displayable", "mine_gate_displayable", "campaign_name_label", "mine_type_label", "mine_timer_button")]
+[node name="AccountSelect" type="VBoxContainer" node_paths=PackedStringArray("token_displayable", "asset_gate_displayable", "campaign_name_label", "campaign_type_label", "timer_button")]
 custom_minimum_size = Vector2(0, 45)
 offset_right = 692.0
 offset_bottom = 57.0
@@ -25,10 +25,10 @@ theme_type_variation = &"ListEntryButton"
 theme_override_constants/separation = 0
 script = ExtResource("2_w5oyl")
 token_displayable = NodePath("Title/MarginContainer/HBoxContainer/TokenInfo")
-mine_gate_displayable = NodePath("MainDetails/MarginContainer/Content/CampaignGateAsset")
+asset_gate_displayable = NodePath("MainDetails/MarginContainer/Content/CampaignGateAsset")
 campaign_name_label = NodePath("Title/MarginContainer/HBoxContainer/MineName")
-mine_type_label = NodePath("MainDetails/MarginContainer/Content/VBoxContainer/HBoxContainer/type")
-mine_timer_button = NodePath("MainDetails/MarginContainer/Content/VBoxContainer/TimerButton")
+campaign_type_label = NodePath("MainDetails/MarginContainer/Content/VBoxContainer/HBoxContainer/type")
+timer_button = NodePath("MainDetails/MarginContainer/Content/VBoxContainer/TimerButton")
 
 [node name="Title" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -181,9 +181,8 @@ theme = ExtResource("5_p8jhh")
 theme_type_variation = &"ButtonFlat"
 text = "..."
 script = ExtResource("5_iht2v")
-pre_start_prefix = "STARTS IN..."
-time_left_prefix = "VIEW DETAILS"
-activated_text = "CLOSED..."
+time_left_prefix = "View Details"
+activated_text = "Closed..."
 refresh_frequency_seconds = 60
 enable_on_finished = false
 

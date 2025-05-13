@@ -42,16 +42,15 @@ func _process(delta: float) -> void:
 		if enable_on_started:
 			disabled=false
 		tracked_time = end_time
-	
-	if is_finished():
+		
+	if tracked_time == end_time and curr_time >= end_time:
 		if enable_on_finished:
 			disabled=false
 		text = activated_text
 		is_active=false
 		on_timer_finished.emit()
 		return
-			
-	#disabled=true
+	
 	text = format_text(tracked_time)
 	time_elapsed=0
 
@@ -68,13 +67,7 @@ func is_finished() -> bool:
 		return false
 		
 	var curr_time:float = Time.get_unix_time_from_system()
-	if curr_time > tracked_time:
-		if tracked_time == end_time:
-			return true
-		else:
-			return false
-	else:		
-		return false
+	return tracked_time == end_time and curr_time > tracked_time
 
 func get_prefix() -> String:
 	if tracked_time == start_time:

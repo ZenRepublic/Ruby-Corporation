@@ -8,6 +8,9 @@ static func get_house_pda(house_name:String) -> Pubkey:
 	var house_name_bytes = house_name.to_utf8_buffer()
 	return Pubkey.new_pda_bytes([name_bytes,house_name_bytes],PROGRAM_ID)
 	
+static func get_house_auth_pda(house_key:Pubkey) -> Pubkey:
+	return Pubkey.new_pda_bytes([house_key.to_bytes()],PROGRAM_ID)	
+	
 static func get_program_admin_pda(admin_key:Pubkey) -> Pubkey:
 	var name_bytes = "program_admin".to_utf8_buffer()
 	return Pubkey.new_pda_bytes([name_bytes,admin_key.to_bytes()],PROGRAM_ID)
