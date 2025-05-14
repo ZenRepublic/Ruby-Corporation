@@ -65,6 +65,9 @@ func add_filter_parameter(filter_keyword:String,value_to_check_against,check_typ
 func remove_filter_parameter(filter_keyword:String) -> void:
 	if filter_data.has(filter_keyword):
 		filter_data.erase(filter_keyword)
+		
+func clear_all_filters() -> void:
+	filter_data.clear()
 	
 	
 func refresh_account_list(fetch_new:bool=true) -> void:
@@ -168,14 +171,14 @@ func load_page(page_id:int) -> void:
 	on_page_load_finished.emit()
 		
 func filter_accounts(accounts:Dictionary) -> Dictionary:
-	var filtered_accounts:Dictionary = accounts.duplicate()
+	#var filtered_accounts:Dictionary = accounts.duplicate()
+	var filtered_accounts:Dictionary
 	for filter_key in filter_data.keys():
 		var check_type:String = filter_data[filter_key]["checkType"]
 		var filter_compare_value = filter_data[filter_key]["value"]
 		
-		for key in filtered_accounts.keys():
-			#print(filtered_accounts[key])
-			var account_filter_value = get_dict_value_from_path(filtered_accounts[key],filter_key)
+		for key in accounts.keys():
+			var account_filter_value = get_dict_value_from_path(accounts[key],filter_key)
 			var pass_filter:bool
 			match check_type:
 				"equals":
@@ -187,8 +190,8 @@ func filter_accounts(accounts:Dictionary) -> Dictionary:
 				"lower":
 					pass_filter = (account_filter_value < filter_compare_value)
 			
-			if !pass_filter:
-				filtered_accounts.erase(key)
+			if pass_filter:
+				filtered_accounts[key] = accounts[key]
 				
 	return filtered_accounts
 

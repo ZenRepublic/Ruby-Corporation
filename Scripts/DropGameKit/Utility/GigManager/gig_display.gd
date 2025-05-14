@@ -26,9 +26,9 @@ func _ready() -> void:
 	if external_visit_button!=null:
 		external_visit_button.visible=false
 		
-	if create_campaign_button!=null:
-		var program_admins:Array[Pubkey] = await ClubhouseProgram.utils.get_program_admin_list()
-		create_campaign_button.set_address_list(program_admins)
+	#if create_campaign_button!=null:
+		#var program_admins:Array[Pubkey] = await ClubhouseProgram.utils.get_program_admin_list()
+		#create_campaign_button.set_address_list(program_admins)
 
 func setup_mini(gig:ClubhouseGig) -> void:
 	self.gig = gig

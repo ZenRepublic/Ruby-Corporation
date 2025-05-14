@@ -47,11 +47,13 @@ func select_campaign(campaign_entry:AccountDisplayEntry) -> void:
 	
 func set_campaign_type_filter(selected_idx:int) -> void:
 	var type_name:String = campaign_type_filter.get_item_text(selected_idx)
-	if type_name == "Token":
-		campaign_display_system.remove_filter_parameter("nft_config")
+	campaign_display_system.clear_all_filters()
+	if type_name == "ALL":
+		campaign_display_system.add_filter_parameter("token_config",null,"notEquals")
+		campaign_display_system.add_filter_parameter("nft_config",null,"notEquals")
+	if type_name == "TOKEN":
 		campaign_display_system.add_filter_parameter("token_config",null,"notEquals")
 	if type_name == "NFT":
-		campaign_display_system.remove_filter_parameter("token_config")
 		campaign_display_system.add_filter_parameter("nft_config",null,"notEquals")
 	
 #	this function hits first before accounts are setup, but we also want to

@@ -498,11 +498,13 @@ size_flags_vertical = 4
 theme = ExtResource("7_eupma")
 alignment = 1
 selected = 0
-item_count = 2
-popup/item_0/text = "NFT"
-popup/item_0/id = 0
-popup/item_1/text = "TOKEN"
-popup/item_1/id = 1
+item_count = 3
+popup/item_0/text = "ALL"
+popup/item_0/id = 2
+popup/item_1/text = "NFT"
+popup/item_1/id = 0
+popup/item_2/text = "TOKEN"
+popup/item_2/id = 1
 
 [node name="ShowExpired" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/Filters"]
 layout_mode = 2
@@ -858,6 +860,7 @@ enable_on_started = false
 enable_on_finished = false
 
 [node name="NFTPlayerManager" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content" node_paths=PackedStringArray("player_select_system", "player_container", "displayable_player", "energy_bar", "energy_bar_label", "recharge_timed_button", "play_button")]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vuurv")
 script = ExtResource("28_qgddy")
@@ -1048,7 +1051,6 @@ lock_active = false
 locked_text = "NEED SOL"
 
 [node name="TokenPlayerOverview" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content" node_paths=PackedStringArray("mode_screen_manager", "balance_displayable", "price_displayable", "price_label", "play_button")]
-visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jhlh1")
 script = ExtResource("34_g4wnk")
@@ -1106,7 +1108,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme = ExtResource("7_eupma")
-text = "Stake required amount of tokens to enter. Withdraw all when campaign closes!"
+text = "Stake required amount of tokens to enter. Withdraw all from VAULT when campaign closes!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
