@@ -41,7 +41,7 @@
 [sub_resource type="RichTextEffect" id="RichTextEffect_ogrfr"]
 resource_name = "growin"
 script = ExtResource("14_vglbh")
-metadata/rt = 14502712153597
+metadata/rt = 9856144740343
 
 [sub_resource type="Animation" id="Animation_ogrfr"]
 length = 0.001
@@ -84,17 +84,17 @@ _data = {
 [sub_resource type="RichTextEffect" id="RichTextEffect_u28q5"]
 resource_name = "growin"
 script = ExtResource("14_vglbh")
-metadata/rt = 14504675090978
+metadata/rt = 9858107681118
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_43kcm"]
 resource_name = "heart"
 script = ExtResource("23_uefu4")
-metadata/rt = 14504675090978
+metadata/rt = 9858107681118
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_hdbwk"]
 resource_name = "sin"
 script = ExtResource("20_uefu4")
-metadata/rt = 14504675090978
+metadata/rt = 9858107681118
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sm4ha"]
 shader = ExtResource("17_py7dd")
@@ -113,12 +113,12 @@ border_color = Color(0.501961, 0.415686, 0.458824, 1)
 [sub_resource type="RichTextEffect" id="RichTextEffect_y3llc"]
 resource_name = "fader"
 script = ExtResource("22_e05qb")
-metadata/rt = 14505664949020
+metadata/rt = 9859097538084
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_lgx8i"]
 resource_name = "heart"
 script = ExtResource("23_uefu4")
-metadata/rt = 14505664949020
+metadata/rt = 9859097538084
 
 [node name="GUI" type="Control" node_paths=PackedStringArray("admin_panel", "campaign_reward_display", "win_screen", "lose_screen")]
 layout_mode = 3
