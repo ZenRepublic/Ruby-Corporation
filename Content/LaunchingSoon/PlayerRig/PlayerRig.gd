@@ -40,8 +40,8 @@ func _ready() -> void:
 	var pool_size:int = LaunchSettings.CARGO_TO_FULL + 5
 	payload.setup_cargo_pool(pool_size)
 	for cargo in payload.cargo_pool:
-		cargo.on_missed.connect(process_failed_drop,CONNECT_ONE_SHOT)
-		cargo.on_placed.connect(process_successful_drop,CONNECT_ONE_SHOT)
+		cargo.on_missed.connect(process_failed_drop)
+		cargo.on_placed.connect(process_successful_drop)
 	
 func setup_rig() -> void:
 	token_spawner.setup_token_pool(ClubhouseProgram.claimer.get_reward_token_texture())
