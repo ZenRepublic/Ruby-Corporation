@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Ruby Corporation"
 config/version="v1.0.0"
-run/main_scene="uid://dmdb8dbmov2cl"
+run/main_scene="uid://vra0sq016rix"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=60
 run/low_processor_mode=true

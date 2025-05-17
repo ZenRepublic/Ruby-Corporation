@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cb48i2bov70jc"]
+[gd_scene load_steps=5 format=3 uid="uid://cb48i2bov70jc"]
 
-[ext_resource type="Script" uid="uid://4ya5mgnelnd3" path="res://Scripts/RubianServer/rubian_server.gd" id="1_ip3b0"]
+[ext_resource type="Script" uid="uid://baq1yqwr3o0eg" path="res://Scripts/RubianServer/rubian_server.gd" id="1_ip3b0"]
+[ext_resource type="Script" uid="uid://bksjobpfy88xy" path="res://Scripts/RubianServer/data_uploader.gd" id="2_oeh2r"]
+[ext_resource type="Script" uid="uid://yqce2t1oi8hs" path="res://Scripts/RubianServer/database_manager.gd" id="3_y7qi3"]
+[ext_resource type="Script" uid="uid://c24nbpn1cxac2" path="res://Scripts/RubianServer/nosana_manager.gd" id="4_22i0n"]
 
-[node name="RubianServer" type="Node"]
+[node name="RubianServer" type="Node" node_paths=PackedStringArray("data_uploader", "nosana_manager", "database_manager")]
 script = ExtResource("1_ip3b0")
+data_uploader = NodePath("DataUploader")
+nosana_manager = NodePath("NosanaManager")
+database_manager = NodePath("DatabaseManager")
+
+[node name="DataUploader" type="Node" parent="."]
+script = ExtResource("2_oeh2r")
+
+[node name="NosanaManager" type="Node" parent="."]
+script = ExtResource("4_22i0n")
+
+[node name="DatabaseManager" type="Node" parent="."]
+script = ExtResource("3_y7qi3")

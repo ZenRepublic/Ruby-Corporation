@@ -1,51 +1,50 @@
 extends Node
 
+@export var SERVER_LINK:String = "https://rubians-server-625d2ae63a81.herokuapp.com/"
+@export var WEBSOCKET_LINK:String = "wss://rubians-server-625d2ae63a81.herokuapp.com/"
+
 @export var use_localhost:bool=false
 @export var localhost_port:int = 5000
 
-var SERVER_LINK:String = "https://rubians-server-625d2ae63a81.herokuapp.com/"
+@export var data_uploader:DataUploader
+@export var nosana_manager:NosanaManager
+@export var database_manager:DatabaseManager
 
-func _ready() -> void:
+func _ready() -> void:	
+	data_uploader.setup_data_uploader()
+	database_manager.setup_database_manager()
+	nosana_manager.setup_nosana_manager()
+	
+func get_request_link(slug:String="") -> String:
+	var base_link:String
 	if use_localhost:
-		SERVER_LINK = "http://localhost:%s/" % str(localhost_port)
-
-func register_user(user:Pubkey) -> void:
-	if user == null:
-		push_error("User not found")
-		return
+		base_link = "http://localhost:%s/" % str(localhost_port)
+	else:
+		base_link = SERVER_LINK 
+	return base_link + slug
+	
+func get_websocket_link(slug:String="") -> String:
+	var base_link:String
+	if use_localhost:
+		base_link = "ws://localhost:%s/" % str(localhost_port)
+	else:
+		base_link = WEBSOCKET_LINK
+	return base_link + slug
+	
+func check_password(input:String) -> bool:
+	if input.length()==0:
+		push_error("input invalid")
+		return false
 		
 	var headers:Array = ["Content-type: application/json"]
 	var body:Dictionary = {
-		"walletAddress":user.to_string()
+		"password":input
 	}
-	var _response:Dictionary = await HttpRequestHandler.send_post_request(JSON.stringify(body),headers,SERVER_LINK+"users/register")
-
-func set_clubhouse_player_data(house_key:Pubkey,campaign_key:Pubkey,player_key:Pubkey,data:Dictionary) -> Dictionary:
-	var headers:Array = ["Content-type: application/json"]
-	var body:Dictionary = {
-		"house_id":house_key.to_string(),
-		"campaign_id":campaign_key.to_string(),
-		"player_id":player_key.to_string(),
-		"data":data
-	}
-	var response:Dictionary = await HttpRequestHandler.send_post_request(JSON.stringify(body),headers,SERVER_LINK+"clubhouse/setplayerdata")
-	return response
 	
-func get_clubhouse_player_data(house_key:Pubkey,campaign_key:Pubkey,player_key:Pubkey) -> Dictionary:
-	var headers:Array = ["Content-type: application/json"]
-	var url:String = SERVER_LINK+"clubhouse/getplayerdata?"
-	url += "house_id=%s&" % house_key.to_string()
-	url += "campaign_id=%s&" % campaign_key.to_string()
-	url += "player_id=" + player_key.to_string()
-		
-	var response:Dictionary = await HttpRequestHandler.send_get_request(url,true,headers)
-	return response
+	var response:Dictionary = await HttpRequestHandler.send_post_request(JSON.stringify(body),headers,RubianServer.get_request_link("users/checkpassword"))
+	if response.has("error"):
+		push_error("failed to receive signature by the server. ",response)
+		return false
 	
-func delete_clubhouse_campaign(house_key:Pubkey,campaign_key:Pubkey) -> Dictionary:
-	var headers:Array = ["Content-type: application/json"]
-	var body:Dictionary = {
-		"house_id":house_key.to_string(),
-		"campaign_id":campaign_key.to_string(),
-	}
-	var response:Dictionary = await HttpRequestHandler.send_post_request(JSON.stringify(body),headers,SERVER_LINK+"clubhouse/deletecampaign")
-	return response
+	return response["response_code"] == 200
+	

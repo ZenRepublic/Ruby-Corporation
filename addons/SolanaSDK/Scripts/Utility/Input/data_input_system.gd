@@ -93,6 +93,8 @@ func reset_all_fields() -> void:
 	for key in asset_selectors.keys():
 		var selector = get_node(asset_selectors[key]) as AssetSelector
 		selector.clear_selection()
+		
+	on_fields_updated.emit()
 	
 	
 #Input Fields specific functions:
