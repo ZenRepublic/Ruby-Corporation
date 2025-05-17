@@ -59,7 +59,7 @@ func set_sort_data(sort_keyword:String,ascending:bool=true,max_entries:int=-1) -
 func add_filter_parameter(filter_keyword:String,value_to_check_against,check_type:String) -> void:
 	filter_data[filter_keyword] = {
 		"checkType":check_type,
-		"value":value_to_check_against
+		"value":value_to_check_against,
 	}
 	
 func remove_filter_parameter(filter_keyword:String) -> void:
@@ -171,13 +171,13 @@ func load_page(page_id:int) -> void:
 	on_page_load_finished.emit()
 		
 func filter_accounts(accounts:Dictionary) -> Dictionary:
-	#var filtered_accounts:Dictionary = accounts.duplicate()
-	var filtered_accounts:Dictionary
+	var filtered_accounts:Dictionary = accounts.duplicate()
+	#var filtered_accounts:Dictionary
 	for filter_key in filter_data.keys():
 		var check_type:String = filter_data[filter_key]["checkType"]
 		var filter_compare_value = filter_data[filter_key]["value"]
 		
-		for key in accounts.keys():
+		for key in filtered_accounts.keys().duplicate():
 			var account_filter_value = get_dict_value_from_path(accounts[key],filter_key)
 			var pass_filter:bool
 			match check_type:
@@ -190,8 +190,9 @@ func filter_accounts(accounts:Dictionary) -> Dictionary:
 				"lower":
 					pass_filter = (account_filter_value < filter_compare_value)
 			
-			if pass_filter:
-				filtered_accounts[key] = accounts[key]
+			# Remove account if it fails a required filter or any filter (depending on logic)
+			if not pass_filter:
+				filtered_accounts.erase(key)
 				
 	return filtered_accounts
 

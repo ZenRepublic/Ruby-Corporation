@@ -47,15 +47,17 @@ func select_campaign(campaign_entry:AccountDisplayEntry) -> void:
 	
 func set_campaign_type_filter(selected_idx:int) -> void:
 	var type_name:String = campaign_type_filter.get_item_text(selected_idx)
-	campaign_display_system.clear_all_filters()
+	campaign_display_system.remove_filter_parameter("nft_config")
+	campaign_display_system.remove_filter_parameter("token_config")
+
 	if type_name == "ALL":
-		campaign_display_system.add_filter_parameter("token_config",null,"notEquals")
-		campaign_display_system.add_filter_parameter("nft_config",null,"notEquals")
+#		just show all don't matter which config
+		pass
 	if type_name == "TOKEN":
 		campaign_display_system.add_filter_parameter("token_config",null,"notEquals")
 	if type_name == "NFT":
 		campaign_display_system.add_filter_parameter("nft_config",null,"notEquals")
-	
+	print(campaign_display_system.filter_data)
 #	this function hits first before accounts are setup, but we also want to
 #	be able to filter later on when they are all loaded
 	if campaign_display_system.raw_accounts.size()>0:
@@ -70,6 +72,7 @@ func set_show_expired_filter() -> void:
 		var curr_time = Time.get_unix_time_from_system()
 		campaign_display_system.add_filter_parameter("time_span.end_time",curr_time,"higher")
 		
+	print(campaign_display_system.filter_data)
 	#	this function hits first before accounts are setup, but we also want to
 #	be able to filter later on when they are all loaded
 	if campaign_display_system.raw_accounts.size()>0:
