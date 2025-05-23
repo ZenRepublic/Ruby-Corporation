@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cji6hwwo7vese"]
+
+[ext_resource type="Script" uid="uid://bxlpg73rk7r57" path="res://Scripts/DropGameKit/Utility/AutoloadBridge/autoload_bridge.gd" id="1_6umbk"]
+
+[node name="AutoloadBridge" type="Node"]
+script = ExtResource("1_6umbk")

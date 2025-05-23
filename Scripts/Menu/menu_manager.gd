@@ -15,7 +15,7 @@ func _ready() -> void:
 	MusicManager.play_song("Menu")
 	print(gig_manager)
 	gig_manager.on_gig_selected.connect(handle_gig_selection)
-	campaign_loader.campaign_interactor.on_game_started.connect(load_game)
+	campaign_loader.campaign_interactor.on_game_started.connect(load_gig)
 	
 	if SolanaService.wallet.is_logged_in():
 		handle_user_login()
@@ -33,7 +33,7 @@ func play_ui_sound(sound_name:String) -> void:
 	MusicManager.play_sound(sound_name)
 	
 	
-func load_game(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionary) -> void:
+func load_gig(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionary) -> void:
 	MusicManager.play_sound("ButtonSimple")
 	SceneManager.load_scene(gig_manager.active_gig.path_to_game_scn,true,-1,0.8,{
 		"FreePlay":false,
@@ -42,6 +42,6 @@ func load_game(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictiona
 		"PlayerData":player_data
 		})
 		
-func load_game_free_mode(game_scene_path:String) -> void:
+func load_gig_free_mode(scene_path:String) -> void:
 	MusicManager.play_sound("ButtonSimple")
-	SceneManager.load_scene(game_scene_path,true,-1,0.0,{"FreePlay":true})
+	SceneManager.load_scene(scene_path,true,-1,0.0,{"FreePlay":true})

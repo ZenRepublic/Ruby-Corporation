@@ -32,6 +32,7 @@ MusicManager="*res://Scripts/SoundManagement/MusicManager.tscn"
 ClubhouseProgram="*res://Scripts/DropGameKit/_Core/ClubhouseProgram.tscn"
 RubianServer="*res://Scripts/RubianServer/RubianServer.tscn"
 HttpRequestHandler="*res://addons/SolanaSDK/Autoload/HttpRequestHandler.tscn"
+AutoloadBridge="*res://Scripts/DropGameKit/Utility/AutoloadBridge/AutoloadBridge.tscn"
 
 [display]
 

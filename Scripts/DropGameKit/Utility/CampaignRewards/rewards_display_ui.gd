@@ -85,7 +85,8 @@ func handle_game_start(campaign_key:Pubkey,campaign_data:Dictionary,player_data:
 	})
 	
 func return_to_menu() -> void:
-	var launch_controller:LaunchController = get_tree().get_first_node_in_group("LaunchController")
-	launch_controller.return_to_menu()
+	#var launch_controller:LaunchController = get_tree().get_first_node_in_group("LaunchController")
+	#launch_controller.return_to_menu()
+	pass
 	
 	

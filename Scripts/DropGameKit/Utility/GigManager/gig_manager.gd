@@ -8,6 +8,8 @@ class_name GigManager
 @export var display_scn:PackedScene
 @export var gig_creator_scn:PackedScene
 
+@export var gig_loader_pck:GigLoaderPCK
+
 var mini_displays:Array[GigDisplay]
 
 var active_gig:ClubhouseGig=null
@@ -41,6 +43,13 @@ func show_gig_details(gig:ClubhouseGig) -> void:
 	display.setup_full(gig)
 	display.on_selected.connect(handle_selection)
 	display.on_create_pressed.connect(pop_campaign_creator)
+	display.on_free_play_pressed.connect(handle_free_play)
+	
+func handle_free_play(display:GigDisplay, gig:ClubhouseGig) -> void:
+	await gig_loader_pck.load_gig(gig,false)
+	var menu_manager:MenuManager = get_tree().get_first_node_in_group("MenuManager")
+	menu_manager.load_gig_free_mode(gig.main_scn_path)
+	display.queue_free()
 	
 func handle_selection(display:GigDisplay, gig:ClubhouseGig) -> void:
 	on_gig_selected.emit(gig)
@@ -53,5 +62,4 @@ func pop_campaign_creator(display:GigDisplay, gig:ClubhouseGig) -> void:
 	get_tree().root.add_child(creator_instance)
 	
 	display.queue_free()
-	
 	

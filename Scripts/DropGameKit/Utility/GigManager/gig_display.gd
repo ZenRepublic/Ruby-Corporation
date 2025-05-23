@@ -17,6 +17,7 @@ var gig:ClubhouseGig
 
 signal on_create_pressed(display:GigDisplay, gig:ClubhouseGig)
 signal on_selected(display:GigDisplay, gig:ClubhouseGig)
+signal on_free_play_pressed(display:GigDisplay,gig:ClubhouseGig)
 
 func _ready() -> void:
 	if view_campaigns_button!=null:
@@ -59,9 +60,7 @@ func set_basic_fields(gig:ClubhouseGig) -> void:
 	gig_visual.texture = gig.visual
 	
 func free_play() -> void:
-	var menu_manager:MenuManager = get_tree().get_first_node_in_group("MenuManager")
-	menu_manager.load_game_free_mode(gig.path_to_game_scn)
-	close()
+	on_free_play_pressed.emit(self,gig)
 
 func select() -> void:
 	on_selected.emit(self,gig)

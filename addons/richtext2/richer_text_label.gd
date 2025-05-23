@@ -1065,7 +1065,7 @@ func _has_effect(id:String) -> bool:
 	return false
 
 func _get_character_random(index: int) -> int:
-	var random: Array[int]
+	var random: Array
 	if has_meta(&"rand"):
 		random = get_meta(&"rand")
 	else:
