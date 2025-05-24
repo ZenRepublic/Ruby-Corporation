@@ -45,10 +45,17 @@ func show_gig_details(gig:ClubhouseGig) -> void:
 	display.on_create_pressed.connect(pop_campaign_creator)
 	display.on_free_play_pressed.connect(handle_free_play)
 	
+func load_active_gig_and_get_scene(local:bool=false):
+	var success:bool = await gig_loader_pck.load_gig(active_gig,local)
+	if !success:
+		push_error("Failed to load gig, please try again!")
+		return null
+	return active_gig.main_scn_path
+		
+	
 func handle_free_play(display:GigDisplay, gig:ClubhouseGig) -> void:
-	await gig_loader_pck.load_gig(gig,false)
 	var menu_manager:MenuManager = get_tree().get_first_node_in_group("MenuManager")
-	menu_manager.load_gig_free_mode(gig.main_scn_path)
+	menu_manager.load_gig_free_mode()
 	display.queue_free()
 	
 func handle_selection(display:GigDisplay, gig:ClubhouseGig) -> void:

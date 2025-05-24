@@ -49,8 +49,10 @@ func get_player_data(house_key:Pubkey,campaign_key:Pubkey,player_key:Pubkey) -> 
 		
 	var response:Dictionary = await HttpRequestHandler.send_get_request(url,true,headers)
 	if response.has("error"):
-		response
+		return response
+	
 	return response["body"]["data"]
+		
 	
 func delete_campaign_data(house_key:Pubkey,campaign_key:Pubkey) -> Dictionary:
 	var headers:Array = ["Content-type: application/json"]

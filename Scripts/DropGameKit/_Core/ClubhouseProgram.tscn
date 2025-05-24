@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d06uexibndcy6"]
+[gd_scene load_steps=9 format=3 uid="uid://d06uexibndcy6"]
 
 [ext_resource type="Script" uid="uid://cnrmvih7tmduv" path="res://Scripts/DropGameKit/_Core/clubhouse_program.gd" id="1_ga3ja"]
 [ext_resource type="JSON" path="res://Scripts/DropGameKit/_Core/clubhouse.json" id="2_hn8ct"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ddctawf4lsjqw" path="res://Scripts/DropGameKit/_Core/clubhouse_server.gd" id="5_5nyte"]
 [ext_resource type="Script" uid="uid://cpmfcu0otccxe" path="res://Scripts/DropGameKit/Utility/RewardCalculations/token_reward_calculator.gd" id="6_v2ytq"]
 [ext_resource type="Script" uid="uid://bakjm0lk676ot" path="res://Scripts/DropGameKit/CampaignManagement/campaign_reward_claimer.gd" id="7_5nyte"]
+[ext_resource type="PackedScene" uid="uid://dnww2npv55xyh" path="res://Scripts/DropGameKit/Utility/CampaignRewards/CampaignRewardsDisplay.tscn" id="8_5wr3y"]
 
 [node name="ClubhouseProgram" type="Node" node_paths=PackedStringArray("server", "utils", "claimer")]
 script = ExtResource("1_ga3ja")
@@ -1531,4 +1532,5 @@ avg_allocation_mined = 0.5
 
 [node name="CampaignRewardClaimer" type="Node" parent="."]
 script = ExtResource("7_5nyte")
+rewards_display_scn = ExtResource("8_5wr3y")
 metadata/_custom_type_script = "uid://bakjm0lk676ot"

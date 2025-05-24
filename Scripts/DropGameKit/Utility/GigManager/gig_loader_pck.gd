@@ -37,54 +37,41 @@ func load_gig(gig:ClubhouseGig, local: bool) -> bool:
 	if existing_gig_name!="":
 		var existing_gig_info:Dictionary = extract_name_and_version(existing_gig_name)
 		if existing_gig_info["version"] != gig_info["version"]:
-			delete_file(gigs_storage_dir,existing_gig_name)
+			var delete_success:bool = delete_file(gigs_storage_dir,existing_gig_name)
+			if !delete_success:
+				push_error("❌ Failed to delete older gig version")
+				return false
 	
 	var file_location = gigs_storage_dir + new_gig_name
-	var success:bool
 	if !FileAccess.file_exists(file_location):
 		if local:
 			print("📦 Loading local PCK from: ", path_to_pck)
-			success = load_gig_local(path_to_pck,file_location)
+			copy_file(path_to_pck, file_location)
 		else:
 			print("🌐 Downloading remote PCK from: ", path_to_pck)
-			success = await load_gig_remote(path_to_pck,file_location)
-		return success
-	else:
-		return true
-
-
-# -- LOCAL PCK LOADING --
-func load_gig_local(pck_path: String, file_location:String) -> bool:
-	copy_file(pck_path, file_location)
+			await load_gig_remote(path_to_pck,file_location)
 	
 	var success:bool = ProjectSettings.load_resource_pack(file_location)
 	if !success:
-		push_error("❌ Failed to load PCK from local path: " + pck_path)
+		push_error("❌ Failed to load Gig PCK file")
 		return false
-		
-	print("✅ PCK loaded from local disk")
+	
+	print("✅ Gig loaded successfully")
 	return true
-
+	
+	
 # -- REMOTE PCK LOADING --
-func load_gig_remote(url: String, file_location:String) -> bool:
+func load_gig_remote(url: String, file_location:String) -> void:
 	var custom_headers = [
 		"Accept: application/octet-stream",
 	]
 	var response:Dictionary = await HttpRequestHandler.send_get_request(url,false,custom_headers)
 	if response.has("error"):
-		return false
+		return
 		
 	var file = FileAccess.open(file_location, FileAccess.WRITE)
 	file.store_buffer(response["body"])
 	file.close()
-	
-	var success:bool = ProjectSettings.load_resource_pack(file_location)
-	if !success:
-		push_error("❌ Failed to load remote PCK from memory")
-		return false
-	
-	print("✅ Remote PCK loaded successfully")
-	return true
 	
 func extract_name_and_version(path: String) -> Dictionary:
 	var regex = RegEx.new()

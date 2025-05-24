@@ -1,6 +1,8 @@
 extends Node
 class_name CampaignRewardClaimer
 
+@export var rewards_display_scn:PackedScene
+
 var house_data:Dictionary
 var campaign_data:Dictionary
 var player_data:Dictionary
@@ -76,4 +78,36 @@ func claim_reward(claim_amount:float) -> void:
 	
 	var tx_data:TransactionData = await ClubhouseProgram.claim_reward(house_pda,oracle,campaign_key,game_data,reward_mint,reward_amount_lamports)
 	on_reward_claimed.emit(tx_data.is_successful())
+	
+var rewards_display_instance:CampaignRewardDisplay
+func pop_rewards_display() -> void:
+	rewards_display_instance = rewards_display_scn.instantiate()
+	rewards_display_instance.on_replay_pressed.connect(handle_replay)
+	rewards_display_instance.on_return_pressed.connect(handle_return)
+	get_tree().root.add_child(rewards_display_instance)
+	
+	await rewards_display_instance.setup_rewards_display()
+	
+func handle_replay(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionary) -> void:
+	rewards_display_instance.on_replay_pressed.disconnect(handle_replay)
+	rewards_display_instance.on_return_pressed.disconnect(handle_return)
+	
+	SceneManager.reload_scene(true,-1,{
+		"FreePlay":false,
+		"CampaignKey":campaign_key,
+		"CampaignData":campaign_data,
+		"PlayerData":player_data
+	})
+	
+	await get_tree().create_timer(0.5).timeout
+	rewards_display_instance.queue_free()
+	
+func handle_return() -> void:
+	rewards_display_instance.on_replay_pressed.disconnect(handle_replay)
+	rewards_display_instance.on_return_pressed.disconnect(handle_return)
+	
+	SceneManager.load_previous_scene(true,-1,0.0)
+	
+	await get_tree().create_timer(0.5).timeout
+	rewards_display_instance.queue_free()
 	

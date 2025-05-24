@@ -35,13 +35,19 @@ func play_ui_sound(sound_name:String) -> void:
 	
 func load_gig(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionary) -> void:
 	MusicManager.play_sound("ButtonSimple")
-	SceneManager.load_scene(gig_manager.active_gig.path_to_game_scn,true,-1,0.8,{
-		"FreePlay":false,
-		"CampaignKey":campaign_key,
-		"CampaignData":campaign_data,
-		"PlayerData":player_data
-		})
+	var scene_to_load = await gig_manager.load_active_gig_and_get_scene(true)
+	print(scene_to_load)
+	if scene_to_load!=null:
+		SceneManager.load_scene(scene_to_load,true,-1,0.8,{
+			"FreePlay":false,
+			"CampaignKey":campaign_key,
+			"CampaignData":campaign_data,
+			"PlayerData":player_data
+			})
 		
-func load_gig_free_mode(scene_path:String) -> void:
+func load_gig_free_mode() -> void:
 	MusicManager.play_sound("ButtonSimple")
-	SceneManager.load_scene(scene_path,true,-1,0.0,{"FreePlay":true})
+	var scene_to_load = await gig_manager.load_active_gig_and_get_scene(true)
+	
+	if scene_to_load!=null:
+		SceneManager.load_scene(scene_to_load,true,-1,0.0,{"FreePlay":true})

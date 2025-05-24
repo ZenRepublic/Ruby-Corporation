@@ -16,13 +16,16 @@ var reward_claimer:CampaignRewardClaimer
 @export var return_button:BaseButton
 @export var save_button:BaseButton
 
+signal on_replay_pressed(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionary)
+signal on_return_pressed()
+
 func _ready() -> void:
 	nft_player_manager.visible=false
 	token_player_manager.visible=false
 	
 	save_button.pressed.connect(save_image)
 	save_button.disabled=true
-	return_button.pressed.connect(return_to_menu)
+	return_button.pressed.connect(handle_return)
 	
 	reward_claimer = ClubhouseProgram.claimer
 
@@ -45,7 +48,7 @@ func setup_rewards_display() -> void:
 func setup_nft_campaign_display() -> void:
 	nft_player_manager.visible=true
 	player_manager = nft_player_manager
-	player_manager.on_game_started.connect(handle_game_start)
+	player_manager.on_game_started.connect(handle_replay)
 	
 	var player_mint:Pubkey = reward_claimer.player_data["player_identity"]["pubkey"]
 	var player_asset:WalletAsset = await SolanaService.asset_manager.get_asset_from_mint(player_mint)
@@ -55,7 +58,7 @@ func setup_nft_campaign_display() -> void:
 func setup_token_campaign_display() -> void:
 	token_player_manager.visible=true
 	player_manager = token_player_manager
-	player_manager.on_game_started.connect(handle_game_start)
+	player_manager.on_game_started.connect(handle_replay)
 	
 	await token_player_manager.setup_player_selection(reward_claimer.campaign_key,reward_claimer.campaign_data)
 	pass
@@ -76,17 +79,10 @@ func save_image() -> void:
 	tex_combiner.queue_free()
 	
 	
-func handle_game_start(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionary) -> void:
-	SceneManager.reload_scene(true,-1,{
-		"FreePlay":false,
-		"CampaignKey":campaign_key,
-		"CampaignData":campaign_data,
-		"PlayerData":player_data
-	})
+func handle_replay(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionary) -> void:
+	on_replay_pressed.emit(campaign_key,campaign_data,player_data)
 	
-func return_to_menu() -> void:
-	#var launch_controller:LaunchController = get_tree().get_first_node_in_group("LaunchController")
-	#launch_controller.return_to_menu()
-	pass
+func handle_return() -> void:
+	on_return_pressed.emit()
 	
 	
