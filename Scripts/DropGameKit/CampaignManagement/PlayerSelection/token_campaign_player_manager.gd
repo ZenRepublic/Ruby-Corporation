@@ -66,4 +66,4 @@ func start_game() -> void:
 		
 	var tx_data:TransactionData = await ClubhouseProgram.start_game(campaign_data["house"],oracle,campaign_key,reward_mint,game_data,force_end_previous_game)
 	if tx_data.is_successful():
-		on_game_started.emit(campaign_key,campaign_data,curr_player_data)
+		game_start()

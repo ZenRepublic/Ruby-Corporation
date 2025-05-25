@@ -16,7 +16,7 @@ bg_color = Color(0, 0.443137, 0.439216, 0.945098)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwpoy"]
 
-[node name="GigDisplaySystem" type="Control" node_paths=PackedStringArray("title_label", "tag_label", "description_label", "gig_visual", "create_campaign_button", "view_campaigns_button", "free_play_button", "external_visit_button")]
+[node name="GigDisplaySystem" type="Control" node_paths=PackedStringArray("title_label", "tag_label", "description_label", "gig_visual", "view_campaigns_button", "free_play_button", "external_visit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,7 +28,6 @@ title_label = NodePath("MarginContainer/GameDisplay/Content/GameDetails/TitleCon
 tag_label = NodePath("MarginContainer/GameDisplay/Content/GameDetails/TitleContainer/Tag")
 description_label = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Description")
 gig_visual = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Logo")
-create_campaign_button = NodePath("")
 view_campaigns_button = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Actions/ViewCampaignsButton")
 free_play_button = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Actions/FreePlayMode")
 external_visit_button = NodePath("MarginContainer/GameDisplay/Content/GameDetails/Actions/ExternalGameButton")

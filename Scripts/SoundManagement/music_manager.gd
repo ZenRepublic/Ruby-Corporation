@@ -1,43 +1,28 @@
 extends Node
 
-@export var music_library:Dictionary
-@export var sound_library:Dictionary
-@export var default_fade_duration:float = 1.0
+@export var fade_duration:float = 1.0
 @onready var music_player:AudioStreamPlayer = $MusicPlayer
-@onready var sfx_player:AudioStreamPlayer = $SFXPlayer
 
 var music_volume:float = 1.0
 var sfx_volume:float = 1.0
 
 var curr_fade_duration:float
 
-var song_queue:Array[AudioStream]
-
 signal on_song_ended()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	music_player.finished.connect(handle_song_finish)
+	
+	get_window().focus_entered.connect(resume_all_sounds)
+	get_window().focus_exited.connect(pause_all_sounds)
 	pass # Replace with function body.
 	
-func play_sound(sound_name:String,pitch_scale:float=1.0) -> void:
-	if sfx_player.stream != sound_library[sound_name]:
-		sfx_player.stream = sound_library[sound_name]
-		
-	sfx_player.pitch_scale = pitch_scale
-	sfx_player.play()
-	
-func play_song(song_name:String,fade_from_previous:bool=true,fade_duration:float=-1) -> void:
-	if !music_library.has(song_name):
-		push_error("Song Doesnt exist in library")
-		return
-		
-	if fade_duration == -1:
-		curr_fade_duration = default_fade_duration
-	else:
+func play_song(song:AudioStream,fade_from_previous:bool=true,override_fade_duration:float=-1) -> void:
+	if override_fade_duration == -1:
 		curr_fade_duration = fade_duration
+	else:
+		curr_fade_duration = override_fade_duration
 		
-	var song:AudioStream = music_library[song_name]
-	
 	var audio_bus:int = AudioServer.get_bus_index("Music")
 	if music_player.stream!=null && fade_from_previous:
 		await fade_out(audio_bus,music_volume)
@@ -47,14 +32,14 @@ func play_song(song_name:String,fade_from_previous:bool=true,fade_duration:float
 	if fade_from_previous:
 		await fade_in(audio_bus,music_volume)
 		
-func stop_song(fade_duration:float=-1) -> void:
+func stop_song(override_fade_duration:float=-1) -> void:
 	if !music_player.playing:
 		return
 		
-	if fade_duration == -1:
-		curr_fade_duration = default_fade_duration
-	else:
+	if override_fade_duration == -1:
 		curr_fade_duration = fade_duration
+	else:
+		curr_fade_duration = override_fade_duration
 		
 	var original_music_volume = music_volume
 	var audio_bus:int = AudioServer.get_bus_index("Music")

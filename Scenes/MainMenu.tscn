@@ -1,6 +1,7 @@
-[gd_scene load_steps=61 format=3 uid="uid://dmdb8dbmov2cl"]
+[gd_scene load_steps=70 format=3 uid="uid://dmdb8dbmov2cl"]
 
 [ext_resource type="Script" uid="uid://uxfmmvq5egiv" path="res://Scripts/Menu/menu_manager.gd" id="1_l0w8j"]
+[ext_resource type="AudioStream" uid="uid://bj4v18wnuvk8g" path="res://Sounds/Music/RubyCorporationTheme.mp3" id="2_3qfoj"]
 [ext_resource type="Script" uid="uid://cmcpmjqe38j7l" path="res://addons/SolanaSDK/Scripts/NFTGating/button_lock_manager.gd" id="2_uhhnb"]
 [ext_resource type="Shader" uid="uid://c8052rjttj7of" path="res://Shaders/scrolling_background.gdshader" id="3_ngax4"]
 [ext_resource type="Texture2D" uid="uid://b8i1obr6qaasa" path="res://Textures/TransitionPatterns/BoxPattern.png" id="4_2iyto"]
@@ -48,6 +49,14 @@
 [ext_resource type="Texture2D" uid="uid://dfv4g2wd54x0p" path="res://Textures/BrandingAssets/LogoSquare.png" id="36_oor3o"]
 [ext_resource type="Texture2D" uid="uid://dchy7ed3ybfi1" path="res://Textures/LogosAndTokens/Zenny token.PNG" id="38_oor3o"]
 [ext_resource type="PackedScene" uid="uid://4urmdr7smqjk" path="res://Scripts/DropGameKit/Leaderboard/CampaignLeaderboardDisplay.tscn" id="39_lhivc"]
+[ext_resource type="Script" uid="uid://c50bma6jrp4nc" path="res://Scripts/SoundManagement/sfx_manager.gd" id="51_w3p2m"]
+[ext_resource type="AudioStream" uid="uid://cunnj26stug8q" path="res://Sounds/UI/MainButtonSound.mp3" id="52_3qfoj"]
+[ext_resource type="AudioStream" uid="uid://bta85g154ui34" path="res://Sounds/UI/button_press_rich.mp3" id="53_jbkk3"]
+[ext_resource type="AudioStream" uid="uid://dbqxyr7v3x53b" path="res://Sounds/UI/checkmarksound.mp3" id="54_q0bdy"]
+[ext_resource type="AudioStream" uid="uid://xoio1puhisej" path="res://Sounds/UI/errorsound.mp3" id="55_x734p"]
+[ext_resource type="AudioStream" uid="uid://b0vf2eljmdfgc" path="res://Sounds/UI/TransactionFailed.mp3" id="56_mbdwi"]
+[ext_resource type="AudioStream" uid="uid://dfmwym0j8y55n" path="res://Sounds/UI/returnsound.mp3" id="57_3y7mu"]
+[ext_resource type="AudioStream" uid="uid://cm278a24mieti" path="res://Sounds/UI/slideradjusts.mp3" id="58_l7o23"]
 [ext_resource type="PackedScene" uid="uid://opkwvwup8u86" path="res://Scenes/Settings.tscn" id="74_k04pn"]
 [ext_resource type="PackedScene" uid="uid://cyrmlhn128s53" path="res://Scripts/Web3/TransactionManagement/TransactionOverlay.tscn" id="79_ghurn"]
 
@@ -97,7 +106,7 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 1
 
-[node name="Menu" type="Control" node_paths=PackedStringArray("screen_manager", "gig_manager", "campaign_loader")]
+[node name="Menu" type="Control" node_paths=PackedStringArray("screen_manager", "gig_manager", "campaign_loader", "sfx_manager")]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -109,6 +118,27 @@ script = ExtResource("1_l0w8j")
 screen_manager = NodePath("Content/MainScreen/ScreenManager")
 gig_manager = NodePath("Content/MainScreen/GigManager")
 campaign_loader = NodePath("Content/MainScreen/CampaignSelector")
+music_library = {
+"Menu": ExtResource("2_3qfoj")
+}
+sfx_manager = NodePath("SFXManager")
+
+[node name="SFXManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
+script = ExtResource("51_w3p2m")
+audio_player = NodePath("AudioStreamPlayer")
+sound_library = {
+"ButtonJuicy": ExtResource("52_3qfoj"),
+"ButtonRich": ExtResource("53_jbkk3"),
+"ButtonSimple": ExtResource("9_04wh2"),
+"Checkbox": ExtResource("54_q0bdy"),
+"Error": ExtResource("55_x734p"),
+"Fail": ExtResource("56_mbdwi"),
+"Return": ExtResource("57_3y7mu"),
+"Slider": ExtResource("58_l7o23")
+}
+metadata/_custom_type_script = "uid://c50bma6jrp4nc"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SFXManager"]
 
 [node name="ButtonLockManager" type="Node" parent="."]
 script = ExtResource("2_uhhnb")

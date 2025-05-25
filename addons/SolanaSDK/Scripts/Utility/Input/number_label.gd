@@ -17,10 +17,6 @@ func _ready() -> void:
 		original_pitch = audio_player.pitch_scale
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 	
 func lerp_to_value(end_number,increment_value,increment_duration:float=0.06) -> void:
 	var increment_sign = 1 if end_number > number_value else -1

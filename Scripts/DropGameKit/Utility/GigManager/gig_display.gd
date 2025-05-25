@@ -8,7 +8,7 @@ class_name GigDisplay
 @export var gig_visual:TextureRect
 @export var visual_size:int = 512
 
-@export var create_campaign_button:ButtonLock
+#@export var create_campaign_button:ButtonLock
 @export var view_campaigns_button:BaseButton
 @export var free_play_button:BaseButton
 @export var external_visit_button:LinkedButton
@@ -40,13 +40,8 @@ func setup_full(gig:ClubhouseGig) -> void:
 	set_basic_fields(gig)
 	
 	description_label.text = gig.description
-	
-	if gig.is_external():
-		external_visit_button.link = gig.link_to_game
-		external_visit_button.visible=true
-	else:
-		view_campaigns_button.visible=true
-		free_play_button.visible=true
+	view_campaigns_button.visible=true
+	free_play_button.visible=true
 	
 	
 func set_basic_fields(gig:ClubhouseGig) -> void:

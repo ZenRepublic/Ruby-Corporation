@@ -14,4 +14,7 @@ func setup_player_selection(campaign:Pubkey,data:Dictionary) -> void:
 	campaign_data = data
 	pass
 	
+func game_start() -> void:
+	on_game_started.emit(campaign_key,campaign_data,curr_player_data)
+	
 	

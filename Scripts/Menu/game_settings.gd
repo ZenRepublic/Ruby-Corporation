@@ -4,6 +4,8 @@ class_name GameSettings
 @export var music_slider:Slider
 @export var sfx_slider:Slider
 
+@export var sfx_manager:SFXManager
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	music_slider.value = MusicManager.music_volume
@@ -15,9 +17,9 @@ func _ready() -> void:
 
 func adjust_music_volume(value:float) -> void:
 	MusicManager.set_music_volume(value)
-	MusicManager.play_sound("Slider",lerp(0.9,1.2,value))
+	sfx_manager.play_sound("Slider",value)
 	
 func adjust_sfx_volume(value:float) -> void:
 	MusicManager.set_sfx_volume(value)
-	MusicManager.play_sound("Slider",lerp(0.9,1.2,value))
+	sfx_manager.play_sound("Slider",value)
 	

@@ -1,45 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bb5vbvsscbeds"]
+[gd_scene load_steps=2 format=3 uid="uid://bb5vbvsscbeds"]
 
 [ext_resource type="Script" uid="uid://dckywwils6dol" path="res://Scripts/SoundManagement/music_manager.gd" id="1_0mdud"]
-[ext_resource type="AudioStream" uid="uid://c6x03d8l50iv7" path="res://Content/LaunchingSoon/Music/GameMusic.mp3" id="2_chohu"]
-[ext_resource type="AudioStream" uid="uid://dlji0e4c4okq6" path="res://Content/LaunchingSoon/Music/WinMusicMain.mp3" id="3_641q0"]
-[ext_resource type="AudioStream" uid="uid://bu65j5pxvinar" path="res://Content/LaunchingSoon/Music/WinMusicLoop.mp3" id="4_edflg"]
-[ext_resource type="AudioStream" uid="uid://behccltfoecrp" path="res://Content/LaunchingSoon/Music/LoseMusicLoop.mp3" id="5_edflg"]
-[ext_resource type="AudioStream" uid="uid://cm278a24mieti" path="res://Sounds/UI/slideradjusts.mp3" id="6_8vb7i"]
-[ext_resource type="AudioStream" uid="uid://bj4v18wnuvk8g" path="res://Sounds/Music/RubyCorporationTheme.mp3" id="6_bk6mu"]
-[ext_resource type="AudioStream" uid="uid://cojs82uu73ctv" path="res://Sounds/UI/buttonpress.mp3" id="7_kutgl"]
-[ext_resource type="AudioStream" uid="uid://bta85g154ui34" path="res://Sounds/UI/button_press_rich.mp3" id="8_voltk"]
-[ext_resource type="AudioStream" uid="uid://cunnj26stug8q" path="res://Sounds/UI/MainButtonSound.mp3" id="9_8gdex"]
-[ext_resource type="AudioStream" uid="uid://dbqxyr7v3x53b" path="res://Sounds/UI/checkmarksound.mp3" id="10_faybf"]
-[ext_resource type="AudioStream" uid="uid://dfmwym0j8y55n" path="res://Sounds/UI/returnsound.mp3" id="11_qepbk"]
-[ext_resource type="AudioStream" uid="uid://xoio1puhisej" path="res://Sounds/UI/errorsound.mp3" id="12_nvhey"]
-[ext_resource type="AudioStream" uid="uid://b0vf2eljmdfgc" path="res://Sounds/UI/TransactionFailed.mp3" id="13_w5la0"]
 
 [node name="MusicManager" type="Node"]
 script = ExtResource("1_0mdud")
-music_library = {
-"Game": ExtResource("2_chohu"),
-"Lose": ExtResource("5_edflg"),
-"Menu": ExtResource("6_bk6mu"),
-"Win": ExtResource("3_641q0"),
-"WinLoop": ExtResource("4_edflg")
-}
-sound_library = {
-"ButtonJuicy": ExtResource("9_8gdex"),
-"ButtonRich": ExtResource("8_voltk"),
-"ButtonSimple": ExtResource("7_kutgl"),
-"Checkbox": ExtResource("10_faybf"),
-"Error": ExtResource("12_nvhey"),
-"Fail": ExtResource("13_w5la0"),
-"Return": ExtResource("11_qepbk"),
-"Slider": ExtResource("6_8vb7i")
-}
-default_fade_duration = 0.7
+fade_duration = 0.7
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 max_polyphony = 2
 bus = &"Music"
-
-[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
-max_polyphony = 4
-bus = &"SFX"

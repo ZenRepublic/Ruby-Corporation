@@ -9,6 +9,7 @@ class_name GigManager
 @export var gig_creator_scn:PackedScene
 
 @export var gig_loader_pck:GigLoaderPCK
+@export var use_local_pck:bool=true
 
 var mini_displays:Array[GigDisplay]
 
@@ -45,8 +46,8 @@ func show_gig_details(gig:ClubhouseGig) -> void:
 	display.on_create_pressed.connect(pop_campaign_creator)
 	display.on_free_play_pressed.connect(handle_free_play)
 	
-func load_active_gig_and_get_scene(local:bool=false):
-	var success:bool = await gig_loader_pck.load_gig(active_gig,local)
+func load_active_gig_and_get_scene():
+	var success:bool = await gig_loader_pck.load_gig(active_gig,use_local_pck)
 	if !success:
 		push_error("Failed to load gig, please try again!")
 		return null

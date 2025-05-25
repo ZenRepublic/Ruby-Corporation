@@ -6,14 +6,16 @@ class_name MenuManager
 @export var gig_manager:GigManager
 @export var campaign_loader:CampaignLoader
 
+@export var music_library:Dictionary
+@export var sfx_manager:SFXManager
+
 # Called when the node enters the scene tree for the first time.
 
 func _init() -> void:
 	add_to_group("MenuManager")
 	
 func _ready() -> void:
-	MusicManager.play_song("Menu")
-	print(gig_manager)
+	MusicManager.play_song(music_library["Menu"])
 	gig_manager.on_gig_selected.connect(handle_gig_selection)
 	campaign_loader.campaign_interactor.on_game_started.connect(load_gig)
 	
@@ -30,12 +32,12 @@ func handle_gig_selection(selected_gig:ClubhouseGig) -> void:
 	campaign_loader.load_campaigns()
 
 func play_ui_sound(sound_name:String) -> void:
-	MusicManager.play_sound(sound_name)
+	sfx_manager.play_sound(sound_name)
 	
 	
 func load_gig(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionary) -> void:
-	MusicManager.play_sound("ButtonSimple")
-	var scene_to_load = await gig_manager.load_active_gig_and_get_scene(true)
+	play_ui_sound("ButtonSimple")
+	var scene_to_load = await gig_manager.load_active_gig_and_get_scene()
 	print(scene_to_load)
 	if scene_to_load!=null:
 		SceneManager.load_scene(scene_to_load,true,-1,0.8,{
@@ -43,11 +45,11 @@ func load_gig(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionar
 			"CampaignKey":campaign_key,
 			"CampaignData":campaign_data,
 			"PlayerData":player_data
-			})
+			},false)
 		
 func load_gig_free_mode() -> void:
-	MusicManager.play_sound("ButtonSimple")
-	var scene_to_load = await gig_manager.load_active_gig_and_get_scene(true)
+	play_ui_sound("ButtonSimple")
+	var scene_to_load = await gig_manager.load_active_gig_and_get_scene()
 	
 	if scene_to_load!=null:
-		SceneManager.load_scene(scene_to_load,true,-1,0.0,{"FreePlay":true})
+		SceneManager.load_scene(scene_to_load,true,-1,0.0,{"FreePlay":true},false)

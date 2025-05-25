@@ -20,6 +20,7 @@ var fade_duration:float
 
 var load_progress:float = 0.0
 var allow_scene_change:bool=false
+var is_automatic_transition:bool
 
 var previous_scene_path:String
 var curr_scene_path:String
@@ -53,8 +54,8 @@ func _process(_delta: float) -> void:
 		allow_scene_change=false
 		curr_scene_path = scene_to_load_path
 		scene_to_load_path=""
-		if transition_instance!=null:
-			finalize_scene_transition()
+		if is_automatic_transition and transition_instance!=null:
+			finalize_scene_load()
 		
 func reload_scene(fade_between_scenes:bool=true,transition_id:int=-1,scene_data:Dictionary={}) -> void:
 	load_scene(curr_scene_path,fade_between_scenes,transition_id,0.0,scene_data)
@@ -64,10 +65,12 @@ func load_previous_scene(fade_between_scenes:bool=true,transition_id:int=-1,wait
 		return
 	load_scene(previous_scene_path,fade_between_scenes,transition_id,wait_time,scene_data)	
 
-func load_scene(scene_path:String,fade_between_scenes:bool=true,transition_id:int=-1,wait_time:float=0.0,scene_data:Dictionary={}) -> void:
+func load_scene(scene_path:String,fade_between_scenes:bool=true,transition_id:int=-1,wait_time:float=0.0,scene_data:Dictionary={},automatic_transition:bool=true) -> void:
 #	don't set this scene as previous scene if its reloading the same one
 	if scene_path != get_tree().current_scene.scene_file_path:
 		previous_scene_path = get_tree().current_scene.scene_file_path
+		
+	is_automatic_transition = automatic_transition
 		
 	if wait_time > 0.0:
 		await get_tree().create_timer(wait_time).timeout
@@ -96,12 +99,13 @@ func load_scene(scene_path:String,fade_between_scenes:bool=true,transition_id:in
 		fade_in_started.emit()
 		await transition_instance.fade_in()
 		fade_in_ended.emit()
-		
-	await particle_cache.cache_particles(scene_path)
 	
 	allow_scene_change = true
 	
-func finalize_scene_transition() -> void:
+func load_particles(particles:Array) -> void:
+	await particle_cache.cache_particles(particles)
+	
+func finalize_scene_load() -> void:
 	fade_out_started.emit()
 	await transition_instance.fade_out()
 	fade_out_ended.emit()

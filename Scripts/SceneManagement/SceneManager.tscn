@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bjjl43eub4i10" path="res://Scripts/SceneManagement/Transitions/LinesTransition.tscn" id="2_kwcg0"]
 [ext_resource type="Script" uid="uid://blirail02xv24" path="res://Scripts/SceneManagement/particles_cache.gd" id="3_saj7b"]
 
-
 [node name="SceneManager" type="Node"]
 script = ExtResource("1_lsbho")
 transition_panels = Array[PackedScene]([ExtResource("2_kwcg0")])
