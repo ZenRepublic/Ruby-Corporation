@@ -25,6 +25,12 @@ signal on_campaign_closed
 # Called when the node enters the scene tree for the first time.
 func set_campaign(campaign_id:String,campaign_data:Dictionary) -> void:
 	curr_campaign_data = campaign_data
+	print(curr_campaign_data)
+	var result:Dictionary = await ClubhouseProgram.utils.get_managers_in_use(curr_campaign_data["house"])
+	print("AAAHAHAHAHAHAHA :",result)
+	#print(result["2RMG75ydGKLcviZZvU4tL7kZ4iGSVQELhnfXHxPCjWvx"]["manager"].to_string())
+	#print(result["2RMG75ydGKLcviZZvU4tL7kZ4iGSVQELhnfXHxPCjWvx"]["campaign"].to_string())
+	#print(result["2RMG75ydGKLcviZZvU4tL7kZ4iGSVQELhnfXHxPCjWvx"]["house"].to_string())
 	
 	campaign_key = Pubkey.new_from_string(campaign_id)
 	campaign_name_label.text = campaign_data["campaign_name"]
@@ -42,12 +48,12 @@ func set_campaign(campaign_id:String,campaign_data:Dictionary) -> void:
 	else:
 		push_error("Campaign Gate asset Failed to load...")
 	
-	if campaign_data["manager_mint"] != null:
-		var campaign_owner:WalletAsset = await SolanaService.asset_manager.get_asset_from_mint(campaign_data["manager_mint"])
+	if campaign_data["manager_identity"]["identity_type"] != 0:
+		var manager_mint:Pubkey = campaign_data["manager_identity"]["pubkey"]
+		var campaign_owner:WalletAsset = await SolanaService.asset_manager.get_asset_from_mint(manager_mint)
 		if campaign_owner!=null:
 			owner_displayable.set_data(campaign_owner)
 			
-		
 	var campaign_token:Token = await SolanaService.asset_manager.get_asset_from_mint(campaign_data["reward_mint"],true)
 	campaign_token.token_account = ClubhousePDA.get_campaign_vault_pda(campaign_key)
 	campaign_token.decimals = campaign_data["reward_mint_decimals"]
@@ -83,7 +89,16 @@ func set_campaign(campaign_id:String,campaign_data:Dictionary) -> void:
 	
 func close() -> void:
 	var house_pda:Pubkey = curr_campaign_data["house"]
-	var tx_data:TransactionData = await ClubhouseProgram.close_campaign(house_pda,campaign_key,curr_campaign_data)
+	var campaign_data:Dictionary =  await SolanaService.fetch_program_account_of_type(ClubhouseProgram.get_program(),"Campaign",campaign_key)
+	
+	var manager_data= null
+	if campaign_data["manager_identity"]["identity_type"] != 0:
+		manager_data={
+			"asset":campaign_data["manager_identity"]["pubkey"],
+			"asset_type": campaign_data["manager_identity"]["identity_type"]
+		}
+		
+	var tx_data:TransactionData = await ClubhouseProgram.close_campaign(house_pda,campaign_key,curr_campaign_data,manager_data)
 	
 	if tx_data.is_successful():
 		on_campaign_closed.emit()

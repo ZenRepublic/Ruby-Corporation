@@ -53,11 +53,12 @@ func set_campaign_data(id:String,data:Dictionary) -> void:
 		campaign_player_manager.visible=false
 		SolanaService.wallet.on_login_success.connect(setup_player_selection)
 		
-	
-	if data["manager_mint"] != null:
-		var manager_asset:WalletAsset = await SolanaService.asset_manager.get_asset_from_mint(data["manager_mint"])
-		if manager_asset!=null:
-			manager_displayable.set_data(manager_asset)
+			
+	if data["manager_identity"]["identity_type"] != 0:
+		var manager_mint:Pubkey = data["manager_identity"]["pubkey"]
+		var campaign_owner:WalletAsset = await SolanaService.asset_manager.get_asset_from_mint(manager_mint)
+		if campaign_owner!=null:
+			manager_displayable.set_data(campaign_owner)
 			
 		
 	var campaign_token:Token = await SolanaService.asset_manager.get_asset_from_mint(data["reward_mint"],true)

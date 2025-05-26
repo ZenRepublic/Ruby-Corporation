@@ -813,9 +813,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_if3s2")
 theme_type_variation = &"InvisibleButton"
-disabled = true
 
 [node name="PanelContainer" type="PanelContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton/Visual"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -826,6 +826,7 @@ theme = ExtResource("3_if3s2")
 theme_override_styles/panel = SubResource("StyleBoxFlat_fn7e4")
 
 [node name="Label" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton"]
+visible = false
 layout_mode = 2
 theme = ExtResource("3_if3s2")
 text = "SOON"

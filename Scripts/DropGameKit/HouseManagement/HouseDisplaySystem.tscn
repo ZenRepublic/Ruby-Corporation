@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://mshskasj5e5j" path="res://Scripts/DropGameKit/HouseManagement/HouseSelectEntry.tscn" id="6_srudh"]
 [ext_resource type="Script" uid="uid://da8rxjycsa60v" path="res://Scripts/DropGameKit/HouseManagement/house_manager.gd" id="7_fk8dk"]
 [ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="8_y3h1l"]
-[ext_resource type="Script" uid="uid://cg67p6ivwwuxa" path="res://addons/SolanaSDK/Scripts/Utility/Input/data_input_system.gd" id="9_1lfvl"]
+[ext_resource type="Script" uid="uid://ufej552thaov" path="res://addons/SolanaSDK/Scripts/Utility/Input/data_input_system.gd" id="9_1lfvl"]
 [ext_resource type="Script" uid="uid://cja6e8dxjd81x" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="10_mkyy3"]
 [ext_resource type="Script" uid="uid://kegyb1m0ov6c" path="res://Scripts/DropGameKit/HouseManagement/house_creator.gd" id="11_uqs2a"]
 
@@ -115,7 +115,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HouseSelector" type="MarginContainer" parent="Content" node_paths=PackedStringArray("container")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
@@ -159,6 +158,7 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="HouseSelectSimple" parent="Content/HouseSelector/VBoxContainer/HouseDisplaySystem/MarginContainer/ScrollContainer/HousesList" instance=ExtResource("6_srudh")]
+visible = false
 layout_mode = 2
 script = null
 
@@ -170,6 +170,7 @@ theme_type_variation = &"ButtonFlatAlt"
 text = "CREATE NEW..."
 
 [node name="HouseManager" type="MarginContainer" parent="Content" node_paths=PackedStringArray("house_name_label", "active_campaigns_label", "total_campaigns_label", "unique_players_label", "house_fees_label", "sol_fees_label", "house_edit_settings")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

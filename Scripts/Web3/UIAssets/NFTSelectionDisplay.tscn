@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://lgukfb417wvu"]
+[gd_scene load_steps=9 format=3 uid="uid://lgukfb417wvu"]
 
-[ext_resource type="Script" uid="uid://b6n4wtdrcrvb1" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/asset_display_system.gd" id="1_btcd8"]
+[ext_resource type="Script" uid="uid://okfi452wp7yu" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/asset_display_system.gd" id="1_btcd8"]
 [ext_resource type="PackedScene" uid="uid://btmj6a3kagg46" path="res://Scripts/Web3/UIAssets/DisplayableNFTButton.tscn" id="2_xmhd2"]
-[ext_resource type="Script" uid="uid://dk34wl0jiheig" path="res://addons/SolanaSDK/Scripts/NFTCollection/nft_collection.gd" id="3_rk1ve"]
-[ext_resource type="Resource" uid="uid://yts1i1o0c345" path="res://Scripts/Web3/RubiansNFTCollection.tres" id="4_vmypy"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="5_6o7rc"]
 [ext_resource type="Texture2D" uid="uid://bdjw50vivwoew" path="res://Textures/Icons/CloseIcon.PNG" id="6_ag12l"]
 [ext_resource type="Texture2D" uid="uid://cq285gbck81as" path="res://Textures/Icons/AddIcon.png" id="6_mhrye"]
@@ -22,14 +20,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_btcd8")
-display_type = Array[int]([3, 1])
+display_type = Array[int]([1])
 container = NodePath("MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer")
 display_entry_scn = ExtResource("2_xmhd2")
-das_assets_only = true
 close_on_select = true
 destroy_on_close = true
 no_asset_overlay = NodePath("MarginContainer/VBoxContainer/Selection/NoNFTOverlay")
-collection_filter = Array[ExtResource("3_rk1ve")]([ExtResource("4_vmypy")])
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1

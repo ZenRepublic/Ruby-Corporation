@@ -20,37 +20,6 @@ pid = "C1ubv5AC5w7Eh3iHpEt2BXZ1g3eARQtMRgmE2AXfznSg"
 json_file = ExtResource("2_hn8ct")
 idl = {
 "accounts": [{
-"discriminator": [1.0],
-"name": "BaseAssetV1",
-"type": {
-"fields": [{
-"name": "key",
-"type": {
-"defined": "Key"
-}
-}, {
-"name": "owner",
-"type": "publicKey"
-}, {
-"name": "update_authority",
-"type": {
-"defined": "UpdateAuthority"
-}
-}, {
-"name": "name",
-"type": "string"
-}, {
-"name": "uri",
-"type": "string"
-}, {
-"name": "seq",
-"type": {
-"option": "u64"
-}
-}],
-"kind": "struct"
-}
-}, {
 "discriminator": [50.0, 40.0, 49.0, 11.0, 157.0, 220.0, 229.0, 192.0],
 "name": "Campaign",
 "type": {
@@ -64,9 +33,9 @@ idl = {
 "name": "creator",
 "type": "publicKey"
 }, {
-"name": "manager_mint",
+"name": "manager_identity",
 "type": {
-"option": "publicKey"
+"defined": "PlayerIdentity"
 }
 }, {
 "name": "reward_mint",
@@ -256,6 +225,28 @@ idl = {
 }, {
 "name": "house_name",
 "type": "string"
+}, {
+"docs": ["optional URI for the house, can be used to store metadata"],
+"name": "uri",
+"type": {
+"option": "string"
+}
+}],
+"kind": "struct"
+}
+}, {
+"discriminator": [43.0, 145.0, 20.0, 0.0, 101.0, 33.0, 101.0, 18.0],
+"name": "ManagerSlot",
+"type": {
+"fields": [{
+"name": "manager",
+"type": "publicKey"
+}, {
+"name": "campaign",
+"type": "publicKey"
+}, {
+"name": "house",
+"type": "publicKey"
 }],
 "kind": "struct"
 }
@@ -611,6 +602,30 @@ idl = {
 }, {
 "address": "11111111111111111111111111111111",
 "name": "system_program"
+}, {
+"docs": ["Optional manager NFT token account"],
+"name": "manager_nft_token_account",
+"optional": true
+}, {
+"docs": ["Optional manager NFT metadata"],
+"name": "manager_nft_metadata",
+"optional": true
+}, {
+"name": "manager_slot",
+"optional": true,
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [109.0, 97.0, 110.0, 97.0, 103.0, 101.0, 114.0, 95.0, 115.0, 108.0, 111.0, 116.0]
+}, {
+"kind": "account",
+"path": "house"
+}, {
+"kind": "account",
+"path": "manager_nft_metadata"
+}]
+},
+"writable": true
 }],
 "args": [],
 "discriminator": [65.0, 49.0, 110.0, 7.0, 63.0, 238.0, 206.0, 77.0],
@@ -694,6 +709,7 @@ idl = {
 }, {
 "docs": ["pays the campaign creation fees"],
 "name": "creation_fee_account",
+"optional": true,
 "writable": true
 }, {
 "name": "reward_mint"
@@ -748,6 +764,30 @@ idl = {
 }, {
 "address": "11111111111111111111111111111111",
 "name": "system_program"
+}, {
+"docs": ["Optional manager NFT token account"],
+"name": "manager_nft_token_account",
+"optional": true
+}, {
+"docs": ["Optional manager NFT metadata"],
+"name": "manager_nft_metadata",
+"optional": true
+}, {
+"name": "manager_slot",
+"optional": true,
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [109.0, 97.0, 110.0, 97.0, 103.0, 101.0, 114.0, 95.0, 115.0, 108.0, 111.0, 116.0]
+}, {
+"kind": "account",
+"path": "house"
+}, {
+"kind": "account",
+"path": "manager_nft_metadata"
+}]
+},
+"writable": true
 }],
 "args": [{
 "name": "campaign_name",
@@ -861,6 +901,11 @@ idl = {
 }, {
 "name": "house_name",
 "type": "string"
+}, {
+"name": "uri",
+"type": {
+"option": "string"
+}
 }],
 "discriminator": [11.0, 92.0, 141.0, 8.0, 128.0, 45.0, 64.0, 89.0],
 "name": "create_house"
@@ -1017,6 +1062,11 @@ idl = {
 "type": {
 "defined": "HouseConfig"
 }
+}, {
+"name": "uri",
+"type": {
+"option": "string"
+}
 }],
 "discriminator": [13.0, 153.0, 166.0, 250.0, 48.0, 39.0, 227.0, 200.0],
 "name": "update_house"
@@ -1083,36 +1133,6 @@ idl = {
 "version": "0.1.0"
 },
 "types": [{
-"name": "BaseAssetV1",
-"type": {
-"fields": [{
-"name": "key",
-"type": {
-"defined": "Key"
-}
-}, {
-"name": "owner",
-"type": "publicKey"
-}, {
-"name": "update_authority",
-"type": {
-"defined": "UpdateAuthority"
-}
-}, {
-"name": "name",
-"type": "string"
-}, {
-"name": "uri",
-"type": "string"
-}, {
-"name": "seq",
-"type": {
-"option": "u64"
-}
-}],
-"kind": "struct"
-}
-}, {
 "name": "Campaign",
 "type": {
 "fields": [{
@@ -1125,9 +1145,9 @@ idl = {
 "name": "creator",
 "type": "publicKey"
 }, {
-"name": "manager_mint",
+"name": "manager_identity",
 "type": {
-"option": "publicKey"
+"defined": "PlayerIdentity"
 }
 }, {
 "name": "reward_mint",
@@ -1315,6 +1335,12 @@ idl = {
 }, {
 "name": "house_name",
 "type": "string"
+}, {
+"docs": ["optional URI for the house, can be used to store metadata"],
+"name": "uri",
+"type": {
+"option": "string"
+}
 }],
 "kind": "struct"
 }
@@ -1354,22 +1380,19 @@ idl = {
 }]
 }
 }, {
-"name": "Key",
+"name": "ManagerSlot",
 "type": {
-"kind": "enum",
-"variants": [{
-"name": "Uninitialized"
+"fields": [{
+"name": "manager",
+"type": "publicKey"
 }, {
-"name": "AssetV1"
+"name": "campaign",
+"type": "publicKey"
 }, {
-"name": "HashedAssetV1"
-}, {
-"name": "PluginHeaderV1"
-}, {
-"name": "PluginRegistryV1"
-}, {
-"name": "CollectionV1"
-}]
+"name": "house",
+"type": "publicKey"
+}],
+"kind": "struct"
 }
 }, {
 "name": "NftCampaignConfig",
@@ -1475,20 +1498,6 @@ idl = {
 "name": "Burn"
 }, {
 "name": "Pay"
-}]
-}
-}, {
-"name": "UpdateAuthority",
-"type": {
-"kind": "enum",
-"variants": [{
-"name": "None"
-}, {
-"fields": ["pubkey"],
-"name": "Address"
-}, {
-"fields": ["pubkey"],
-"name": "Collection"
 }]
 }
 }]

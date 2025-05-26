@@ -95,7 +95,8 @@ func get_create_house_instruction(house_name:String,manager_collection:Pubkey,ho
 	],{
 		"manager_collection":AnchorProgram.option(manager_collection),
 		"house_config": house_config,
-		"house_name":house_name
+		"house_name":house_name,
+		"uri": AnchorProgram.option(null)
 	})
 	return ix
 	
@@ -112,6 +113,7 @@ func get_update_house_instruction(house_name:String,house_config:Dictionary) -> 
 		SolanaService.wallet.get_kp(),
 	],{
 		"house_config": house_config,
+		"uri": AnchorProgram.option(null)
 	})
 	return ix
 	
@@ -157,13 +159,13 @@ func get_withdraw_house_fees_instruction(house_name:String, house_currency:Pubke
 	],null)
 	return ix
 
-func create_campaign(house_pda:Pubkey,house_currency:Pubkey,campaign_name:String,reward_mint:Pubkey,fund_amount_lamports:int,max_reward_lamports:int,player_claim_fee:int,timespan:Dictionary,nft_config=null,token_config=null,custom_data=null) -> TransactionData:
+func create_campaign(house_pda:Pubkey,house_currency:Pubkey,campaign_name:String,reward_mint:Pubkey,fund_amount_lamports:int,max_reward_lamports:int,player_claim_fee:int,timespan:Dictionary,nft_config=null,token_config=null,manager_data=null,custom_data=null) -> TransactionData:
 	var campaign_keypair:Keypair = Keypair.new_random()
-	var create_campaign_ix:Instruction = get_create_campaign_instruction(campaign_keypair,house_pda,house_currency,campaign_name,reward_mint,fund_amount_lamports,max_reward_lamports,player_claim_fee,timespan,nft_config,token_config,custom_data)
+	var create_campaign_ix:Instruction = get_create_campaign_instruction(campaign_keypair,house_pda,house_currency,campaign_name,reward_mint,fund_amount_lamports,max_reward_lamports,player_claim_fee,timespan,nft_config,token_config,manager_data,custom_data)
 	var tx_data:TransactionData = await send_transaction([create_campaign_ix],null,[campaign_keypair])
 	return tx_data
 
-func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,house_currency:Pubkey,campaign_name:String,reward_mint:Pubkey,fund_amount_lamports:int,max_reward_lamports:int,player_claim_fee:int,timespan:Dictionary,nft_config=null,token_config=null,custom_data=null) -> Instruction:
+func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,house_currency:Pubkey,campaign_name:String,reward_mint:Pubkey,fund_amount_lamports:int,max_reward_lamports:int,player_claim_fee:int,timespan:Dictionary,nft_config=null,token_config=null,manager_data=null,custom_data=null) -> Instruction:
 	var campaign_key:Pubkey = campaign_keypair.to_pubkey()
 	var creation_fee_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),house_currency)
 	var reward_depositor_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),reward_mint)
@@ -175,6 +177,19 @@ func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,h
 		#for burn no deposit account. stake 0, burn 1, pay 2		
 		if token_config["token_use"] != 1:
 			game_deposit_vault = ClubhousePDA.get_deposit_vault_pda(campaign_key)
+			
+	var player_nft_token_account:Pubkey = null 
+	var player_nft_metadata_account:Pubkey = null
+	var core_asset_account:Pubkey=null
+	var manager_slot_pda:Pubkey=null
+	if manager_data!=null and manager_data.has("asset"):
+		if manager_data["asset_type"] == 1:
+			player_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),manager_data["asset"])
+			player_nft_metadata_account = ClubhousePDA.get_nft_metadata_pda(manager_data["asset"])
+		elif manager_data["asset_type"] == 3:
+			core_asset_account = manager_data["asset"]
+		manager_slot_pda = ClubhousePDA.get_campaign_manager_pda(house_pda,manager_data["asset"])
+		creation_fee_account = null
 			
 	var ix:Instruction = program.build_instruction("create_campaign",[	
 		SolanaService.wallet.get_kp(),
@@ -189,7 +204,10 @@ func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,h
 		game_mint,
 		game_deposit_vault,
 		SolanaService.TOKEN_PID,
-		SystemProgram.get_pid()
+		SystemProgram.get_pid(),
+		player_nft_token_account,
+		player_nft_metadata_account,
+		manager_slot_pda
 		],{
 			"campaign_name":campaign_name,
 			"custom_data":AnchorProgram.option(custom_data),
@@ -202,8 +220,8 @@ func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,h
 		})
 	return ix
 	
-func close_campaign(house_pda:Pubkey,campaign_key:Pubkey,campaign_data:Dictionary) -> TransactionData:
-	var close_campaign_ix:Instruction = get_close_campaign_instruction(house_pda,campaign_key,campaign_data)
+func close_campaign(house_pda:Pubkey,campaign_key:Pubkey,campaign_data:Dictionary,manager_data=null) -> TransactionData:
+	var close_campaign_ix:Instruction = get_close_campaign_instruction(house_pda,campaign_key,campaign_data,manager_data)
 	var tx_data:TransactionData = await send_transaction([close_campaign_ix])
 	
 	if tx_data.is_successful() and server.is_set():
@@ -211,7 +229,7 @@ func close_campaign(house_pda:Pubkey,campaign_key:Pubkey,campaign_data:Dictionar
 		
 	return tx_data
 	
-func get_close_campaign_instruction(house_pda:Pubkey,campaign_key:Pubkey,campaign_data:Dictionary) -> Instruction:
+func get_close_campaign_instruction(house_pda:Pubkey,campaign_key:Pubkey,campaign_data:Dictionary,manager_data=null) -> Instruction:
 	var reward_withdrawal_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),campaign_data["reward_mint"])
 	
 	var game_deposit_vault:Pubkey = null
@@ -225,6 +243,18 @@ func get_close_campaign_instruction(house_pda:Pubkey,campaign_key:Pubkey,campaig
 		deposit_withdrawal_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),campaign_data["token_config"]["spending_mint"])
 		game_mint = campaign_data["token_config"]["spending_mint"]
 		deposit_token_program = SolanaService.TOKEN_PID
+		
+	var player_nft_token_account:Pubkey = null 
+	var player_nft_metadata_account:Pubkey = null
+	var core_asset_account:Pubkey=null
+	var manager_slot_pda:Pubkey=null
+	if manager_data!=null and manager_data.has("asset"):
+		if manager_data["asset_type"] == 1:
+			player_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),manager_data["asset"])
+			player_nft_metadata_account = ClubhousePDA.get_nft_metadata_pda(manager_data["asset"])
+		elif manager_data["asset_type"] == 3:
+			core_asset_account = manager_data["asset"]
+		manager_slot_pda = ClubhousePDA.get_campaign_manager_pda(house_pda,manager_data["asset"])
 		
 	var ix:Instruction = program.build_instruction("close_campaign",[	
 		campaign_key,
@@ -240,7 +270,10 @@ func get_close_campaign_instruction(house_pda:Pubkey,campaign_key:Pubkey,campaig
 		deposit_token_program,
 		SolanaService.ATA_TOKEN_PID,
 		SolanaService.TOKEN_PID,
-		SystemProgram.get_pid()
+		SystemProgram.get_pid(),
+		player_nft_token_account,
+		player_nft_metadata_account,
+		manager_slot_pda
 		],null)
 		
 	return ix

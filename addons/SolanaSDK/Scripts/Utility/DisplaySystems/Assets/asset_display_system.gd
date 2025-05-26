@@ -81,7 +81,7 @@ func add_to_list(asset:WalletAsset) -> void:
 	
 	await entry_instance.set_data(asset)
 	entry_instance.on_selected.connect(handle_displayable_selection)
-	
+	print("ADDED TO LIST: ",asset.mint.to_string())
 	entries.append(entry_instance)
 	
 	on_display_updated.emit()

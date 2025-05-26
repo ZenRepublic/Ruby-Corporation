@@ -26,6 +26,10 @@ static func get_campaign_vault_pda(campaign_key:Pubkey) -> Pubkey:
 	var name_bytes = "rewards".to_utf8_buffer()
 	return Pubkey.new_pda_bytes([name_bytes,campaign_key.to_bytes()],PROGRAM_ID)
 	
+static func get_campaign_manager_pda(house_key:Pubkey,manager_mint:Pubkey) -> Pubkey:
+	var name_bytes = "manager_slot".to_utf8_buffer()
+	return Pubkey.new_pda_bytes([name_bytes,house_key.to_bytes(),manager_mint.to_bytes()],PROGRAM_ID)
+	
 static func get_deposit_vault_pda(campaign_key:Pubkey) -> Pubkey:
 	var name_bytes = "player_deposit".to_utf8_buffer()
 	return Pubkey.new_pda_bytes([name_bytes,campaign_key.to_bytes()],PROGRAM_ID)

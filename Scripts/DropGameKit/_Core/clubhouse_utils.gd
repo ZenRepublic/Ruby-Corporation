@@ -56,6 +56,13 @@ func get_program_admin_list(fetch_new:bool=false) -> Array[Pubkey]:
 		admin_list.append(admin_data["program_admin"])
 	return admin_list
 	
+func get_managers_in_use(house_key:Pubkey) -> Dictionary:
+	var filter:Array = [
+		{"memcmp" : { "offset":72, "bytes": house_key.to_string()}},
+	]
+	var result:Dictionary = await SolanaService.fetch_all_program_accounts_of_type(ClubhouseProgram.get_program(),"ManagerSlot",filter)
+	return result
+	
 func get_campaign_player_data_from_nft_mint(nft_mint:Pubkey,campaign_key:Pubkey) -> Dictionary:
 	var filter:Array = [
 		{"memcmp" : { "offset":8, "bytes": nft_mint.to_string()}},

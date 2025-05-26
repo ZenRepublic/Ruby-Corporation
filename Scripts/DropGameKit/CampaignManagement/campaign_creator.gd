@@ -23,6 +23,7 @@ class_name CampaignCreator
 @export var input_submit_button:BaseButton
 
 var selected_token:Token
+var selected_manager:WalletAsset
 
 var house_currency_mint:Pubkey
 var campaign_creation_fee:float
@@ -110,6 +111,7 @@ func set_mine_token(selected_asset:WalletAsset) -> void:
 	handle_input_update()
 	
 func update_manager_selection(selected_asset:WalletAsset) -> void:
+	selected_manager = selected_asset
 	if selected_asset == null:
 		creation_fee_label.set_value(campaign_creation_fee)
 	else:
@@ -153,8 +155,15 @@ func create_campaign() -> void:
 		}
 		#print(token_config)
 		#return
+		
+	var manager_data = null
+	if selected_manager!=null:
+		manager_data={
+			"asset":selected_manager.mint,
+			"asset_type": 3 if selected_manager is CoreAsset else 1
+		}
 
-	var tx_data:TransactionData = await ClubhouseProgram.create_campaign(house_pda,currency_mint,campaign_name,reward_mint,fund_amount_lamports,max_reward_lamports,player_claim_fee,timespan,nft_config,token_config)
+	var tx_data:TransactionData = await ClubhouseProgram.create_campaign(house_pda,currency_mint,campaign_name,reward_mint,fund_amount_lamports,max_reward_lamports,player_claim_fee,timespan,nft_config,token_config,manager_data)
 	
 	if tx_data.is_successful():
 		on_campaign_created.emit()
