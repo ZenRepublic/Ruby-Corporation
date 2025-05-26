@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b2dmsrk6j12y4"]
+[gd_scene load_steps=18 format=3 uid="uid://b2dmsrk6j12y4"]
 
 [ext_resource type="Script" uid="uid://ditj5e2daevt8" path="res://addons/SolanaSDK/Scripts/Managers/solana_service.gd" id="1_hwc3u"]
 [ext_resource type="Script" uid="uid://67dkrftyxy86" path="res://addons/SolanaSDK/Scripts/TransactionManager/transaction_manager.gd" id="2_v3adq"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bgkhmfehcfj2e" path="res://addons/SolanaSDK/Scripts/Utility/file_loader.gd" id="7_4sv1b"]
 [ext_resource type="Script" uid="uid://dfliotvqj2v0k" path="res://addons/SolanaSDK/Scripts/Managers/asset_manager.gd" id="8_4oy84"]
 [ext_resource type="Script" uid="uid://bd8lgfhd3ttrs" path="res://addons/SolanaSDK/Scripts/Managers/candy_machine_manager.gd" id="9_pob61"]
+[ext_resource type="PackedScene" uid="uid://cyrmlhn128s53" path="res://Scripts/Web3/TransactionManagement/TransactionOverlay.tscn" id="9_wfwmi"]
 [ext_resource type="Script" uid="uid://rpm720dhln8u" path="res://addons/SolanaSDK/Scripts/CoreNFTs/core_manager.gd" id="12_ynxal"]
 [ext_resource type="Script" uid="uid://ctu1bsgkgt8qc" path="res://addons/SolanaSDK/Scripts/CoreNFTs/core_collection_manager.gd" id="13_3jvpm"]
 [ext_resource type="Script" uid="uid://c3q1j4esdrfhw" path="res://addons/SolanaSDK/Scripts/CoreNFTs/core_asset_manager.gd" id="14_6l0nt"]
@@ -185,6 +186,7 @@ use_custom_priority_fee = true
 helius_api = NodePath("../HeliusAPI")
 fallback_compute_unit_limit = 200000
 fallback_compute_unit_price = 100000
+transaction_overlay_ui_scn = ExtResource("9_wfwmi")
 
 [node name="FileLoader" type="Node" parent="."]
 script = ExtResource("7_4sv1b")

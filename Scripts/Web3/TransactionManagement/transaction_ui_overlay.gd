@@ -10,12 +10,16 @@ extends Node
 @onready var screen_manager = $ScreenManager
 
 var curr_tx_data:TransactionData
+
+var transaction_manager:TransactionManager
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SolanaService.transaction_manager.on_tx_create_start.connect(enable_tx_screen)
-	SolanaService.transaction_manager.on_tx_finish.connect(process_tx_finish)
-	SolanaService.transaction_manager.on_tx_cancelled.connect(process_tx_cancel)
-	
+	transaction_manager = get_parent()
+	if transaction_manager!=null:
+		transaction_manager.on_tx_create_start.connect(enable_tx_screen)
+		transaction_manager.on_tx_finish.connect(process_tx_finish)
+		transaction_manager.on_tx_cancelled.connect(process_tx_cancel)
+		
 	transaction_screen.visible=false
 	
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://dmdb8dbmov2cl"]
+[gd_scene load_steps=69 format=3 uid="uid://dmdb8dbmov2cl"]
 
 [ext_resource type="Script" uid="uid://uxfmmvq5egiv" path="res://Scripts/Menu/menu_manager.gd" id="1_l0w8j"]
 [ext_resource type="AudioStream" uid="uid://bj4v18wnuvk8g" path="res://Sounds/Music/RubyCorporationTheme.mp3" id="2_3qfoj"]
@@ -58,7 +58,6 @@
 [ext_resource type="AudioStream" uid="uid://dfmwym0j8y55n" path="res://Sounds/UI/returnsound.mp3" id="57_3y7mu"]
 [ext_resource type="AudioStream" uid="uid://cm278a24mieti" path="res://Sounds/UI/slideradjusts.mp3" id="58_l7o23"]
 [ext_resource type="PackedScene" uid="uid://opkwvwup8u86" path="res://Scenes/Settings.tscn" id="74_k04pn"]
-[ext_resource type="PackedScene" uid="uid://cyrmlhn128s53" path="res://Scripts/Web3/TransactionManagement/TransactionOverlay.tscn" id="79_ghurn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8eq28"]
 shader = ExtResource("3_ngax4")
@@ -1340,8 +1339,6 @@ vertical_alignment = 1
 [node name="SettingsScreen" parent="." instance=ExtResource("74_k04pn")]
 visible = false
 layout_mode = 1
-
-[node name="TransactionOverlay" parent="." instance=ExtResource("79_ghurn")]
 
 [connection signal="pressed" from="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/BackButton" to="Content/MainScreen/ScreenManager" method="switch_active_panel" binds= [0]]
 [connection signal="pressed" from="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Buttons/BackButton" to="Content/MainScreen/CampaignSelector/ScreenManager" method="switch_active_panel" binds= [1]]

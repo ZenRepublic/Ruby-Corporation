@@ -9,15 +9,15 @@
 [ext_resource type="Script" uid="uid://b6mbstaftpedd" path="res://addons/richtext2/rich_text_animation.gd" id="7_2rom8"]
 [ext_resource type="Texture2D" uid="uid://djm1cls0ba2gd" path="res://Textures/BrandingAssets/IMG_8182.png" id="7_i46gm"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_gomou"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_fi31n"]
 resource_name = "fallin"
 script = ExtResource("5_fi31n")
-metadata/rt = 38615665193825
+metadata/rt = 23144236683108
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_2rom8"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_gomou"]
 resource_name = "sin"
 script = ExtResource("6_gomou")
-metadata/rt = 38615665193825
+metadata/rt = 23144236683108
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fi31n"]
 bg_color = Color(0, 0.443137, 0.439216, 1)
@@ -66,6 +66,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
 [node name="Text" type="RichTextLabel" parent="TransactionOverlay/Content/LoadingPanel/Panel"]
+clip_contents = false
 custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
 theme = ExtResource("3_qp2q8")
@@ -81,15 +82,17 @@ theme_override_font_sizes/italics_font_size = 40
 theme_override_font_sizes/mono_font_size = 40
 theme_override_font_sizes/normal_font_size = 40
 theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_gomou"), SubResource("RichTextEffect_2rom8")]
+custom_effects = [SubResource("RichTextEffect_fi31n"), SubResource("RichTextEffect_gomou")]
 script = ExtResource("7_2rom8")
 animation = "fallin"
 progress = 1.0
 visible_character = 22
-_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 115, 55), Transform2D(1, 0, 0, 1, 139, 55), Transform2D(1, 0, 0, 1, 163, 55), Transform2D(1, 0, 0, 1, 187, 55), Transform2D(1, 0, 0, 1, 211, 55), Transform2D(1, 0, 0, 1, 235, 55), Transform2D(1, 0, 0, 1, 259, 55), Transform2D(1, 0, 0, 1, 283, 55), Transform2D(1, 0, 0, 1, 305, 55), Transform2D(1, 0, 0, 1, 329, 55), Transform2D(1, 0, 0, 1, 353, 55), Transform2D(1, 0, 0, 1, 377, 55), Transform2D(1, 0, 0, 1, 401, 55), Transform2D(1, 0, 0, 1, 425, 55), Transform2D(1, 0, 0, 1, 449, 55), Transform2D(1, 0, 0, 1, 473, 55), Transform2D(1, 0, 0, 1, 497, 55), Transform2D(1, 0, 0, 1, 521, 55), Transform2D(1, 0, 0, 1, 545, 55), Transform2D(1, 0, 0, 1, 569, 55), Transform2D(1, 0, 0, 1, 593, 55)])
-_char_size = Array[Vector2]([Vector2(0, 0), Vector2(19, 22), Vector2(22, 22), Vector2(19, 22), Vector2(19, 22), Vector2(19, 22), Vector2(22, 22), Vector2(0, 22), Vector2(19, 22), Vector2(17, 22), Vector2(19, 22), Vector2(19, 22), Vector2(19, 22), Vector2(19, 22), Vector2(19, 22), Vector2(17, 22), Vector2(19, 22), Vector2(19, 22), Vector2(19, 22), Vector2(6, 22), Vector2(6, 22), Vector2(6, 22)])
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 _alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _forced_finish_delay = -0.0492084
