@@ -34,6 +34,3 @@ func load_house(selected_entry:AccountDisplayEntry) -> void:
 	screen_manager.switch_active_panel(0)
 	await house_manager.set_house_data(selected_entry.account_id,selected_entry.data)
 	screen_manager.switch_active_panel(2)
-
-func close() -> void:
-	queue_free()

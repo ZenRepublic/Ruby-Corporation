@@ -103,4 +103,4 @@ theme = ExtResource("6_asclf")
 theme_type_variation = &"ButtonFlatAlt"
 text = "Close"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CloseButton" to="." method="close"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CloseButton" to="." method="queue_free"]

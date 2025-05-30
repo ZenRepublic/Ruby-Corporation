@@ -7,7 +7,10 @@ var balance:float
 
 func refresh_balance() -> void:
 	if decimals == 0:
-		await SolanaService.get_token_decimals(mint.to_string())
+		if das_metadata.size() > 0:
+			decimals = das_metadata["token_info"]["decimals"]
+		else:
+			await SolanaService.get_token_decimals(mint.to_string())
 	
 	if token_account == null:
 		token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),mint)

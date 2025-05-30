@@ -36,6 +36,3 @@ func set_extra_data(entry:AccountDisplayEntry) -> void:
 	entry.player_score.set_value(lamport_player_value/pow(10,current_campaign_data["reward_mint_decimals"]))
 	
 	entry.show_copy_button(allow_copy_player_address)
-	
-func close() -> void:
-	queue_free()

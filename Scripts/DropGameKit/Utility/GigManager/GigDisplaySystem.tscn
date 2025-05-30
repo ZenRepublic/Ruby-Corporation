@@ -245,4 +245,4 @@ stretch_mode = 5
 [connection signal="pressed" from="MarginContainer/GameDisplay/Content/GameDetails/Actions/CreateCampaignButton" to="." method="create_campaign"]
 [connection signal="pressed" from="MarginContainer/GameDisplay/Content/GameDetails/Actions/ViewCampaignsButton" to="." method="select"]
 [connection signal="pressed" from="MarginContainer/GameDisplay/Content/GameDetails/Actions/FreePlayMode" to="." method="free_play"]
-[connection signal="pressed" from="MarginContainer/GameDisplay/CloseButton/TextureButton" to="." method="close"]
+[connection signal="pressed" from="MarginContainer/GameDisplay/CloseButton/TextureButton" to="." method="queue_free"]

@@ -29,7 +29,10 @@ var house_currency_mint:Pubkey
 var campaign_creation_fee:float
 var manager_creation_fee:float
 
+var house_pda:Pubkey
 var house_data:Dictionary
+
+var managers_in_use:Array
 
 signal on_campaign_created
 
@@ -38,7 +41,9 @@ func _ready() -> void:
 	screen_manager.switch_active_panel(0)
 	
 	max_fund_button.pressed.connect(set_max_fund)	
-	token_selector.on_selected.connect(set_mine_token)
+	token_selector.on_selected.connect(set_campaign_token)
+	
+	manager_selector.on_display_opened.connect(set_manager_collection_gate)
 	manager_selector.on_selected.connect(update_manager_selection)
 	
 	if input_submit_button!=null:
@@ -48,6 +53,7 @@ func _ready() -> void:
 		for input_system in player_settings:
 			input_system.on_fields_updated.connect(handle_input_update)
 			
+	house_pda = ClubhouseProgram.utils.get_active_house_key()
 	house_data = await ClubhouseProgram.utils.get_active_house_data()
 	if house_data.size()==0:
 		print("No active house found. Skipping setting up campaign creator")
@@ -77,6 +83,7 @@ func setup_creator() -> void:
 	var claim_tax_percentage:float = house_config["rewards_tax"]/10.0
 	fee_explanation.text = "*Fees claimable after campaign has finished. House Tax of %s%% is applied!" % str(claim_tax_percentage)
 	
+	managers_in_use = await ClubhouseProgram.utils.get_managers_in_use(house_pda)
 	
 func handle_input_update() -> void:
 	if input_submit_button!=null:
@@ -95,7 +102,7 @@ func get_player_settings() -> DataInputSystem:
 func set_max_fund() -> void:
 	fund_input_field.text = str(fund_input_field.max_value)
 	
-func set_mine_token(selected_asset:WalletAsset) -> void:
+func set_campaign_token(selected_asset:WalletAsset) -> void:
 	var new_token:Token = selected_asset as Token
 
 	if new_token != selected_token:
@@ -109,6 +116,19 @@ func set_mine_token(selected_asset:WalletAsset) -> void:
 			visual.texture = selected_token.image
 
 	handle_input_update()
+	
+func set_manager_collection_gate(display_system:AssetDisplaySystem) -> void:
+	if display_system is not NFTDisplaySystem:
+		push_error("NFT Display system expected, skipping collection gating")
+	var manager_display_system:NFTDisplaySystem = display_system as NFTDisplaySystem
+	var manager_collection_key:Pubkey = house_data["manager_collection"]
+	
+	var collection_filter:NFTCollection = NFTCollection.new()
+	collection_filter.collection_mint = manager_collection_key
+	manager_display_system.collection_filter = [collection_filter]
+	
+	SolanaService.asset_manager.add_collection_to_whitelist(manager_collection_key)
+	manager_display_system.exception_address_list = managers_in_use
 	
 func update_manager_selection(selected_asset:WalletAsset) -> void:
 	selected_manager = selected_asset
@@ -167,7 +187,7 @@ func create_campaign() -> void:
 	
 	if tx_data.is_successful():
 		on_campaign_created.emit()
-		close()
+		queue_free()
 		
 func get_campaign_end_timestamp(start_timestamp:int,campaign_duration_in_hours:int) -> int:
 	#timestamp is in seconds, so we need to convert hours to seconds and add it to the timestamp
@@ -175,6 +195,4 @@ func get_campaign_end_timestamp(start_timestamp:int,campaign_duration_in_hours:i
 	var end_timestamp:int = floori(start_timestamp + duration_in_seconds)
 	return end_timestamp
 	
-func close() -> void:
-	queue_free()
 	

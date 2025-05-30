@@ -1,21 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://btmj6a3kagg46"]
+[gd_scene load_steps=5 format=3 uid="uid://b423d4k6vh0rf"]
 
-[ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="1_4rwe4"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="2_0p8nk"]
-[ext_resource type="Texture2D" uid="uid://bpt1e8u1buonk" path="res://Textures/BrandingAssets/whosthatrubian.png" id="2_sw3gr"]
+[ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="1_fkq1f"]
+[ext_resource type="Texture2D" uid="uid://bpt1e8u1buonk" path="res://Textures/BrandingAssets/whosthatrubian.png" id="2_iryrr"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="3_im4gy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xj6u"]
 bg_color = Color(0.0352941, 0.0627451, 0.054902, 0.866667)
 
-[node name="DisplayableNFTButton" type="MarginContainer" node_paths=PackedStringArray("visual", "select_button", "unavailable_overlay")]
-custom_minimum_size = Vector2(40, 40)
+[node name="CampaignManagerDisplayable" type="MarginContainer" node_paths=PackedStringArray("visual", "select_button", "unavailable_overlay")]
+custom_minimum_size = Vector2(100, 100)
 offset_right = 20.0
 offset_bottom = 20.0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
-script = ExtResource("1_4rwe4")
+script = ExtResource("1_fkq1f")
 visual = NodePath("Visual")
 image_size = 256
 select_button = NodePath("Visual/Button")
@@ -23,7 +23,7 @@ unavailable_overlay = NodePath("Visual/UnavailableOverlay")
 
 [node name="Visual" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("2_sw3gr")
+texture = ExtResource("2_iryrr")
 expand_mode = 2
 stretch_mode = 5
 
@@ -34,7 +34,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_0p8nk")
+theme = ExtResource("3_im4gy")
 theme_type_variation = &"InvisibleButton"
 
 [node name="UnavailableOverlay" type="PanelContainer" parent="Visual"]
@@ -44,12 +44,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_0p8nk")
+theme = ExtResource("3_im4gy")
 theme_type_variation = &"PanelFlat"
 theme_override_styles/panel = SubResource("StyleBoxFlat_0xj6u")
 
 [node name="Label" type="Label" parent="Visual/UnavailableOverlay"]
-visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "BUSY"

@@ -24,12 +24,9 @@ func load_vaults(amount_to_load:int=100) -> void:
 func withdraw_stake(selected_vault:StakeVaultEntry) -> void:
 	var player_campaign_pda:Pubkey = Pubkey.new_from_string(selected_vault.account_id)
 	var player_data:Dictionary = selected_vault.data
-	print(player_data)
-	print(player_data["campaign"].to_string())
+	#print(player_data)
+	#print(player_data["campaign"].to_string())
 	var tx_data:TransactionData = await ClubhouseProgram.withdraw_stake(player_data["campaign"],player_campaign_pda,player_data["stake_info"]["staked_mint"])
 	
 	if tx_data.is_successful():
 		load_vaults()
-	
-func close() -> void:
-	queue_free()

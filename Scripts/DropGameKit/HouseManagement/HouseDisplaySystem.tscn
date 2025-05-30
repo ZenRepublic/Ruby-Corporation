@@ -789,7 +789,7 @@ theme = ExtResource("4_ph3hf")
 theme_override_font_sizes/font_size = 30
 text = "CREATE HOUSE"
 
-[connection signal="pressed" from="Content/Header/MarginContainer/HBoxContainer/TextureButton" to="." method="close"]
+[connection signal="pressed" from="Content/Header/MarginContainer/HBoxContainer/TextureButton" to="." method="queue_free"]
 [connection signal="pressed" from="Content/HouseSelector/VBoxContainer/CreateNewButton" to="." method="go_create_new_house"]
 [connection signal="pressed" from="Content/HouseManager/VBoxContainer/Buttons/BackButton" to="ScreenManager" method="switch_active_panel" binds= [1]]
 [connection signal="pressed" from="Content/HouseManager/VBoxContainer/Buttons/DeleteHouseButton2" to="Content/HouseManager" method="close_house"]

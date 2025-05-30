@@ -285,9 +285,11 @@ theme_type_variation = &"LabelSpecial"
 theme_override_font_sizes/font_size = 30
 text = "Token"
 
-[node name="CampaignOwner" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails"]
+[node name="CampaignOwner" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails" node_paths=PackedStringArray("name_label")]
 layout_mode = 2
 script = ExtResource("10_y2hwd")
+name_label = NodePath("OwnerName")
+max_name_length = 30
 
 [node name="CampaignOwner" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/CampaignOwner"]
 layout_mode = 2
@@ -556,6 +558,6 @@ time_left_prefix = "Close in:"
 activated_text = "Claim and Close"
 enable_on_started = false
 
-[connection signal="pressed" from="Content/Header/MarginContainer/HBoxContainer/TextureButton" to="." method="close"]
+[connection signal="pressed" from="Content/Header/MarginContainer/HBoxContainer/TextureButton" to="." method="queue_free"]
 [connection signal="pressed" from="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/BackButton" to="ScreenManager" method="switch_active_panel" binds= [1]]
 [connection signal="pressed" from="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/CampaignCloseButton" to="Content/CampaignManager" method="close"]

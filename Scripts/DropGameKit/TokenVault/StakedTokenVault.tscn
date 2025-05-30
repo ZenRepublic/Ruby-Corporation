@@ -150,4 +150,4 @@ text = "No STAKE VAULTS FOUND..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="Content/Header/MarginContainer/HBoxContainer/TextureButton" to="." method="close"]
+[connection signal="pressed" from="Content/Header/MarginContainer/HBoxContainer/TextureButton" to="." method="queue_free"]

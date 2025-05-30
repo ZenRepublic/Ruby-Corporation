@@ -40,7 +40,6 @@
 [ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="26_rhk5y"]
 [ext_resource type="Script" uid="uid://xl86n3733lsl" path="res://Scripts/Utility/timed_button.gd" id="27_smv1r"]
 [ext_resource type="Script" uid="uid://c25ievjhcwp5e" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/nft_campaign_player_manager.gd" id="28_qgddy"]
-[ext_resource type="Script" uid="uid://okfi452wp7yu" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/asset_display_system.gd" id="29_evb28"]
 [ext_resource type="PackedScene" uid="uid://btmj6a3kagg46" path="res://Scripts/Web3/UIAssets/DisplayableNFTButton.tscn" id="30_wghwy"]
 [ext_resource type="Texture2D" uid="uid://bpt1e8u1buonk" path="res://Textures/BrandingAssets/whosthatrubian.png" id="32_mgtpg"]
 [ext_resource type="Script" uid="uid://cvjs0lluew8kq" path="res://addons/SolanaSDK/Scripts/NFTGating/token_button_lock.gd" id="33_0s4na"]
@@ -51,6 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://4urmdr7smqjk" path="res://Scripts/DropGameKit/Leaderboard/CampaignLeaderboardDisplay.tscn" id="39_lhivc"]
 [ext_resource type="Script" uid="uid://c50bma6jrp4nc" path="res://Scripts/SoundManagement/sfx_manager.gd" id="51_w3p2m"]
 [ext_resource type="AudioStream" uid="uid://cunnj26stug8q" path="res://Sounds/UI/MainButtonSound.mp3" id="52_3qfoj"]
+[ext_resource type="Script" uid="uid://d0lkrs2tp2u3n" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/nft_display_system.gd" id="52_w3p2m"]
 [ext_resource type="AudioStream" uid="uid://bta85g154ui34" path="res://Sounds/UI/button_press_rich.mp3" id="53_jbkk3"]
 [ext_resource type="AudioStream" uid="uid://dbqxyr7v3x53b" path="res://Sounds/UI/checkmarksound.mp3" id="54_q0bdy"]
 [ext_resource type="AudioStream" uid="uid://xoio1puhisej" path="res://Sounds/UI/errorsound.mp3" id="55_x734p"]
@@ -473,6 +473,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CampaignSelect" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
@@ -679,7 +680,6 @@ theme = ExtResource("7_eupma")
 text = "PLAY NOW!"
 
 [node name="CampaignInteractor" type="MarginContainer" parent="Content/MainScreen/CampaignSelector" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "manager_displayable", "reward_token_displayable", "max_reward_label", "campaign_timer", "campaign_expired_panel", "not_logged_in_panel", "nft_player_manager", "token_player_manager")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
@@ -689,7 +689,7 @@ theme_override_constants/margin_bottom = 30
 script = ExtResource("21_8rpsb")
 campaign_name_label = NodePath("Content/Details/NameContainer/Label")
 gate_displayable = NodePath("Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer/MinerCollectionContainer")
-manager_displayable = NodePath("Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/MineManager")
+manager_displayable = NodePath("Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/CampaignOwner")
 reward_token_displayable = NodePath("Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer/MineTreasury/TreasuryContainer")
 max_reward_label = NodePath("Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/MaxReward/RewardContainer/RewardLabel")
 campaign_timer = NodePath("Content/Details/MineDetails/MarginContainer/VBoxContainer/CampaignTimer")
@@ -834,20 +834,20 @@ decimal_amount = 1
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="MineManager" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer" node_paths=PackedStringArray("name_label")]
+[node name="CampaignOwner" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer" node_paths=PackedStringArray("name_label")]
 layout_mode = 2
 theme_override_constants/separation = 5
 script = ExtResource("24_vxqsd")
-name_label = NodePath("ManagerName")
+name_label = NodePath("OwnerName")
 
-[node name="MineManager" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/MineManager"]
+[node name="OwnerLabel" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/CampaignOwner"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_type_variation = &"LabelInverted"
 theme_override_font_sizes/font_size = 28
-text = "Manager"
+text = "Owner"
 
-[node name="ManagerName" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/MineManager"]
+[node name="OwnerName" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/CampaignOwner"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_type_variation = &"LabelSpecial"
@@ -920,10 +920,9 @@ theme_override_constants/separation = 20
 [node name="PlayerSelection" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content" node_paths=PackedStringArray("container", "no_asset_overlay")]
 layout_mode = 2
 theme_override_constants/separation = 20
-script = ExtResource("29_evb28")
-display_type = Array[int]([1, 3])
-container = NodePath("PanelContainer/ScrollContainer/PlayerList")
+script = ExtResource("52_w3p2m")
 display_entry_scn = ExtResource("30_wghwy")
+container = NodePath("PanelContainer/ScrollContainer/PlayerList")
 das_assets_only = true
 no_asset_overlay = NodePath("PanelContainer/NoPlayerOverlay")
 

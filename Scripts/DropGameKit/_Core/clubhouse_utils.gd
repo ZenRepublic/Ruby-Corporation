@@ -3,9 +3,9 @@ class_name ClubhouseUtils
 
 @export var devnet_house_id:String
 @export var mainnet_house_id:String
-var active_house_data:Dictionary
 
 var active_house_id:String
+var active_house_data:Dictionary
 
 func _ready() -> void:
 	set_house_data(mainnet_house_id,devnet_house_id)
@@ -56,12 +56,17 @@ func get_program_admin_list(fetch_new:bool=false) -> Array[Pubkey]:
 		admin_list.append(admin_data["program_admin"])
 	return admin_list
 	
-func get_managers_in_use(house_key:Pubkey) -> Dictionary:
+func get_managers_in_use(house_key:Pubkey) -> Array:
 	var filter:Array = [
 		{"memcmp" : { "offset":72, "bytes": house_key.to_string()}},
 	]
 	var result:Dictionary = await SolanaService.fetch_all_program_accounts_of_type(ClubhouseProgram.get_program(),"ManagerSlot",filter)
-	return result
+	
+	var managers_in_use:Array[String]
+	for key in result.keys():
+		managers_in_use.append(result[key]["manager"].to_string())
+		
+	return managers_in_use
 	
 func get_campaign_player_data_from_nft_mint(nft_mint:Pubkey,campaign_key:Pubkey) -> Dictionary:
 	var filter:Array = [

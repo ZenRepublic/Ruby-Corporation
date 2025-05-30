@@ -1,7 +1,7 @@
 extends CampaignPlayerManager
 class_name NFTCampaignPlayerManager
 
-@export var player_select_system:AssetDisplaySystem
+@export var player_select_system:NFTDisplaySystem
 @export var player_container:Control
 @export var displayable_player:DisplayableAsset
 @export var energy_bar:ProgressBar
@@ -34,7 +34,7 @@ func setup_player_selection(campaign:Pubkey,data:Dictionary) -> void:
 		player_select_system.collection_filter = [collection_filter]
 		
 		SolanaService.asset_manager.add_collection_to_whitelist(collection_mint)
-		player_select_system.load_all_owned_assets()
+		player_select_system.display_owned_assets()
 	
 	
 func select_player(asset:WalletAsset) -> void:

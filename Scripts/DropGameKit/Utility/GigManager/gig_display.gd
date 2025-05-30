@@ -62,6 +62,3 @@ func select() -> void:
 	
 func create_campaign() -> void:
 	on_create_pressed.emit(self,gig)
-
-func close() -> void:
-	queue_free()

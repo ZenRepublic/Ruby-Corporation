@@ -1,17 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://lgukfb417wvu"]
+[gd_scene load_steps=7 format=3 uid="uid://lgukfb417wvu"]
 
-[ext_resource type="Script" uid="uid://okfi452wp7yu" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/asset_display_system.gd" id="1_btcd8"]
+[ext_resource type="Script" uid="uid://d0lkrs2tp2u3n" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/nft_display_system.gd" id="1_e066m"]
 [ext_resource type="PackedScene" uid="uid://btmj6a3kagg46" path="res://Scripts/Web3/UIAssets/DisplayableNFTButton.tscn" id="2_xmhd2"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="5_6o7rc"]
 [ext_resource type="Texture2D" uid="uid://bdjw50vivwoew" path="res://Textures/Icons/CloseIcon.PNG" id="6_ag12l"]
-[ext_resource type="Texture2D" uid="uid://cq285gbck81as" path="res://Textures/Icons/AddIcon.png" id="6_mhrye"]
 [ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="6_ujc3t"]
-[ext_resource type="Script" uid="uid://bwchk1fr718eh" path="res://addons/texture_button_colored/texture_button_colored.gd" id="7_jinrh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xyly"]
 bg_color = Color(0, 0.443137, 0.439216, 0.94902)
 
-[node name="NFTSelectionDisplay" type="Control" node_paths=PackedStringArray("container", "no_asset_overlay")]
+[node name="NFTSelectionDisplay" type="Control" node_paths=PackedStringArray("container", "none_select_entry")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,13 +17,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-script = ExtResource("1_btcd8")
-display_type = Array[int]([1])
-container = NodePath("MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer")
+script = ExtResource("1_e066m")
 display_entry_scn = ExtResource("2_xmhd2")
+container = NodePath("MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer")
+none_select_entry = NodePath("MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer/NoneSelect")
+entry_minimum_size = Vector2(168, 168)
 close_on_select = true
-destroy_on_close = true
-no_asset_overlay = NodePath("MarginContainer/VBoxContainer/Selection/NoNFTOverlay")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
@@ -100,7 +97,7 @@ theme_override_constants/h_separation = 30
 theme_override_constants/v_separation = 30
 columns = 3
 
-[node name="NoneSelect" type="MarginContainer" parent="MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer" node_paths=PackedStringArray("visual")]
+[node name="NoneSelect" type="MarginContainer" parent="MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer" node_paths=PackedStringArray("visual", "select_button")]
 custom_minimum_size = Vector2(168, 168)
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -110,6 +107,7 @@ theme_override_constants/margin_bottom = 10
 script = ExtResource("6_ujc3t")
 visual = NodePath("Visual")
 image_size = 128
+select_button = NodePath("Visual/Button")
 
 [node name="Visual" type="TextureRect" parent="MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer/NoneSelect"]
 layout_mode = 2
@@ -144,32 +142,4 @@ grow_vertical = 2
 theme = ExtResource("5_6o7rc")
 theme_type_variation = &"InvisibleButton"
 
-[node name="NoNFTOverlay" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Selection"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 35
-alignment = 1
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Selection/NoNFTOverlay"]
-layout_mode = 2
-theme = ExtResource("5_6o7rc")
-theme_type_variation = &"HeaderSmall"
-theme_override_font_sizes/font_size = 41
-text = "No Rubians found
- in wallet..."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BuyRubianButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Selection/NoNFTOverlay"]
-self_modulate = Color(0.8, 0.258824, 0.368627, 1)
-layout_mode = 2
-texture_normal = ExtResource("6_mhrye")
-stretch_mode = 5
-script = ExtResource("7_jinrh")
-theme_override_colors/icon_normal_color = Color(0.8, 0.258824, 0.368627, 1)
-theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_hover_color = Color(0.917647, 0.384314, 0.384314, 1)
-theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/InfoContainer/CloseButton" to="." method="close"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Selection/MarginContainer/ScrollContainer/NFTContainer/NoneSelect/Visual/Button" to="." method="select_none"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/InfoContainer/CloseButton" to="." method="queue_free"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ku1agbhqaohs"]
+[gd_scene load_steps=24 format=3 uid="uid://ku1agbhqaohs"]
 
 [ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="2_p72g2"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="3_if3s2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dchy7ed3ybfi1" path="res://Textures/LogosAndTokens/Zenny token.PNG" id="15_fn7e4"]
 [ext_resource type="Script" uid="uid://dtgnqfycdtl2x" path="res://Scripts/DropGameKit/CampaignManagement/campaign_creator.gd" id="16_r1l70"]
 [ext_resource type="Script" uid="uid://ufej552thaov" path="res://addons/SolanaSDK/Scripts/Utility/Input/data_input_system.gd" id="17_1dqib"]
+[ext_resource type="PackedScene" uid="uid://b423d4k6vh0rf" path="res://Scripts/DropGameKit/CampaignManagement/CampaignManagerDisplayable.tscn" id="17_q838o"]
 [ext_resource type="Script" uid="uid://cja6e8dxjd81x" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="18_j2cfb"]
 [ext_resource type="PackedScene" uid="uid://lx17th5tw38f" path="res://Scripts/Tensor/TensorCollectionDisplay.tscn" id="19_n6sd1"]
 [ext_resource type="Script" uid="uid://be604csg3c63g" path="res://addons/SolanaSDK/Scripts/Utility/Input/date_time_selector.gd" id="20_bxu81"]
@@ -77,7 +78,7 @@ token_visuals = [NodePath("Content/CreatorScreen/ScrollContainer/CampaignSetting
 fee_explanation = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/RewardClaimFee/FeeExplanation")
 creation_fee_label = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer/Cost/ClubCreationFee")
 payment_displayable = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer/Cost")
-input_submit_button = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/Actions/CreateMineButton")
+input_submit_button = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/Actions/CreateCampaignButton")
 
 [node name="ScreenManager" type="Node" parent="." node_paths=PackedStringArray("starting_panel", "screens")]
 script = ExtResource("2_p72g2")
@@ -784,6 +785,7 @@ theme_override_constants/separation = 5
 script = ExtResource("21_losvh")
 displayable_asset = NodePath("DisplayableAssetButton")
 display_system_scn = ExtResource("26_3f2n7")
+custom_entry_scn = ExtResource("17_q838o")
 
 [node name="DisplayableAssetButton" type="MarginContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection" node_paths=PackedStringArray("visual", "name_label", "select_button")]
 custom_minimum_size = Vector2(168, 168)
@@ -896,11 +898,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="CreateMineButton" type="Button" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/Actions"]
+[node name="CreateCampaignButton" type="Button" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/Actions"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("3_if3s2")
 text = "CREATE!"
 
-[connection signal="pressed" from="Content/Header/MarginContainer/HBoxContainer/TextureButton" to="." method="close"]
+[connection signal="pressed" from="Content/Header/MarginContainer/HBoxContainer/TextureButton" to="." method="queue_free"]

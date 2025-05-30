@@ -42,5 +42,3 @@ func handle_campaign_close() -> void:
 	campaign_selector.refresh_account_list()
 	screen_manager.switch_active_panel(1)
 	
-func close() -> void:
-	queue_free()
