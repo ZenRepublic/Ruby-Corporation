@@ -26,7 +26,7 @@ signal on_campaign_closed
 func set_campaign(campaign_id:String,campaign_data:Dictionary) -> void:
 	curr_campaign_data = campaign_data
 	print(curr_campaign_data)
-	var result:Dictionary = await ClubhouseProgram.utils.get_managers_in_use(curr_campaign_data["house"])
+	var result = await ClubhouseProgram.utils.get_managers_in_use(curr_campaign_data["house"])
 	print("AAAHAHAHAHAHAHA :",result)
 	#print(result["2RMG75ydGKLcviZZvU4tL7kZ4iGSVQELhnfXHxPCjWvx"]["manager"].to_string())
 	#print(result["2RMG75ydGKLcviZZvU4tL7kZ4iGSVQELhnfXHxPCjWvx"]["campaign"].to_string())

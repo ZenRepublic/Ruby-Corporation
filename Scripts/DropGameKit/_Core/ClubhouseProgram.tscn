@@ -93,8 +93,16 @@ idl = {
 }, {
 "name": "_reserved_for_token",
 "type": {
-"array": ["u64", 3.0]
+"array": ["u64", 2.0]
 }
+}, {
+"name": "_reserved_bytes",
+"type": {
+"array": ["u8", 7.0]
+}
+}, {
+"name": "burn_remainder",
+"type": "bool"
 }, {
 "name": "rewards_available",
 "type": "u64"
@@ -825,6 +833,9 @@ idl = {
 "defined": "TokenCampaignConfig"
 }
 }
+}, {
+"name": "burn_remainder",
+"type": "bool"
 }],
 "discriminator": [111.0, 131.0, 187.0, 98.0, 160.0, 193.0, 114.0, 244.0],
 "name": "create_campaign"
@@ -939,7 +950,8 @@ idl = {
 "optional": true
 }, {
 "name": "reward_mint",
-"relations": ["campaign"]
+"relations": ["campaign"],
+"writable": true
 }, {
 "name": "reward_vault",
 "pda": {
@@ -1205,8 +1217,16 @@ idl = {
 }, {
 "name": "_reserved_for_token",
 "type": {
-"array": ["u64", 3.0]
+"array": ["u64", 2.0]
 }
+}, {
+"name": "_reserved_bytes",
+"type": {
+"array": ["u8", 7.0]
+}
+}, {
+"name": "burn_remainder",
+"type": "bool"
 }, {
 "name": "rewards_available",
 "type": "u64"

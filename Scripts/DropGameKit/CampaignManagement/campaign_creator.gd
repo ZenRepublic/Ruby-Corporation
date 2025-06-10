@@ -12,6 +12,7 @@ class_name CampaignCreator
 
 @export var fund_input_field:InputField
 @export var max_fund_button:Button
+@export var burn_remainder_checkbox:CheckBox
 
 @export var token_visuals:Array[TextureRect]
 
@@ -34,6 +35,8 @@ var house_data:Dictionary
 
 var managers_in_use:Array
 
+var burn_remainder:bool
+
 signal on_campaign_created
 
 # Called when the node enters the scene tree for the first time.
@@ -41,6 +44,7 @@ func _ready() -> void:
 	screen_manager.switch_active_panel(0)
 	
 	max_fund_button.pressed.connect(set_max_fund)	
+	burn_remainder_checkbox.toggled.connect(set_burn_remainder)
 	token_selector.on_selected.connect(set_campaign_token)
 	
 	manager_selector.on_display_opened.connect(set_manager_collection_gate)
@@ -101,6 +105,9 @@ func get_player_settings() -> DataInputSystem:
 	
 func set_max_fund() -> void:
 	fund_input_field.text = str(fund_input_field.max_value)
+
+func set_burn_remainder(is_on:bool) -> void:
+	burn_remainder = is_on
 	
 func set_campaign_token(selected_asset:WalletAsset) -> void:
 	var new_token:Token = selected_asset as Token
@@ -183,7 +190,7 @@ func create_campaign() -> void:
 			"asset_type": 3 if selected_manager is CoreAsset else 1
 		}
 
-	var tx_data:TransactionData = await ClubhouseProgram.create_campaign(house_pda,currency_mint,campaign_name,reward_mint,fund_amount_lamports,max_reward_lamports,player_claim_fee,timespan,nft_config,token_config,manager_data)
+	var tx_data:TransactionData = await ClubhouseProgram.create_campaign(house_pda,currency_mint,campaign_name,reward_mint,fund_amount_lamports,max_reward_lamports,burn_remainder,player_claim_fee,timespan,nft_config,token_config,manager_data)
 	
 	if tx_data.is_successful():
 		on_campaign_created.emit()

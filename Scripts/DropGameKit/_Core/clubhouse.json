@@ -936,6 +936,10 @@
               "defined": "TokenCampaignConfig"
             }
           }
+        },
+        {
+          "name": "burn_remainder",
+          "type": "bool"
         }
       ]
     },
@@ -1137,6 +1141,7 @@
         },
         {
           "name": "reward_mint",
+          "writable": true,
           "relations": [
             "campaign"
           ]
@@ -1685,9 +1690,22 @@
             "type": {
               "array": [
                 "u64",
-                3
+                2
               ]
             }
+          },
+          {
+            "name": "_reserved_bytes",
+            "type": {
+              "array": [
+                "u8",
+                7
+              ]
+            }
+          },
+          {
+            "name": "burn_remainder",
+            "type": "bool"
           },
           {
             "name": "rewards_available",
@@ -2245,9 +2263,22 @@
             "type": {
               "array": [
                 "u64",
-                3
+                2
               ]
             }
+          },
+          {
+            "name": "_reserved_bytes",
+            "type": {
+              "array": [
+                "u8",
+                7
+              ]
+            }
+          },
+          {
+            "name": "burn_remainder",
+            "type": "bool"
           },
           {
             "name": "rewards_available",

@@ -159,13 +159,13 @@ func get_withdraw_house_fees_instruction(house_name:String, house_currency:Pubke
 	],null)
 	return ix
 
-func create_campaign(house_pda:Pubkey,house_currency:Pubkey,campaign_name:String,reward_mint:Pubkey,fund_amount_lamports:int,max_reward_lamports:int,player_claim_fee:int,timespan:Dictionary,nft_config=null,token_config=null,manager_data=null,custom_data=null) -> TransactionData:
+func create_campaign(house_pda:Pubkey,house_currency:Pubkey,campaign_name:String,reward_mint:Pubkey,fund_amount_lamports:int,max_reward_lamports:int,burn_remainder:bool,player_claim_fee:int,timespan:Dictionary,nft_config=null,token_config=null,manager_data=null,custom_data=null) -> TransactionData:
 	var campaign_keypair:Keypair = Keypair.new_random()
-	var create_campaign_ix:Instruction = get_create_campaign_instruction(campaign_keypair,house_pda,house_currency,campaign_name,reward_mint,fund_amount_lamports,max_reward_lamports,player_claim_fee,timespan,nft_config,token_config,manager_data,custom_data)
+	var create_campaign_ix:Instruction = get_create_campaign_instruction(campaign_keypair,house_pda,house_currency,campaign_name,reward_mint,fund_amount_lamports,max_reward_lamports,burn_remainder,player_claim_fee,timespan,nft_config,token_config,manager_data,custom_data)
 	var tx_data:TransactionData = await send_transaction([create_campaign_ix],null,[campaign_keypair])
 	return tx_data
 
-func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,house_currency:Pubkey,campaign_name:String,reward_mint:Pubkey,fund_amount_lamports:int,max_reward_lamports:int,player_claim_fee:int,timespan:Dictionary,nft_config=null,token_config=null,manager_data=null,custom_data=null) -> Instruction:
+func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,house_currency:Pubkey,campaign_name:String,reward_mint:Pubkey,fund_amount_lamports:int,max_reward_lamports:int,burn_remainder:bool,player_claim_fee:int,timespan:Dictionary,nft_config=null,token_config=null,manager_data=null,custom_data=null) -> Instruction:
 	var campaign_key:Pubkey = campaign_keypair.to_pubkey()
 	var creation_fee_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),house_currency)
 	var reward_depositor_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),reward_mint)
@@ -216,7 +216,8 @@ func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,h
 			"player_claim_price":AnchorProgram.u64(player_claim_fee),
 			"time_span":timespan,
 			"nft_config":AnchorProgram.option(nft_config),
-			"token_config":AnchorProgram.option(token_config)
+			"token_config":AnchorProgram.option(token_config),
+			"burn_remainder":burn_remainder
 		})
 	return ix
 	

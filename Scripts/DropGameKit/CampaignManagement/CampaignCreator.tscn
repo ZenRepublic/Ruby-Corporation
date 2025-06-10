@@ -57,7 +57,7 @@ func select_collection(collection_data:Dictionary) -> void:
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn7e4"]
 bg_color = Color(0.0352941, 0.0627451, 0.054902, 0.709804)
 
-[node name="CampaignCreator" type="Control" node_paths=PackedStringArray("screen_manager", "general_settings", "player_settings_manager", "player_settings", "token_selector", "manager_selector", "fund_input_field", "max_fund_button", "token_visuals", "fee_explanation", "creation_fee_label", "payment_displayable", "input_submit_button")]
+[node name="CampaignCreator" type="Control" node_paths=PackedStringArray("screen_manager", "general_settings", "player_settings_manager", "player_settings", "token_selector", "manager_selector", "fund_input_field", "max_fund_button", "burn_remainder_checkbox", "token_visuals", "fee_explanation", "creation_fee_label", "payment_displayable", "input_submit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,8 +72,9 @@ player_settings_manager = NodePath("Content/CreatorScreen/ScrollContainer/Campai
 player_settings = [NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings"), NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine")]
 token_selector = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/RewardTokenSelector")
 manager_selector = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection")
-fund_input_field = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/TokenSelectContainer/FundAmountContainer/FundInputField")
-max_fund_button = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/TokenSelectContainer/FundAmountContainer/MaxFundButton")
+fund_input_field = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/FundAmountContainer/FundInputField")
+max_fund_button = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/FundAmountContainer/MaxFundButton")
+burn_remainder_checkbox = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/BurnRemainder/BurnRemainderCheckbox")
 token_visuals = [NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/PayoutLimitContainer/TokenVisual")]
 fee_explanation = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/RewardClaimFee/FeeExplanation")
 creation_fee_label = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer/Cost/ClubCreationFee")
@@ -188,7 +189,7 @@ script = ExtResource("17_1dqib")
 input_fields = {
 "campaignDuration": NodePath("TimeSettings/CampaignDuration/HBoxContainer/CampaignLengthInputField"),
 "campaignName": NodePath("GeneralSettings/MineNameInputField"),
-"fundAmount": NodePath("TokenSettings/TokenSelectContainer/FundAmountContainer/FundInputField"),
+"fundAmount": NodePath("TokenSettings/FundAmountContainer/FundInputField"),
 "maxReward": NodePath("TokenSettings/PayoutLimitContainer/PayoutLimitInputField"),
 "rewardsTax": NodePath("RewardClaimFee/ClaimFeeContainer/RewardFeeInputField")
 }
@@ -207,6 +208,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/GeneralSettings"]
+visible = false
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme = ExtResource("3_if3s2")
@@ -229,6 +231,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="PlayerSettings" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer"]
+visible = false
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme = ExtResource("3_if3s2")
@@ -559,21 +562,26 @@ popup/item_0/id = 0
 [node name="CampaignDuration" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TimeSettings"]
 layout_mode = 2
 theme_override_constants/separation = 10
-alignment = 2
 
 [node name="CampaignLength" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TimeSettings/CampaignDuration"]
 custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
 theme = ExtResource("3_if3s2")
-theme_override_font_sizes/font_size = 24
 text = "Duration"
 vertical_alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TimeSettings/CampaignDuration"]
+[node name="HBoxContainer" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TimeSettings/CampaignDuration"]
 layout_mode = 2
+size_flags_vertical = 8
+
+[node name="hours" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TimeSettings/CampaignDuration/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_if3s2")
+text = "Hours"
+horizontal_alignment = 1
 
 [node name="CampaignLengthInputField" type="LineEdit" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TimeSettings/CampaignDuration/HBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_if3s2")
@@ -585,13 +593,6 @@ input_type = 1
 min_length = 1
 min_value = 1.0
 max_value = 168.0
-
-[node name="hours" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TimeSettings/CampaignDuration/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_if3s2")
-theme_override_font_sizes/font_size = 24
-text = "Hours"
-horizontal_alignment = 1
 
 [node name="TokenSettings" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings"]
 layout_mode = 2
@@ -677,16 +678,12 @@ layout_mode = 2
 theme = ExtResource("3_if3s2")
 theme_type_variation = &"InvisibleButton"
 
-[node name="TokenSelectContainer" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="FundAmountContainer" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/TokenSelectContainer"]
+[node name="FundAmountContainer" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="FundInputField" type="LineEdit" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/TokenSelectContainer/FundAmountContainer"]
+[node name="FundInputField" type="LineEdit" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/FundAmountContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -699,7 +696,7 @@ input_type = 2
 max_value = -1.0
 allow_zero = false
 
-[node name="MaxFundButton" type="Button" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/TokenSelectContainer/FundAmountContainer"]
+[node name="MaxFundButton" type="Button" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/FundAmountContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme = ExtResource("3_if3s2")
@@ -733,6 +730,19 @@ script = ExtResource("18_j2cfb")
 input_type = 2
 max_value = -1.0
 allow_zero = false
+
+[node name="BurnRemainder" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PayoutLimit" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/BurnRemainder"]
+layout_mode = 2
+theme = ExtResource("3_if3s2")
+theme_override_font_sizes/font_size = 28
+text = "Burn reward remainder?"
+
+[node name="BurnRemainderCheckbox" type="CheckBox" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/BurnRemainder"]
+layout_mode = 2
 
 [node name="RewardClaimFee" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings"]
 layout_mode = 2
@@ -797,7 +807,7 @@ theme_override_constants/margin_bottom = 10
 script = ExtResource("10_mi3qm")
 visual = NodePath("Visual")
 image_size = 256
-name_label = NodePath("../../PriceSettings/MineOwnerSettings/ManagerName")
+name_label = NodePath("../../PriceSettings/OwnerSettings/ManagerName")
 select_button = NodePath("Visual/Button")
 
 [node name="Visual" type="TextureRect" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton"]
@@ -839,17 +849,17 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="MineOwnerSettings" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings"]
+[node name="OwnerSettings" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/MineOwnerSettings"]
+[node name="Label" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/OwnerSettings"]
 layout_mode = 2
 theme = ExtResource("3_if3s2")
 text = "Campaign Owner"
 vertical_alignment = 1
 
-[node name="ManagerName" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/MineOwnerSettings"]
+[node name="ManagerName" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/OwnerSettings"]
 layout_mode = 2
 theme = ExtResource("3_if3s2")
 theme_type_variation = &"HeaderMedium"
