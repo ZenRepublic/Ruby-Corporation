@@ -243,9 +243,10 @@ autowrap_mode = 3
 [node name="PlayerTypeSelection" type="TabContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer"]
 layout_mode = 2
 theme = ExtResource("3_if3s2")
-current_tab = 0
+current_tab = 1
 
 [node name="NFT" type="TabBar" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection"]
+visible = false
 custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
 metadata/_tab_index = 0
@@ -347,7 +348,6 @@ max_value = 1440.0
 allow_zero = false
 
 [node name="Token" type="TabBar" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection"]
-visible = false
 custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
 metadata/_tab_index = 1
@@ -387,7 +387,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("3_if3s2")
 theme_override_colors/font_outline_color = Color(0.788235, 0.45098, 0.45098, 1)
-text = "ZENY75w6wyd4GY1Bmk1XXAFXGJaFZmuSpVDT7LLx5C3"
+text = "tTxYt4VGT47esMgAF6W6Y285Z4hgRv85QHYv3Csindi"
 placeholder_text = "Enter Token Address..."
 max_length = 44
 script = ExtResource("18_j2cfb")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://dmdb8dbmov2cl"]
+[gd_scene load_steps=70 format=3 uid="uid://dmdb8dbmov2cl"]
 
 [ext_resource type="Script" uid="uid://uxfmmvq5egiv" path="res://Scripts/Menu/menu_manager.gd" id="1_l0w8j"]
 [ext_resource type="AudioStream" uid="uid://bj4v18wnuvk8g" path="res://Sounds/Music/RubyCorporationTheme.mp3" id="2_3qfoj"]
@@ -57,6 +57,7 @@
 [ext_resource type="AudioStream" uid="uid://b0vf2eljmdfgc" path="res://Sounds/UI/TransactionFailed.mp3" id="56_mbdwi"]
 [ext_resource type="AudioStream" uid="uid://dfmwym0j8y55n" path="res://Sounds/UI/returnsound.mp3" id="57_3y7mu"]
 [ext_resource type="AudioStream" uid="uid://cm278a24mieti" path="res://Sounds/UI/slideradjusts.mp3" id="58_l7o23"]
+[ext_resource type="PackedScene" uid="uid://cfoaj5g1rjjyr" path="res://Scripts/DropGameKit/Utility/GigManager/GigDownloadOverlay.tscn" id="59_3qfoj"]
 [ext_resource type="PackedScene" uid="uid://opkwvwup8u86" path="res://Scenes/Settings.tscn" id="74_k04pn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8eq28"]
@@ -339,9 +340,11 @@ mini_gig_display_scn = ExtResource("20_jvcv6")
 display_scn = ExtResource("23_ydj5n")
 gig_creator_scn = ExtResource("24_oor3o")
 gig_loader_pck = NodePath("GigLoaderPCK")
+use_local_pck = false
 
 [node name="GigLoaderPCK" type="Node" parent="Content/MainScreen/GigManager"]
 script = ExtResource("25_h64ul")
+download_overlay_scn = ExtResource("59_3qfoj")
 metadata/_custom_type_script = "uid://stjjh12o1oou"
 
 [node name="Content" type="VBoxContainer" parent="Content/MainScreen/GigManager"]
@@ -473,7 +476,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CampaignSelect" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
@@ -509,7 +511,7 @@ size_flags_horizontal = 3
 theme = ExtResource("7_eupma")
 text = "Select an active campaign to play. 
 
-Note: you can only participate if you hold the desired assets!"
+Note: you can only participate if you hold the required assets!"
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -680,6 +682,7 @@ theme = ExtResource("7_eupma")
 text = "PLAY NOW!"
 
 [node name="CampaignInteractor" type="MarginContainer" parent="Content/MainScreen/CampaignSelector" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "manager_displayable", "reward_token_displayable", "max_reward_label", "campaign_timer", "campaign_expired_panel", "not_logged_in_panel", "nft_player_manager", "token_player_manager")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30

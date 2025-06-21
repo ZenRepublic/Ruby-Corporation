@@ -1,0 +1,170 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfoaj5g1rjjyr"]
+
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="1_felhf"]
+[ext_resource type="FontFile" uid="uid://bejmqqm6xywit" path="res://Fonts/Hergiev.ttf" id="2_gkpsr"]
+[ext_resource type="Script" uid="uid://5hv4pjs1xcht" path="res://addons/richtext2/text_effects/anims/rte_fader.gd" id="3_vetgr"]
+[ext_resource type="Script" uid="uid://i8bg2nawwnn0" path="res://addons/richtext2/text_effects/effects/rte_sin.gd" id="4_f1isw"]
+[ext_resource type="Script" uid="uid://b6mbstaftpedd" path="res://addons/richtext2/rich_text_animation.gd" id="5_dfqbh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3y7mu"]
+bg_color = Color(0, 0.443137, 0.439216, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_felhf"]
+base_font = ExtResource("2_gkpsr")
+variation_embolden = -0.25
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_gkpsr"]
+base_font = ExtResource("2_gkpsr")
+variation_embolden = 1.5
+variation_transform = Transform2D(1, 0.25, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_vetgr"]
+base_font = ExtResource("2_gkpsr")
+variation_embolden = 1.5
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_f1isw"]
+resource_name = "fader"
+script = ExtResource("3_vetgr")
+metadata/rt = 17504961408132
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_dfqbh"]
+resource_name = "sin"
+script = ExtResource("4_f1isw")
+metadata/rt = 17504961408132
+
+[node name="GigDownloadOverlay" type="CanvasLayer"]
+layer = 90
+
+[node name="Content" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="Panel" parent="Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_felhf")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3y7mu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="Content/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 83)
+layout_mode = 2
+theme = ExtResource("1_felhf")
+theme_type_variation = &"HeaderMedium"
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25)
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/normal_font = ExtResource("2_gkpsr")
+theme_override_fonts/italics_font = SubResource("FontVariation_felhf")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_gkpsr")
+theme_override_fonts/bold_font = SubResource("FontVariation_vetgr")
+theme_override_font_sizes/bold_italics_font_size = 75
+theme_override_font_sizes/italics_font_size = 75
+theme_override_font_sizes/mono_font_size = 75
+theme_override_font_sizes/normal_font_size = 75
+theme_override_font_sizes/bold_font_size = 75
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_f1isw"), SubResource("RichTextEffect_dfqbh")]
+script = ExtResource("5_dfqbh")
+progress = 1.0
+visible_character = 18
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 162, 68), Transform2D(1, 0, 0, 1, 191, 68), Transform2D(1, 0, 0, 1, 237, 68), Transform2D(1, 0, 0, 1, 271, 68), Transform2D(1, 0, 0, 1, 296, 68), Transform2D(1, 0, 0, 1, 325, 68), Transform2D(1, 0, 0, 1, 362, 68), Transform2D(1, 0, 0, 1, 397, 68), Transform2D(1, 0, 0, 1, 411, 68), Transform2D(1, 0, 0, 1, 445, 68), Transform2D(1, 0, 0, 1, 475, 68), Transform2D(1, 0, 0, 1, 493, 68), Transform2D(1, 0, 0, 1, 524, 68), Transform2D(1, 0, 0, 1, 538, 68), Transform2D(1, 0, 0, 1, 568, 68), Transform2D(1, 0, 0, 1, 576, 68), Transform2D(1, 0, 0, 1, 584, 68)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(30, 53), Vector2(48, 53), Vector2(34, 53), Vector2(27, 53), Vector2(30, 53), Vector2(38, 53), Vector2(37, 53), Vector2(13, 53), Vector2(34, 53), Vector2(32, 53), Vector2(0, 53), Vector2(32, 53), Vector2(13, 53), Vector2(32, 53), Vector2(8, 53), Vector2(8, 53), Vector2(8, 53)])
+_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_forced_finish_delay = -0.0486393
+default_wait_time = 1.0
+play_on_bbcode = true
+play_speed = 30.0
+fade_out = false
+fade_in_speed = 10.0
+fade_out_speed = 120.0
+ctc_offset = Vector2(1, -0.5)
+ctc_on_finished = false
+ctc_on_wait = false
+shortcut_expression = true
+shortcut_bookmark = true
+signal_quotes = true
+signal_stars = true
+bbcode = "[sin]DOWNLOADING GIG...[]"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "Hergiev"
+font_auto_setup = true
+font_size = 75
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://b6mbstaftpedd"
+
+[node name="Label2" type="Label" parent="Content/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "NOTE: The gig will be placed in your device's local storage.
+
+You won't need to download it each time!"
+horizontal_alignment = 1
+autowrap_mode = 2

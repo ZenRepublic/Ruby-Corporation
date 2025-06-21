@@ -2,6 +2,7 @@ extends Node
 class_name GigLoaderPCK
 
 @export var gigs_storage_dir:String = "user://Gigs/"
+@export var download_overlay_scn:PackedScene
 
 var curr_gig:ClubhouseGig
 
@@ -41,6 +42,9 @@ func load_gig(gig:ClubhouseGig, local: bool) -> bool:
 			if !delete_success:
 				push_error("❌ Failed to delete older gig version")
 				return false
+				
+	var download_overlay = download_overlay_scn.instantiate()
+	get_tree().root.add_child(download_overlay)
 	
 	var file_location = gigs_storage_dir + new_gig_name
 	if !FileAccess.file_exists(file_location):
@@ -52,6 +56,9 @@ func load_gig(gig:ClubhouseGig, local: bool) -> bool:
 			await load_gig_remote(path_to_pck,file_location)
 	
 	var success:bool = ProjectSettings.load_resource_pack(file_location)
+	
+	download_overlay.queue_free()
+	
 	if !success:
 		push_error("❌ Failed to load Gig PCK file")
 		return false

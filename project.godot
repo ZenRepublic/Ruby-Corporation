@@ -39,7 +39,6 @@ AutoloadBridge="*res://Scripts/DropGameKit/Utility/AutoloadBridge/AutoloadBridge
 window/size/viewport_width=720
 window/size/viewport_height=1280
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep_width"
 window/handheld/orientation=1
 window/vsync/vsync_mode=0
 mouse_cursor/custom_image="uid://d0cleik0nsn8d"

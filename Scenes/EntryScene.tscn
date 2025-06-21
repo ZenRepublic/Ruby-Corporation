@@ -1,0 +1,242 @@
+[gd_scene load_steps=12 format=3 uid="uid://vra0sq016rix"]
+
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="1_4fqji"]
+[ext_resource type="Script" uid="uid://dsnp1aipd4sbd" path="res://Scripts/Menu/app_entrance.gd" id="1_o3bu2"]
+[ext_resource type="Texture2D" uid="uid://bpwp0rarwasey" path="res://Textures/LogosAndTokens/Logo no bg.PNG" id="3_ippa2"]
+[ext_resource type="Script" uid="uid://w7ftxsbvwiax" path="res://addons/SolanaSDK/Scripts/Utility/linked_button.gd" id="4_gqp6j"]
+[ext_resource type="Script" uid="uid://1o2jk85kh0ia" path="res://Scripts/Utility/password_lock.gd" id="5_welkv"]
+[ext_resource type="Script" uid="uid://ufej552thaov" path="res://addons/SolanaSDK/Scripts/Utility/Input/data_input_system.gd" id="6_sxiai"]
+[ext_resource type="Script" uid="uid://cja6e8dxjd81x" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="7_vtd2f"]
+[ext_resource type="Texture2D" uid="uid://d2tefsw6ll4mb" path="res://Textures/LogosAndTokens/Rubian dc pfp.png" id="8_cxjp0"]
+[ext_resource type="Texture2D" uid="uid://bt0xemhki3u5b" path="res://Textures/BrandingAssets/Ouchie.png" id="10_ippa2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqp6j"]
+bg_color = Color(0.00392157, 0.235294, 0.231373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_welkv"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="EntryScene" type="Control" node_paths=PackedStringArray("ios_incompatible_overlay")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o3bu2")
+path_to_scene = "res://Scenes/MainMenu.tscn"
+ios_incompatible_overlay = NodePath("iOSincompatibleOverlay")
+
+[node name="Background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4fqji")
+
+[node name="LoadingLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4fqji")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 131
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PasswordLock" type="MarginContainer" parent="." node_paths=PackedStringArray("password_input_system", "unlock_button", "error_label")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+script = ExtResource("5_welkv")
+password_input_system = NodePath("DataInputSystem")
+unlock_button = NodePath("Panel/MarginContainer/VBoxContainer/PasswordChecker/Button")
+error_label = NodePath("Panel/MarginContainer/VBoxContainer/PasswordChecker/PasswordIncorrect")
+
+[node name="DataInputSystem" type="Node" parent="PasswordLock"]
+script = ExtResource("6_sxiai")
+input_fields = {
+"password": NodePath("../Panel/MarginContainer/VBoxContainer/PasswordChecker/InputField")
+}
+
+[node name="Panel" type="PanelContainer" parent="PasswordLock"]
+layout_mode = 2
+theme = ExtResource("1_4fqji")
+theme_type_variation = &"PanelFlat"
+
+[node name="MarginContainer" type="MarginContainer" parent="PasswordLock/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PasswordLock/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Intro" type="VBoxContainer" parent="PasswordLock/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Logo" type="TextureRect" parent="PasswordLock/Panel/MarginContainer/VBoxContainer/Intro"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+texture = ExtResource("3_ippa2")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Introduction" type="Label" parent="PasswordLock/Panel/MarginContainer/VBoxContainer/Intro"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+text = "The first gamified work platform.
+Drop any token to any asset gated community through gigs!
+
+Public access right after TGE on indie.fun"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="PasswordLock/Panel/MarginContainer/VBoxContainer/Intro" node_paths=PackedStringArray("button")]
+custom_minimum_size = Vector2(460, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_4fqji")
+theme_type_variation = &"ButtonFlatAlt"
+text = "APPLY FOR WHITELIST"
+script = ExtResource("4_gqp6j")
+button = NodePath(".")
+link = "https://indie.fun/ruby-corp"
+
+[node name="PasswordChecker" type="VBoxContainer" parent="PasswordLock/Panel/MarginContainer/VBoxContainer" node_paths=PackedStringArray("password_input_system", "unlock_button", "error_label")]
+layout_mode = 2
+theme_override_constants/separation = 30
+script = ExtResource("5_welkv")
+password_input_system = NodePath("../../../../DataInputSystem")
+unlock_button = NodePath("Button")
+error_label = NodePath("PasswordIncorrect")
+
+[node name="InputField" type="LineEdit" parent="PasswordLock/Panel/MarginContainer/VBoxContainer/PasswordChecker"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+placeholder_text = "Enter Password..."
+script = ExtResource("7_vtd2f")
+metadata/_custom_type_script = "uid://cja6e8dxjd81x"
+
+[node name="Button" type="Button" parent="PasswordLock/Panel/MarginContainer/VBoxContainer/PasswordChecker"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("1_4fqji")
+text = "UNLOCK"
+
+[node name="PasswordIncorrect" type="Label" parent="PasswordLock/Panel/MarginContainer/VBoxContainer/PasswordChecker"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme = ExtResource("1_4fqji")
+theme_type_variation = &"LabelSpecial"
+theme_override_colors/font_color = Color(0.996078, 0.164706, 0.0117647, 1)
+text = "Password incorrect!
+Please try again"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PoweredBy" type="HBoxContainer" parent="PasswordLock/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Label" type="Label" parent="PasswordLock/Panel/MarginContainer/VBoxContainer/PoweredBy"]
+layout_mode = 2
+text = "Powered by Rubians"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PasswordLock/Panel/MarginContainer/VBoxContainer/PoweredBy"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("8_cxjp0")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="iOSincompatibleOverlay" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="BG" type="Panel" parent="iOSincompatibleOverlay"]
+layout_mode = 2
+theme = ExtResource("1_4fqji")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gqp6j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="iOSincompatibleOverlay"]
+layout_mode = 2
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="Sorry" type="Label" parent="iOSincompatibleOverlay/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_4fqji")
+theme_type_variation = &"HeaderLarge"
+text = "SORRY, FAM..."
+
+[node name="Description" type="Label" parent="iOSincompatibleOverlay/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_4fqji")
+text = "iOS devices are not supported at the time cause of memory limits...
+
+Basically, the gigs are too cool for iphones to handle
+
+Let us cook, we'll make it happen"
+autowrap_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="iOSincompatibleOverlay/VBoxContainer"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_welkv")
+
+[node name="Ouchie" type="TextureRect" parent="iOSincompatibleOverlay/VBoxContainer/PanelContainer"]
+custom_minimum_size = Vector2(470, 470)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_ippa2")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Team" type="Label" parent="iOSincompatibleOverlay/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_4fqji")
+text = "- Rubians Team"
+horizontal_alignment = 2
+autowrap_mode = 2
