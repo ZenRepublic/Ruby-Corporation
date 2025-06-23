@@ -133,7 +133,7 @@ theme_override_constants/separation = 30
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme = ExtResource("4_ph3hf")
-text = "Create new Drop Games and edit their settings."
+text = "Create new Gigs and edit their settings."
 autowrap_mode = 2
 
 [node name="HouseDisplaySystem" type="PanelContainer" parent="Content/HouseSelector/VBoxContainer"]

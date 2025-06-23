@@ -380,7 +380,7 @@ option_selectors = {
 [node name="Token address" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine"]
 layout_mode = 2
 theme = ExtResource("3_if3s2")
-text = "Token Address"
+text = "Token Contract Address"
 
 [node name="TokenAddressInputField" type="LineEdit" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine"]
 custom_minimum_size = Vector2(0, 50)

@@ -1,4 +1,18 @@
 $RUBY mainnet: tTxYt4VGT47esMgAF6W6Y285Z4hgRv85QHYv3Csindi
-$RUBY devnet: 3APYuuDxRbszts3Ek6BT6jfqmRwwkEZCE1XyLoMeVEgd
+$RUBY devnet: 75Dr5AJ1FxN2ktyS4uUvneMshXEcm8GTneLXZ1RbMsRb
 
-	
+
+
+
+Big Diggas Mainnet: 9US5WfyP4MQLSi6whRUGRcd1P8TDo3pcXJqg3mMTcxRD
+Big Diggas Devnet: 3E6qVGqX73uNVQctV5oNtyyRp3Dyh5BRat4HrYdmuNU8
+
+Launching Soon Mainnet: GMbLwARADNimVFqVZ65xhRrYVMv1zLfHCYyK7GW8Smyb
+Launching Soon Devnet: GvSS5ZnDCyvKPCP1sZP6kCx26AzR6o6nMBZkWDJA4XVj
+
+
+Old Big Diggas Mainnet: FcxGPktM2MJJ9qTxwiEVKJxHTpvatoFawKGq46SJxviG
+Olf Big Diggas Devnet: 2p41ueUZtCKWXPdbMVVKr3aJMSnVWzQDczZFiaV9PXmf
+
+Old Launching Soon Mainnet: FcxGPktM2MJJ9qTxwiEVKJxHTpvatoFawKGq46SJxviG
+Old Launching Soon Devnet: 2p41ueUZtCKWXPdbMVVKr3aJMSnVWzQDczZFiaV9PXmf

@@ -19,12 +19,12 @@ bg_color = Color(0, 0.443137, 0.439216, 1)
 [sub_resource type="RichTextEffect" id="RichTextEffect_dluiu"]
 resource_name = "fader"
 script = ExtResource("10_dluiu")
-metadata/rt = 12504898055690
+metadata/rt = 2412899290725
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_emkyi"]
 resource_name = "sin"
 script = ExtResource("11_emkyi")
-metadata/rt = 12504898055690
+metadata/rt = 2412899290725
 
 [node name="WalletAdapterUI" type="Control" node_paths=PackedStringArray("selection_spawn", "cancel_button", "signing_overlay")]
 layout_mode = 3
@@ -154,12 +154,10 @@ bbcode_enabled = true
 fit_content = true
 custom_effects = [SubResource("RichTextEffect_dluiu"), SubResource("RichTextEffect_emkyi")]
 script = ExtResource("12_dgufw")
-progress = 1.0
-visible_character = 13
 _transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
 _char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
-_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
-_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+_alpha_goal = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
 _forced_finish_delay = -0.0486393
 default_wait_time = 1.0
 play_on_bbcode = true

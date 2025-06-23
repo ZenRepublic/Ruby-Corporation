@@ -292,7 +292,9 @@ func start_game(house_pda:Pubkey,oracle:Pubkey,campaign_key:Pubkey,reward_mint:P
 		var player_id:Pubkey = game_data["asset"] if game_data.has("asset") else SolanaService.wallet.get_pubkey() 
 		
 		if server.is_set():
+			print("GETTING DATA")
 			var player_data:Dictionary = await server.get_player_data(house_pda,campaign_key,player_id)
+			print("GOT DATA")
 			if !player_data.has("error") and player_data.has("unclaimed_amount"):
 				unclaimed_amount = player_data["unclaimed_amount"]
 				

@@ -476,6 +476,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CampaignSelect" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
@@ -682,7 +683,6 @@ theme = ExtResource("7_eupma")
 text = "PLAY NOW!"
 
 [node name="CampaignInteractor" type="MarginContainer" parent="Content/MainScreen/CampaignSelector" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "manager_displayable", "reward_token_displayable", "max_reward_label", "campaign_timer", "campaign_expired_panel", "not_logged_in_panel", "nft_player_manager", "token_player_manager")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
@@ -898,6 +898,7 @@ enable_on_started = false
 enable_on_finished = false
 
 [node name="NFTPlayerManager" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content" node_paths=PackedStringArray("player_select_system", "player_container", "displayable_player", "energy_bar", "energy_bar_label", "recharge_timed_button", "play_button")]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vuurv")
 script = ExtResource("28_qgddy")
@@ -1087,7 +1088,6 @@ lock_active = false
 locked_text = "NEED SOL"
 
 [node name="TokenPlayerOverview" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content" node_paths=PackedStringArray("mode_screen_manager", "balance_displayable", "price_displayable", "price_label", "play_button")]
-visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jhlh1")
 script = ExtResource("34_g4wnk")

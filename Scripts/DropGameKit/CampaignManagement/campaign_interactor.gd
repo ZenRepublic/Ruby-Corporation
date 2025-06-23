@@ -35,7 +35,6 @@ func game_start_relay(campaign:Pubkey,data:Dictionary,player_data:Dictionary) ->
 		
 # Called when the node enters the scene tree for the first time.
 func set_campaign_data(id:String,data:Dictionary) -> void:
-	print(data)
 	disable_campaign(false)
 	curr_campaign_data = data
 	campaign_key = Pubkey.new_from_string(id)
