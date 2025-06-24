@@ -18,7 +18,10 @@ func _ready() -> void:
 	campaigns_button.visible=false
 	settings_screen.visible=false
 	
-	SolanaService.wallet.on_login_success.connect(handle_login)
+	if SolanaService.wallet.is_logged_in():
+		handle_login()
+	else:
+		SolanaService.wallet.on_login_success.connect(handle_login)
 	
 	login_button.pressed.connect(try_login)
 	vault_button.pressed.connect(open_player_vault)

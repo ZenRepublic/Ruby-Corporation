@@ -249,13 +249,13 @@ func get_close_campaign_instruction(house_pda:Pubkey,campaign_key:Pubkey,campaig
 	var player_nft_metadata_account:Pubkey = null
 	var core_asset_account:Pubkey=null
 	var manager_slot_pda:Pubkey=null
-	if manager_data!=null and manager_data.has("asset"):
-		if manager_data["asset_type"] == 1:
-			player_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),manager_data["asset"])
-			player_nft_metadata_account = ClubhousePDA.get_nft_metadata_pda(manager_data["asset"])
-		elif manager_data["asset_type"] == 3:
-			core_asset_account = manager_data["asset"]
-		manager_slot_pda = ClubhousePDA.get_campaign_manager_pda(house_pda,manager_data["asset"])
+	#if manager_data!=null and manager_data.has("asset"):
+		#if manager_data["asset_type"] == 1:
+			#player_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),manager_data["asset"])
+			#player_nft_metadata_account = ClubhousePDA.get_nft_metadata_pda(manager_data["asset"])
+		#elif manager_data["asset_type"] == 3:
+			#core_asset_account = manager_data["asset"]
+		#manager_slot_pda = ClubhousePDA.get_campaign_manager_pda(house_pda,manager_data["asset"])
 		
 	var ix:Instruction = program.build_instruction("close_campaign",[	
 		campaign_key,
