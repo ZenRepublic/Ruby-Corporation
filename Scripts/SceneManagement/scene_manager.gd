@@ -106,6 +106,9 @@ func load_particles(particles:Array) -> void:
 	await particle_cache.cache_particles(particles)
 	
 func finalize_scene_load() -> void:
+	if transition_instance==null:
+		return
+		
 	fade_out_started.emit()
 	await transition_instance.fade_out()
 	fade_out_ended.emit()

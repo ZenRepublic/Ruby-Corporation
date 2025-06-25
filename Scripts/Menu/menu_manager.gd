@@ -46,6 +46,7 @@ func load_gig(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionar
 			"CampaignData":campaign_data,
 			"PlayerData":player_data
 			},false)
+		MusicManager.stop_song(1.0)
 		
 func load_gig_free_mode() -> void:
 	play_ui_sound("ButtonSimple")
@@ -53,3 +54,4 @@ func load_gig_free_mode() -> void:
 	
 	if scene_to_load!=null:
 		SceneManager.load_scene(scene_to_load,true,-1,0.0,{"FreePlay":true},false)
+		MusicManager.stop_song(1.0)
