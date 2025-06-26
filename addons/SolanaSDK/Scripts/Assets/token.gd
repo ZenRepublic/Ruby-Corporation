@@ -1,9 +1,9 @@
 extends WalletAsset
 class_name Token
 
-var token_account:Pubkey
-var decimals:int
-var balance:float
+@export var token_account:Pubkey
+@export var decimals:int
+@export var balance:float
 
 func refresh_balance() -> void:
 	if decimals == 0:
@@ -31,4 +31,5 @@ func get_asset_owner() -> Pubkey:
 	var account_info:Dictionary = await SolanaService.get_account_info(token_account)
 	var owner_address:Pubkey = account_info["result"]["value"]["owner"]
 	return owner_address
+	
 	

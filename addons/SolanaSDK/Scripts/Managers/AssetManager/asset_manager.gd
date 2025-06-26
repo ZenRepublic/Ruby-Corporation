@@ -130,7 +130,6 @@ func create_asset(asset_mint:Pubkey, asset_data,load_texture:bool) -> WalletAsse
 		
 	var existing_asset:WalletAsset = get_owned_asset(metadata.get_mint())
 	if existing_asset!= null:
-		print("Asset already loaded, skipping creation")
 		return existing_asset
 		
 	var asset_type:AssetType = get_asset_type(metadata)
@@ -141,20 +140,24 @@ func create_asset(asset_mint:Pubkey, asset_data,load_texture:bool) -> WalletAsse
 		AssetType.MISSING:
 			var asset:WalletAsset = WalletAsset.new()
 			await asset.set_data(asset_mint,metadata,asset_data,asset_type,load_texture)
+			owned_assets.append(asset)
 			return asset
 		AssetType.NFT:
 			var nft:Nft = Nft.new()
 			await nft.set_data(asset_mint,metadata,asset_data,asset_type,load_texture)
+			owned_assets.append(nft)
 			return nft
 		AssetType.TOKEN:
 			var token:Token = Token.new()
 			await token.set_data(asset_mint,metadata,asset_data,asset_type,load_texture)
 			if load_token_balances:
 				await token.refresh_balance()
+			owned_assets.append(token)
 			return token
 		AssetType.CORE:
 			var asset:CoreAsset = CoreAsset.new()
 			await asset.set_data(asset_mint,metadata,asset_data,asset_type,load_texture)
+			owned_assets.append(asset)
 			return asset
 			
 	return null
@@ -184,6 +187,11 @@ func get_asset_type(metadata:MetaData) -> AssetType:
 func get_owned_asset(asset_mint:Pubkey) -> WalletAsset:
 	for asset in owned_assets:
 		if asset.mint.to_string() == asset_mint.to_string():
+			if asset is Token:
+#				for tokens create duplicates because might be a different token account each time with different balances
+				var duplicate:Token = asset.duplicate(true)
+				duplicate.token_account = null
+				return duplicate
 			return asset
 	return null
 
