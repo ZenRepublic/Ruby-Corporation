@@ -10,6 +10,9 @@ extends AccountDisplayEntry
 
 var player_address:Pubkey
 
+func _ready() -> void:
+	copy_address_button.pressed.connect(copy_holder_wallet_address)
+
 func setup_account_entry(id:String,account_data:Dictionary,index:int) -> void:
 	super.setup_account_entry(id,account_data,index)
 	

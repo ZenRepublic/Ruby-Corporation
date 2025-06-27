@@ -5,11 +5,14 @@ class_name CampaignManager
 @export var gate_displayable:DisplayableAsset
 @export var owner_displayable:DisplayableAsset
 @export var campaign_type_label:Label
+@export var max_reward_displayable:DisplayableAsset
+
 @export var treasury_token_displayable:DisplayableAsset
-@export var deposit_token_displayable:DisplayableAsset
+
 @export var total_games_label:Label
 @export var unique_players_label:Label
-@export var max_reward_label:NumberLabel
+@export var deposit_token_displayable:DisplayableAsset
+@export var not_available_deposit_label:Label
 
 @export var leaderboard:CampaignLeaderboard
 
@@ -27,13 +30,15 @@ func set_campaign(campaign_id:String,campaign_data:Dictionary) -> void:
 	curr_campaign_data = campaign_data
 	print(curr_campaign_data)
 	var result = await ClubhouseProgram.utils.get_managers_in_use(curr_campaign_data["house"])
-	print("AAAHAHAHAHAHAHA :",result)
 	#print(result["2RMG75ydGKLcviZZvU4tL7kZ4iGSVQELhnfXHxPCjWvx"]["manager"].to_string())
 	#print(result["2RMG75ydGKLcviZZvU4tL7kZ4iGSVQELhnfXHxPCjWvx"]["campaign"].to_string())
 	#print(result["2RMG75ydGKLcviZZvU4tL7kZ4iGSVQELhnfXHxPCjWvx"]["house"].to_string())
 	
 	campaign_key = Pubkey.new_from_string(campaign_id)
 	campaign_name_label.text = campaign_data["campaign_name"]
+	total_games_label.text = str(campaign_data["total_games"])
+	unique_players_label.text = str(campaign_data["player_count"])
+	fees_collected.set_value(campaign_data["unclaimed_sol_fees"]/pow(10,9))
 	
 	var gate_asset:WalletAsset
 	if campaign_data["nft_config"] != null:
@@ -56,25 +61,25 @@ func set_campaign(campaign_id:String,campaign_data:Dictionary) -> void:
 			
 	var campaign_token:Token = await SolanaService.asset_manager.get_asset_from_mint(campaign_data["reward_mint"],true)
 	campaign_token.token_account = ClubhousePDA.get_campaign_vault_pda(campaign_key)
+	campaign_token.balance = campaign_data["rewards_available"] / pow(10,campaign_data["reward_mint_decimals"])
 	campaign_token.decimals = campaign_data["reward_mint_decimals"]
 	await treasury_token_displayable.set_data(campaign_token)
 	
+	await max_reward_displayable.set_data(campaign_token)
+	max_reward_displayable.balance_label.set_value(campaign_data["max_rewards_per_game"]/pow(10,campaign_data["reward_mint_decimals"]))
+	
 	#show deposit amount if token campaign and not burn mode	
 	if campaign_data["token_config"] != null and campaign_data["token_config"]["token_use"] != 1:
+		not_available_deposit_label.visible=false
 		deposit_token_displayable.visible=true
+		
 		var game_token:Token = await SolanaService.asset_manager.get_asset_from_mint(campaign_data["token_config"]["spending_mint"],true)
 		game_token.token_account = ClubhousePDA.get_deposit_vault_pda(campaign_key)
 		game_token.decimals = campaign_data["token_config"]["spending_mint_decimals"]
 		await deposit_token_displayable.set_data(game_token)
 	else:
 		deposit_token_displayable.visible=false
-	
-	total_games_label.text = str(campaign_data["total_games"])
-	unique_players_label.text = str(campaign_data["player_count"])
-	max_reward_label.set_value(campaign_data["max_rewards_per_game"]/pow(10,campaign_data["reward_mint_decimals"]))
-	
-	
-	fees_collected.set_value(campaign_data["unclaimed_sol_fees"]/pow(10,9))
+		not_available_deposit_label.visible=true
 	
 #	allow only program admins to end campaign before it expires
 	var program_admins:Array[Pubkey] = await ClubhouseProgram.utils.get_program_admin_list()

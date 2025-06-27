@@ -340,6 +340,7 @@ mini_gig_display_scn = ExtResource("20_jvcv6")
 display_scn = ExtResource("23_ydj5n")
 gig_creator_scn = ExtResource("24_oor3o")
 gig_loader_pck = NodePath("GigLoaderPCK")
+use_local_pck = false
 
 [node name="GigLoaderPCK" type="Node" parent="Content/MainScreen/GigManager"]
 script = ExtResource("25_h64ul")

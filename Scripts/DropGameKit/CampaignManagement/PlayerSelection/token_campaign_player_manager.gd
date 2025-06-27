@@ -44,7 +44,6 @@ func get_player_data(player_id:Pubkey) -> Dictionary:
 	return player_data
 	
 func start_game() -> void:
-	print("STARTTING GAME")
 #	refresh data just in case
 	curr_player_data = await get_player_data(SolanaService.wallet.get_pubkey())
 	var reward_mint:Pubkey = campaign_data["reward_mint"]

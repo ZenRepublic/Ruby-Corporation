@@ -171,7 +171,7 @@ text = "No campaigns found..."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="CampaignManager" type="MarginContainer" parent="Content" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "owner_displayable", "campaign_type_label", "treasury_token_displayable", "deposit_token_displayable", "total_games_label", "unique_players_label", "max_reward_label", "leaderboard", "fees_collected", "close_button")]
+[node name="CampaignManager" type="MarginContainer" parent="Content" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "owner_displayable", "campaign_type_label", "max_reward_displayable", "treasury_token_displayable", "total_games_label", "unique_players_label", "deposit_token_displayable", "not_available_deposit_label", "leaderboard", "fees_collected", "close_button")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -181,14 +181,15 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("8_vqr0a")
 campaign_name_label = NodePath("Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MineName/MineName")
-gate_displayable = NodePath("Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/CampaignGate")
-owner_displayable = NodePath("Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/CampaignOwner")
+gate_displayable = NodePath("Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/PlayersAdmins/CampaignGate")
+owner_displayable = NodePath("Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/PlayersAdmins/CampaignOwner")
 campaign_type_label = NodePath("Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/CampaignType/TypeLabel")
+max_reward_displayable = NodePath("Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/MaxReward/MaxRewardDisplay")
 treasury_token_displayable = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/TreasuryBalanceContainer/TreasuryBalanceContainer")
-deposit_token_displayable = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/DepositBalanceContainer/DepositBalanceContainer")
 total_games_label = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/TotalGames/TotalGames")
 unique_players_label = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/UniquePlayers/UniquePlayers")
-max_reward_label = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/MaxReward/MaxReward")
+deposit_token_displayable = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/MaxReward/EarnedTokensContainer")
+not_available_deposit_label = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/MaxReward/not_available")
 leaderboard = NodePath("Content/ScrollContainer/GeneralInfo/Leaderboard")
 fees_collected = NodePath("Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/PriceContainer/Cost/EarnedFeesLabel")
 close_button = NodePath("Content/ScrollContainer/GeneralInfo/CampaignCloseButton")
@@ -247,24 +248,46 @@ theme_override_font_sizes/font_size = 30
 text = "Super Epic Rubian Mine"
 vertical_alignment = 1
 
-[node name="CampaignGate" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer" node_paths=PackedStringArray("visual", "name_label")]
+[node name="PlayersAdmins" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="CampaignGate" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/PlayersAdmins" node_paths=PackedStringArray("visual", "name_label")]
 layout_mode = 2
 script = ExtResource("10_y2hwd")
-visual = NodePath("../../GateDisplayable")
+visual = NodePath("../../../GateDisplayable")
 name_label = NodePath("GateName")
 max_name_length = 25
 
-[node name="GatePlayers" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/CampaignGate"]
+[node name="GatePlayers" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/PlayersAdmins/CampaignGate"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
 text = "Players"
 
-[node name="GateName" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/CampaignGate"]
+[node name="GateName" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/PlayersAdmins/CampaignGate"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
 theme_type_variation = &"LabelSpecial"
 theme_override_font_sizes/font_size = 30
 text = "Rubians"
+
+[node name="CampaignOwner" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/PlayersAdmins" node_paths=PackedStringArray("name_label")]
+layout_mode = 2
+script = ExtResource("10_y2hwd")
+name_label = NodePath("OwnerName")
+max_name_length = 30
+
+[node name="CampaignOwner" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/PlayersAdmins/CampaignOwner"]
+layout_mode = 2
+theme = ExtResource("4_txo57")
+text = "Owner"
+
+[node name="OwnerName" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/PlayersAdmins/CampaignOwner"]
+layout_mode = 2
+theme = ExtResource("4_txo57")
+theme_type_variation = &"LabelSpecial"
+theme_override_font_sizes/font_size = 30
+text = "Anon"
 
 [node name="MoreDetails" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer"]
 layout_mode = 2
@@ -285,23 +308,46 @@ theme_type_variation = &"LabelSpecial"
 theme_override_font_sizes/font_size = 30
 text = "Token"
 
-[node name="CampaignOwner" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails" node_paths=PackedStringArray("name_label")]
+[node name="MaxReward" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails"]
 layout_mode = 2
-script = ExtResource("10_y2hwd")
-name_label = NodePath("OwnerName")
-max_name_length = 30
 
-[node name="CampaignOwner" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/CampaignOwner"]
+[node name="rewardlabel" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/MaxReward"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-text = "Owner"
+text = "Max Reward"
 
-[node name="OwnerName" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/CampaignOwner"]
+[node name="MaxRewardDisplay" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/MaxReward" node_paths=PackedStringArray("visual", "balance_label")]
+layout_mode = 2
+theme_override_constants/separation = 10
+script = ExtResource("10_y2hwd")
+visual = NodePath("TokenVisual")
+image_size = 64
+balance_label = NodePath("TokensLabel")
+
+[node name="TokenVisual" type="TextureRect" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/MaxReward/MaxRewardDisplay"]
+layout_mode = 2
+texture = ExtResource("12_jl7ur")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TokensLabel" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/MaxReward/MaxRewardDisplay"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
 theme_type_variation = &"LabelSpecial"
 theme_override_font_sizes/font_size = 30
-text = "Anon"
+text = "96.25M"
+vertical_alignment = 1
+script = ExtResource("11_dh37k")
+format_mode = 1
+decimal_amount = 2
+
+[node name="amountlabel" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/MainDetails/DetailsContainer/MoreDetails/MaxReward"]
+visible = false
+layout_mode = 2
+theme = ExtResource("4_txo57")
+theme_type_variation = &"LabelSpecial"
+theme_override_font_sizes/font_size = 30
+text = "Token"
 
 [node name="ExtraDetails" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo"]
 layout_mode = 2
@@ -324,17 +370,10 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="TotalGames" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer"]
+[node name="TotalGames" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/TotalGames"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_type_variation = &"LabelInverted"
-text = "Total Games"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_constants/separation = 20
 
 [node name="TotalGames" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/TotalGames"]
 layout_mode = 2
@@ -345,17 +384,18 @@ text = "268"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UniquePlayers" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/UniquePlayers"]
+[node name="Label" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/TotalGames"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
 theme_type_variation = &"LabelInverted"
-text = "Unique Players"
+text = "Total Games"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="UniquePlayers" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
 
 [node name="UniquePlayers" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/UniquePlayers"]
 layout_mode = 2
@@ -366,29 +406,60 @@ text = "56"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MaxReward" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/UniquePlayers"]
+layout_mode = 2
+theme = ExtResource("4_txo57")
+theme_type_variation = &"LabelInverted"
+text = "Unique Players"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaxReward" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="EarnedTokensContainer" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/MaxReward" node_paths=PackedStringArray("visual", "balance_label")]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("10_y2hwd")
+visual = NodePath("TokenVisual")
+image_size = 64
+balance_label = NodePath("TokensLabel")
+
+[node name="TokenVisual" type="TextureRect" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/MaxReward/EarnedTokensContainer"]
+layout_mode = 2
+texture = ExtResource("12_jl7ur")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TokensLabel" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/MaxReward/EarnedTokensContainer"]
+layout_mode = 2
+theme = ExtResource("4_txo57")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 50
+text = "96.25M"
+vertical_alignment = 1
+script = ExtResource("11_dh37k")
+format_mode = 1
+decimal_amount = 2
+
+[node name="not_available" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/MaxReward"]
+layout_mode = 2
+theme = ExtResource("4_txo57")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 50
+text = "N/A"
 
 [node name="Label" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/MaxReward"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
 theme_type_variation = &"LabelInverted"
-text = "Max Reward"
+text = "Deposited"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="MaxReward" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/StatsContainer/MarginContainer/HBoxContainer/MaxReward"]
-layout_mode = 2
-theme = ExtResource("4_txo57")
-theme_type_variation = &"HeaderLarge"
-theme_override_font_sizes/font_size = 50
-text = "5K"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("11_dh37k")
-format_mode = 1
-decimal_amount = 1
 
 [node name="TokenDetails" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails"]
 layout_mode = 2
@@ -402,7 +473,7 @@ layout_mode = 2
 [node name="TreasuryBalance" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/TreasuryBalanceContainer"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-text = "Treasury"
+text = "Left in Treasury"
 
 [node name="TreasuryBalanceContainer" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/TreasuryBalanceContainer" node_paths=PackedStringArray("visual", "balance_label")]
 layout_mode = 2
@@ -430,6 +501,7 @@ format_mode = 1
 decimal_amount = 2
 
 [node name="DepositBalanceContainer" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails"]
+visible = false
 layout_mode = 2
 
 [node name="DepositBalance" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/DepositBalanceContainer"]
@@ -464,12 +536,11 @@ decimal_amount = 2
 
 [node name="PriceContainer" type="VBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails"]
 layout_mode = 2
-alignment = 1
 
 [node name="PriceLabel" type="Label" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/PriceContainer"]
 layout_mode = 2
 theme = ExtResource("4_txo57")
-text = "Collected Fees"
+text = "Fees Collected"
 vertical_alignment = 1
 
 [node name="Cost" type="HBoxContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/ExtraDetails/TokenDetails/PriceContainer"]
@@ -522,7 +593,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Content/CampaignManager/Content/ScrollContainer/GeneralInfo/Leaderboard/PanelContainer/MarginContainer" node_paths=PackedStringArray("container", "no_entries_overlay")]
-custom_minimum_size = Vector2(0, 260)
+custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
 horizontal_scroll_mode = 0
 script = ExtResource("5_l58jm")

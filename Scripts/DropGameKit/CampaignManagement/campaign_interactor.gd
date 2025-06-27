@@ -45,8 +45,10 @@ func set_campaign_data(id:String,data:Dictionary) -> void:
 	
 	if data["nft_config"] != null:
 		mine_gate_asset = await SolanaService.asset_manager.get_asset_from_mint(curr_campaign_data["nft_config"]["collection"],true)
+		setup_nft_campaign()
 	elif data["token_config"] != null:
 		mine_gate_asset = await SolanaService.asset_manager.get_asset_from_mint(curr_campaign_data["token_config"]["spending_mint"],true)
+		setup_token_campaign()
 	await gate_displayable.set_data(mine_gate_asset)
 			
 	if data["manager_identity"]["identity_type"] != 0:

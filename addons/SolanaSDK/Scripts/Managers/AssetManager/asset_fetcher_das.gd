@@ -19,7 +19,6 @@ func fetch_assets(wallet_to_check:Pubkey, force_data_refresh:bool=false) -> Arra
 		das_assets = filter_by_collections(das_assets)
 		
 	for asset in das_assets:
-		print(asset["interface"])
 		if asset["burnt"]:
 			das_assets.erase(asset)
 	

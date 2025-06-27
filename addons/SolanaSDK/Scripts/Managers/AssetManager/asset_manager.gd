@@ -51,6 +51,10 @@ func load_assets(das_only:bool=false)->void:
 	else:
 		print("Skipping load of assets OG way, because DAS-ONLY load is selected")
 		
+	if load_token_balances:
+		for token in get_owned_tokens():
+			token.refresh_balance()
+		
 	on_asset_load_finished.emit(owned_assets)
 	is_loading=false
 	
@@ -150,8 +154,6 @@ func create_asset(asset_mint:Pubkey, asset_data,load_texture:bool) -> WalletAsse
 		AssetType.TOKEN:
 			var token:Token = Token.new()
 			await token.set_data(asset_mint,metadata,asset_data,asset_type,load_texture)
-			if load_token_balances:
-				await token.refresh_balance()
 			owned_assets.append(token)
 			return token
 		AssetType.CORE:
@@ -191,6 +193,8 @@ func get_owned_asset(asset_mint:Pubkey) -> WalletAsset:
 #				for tokens create duplicates because might be a different token account each time with different balances
 				var duplicate:Token = asset.duplicate(true)
 				duplicate.token_account = null
+				duplicate.balance = 0
+				duplicate.decimals = 0
 				return duplicate
 			return asset
 	return null

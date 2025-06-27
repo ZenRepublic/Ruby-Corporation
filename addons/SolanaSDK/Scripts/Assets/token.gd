@@ -17,6 +17,7 @@ func refresh_balance() -> void:
 	balance = await SolanaService.get_ata_balance(token_account.to_string())
 
 func get_balance(fetch_new:bool=false) -> float:
+	print(balance)
 	if balance == 0 or fetch_new:
 		await refresh_balance()
 	return balance

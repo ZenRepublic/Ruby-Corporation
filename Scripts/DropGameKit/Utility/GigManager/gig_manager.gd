@@ -56,7 +56,6 @@ func load_active_gig_and_get_scene():
 	
 func handle_free_play(display:GigDisplay, gig:ClubhouseGig) -> void:
 	var menu_manager:MenuManager = get_tree().get_first_node_in_group("MenuManager")
-	print(menu_manager)
 	menu_manager.load_gig_free_mode()
 	display.queue_free()
 	
