@@ -97,7 +97,7 @@ func handle_replay(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dict
 		"CampaignKey":campaign_key,
 		"CampaignData":campaign_data,
 		"PlayerData":player_data
-	})
+	},false,false)
 	
 	await get_tree().create_timer(0.5).timeout
 	rewards_display_instance.queue_free()

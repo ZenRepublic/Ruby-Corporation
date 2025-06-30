@@ -24,6 +24,9 @@ bg_color = Color(0, 0.443137, 0.439216, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1s1dl"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn7e4"]
+bg_color = Color(0.0352941, 0.0627451, 0.054902, 0.709804)
+
 [sub_resource type="GDScript" id="GDScript_y310b"]
 resource_name = "tensor_collection_selector"
 script/source = "extends VBoxContainer
@@ -54,9 +57,6 @@ func select_collection(collection_data:Dictionary) -> void:
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y47jn"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn7e4"]
-bg_color = Color(0.0352941, 0.0627451, 0.054902, 0.709804)
-
 [node name="CampaignCreator" type="Control" node_paths=PackedStringArray("screen_manager", "general_settings", "player_settings_manager", "player_settings", "token_selector", "manager_selector", "fund_input_field", "max_fund_button", "burn_remainder_checkbox", "token_visuals", "fee_explanation", "creation_fee_label", "payment_displayable", "input_submit_button")]
 layout_mode = 3
 anchors_preset = 15
@@ -69,7 +69,7 @@ script = ExtResource("16_r1l70")
 screen_manager = NodePath("ScreenManager")
 general_settings = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings")
 player_settings_manager = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection")
-player_settings = [NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings"), NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine")]
+player_settings = [NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/NFT/MarginContainer/NFTMinerSettings"), NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenType")]
 token_selector = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/RewardTokenSelector")
 manager_selector = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection")
 fund_input_field = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/FundAmountContainer/FundInputField")
@@ -77,9 +77,9 @@ max_fund_button = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettin
 burn_remainder_checkbox = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/BurnRemainder/BurnRemainderCheckbox")
 token_visuals = [NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings/PayoutLimitContainer/TokenVisual")]
 fee_explanation = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/RewardClaimFee/FeeExplanation")
-creation_fee_label = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer/Cost/ClubCreationFee")
-payment_displayable = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer/Cost")
-input_submit_button = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/Actions/CreateCampaignButton")
+creation_fee_label = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/CreateContainer/PriceSettings/PriceContainer/Cost/CreationFee")
+payment_displayable = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/CreateContainer/PriceSettings/PriceContainer/Cost")
+input_submit_button = NodePath("Content/CreatorScreen/ScrollContainer/CampaignSettings/CreateContainer/CreateCampaignButton")
 
 [node name="ScreenManager" type="Node" parent="." node_paths=PackedStringArray("starting_panel", "screens")]
 script = ExtResource("2_p72g2")
@@ -183,7 +183,8 @@ horizontal_scroll_mode = 0
 [node name="CampaignSettings" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 30
+size_flags_vertical = 3
+theme_override_constants/separation = 50
 alignment = 1
 script = ExtResource("17_1dqib")
 input_fields = {
@@ -202,6 +203,90 @@ date_selectors = {
 
 [node name="DataInputSystem" type="Node" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings"]
 script = ExtResource("17_1dqib")
+
+[node name="OwnerSettings" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="ManagerSelection" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings" node_paths=PackedStringArray("displayable_asset")]
+layout_mode = 2
+theme_override_constants/separation = 5
+script = ExtResource("21_losvh")
+displayable_asset = NodePath("DisplayableAssetButton")
+display_system_scn = ExtResource("26_3f2n7")
+custom_entry_scn = ExtResource("17_q838o")
+
+[node name="DisplayableAssetButton" type="MarginContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection" node_paths=PackedStringArray("visual", "name_label", "select_button")]
+custom_minimum_size = Vector2(168, 168)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("10_mi3qm")
+visual = NodePath("Visual")
+image_size = 256
+name_label = NodePath("../../ManagerContainer/ManagerName")
+select_button = NodePath("Visual/Button")
+
+[node name="Visual" type="TextureRect" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton"]
+layout_mode = 2
+texture = ExtResource("9_k7g2c")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton/Visual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_if3s2")
+theme_type_variation = &"InvisibleButton"
+
+[node name="PanelContainer" type="PanelContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton/Visual"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_if3s2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_fn7e4")
+
+[node name="Label" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton"]
+visible = false
+layout_mode = 2
+theme = ExtResource("3_if3s2")
+text = "SOON"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManagerContainer" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerContainer"]
+layout_mode = 2
+theme = ExtResource("3_if3s2")
+text = "Campaign Owner"
+vertical_alignment = 1
+
+[node name="ManagerName" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerContainer"]
+layout_mode = 2
+theme = ExtResource("3_if3s2")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 35
+text = "SELECT"
+vertical_alignment = 1
+
+[node name="Actions" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
 
 [node name="GeneralSettings" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings"]
 layout_mode = 2
@@ -230,16 +315,6 @@ min_length = 4
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="PlayerSettings" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer"]
-visible = false
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-theme = ExtResource("3_if3s2")
-theme_override_font_sizes/font_size = 28
-text = "Campaign Type"
-vertical_alignment = 1
-autowrap_mode = 3
-
 [node name="PlayerTypeSelection" type="TabContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer"]
 layout_mode = 2
 theme = ExtResource("3_if3s2")
@@ -247,7 +322,7 @@ current_tab = 1
 
 [node name="NFT" type="TabBar" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection"]
 visible = false
-custom_minimum_size = Vector2(0, 230)
+custom_minimum_size = Vector2(0, 280)
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -265,7 +340,7 @@ theme_override_constants/margin_right = 10
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 20
+theme_override_constants/separation = 50
 alignment = 1
 script = ExtResource("17_1dqib")
 input_fields = {
@@ -348,7 +423,7 @@ max_value = 1440.0
 allow_zero = false
 
 [node name="Token" type="TabBar" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection"]
-custom_minimum_size = Vector2(0, 230)
+custom_minimum_size = Vector2(0, 280)
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -362,27 +437,30 @@ grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="TokenMine" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer"]
+[node name="TokenType" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 50
 alignment = 1
 script = ExtResource("17_1dqib")
 input_fields = {
 "energyPrice": NodePath("CustomizationSettings/EntryPriceContainer/EntryPriceInputField"),
-"tokenMint": NodePath("TokenAddressInputField")
+"tokenMint": NodePath("AddressContainer/TokenAddressInputField")
 }
 option_selectors = {
 "tokenUse": NodePath("CustomizationSettings/TokenUseContainer/TokenUseOption")
 }
 
-[node name="Token address" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine"]
+[node name="AddressContainer" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenType"]
+layout_mode = 2
+
+[node name="Token address" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenType/AddressContainer"]
 layout_mode = 2
 theme = ExtResource("3_if3s2")
 text = "Token Contract Address"
 
-[node name="TokenAddressInputField" type="LineEdit" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine"]
+[node name="TokenAddressInputField" type="LineEdit" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenType/AddressContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("3_if3s2")
@@ -394,20 +472,20 @@ script = ExtResource("18_j2cfb")
 min_length = 4
 is_pubkey = true
 
-[node name="CustomizationSettings" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine"]
+[node name="CustomizationSettings" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenType"]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="EntryPriceContainer" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine/CustomizationSettings"]
+[node name="EntryPriceContainer" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenType/CustomizationSettings"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="EntryPrice" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine/CustomizationSettings/EntryPriceContainer"]
+[node name="EntryPrice" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenType/CustomizationSettings/EntryPriceContainer"]
 layout_mode = 2
 theme = ExtResource("3_if3s2")
 text = "Entry Price"
 
-[node name="EntryPriceInputField" type="LineEdit" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine/CustomizationSettings/EntryPriceContainer"]
+[node name="EntryPriceInputField" type="LineEdit" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenType/CustomizationSettings/EntryPriceContainer"]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 theme = ExtResource("3_if3s2")
@@ -419,15 +497,15 @@ input_type = 2
 max_value = -1.0
 allow_zero = false
 
-[node name="TokenUseContainer" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine/CustomizationSettings"]
+[node name="TokenUseContainer" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenType/CustomizationSettings"]
 layout_mode = 2
 
-[node name="TokenUse" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine/CustomizationSettings/TokenUseContainer"]
+[node name="TokenUse" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenType/CustomizationSettings/TokenUseContainer"]
 layout_mode = 2
 theme = ExtResource("3_if3s2")
 text = "Token Use"
 
-[node name="TokenUseOption" type="OptionButton" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenMine/CustomizationSettings/TokenUseContainer"]
+[node name="TokenUseOption" type="OptionButton" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/PlayerSettingsContainer/PlayerTypeSelection/Token/MarginContainer/TokenType/CustomizationSettings/TokenUseContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -447,7 +525,7 @@ theme_override_constants/separation = 20
 
 [node name="StartTimeContainer" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TimeSettings"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
 
 [node name="CampaignLength2" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer"]
 layout_mode = 2
@@ -480,7 +558,7 @@ layout_mode = 2
 theme = ExtResource("3_if3s2")
 selected = 0
 item_count = 1
-popup/item_0/text = "2024"
+popup/item_0/text = "2025"
 popup/item_0/id = 0
 
 [node name="Month" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TimeSettings/StartTimeContainer/DateTimeSelector"]
@@ -561,7 +639,7 @@ popup/item_0/id = 0
 
 [node name="CampaignDuration" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TimeSettings"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
 
 [node name="CampaignLength" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TimeSettings/CampaignDuration"]
 custom_minimum_size = Vector2(130, 0)
@@ -596,7 +674,7 @@ max_value = 168.0
 
 [node name="TokenSettings" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 30
 
 [node name="RewardTokenSelector" type="PanelContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings" node_paths=PackedStringArray("displayable_asset", "asset_content", "select_label")]
 layout_mode = 2
@@ -732,6 +810,7 @@ max_value = -1.0
 allow_zero = false
 
 [node name="BurnRemainder" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/TokenSettings"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 20
 
@@ -745,6 +824,7 @@ text = "Burn reward remainder?"
 layout_mode = 2
 
 [node name="RewardClaimFee" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 20
 
@@ -761,7 +841,7 @@ text = "Reward Claim Fee"
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 theme = ExtResource("3_if3s2")
-text = "0"
+text = "0.0002"
 placeholder_text = "Enter amount..."
 alignment = 1
 editable = false
@@ -785,105 +865,33 @@ theme_override_font_sizes/font_size = 18
 text = "*Claimable after campaign has finished. House Tax of 2% is applied!"
 autowrap_mode = 2
 
-[node name="OwnerSettings" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings"]
+[node name="CreateContainer" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings"]
 layout_mode = 2
-theme_override_constants/separation = 25
+size_flags_vertical = 10
+theme_override_constants/separation = 20
 
-[node name="ManagerSelection" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings" node_paths=PackedStringArray("displayable_asset")]
-layout_mode = 2
-theme_override_constants/separation = 5
-script = ExtResource("21_losvh")
-displayable_asset = NodePath("DisplayableAssetButton")
-display_system_scn = ExtResource("26_3f2n7")
-custom_entry_scn = ExtResource("17_q838o")
-
-[node name="DisplayableAssetButton" type="MarginContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection" node_paths=PackedStringArray("visual", "name_label", "select_button")]
-custom_minimum_size = Vector2(168, 168)
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-script = ExtResource("10_mi3qm")
-visual = NodePath("Visual")
-image_size = 256
-name_label = NodePath("../../PriceSettings/OwnerSettings/ManagerName")
-select_button = NodePath("Visual/Button")
-
-[node name="Visual" type="TextureRect" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton"]
-layout_mode = 2
-texture = ExtResource("9_k7g2c")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="Button" type="Button" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton/Visual"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_if3s2")
-theme_type_variation = &"InvisibleButton"
-
-[node name="PanelContainer" type="PanelContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton/Visual"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_if3s2")
-theme_override_styles/panel = SubResource("StyleBoxFlat_fn7e4")
-
-[node name="Label" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/ManagerSelection/DisplayableAssetButton"]
-visible = false
-layout_mode = 2
-theme = ExtResource("3_if3s2")
-text = "SOON"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PriceSettings" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings"]
+[node name="PriceSettings" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/CreateContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="OwnerSettings" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings"]
+[node name="PriceContainer" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/CreateContainer/PriceSettings"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
+alignment = 2
 
-[node name="Label" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/OwnerSettings"]
-layout_mode = 2
-theme = ExtResource("3_if3s2")
-text = "Campaign Owner"
-vertical_alignment = 1
-
-[node name="ManagerName" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/OwnerSettings"]
+[node name="PriceLabel" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/CreateContainer/PriceSettings/PriceContainer"]
 layout_mode = 2
 theme = ExtResource("3_if3s2")
-theme_type_variation = &"HeaderMedium"
-theme_override_font_sizes/font_size = 35
-text = "SELECT"
+text = "Create Cost:"
 vertical_alignment = 1
 
-[node name="PriceContainer" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings"]
-layout_mode = 2
-alignment = 1
-
-[node name="PriceLabel" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer"]
-layout_mode = 2
-theme = ExtResource("3_if3s2")
-text = "Price"
-vertical_alignment = 1
-
-[node name="Cost" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer" node_paths=PackedStringArray("symbol_label")]
+[node name="Cost" type="HBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/CreateContainer/PriceSettings/PriceContainer" node_paths=PackedStringArray("symbol_label")]
 layout_mode = 2
 theme_override_constants/separation = 20
 script = ExtResource("10_mi3qm")
 symbol_label = NodePath("Symbol")
 
-[node name="ClubCreationFee" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer/Cost"]
+[node name="CreationFee" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/CreateContainer/PriceSettings/PriceContainer/Cost"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 1
@@ -896,23 +904,18 @@ format_mode = 1
 decimal_amount = 2
 metadata/_custom_type_script = "uid://bnket1c06w8fq"
 
-[node name="Symbol" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/PriceSettings/PriceContainer/Cost"]
+[node name="Symbol" type="Label" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/CreateContainer/PriceSettings/PriceContainer/Cost"]
 layout_mode = 2
 theme = ExtResource("3_if3s2")
 theme_type_variation = &"LabelSpecial"
 text = "SOL"
 vertical_alignment = 1
 
-[node name="Actions" type="VBoxContainer" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 2
-
-[node name="CreateCampaignButton" type="Button" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/OwnerSettings/Actions"]
+[node name="CreateCampaignButton" type="Button" parent="Content/CreatorScreen/ScrollContainer/CampaignSettings/CreateContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_vertical = 3
 theme = ExtResource("3_if3s2")
-text = "CREATE!"
+text = "CREATE CAMPAIGN!"
 
 [connection signal="pressed" from="Content/Header/MarginContainer/HBoxContainer/TextureButton" to="." method="queue_free"]

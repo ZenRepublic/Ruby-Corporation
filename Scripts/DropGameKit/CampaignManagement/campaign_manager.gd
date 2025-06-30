@@ -38,7 +38,12 @@ func set_campaign(campaign_id:String,campaign_data:Dictionary) -> void:
 	campaign_name_label.text = campaign_data["campaign_name"]
 	total_games_label.text = str(campaign_data["total_games"])
 	unique_players_label.text = str(campaign_data["player_count"])
-	fees_collected.set_value(campaign_data["unclaimed_sol_fees"]/pow(10,9))
+	
+	var total_fees_collected:float = campaign_data["unclaimed_sol_fees"]/pow(10,9)
+#	divide by 100 to get percentage from basis points. if rewards tax is 150, that means 15% that means 0.15
+	var creator_cut:float = total_fees_collected * (campaign_data["house_config_snapshot"]["rewards_tax"]/1000)
+	var final_fees_collected:float = total_fees_collected - creator_cut
+	fees_collected.set_value(final_fees_collected/pow(10,9))
 	
 	var gate_asset:WalletAsset
 	if campaign_data["nft_config"] != null:

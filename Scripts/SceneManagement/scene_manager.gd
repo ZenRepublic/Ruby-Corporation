@@ -57,15 +57,15 @@ func _process(_delta: float) -> void:
 		if is_automatic_transition and transition_instance!=null:
 			finalize_scene_load()
 		
-func reload_scene(fade_between_scenes:bool=true,transition_id:int=-1,scene_data:Dictionary={}) -> void:
-	load_scene(curr_scene_path,fade_between_scenes,transition_id,0.0,scene_data)
+func reload_scene(fade_between_scenes:bool=true,transition_id:int=-1,scene_data:Dictionary={},automatic_transition:bool=true,try_load_from_cache:bool=true) -> void:
+	load_scene(curr_scene_path,fade_between_scenes,transition_id,0.0,scene_data,automatic_transition,try_load_from_cache)
 	
-func load_previous_scene(fade_between_scenes:bool=true,transition_id:int=-1,wait_time:float=0.0,scene_data:Dictionary={}) -> void:
+func load_previous_scene(fade_between_scenes:bool=true,transition_id:int=-1,wait_time:float=0.0,scene_data:Dictionary={},automatic_transition:bool=true,try_load_from_cache:bool=true) -> void:
 	if previous_scene_path == "":
 		return
-	load_scene(previous_scene_path,fade_between_scenes,transition_id,wait_time,scene_data)	
+	load_scene(previous_scene_path,fade_between_scenes,transition_id,wait_time,scene_data,automatic_transition,try_load_from_cache)	
 
-func load_scene(scene_path:String,fade_between_scenes:bool=true,transition_id:int=-1,wait_time:float=0.0,scene_data:Dictionary={},automatic_transition:bool=true) -> void:
+func load_scene(scene_path:String,fade_between_scenes:bool=true,transition_id:int=-1,wait_time:float=0.0,scene_data:Dictionary={},automatic_transition:bool=true,try_load_from_cache:bool=true) -> void:
 #	don't set this scene as previous scene if its reloading the same one
 	if scene_path != get_tree().current_scene.scene_file_path:
 		previous_scene_path = get_tree().current_scene.scene_file_path
@@ -90,10 +90,10 @@ func load_scene(scene_path:String,fade_between_scenes:bool=true,transition_id:in
 		transition_instance = select_transition_scene(transition_id).instantiate()
 		add_child(transition_instance)
 	
-	if ResourceLoader.has_cached(scene_path):
+	if try_load_from_cache and ResourceLoader.has_cached(scene_path):
 		ResourceLoader.load_threaded_get(scene_path)
 	else:
-		ResourceLoader.load_threaded_request(scene_path)
+		ResourceLoader.load_threaded_request(scene_path,"",false,ResourceLoader.CACHE_MODE_IGNORE)
 	
 	if fade_between_scenes:
 		fade_in_started.emit()

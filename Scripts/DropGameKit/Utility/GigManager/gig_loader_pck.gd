@@ -54,7 +54,7 @@ func load_gig(gig:ClubhouseGig, local: bool) -> bool:
 		else:
 			print("🌐 Downloading remote PCK from: ", path_to_pck)
 			await load_gig_remote(path_to_pck,file_location)
-	
+		
 	var success:bool = ProjectSettings.load_resource_pack(file_location)
 	
 	download_overlay.queue_free()

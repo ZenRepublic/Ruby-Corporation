@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b2dmsrk6j12y4"]
+[gd_scene load_steps=20 format=3 uid="uid://b2dmsrk6j12y4"]
 
 [ext_resource type="Script" uid="uid://ditj5e2daevt8" path="res://addons/SolanaSDK/Scripts/Managers/solana_service.gd" id="1_hwc3u"]
 [ext_resource type="Script" uid="uid://67dkrftyxy86" path="res://addons/SolanaSDK/Scripts/TransactionManager/transaction_manager.gd" id="2_v3adq"]
@@ -15,12 +15,14 @@
 [ext_resource type="Script" uid="uid://bd8lgfhd3ttrs" path="res://addons/SolanaSDK/Scripts/Managers/candy_machine_manager.gd" id="9_pob61"]
 [ext_resource type="PackedScene" uid="uid://cyrmlhn128s53" path="res://Scripts/Web3/TransactionManagement/TransactionOverlay.tscn" id="9_wfwmi"]
 [ext_resource type="Script" uid="uid://rpm720dhln8u" path="res://addons/SolanaSDK/Scripts/CoreNFTs/core_manager.gd" id="12_ynxal"]
+[ext_resource type="Script" uid="uid://bntcjwq5hyna5" path="res://addons/SolanaSDK/Scripts/Managers/token_manager.gd" id="13_0sdjq"]
 [ext_resource type="Script" uid="uid://ctu1bsgkgt8qc" path="res://addons/SolanaSDK/Scripts/CoreNFTs/core_collection_manager.gd" id="13_3jvpm"]
 [ext_resource type="Script" uid="uid://c3q1j4esdrfhw" path="res://addons/SolanaSDK/Scripts/CoreNFTs/core_asset_manager.gd" id="14_6l0nt"]
 [ext_resource type="Script" uid="uid://bmfal3xr0yeo" path="res://addons/SolanaSDK/Scripts/Utility/oracle_signer.gd" id="15_r1qgx"]
 
 [node name="SolanaService" type="Node"]
 script = ExtResource("1_hwc3u")
+rpc_cluster = 1
 mainnet_rpc = "https://mainnet.helius-rpc.com/?api-key=14091e35-f13b-4071-9578-410522205b40"
 devnet_rpc = "https://devnet.helius-rpc.com/?api-key=14091e35-f13b-4071-9578-410522205b40"
 magicblock_rpc = "https://devnet.magicblock.app/"
@@ -28,6 +30,7 @@ honeycomb_rpc = "https://rpc.test.honeycombprotocol.com/"
 
 [node name="WalletService" type="Node" parent="."]
 script = ExtResource("5_f327g")
+use_generated = true
 custom_wallet_path = "C:\\Users\\thoma\\Desktop\\kp\\dev2gUnXyMLh6WyV9NTBaXeNfo1DTn2R4b69VTGNidF.json"
 wallet_adapter_scn = ExtResource("3_wfwmi")
 
@@ -183,6 +186,26 @@ missing_texture_visual = ExtResource("4_s5tc6")
 script = ExtResource("8_38cwu")
 metadata/_custom_type_script = "uid://biqrx1dx2uo58"
 
+[node name="CoreManager" type="Node" parent="."]
+script = ExtResource("12_ynxal")
+
+[node name="CoreCollectionManager" type="Node" parent="CoreManager"]
+script = ExtResource("13_3jvpm")
+
+[node name="CoreAssetManager" type="Node" parent="CoreManager"]
+script = ExtResource("14_6l0nt")
+
+[node name="AuthoritySigner" type="Node" parent="CoreManager"]
+script = ExtResource("15_r1qgx")
+server_link = "https://rubians-server-625d2ae63a81.herokuapp.com/"
+link_slug = "core/approve"
+use_localhost = true
+default_signer_address = "rCLEETVnSTqAUU9nC1GDktfyNuhza9Y9tHgdiCeZ12h"
+
+[node name="TokenManager" type="Node" parent="."]
+script = ExtResource("13_0sdjq")
+metadata/_custom_type_script = "uid://bntcjwq5hyna5"
+
 [node name="TransactionManager" type="Node" parent="." node_paths=PackedStringArray("helius_api")]
 script = ExtResource("2_v3adq")
 use_custom_priority_fee = true
@@ -207,19 +230,3 @@ helius_api_key = "14091e35-f13b-4071-9578-410522205b40"
 using_paid_plan = true
 priority_fee_level = 3
 fee_to_consider_congested = 0
-
-[node name="CoreManager" type="Node" parent="."]
-script = ExtResource("12_ynxal")
-
-[node name="CoreCollectionManager" type="Node" parent="CoreManager"]
-script = ExtResource("13_3jvpm")
-
-[node name="CoreAssetManager" type="Node" parent="CoreManager"]
-script = ExtResource("14_6l0nt")
-
-[node name="AuthoritySigner" type="Node" parent="CoreManager"]
-script = ExtResource("15_r1qgx")
-server_link = "https://rubians-server-625d2ae63a81.herokuapp.com/"
-link_slug = "core/approve"
-use_localhost = true
-default_signer_address = "rCLEETVnSTqAUU9nC1GDktfyNuhza9Y9tHgdiCeZ12h"

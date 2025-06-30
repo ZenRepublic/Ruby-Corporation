@@ -45,7 +45,7 @@ func load_gig(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionar
 			"CampaignKey":campaign_key,
 			"CampaignData":campaign_data,
 			"PlayerData":player_data
-			},false)
+			},false,false)
 		MusicManager.stop_song(1.0)
 		
 func load_gig_free_mode() -> void:
@@ -53,5 +53,5 @@ func load_gig_free_mode() -> void:
 	var scene_to_load = await gig_manager.load_active_gig_and_get_scene()
 	
 	if scene_to_load!=null:
-		SceneManager.load_scene(scene_to_load,true,-1,0.0,{"FreePlay":true},false)
+		SceneManager.load_scene(scene_to_load,true,-1,0.0,{"FreePlay":true},false,false)
 		MusicManager.stop_song(1.0)

@@ -177,6 +177,7 @@ size_flags_horizontal = 8
 theme = ExtResource("1_78f2a")
 text = "CREATE CAMPAIGN"
 script = ExtResource("9_l6ibn")
+lock_active = false
 metadata/_custom_type_script = "uid://mnheun5h1lg8"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MarginContainer/GameDisplay/Content/GameDetails/Actions/CreateCampaignButton"]
