@@ -39,8 +39,9 @@ func upload_image(image:Image, uri:Dictionary) -> Dictionary:
 	var upload_data:Dictionary = await get_upload_details()
 	print(upload_data)
 	var payment_receiver:Pubkey = Pubkey.new_from_string(upload_data["body"]["receiverAddress"])
-	var upload_price:float = upload_data["body"]["uploadFeeLamports"] / pow(10,9) 
-	var tx_data:TransactionData = await SolanaService.transaction_manager.transfer_sol(payment_receiver,upload_price)
+	var payment_mint:Pubkey = Pubkey.new_from_string(upload_data["body"]["tokenMint"])
+	var upload_price:float = upload_data["body"]["tokenAmount"] / pow(10,upload_data["body"]["decimals"]) 
+	var tx_data:TransactionData = await SolanaService.transaction_manager.transfer_token(payment_mint,payment_receiver,upload_price)
 	
 	var image_buffer:PackedByteArray = image.save_png_to_buffer() 
 	var image_base64:String = Marshalls.raw_to_base64(image_buffer)

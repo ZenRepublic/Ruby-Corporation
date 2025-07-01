@@ -87,11 +87,9 @@ func set_campaign(campaign_id:String,campaign_data:Dictionary) -> void:
 		not_available_deposit_label.visible=true
 	
 #	allow only program admins to end campaign before it expires
-	var program_admins:Array[Pubkey] = await ClubhouseProgram.utils.get_program_admin_list()
-	for admin in program_admins:
-		if admin.to_string() == SolanaService.wallet.get_pubkey().to_string():
-			close_button.disabled=false
-			break
+	var is_admin:bool = await ClubhouseProgram.utils.is_admin(SolanaService.wallet.get_pubkey())
+	if is_admin:
+		close_button.disabled=false
 		
 	close_button.start_timer(campaign_data["time_span"]["start_time"],campaign_data["time_span"]["end_time"])
 	

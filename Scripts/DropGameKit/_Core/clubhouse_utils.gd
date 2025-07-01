@@ -7,6 +7,8 @@ class_name ClubhouseUtils
 var active_house_id:String
 var active_house_data:Dictionary
 
+var admin_list:Array[Pubkey]
+
 func _ready() -> void:
 	set_house_data(mainnet_house_id,devnet_house_id)
 		
@@ -44,7 +46,6 @@ func get_house_data(house_pda:Pubkey) -> Dictionary:
 		return {}
 	return house_data
 	
-var admin_list:Array[Pubkey]
 func get_program_admin_list(fetch_new:bool=false) -> Array[Pubkey]:
 	if !fetch_new and admin_list.size() > 0:
 		return admin_list
@@ -55,6 +56,14 @@ func get_program_admin_list(fetch_new:bool=false) -> Array[Pubkey]:
 		var admin_data:Dictionary = result[key]
 		admin_list.append(admin_data["program_admin"])
 	return admin_list
+	
+func is_admin(key:Pubkey) -> bool:
+	if admin_list == null:
+		await get_program_admin_list()
+	for admin in admin_list:
+		if admin.to_string() == key.to_string():
+			return true
+	return false
 	
 func get_managers_in_use(house_key:Pubkey) -> Array:
 	var filter:Array = [

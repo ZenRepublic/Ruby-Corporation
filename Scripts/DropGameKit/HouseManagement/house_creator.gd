@@ -1,27 +1,60 @@
 extends Node
 class_name HouseCreator
 
-@export var house_settings:DataInputSystem
-@export var input_submit_button:BaseButton
+@export var page_loader:PageLoader
+@export var create_button:Button
+
+var active_settings:DataInputSystem
+var active_button:Button
 
 signal on_house_created
 
 func _ready() -> void:
-	if input_submit_button!=null:
-		input_submit_button.pressed.connect(create_house)
-		input_submit_button.disabled=true
-		house_settings.on_fields_updated.connect(handle_input_update)
-
+	create_button.pressed.connect(create_house)
+	
+	change_settings_page(0)
+	page_loader.on_page_changed.connect(change_settings_page)
+	
+	
+func change_settings_page(page_id:int) -> void:
+	if page_id >= page_loader.pages.size()-1:
+		page_loader.next_page_button.visible=false
+		create_button.visible=true
+		active_button = create_button
+	else:
+		page_loader.next_page_button.visible=true
+		create_button.visible=false
+		active_button = page_loader.next_page_button
+		
+#	disable tracking of previous active settings
+	if active_settings!=null:
+		active_settings.on_fields_updated.disconnect(handle_input_update)
+		
+	active_settings = page_loader.pages[page_id] as DataInputSystem
+	active_button.disabled=!active_settings.get_inputs_valid()
+	active_settings.on_fields_updated.connect(handle_input_update)
+	
+	
 func handle_input_update() -> void:
-#	manager fee can't be bigger than standard fee
-	var input_data:Dictionary = house_settings.get_input_data()
-	if input_data["campaignManagerDiscount"] > input_data["campaignCreationFee"]:
-		house_settings.get_input_field("campaignManagerDiscount").clear()
+#	manager fee can't be bigger than standard fee, special case for onchain settings
+	if active_settings == page_loader.pages[1]:
+		var input_data:Dictionary = active_settings.get_input_data()
+		if input_data["campaignManagerDiscount"] > input_data["campaignCreationFee"]:
+			active_settings.get_input_field("campaignManagerDiscount").clear()
 
-	input_submit_button.disabled = !house_settings.get_inputs_valid()
+	active_button.disabled = !active_settings.get_inputs_valid()
 	
 func create_house() -> void:
-	var house_data:Dictionary = house_settings.get_input_data()
+	var uri_data:Dictionary = page_loader.pages[0].get_input_data()
+	
+	var upload_response:Dictionary = await RubianServer.data_uploader.upload_uri(uri_data)
+	if !upload_response.has("body") or !upload_response["body"].has("url"):
+		push_error("Failed To Upload offchain metadata to Turbo")
+		return
+	var uri_link:String = upload_response["body"]["url"]
+		
+		
+	var house_data:Dictionary =  page_loader.pages[1].get_input_data()
 	
 	var house_currency:Pubkey = house_data["houseCurrency"]
 	if house_currency == null:
@@ -45,7 +78,7 @@ func create_house() -> void:
 		"claim_fee":AnchorProgram.u64(claim_fee_lamports),
 		"rewards_tax":AnchorProgram.u64(rewards_tax_basis_points),
 	}
-	var tx_data:TransactionData = await ClubhouseProgram.create_house(house_data["houseName"],house_data["managerCollection"],house_currency,house_config)
+	var tx_data:TransactionData = await ClubhouseProgram.create_house(house_data["houseName"],house_data["managerCollection"],house_currency,house_config,uri_link)
 	
 	if tx_data.is_successful():
 		on_house_created.emit()

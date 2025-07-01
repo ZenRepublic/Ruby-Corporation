@@ -22,6 +22,7 @@ signal on_fees_claimed
 # Called when the node enters the scene tree for the first time.
 func set_house_data(id:String,data:Dictionary) -> void:
 	curr_house_data = data
+	print(curr_house_data)
 
 	house_name_label.text = data["house_name"]
 	house_key = Pubkey.new_from_string(id)

@@ -74,12 +74,12 @@ func send_transaction(instructions:Array[Instruction], oracle:Pubkey=null, extra
 		
 	return tx_data
 		
-func create_house(house_name:String,manager_collection:Pubkey,house_currency:Pubkey,house_config:Dictionary) -> TransactionData:
-	var create_house_ix:Instruction = get_create_house_instruction(house_name,manager_collection,house_currency,house_config)
+func create_house(house_name:String,manager_collection:Pubkey,house_currency:Pubkey,house_config:Dictionary,house_uri=null) -> TransactionData:
+	var create_house_ix:Instruction = get_create_house_instruction(house_name,manager_collection,house_currency,house_config,house_uri)
 	var tx_data:TransactionData = await send_transaction([create_house_ix])
 	return tx_data
 		
-func get_create_house_instruction(house_name:String,manager_collection:Pubkey,house_currency:Pubkey,house_config:Dictionary) -> Instruction:
+func get_create_house_instruction(house_name:String,manager_collection:Pubkey,house_currency:Pubkey,house_config:Dictionary, house_uri=null) -> Instruction:
 	var house_pda:Pubkey = ClubhousePDA.get_house_pda(house_name)
 	print("Creating House with ID: ",house_pda.to_string())
 	var ix:Instruction = program.build_instruction("create_house",[
@@ -96,7 +96,7 @@ func get_create_house_instruction(house_name:String,manager_collection:Pubkey,ho
 		"manager_collection":AnchorProgram.option(manager_collection),
 		"house_config": house_config,
 		"house_name":house_name,
-		"uri": AnchorProgram.option(null)
+		"uri": AnchorProgram.option(house_uri)
 	})
 	return ix
 	

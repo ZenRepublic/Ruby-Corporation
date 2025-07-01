@@ -476,7 +476,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CampaignSelect" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
@@ -597,14 +596,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="PageLoader" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent" node_paths=PackedStringArray("page_label", "prev_page_button", "next_page_button")]
+[node name="PageLoader" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent" node_paths=PackedStringArray("prev_page_button", "next_page_button", "page_label")]
 layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 1
 script = ExtResource("19_s07dd")
-page_label = NodePath("PageLabel")
 prev_page_button = NodePath("Previous")
 next_page_button = NodePath("Next")
+page_label = NodePath("PageLabel")
 
 [node name="Previous" type="TextureButton" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent/PageLoader"]
 self_modulate = Color(0, 0.443137, 0.439216, 1)
@@ -683,6 +682,7 @@ theme = ExtResource("7_eupma")
 text = "PLAY NOW!"
 
 [node name="CampaignInteractor" type="MarginContainer" parent="Content/MainScreen/CampaignSelector" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "manager_displayable", "reward_token_displayable", "max_reward_label", "campaign_timer", "campaign_expired_panel", "not_logged_in_panel", "nft_player_manager", "token_player_manager")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
