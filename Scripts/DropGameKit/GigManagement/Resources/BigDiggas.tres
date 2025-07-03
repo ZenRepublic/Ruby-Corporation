@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ClubhouseGig" load_steps=3 format=3 uid="uid://8mk52w26ex84"]
 
-[ext_resource type="Script" uid="uid://djyqvwe53sm87" path="res://Scripts/DropGameKit/Utility/GigManager/Resources/gig_resource.gd" id="1_nc3m0"]
+[ext_resource type="Script" uid="uid://djyqvwe53sm87" path="res://Scripts/DropGameKit/GigManagement/Resources/gig_resource.gd" id="1_nc3m0"]
 [ext_resource type="Texture2D" uid="uid://crw74mph0mnp0" path="res://Textures/LogosAndTokens/Logo bg crack shaded.png" id="1_nvd4y"]
 
 [resource]

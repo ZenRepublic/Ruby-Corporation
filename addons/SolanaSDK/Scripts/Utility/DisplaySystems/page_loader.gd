@@ -23,6 +23,9 @@ func _ready() -> void:
 		on_page_changed.connect(update_label)
 
 func setup(start_page:int,page_count:int) -> void:
+	for page in pages:
+		page.visible=false
+		
 	curr_page = start_page
 	total_pages = page_count
 	set_page(start_page)

@@ -73,7 +73,7 @@ func get_input_data()-> Dictionary:
 		
 	for key in asset_selectors.keys():
 		var selector = get_node(asset_selectors[key]) as AssetSelector
-		fields_data[key] = selector.selected_asset.mint
+		fields_data[key] = selector.selected_asset
 		
 	for key in date_selectors.keys():
 		var selector = get_node(date_selectors[key]) as DateTimeSelector

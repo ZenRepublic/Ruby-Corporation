@@ -3,12 +3,14 @@ class_name CampaignCreator
 
 @export var screen_manager:ScreenManager
 
-@export var general_settings:DataInputSystem
-@export var player_settings_manager:TabContainer
-@export var player_settings:Array[DataInputSystem]
+@export var page_loader:PageLoader
+@export var create_button:Button
 
 @export var token_selector:AssetSelector
 @export var manager_selector:AssetSelector
+
+@export var campaign_mode_button_group:ButtonGroup
+@export var campaign_modes:Array[DataInputSystem]
 
 @export var fund_input_field:InputField
 @export var max_fund_button:Button
@@ -16,26 +18,26 @@ class_name CampaignCreator
 
 @export var token_visuals:Array[TextureRect]
 
-@export var fee_explanation:Label
 @export var creation_fee_label:NumberLabel
-
 @export var payment_displayable:DisplayableAsset
 
-@export var input_submit_button:BaseButton
+var house_pda:Pubkey
+var house_data:Dictionary
 
-var selected_token:Token
+var active_settings:DataInputSystem
+var active_button:Button
+
 var selected_manager:WalletAsset
+var selected_mode:DataInputSystem
+var selected_token:Token
 
 var house_currency_mint:Pubkey
 var campaign_creation_fee:float
 var manager_creation_fee:float
 
-var house_pda:Pubkey
-var house_data:Dictionary
-
 var managers_in_use:Array
 
-var burn_remainder:bool
+var burn_remainder:bool=false
 
 signal on_campaign_created
 
@@ -50,19 +52,24 @@ func _ready() -> void:
 	manager_selector.on_display_opened.connect(set_manager_collection_gate)
 	manager_selector.on_selected.connect(update_manager_selection)
 	
-	if input_submit_button!=null:
-		input_submit_button.pressed.connect(create_campaign)
-		input_submit_button.disabled=true
-		general_settings.on_fields_updated.connect(handle_input_update)
-		for input_system in player_settings:
-			input_system.on_fields_updated.connect(handle_input_update)
+	campaign_mode_button_group.pressed.connect(select_campaign_mode)
+	select_campaign_mode(campaign_mode_button_group.get_buttons()[0])
+	
+	create_button.pressed.connect(create_campaign)
 			
 	house_pda = ClubhouseProgram.utils.get_active_house_key()
 	house_data = await ClubhouseProgram.utils.get_active_house_data()
 	if house_data.size()==0:
 		print("No active house found. Skipping setting up campaign creator")
 		return	
+		
 	await setup_creator()
+	
+	page_loader.on_page_changed.connect(change_settings_page)
+	change_settings_page(0)
+	
+	managers_in_use = await ClubhouseProgram.utils.get_managers_in_use(house_pda)
+	update_manager_selection(null)
 	
 	screen_manager.switch_active_panel(1)
 	
@@ -80,28 +87,35 @@ func setup_creator() -> void:
 		var payment_token:Token = await SolanaService.asset_manager.get_asset_from_mint(house_currency_mint)
 		if payment_token!=null:
 			await payment_displayable.set_data(payment_token)
+	
+	
+func change_settings_page(page_id:int) -> void:
+	if page_id >= page_loader.pages.size()-1:
+		page_loader.next_page_button.visible=false
+		create_button.visible=true
+		active_button = create_button
+	else:
+		page_loader.next_page_button.visible=true
+		create_button.visible=false
+		active_button = page_loader.next_page_button
 		
-	
-	update_manager_selection(null)
-	
-	var claim_tax_percentage:float = house_config["rewards_tax"]/10.0
-	fee_explanation.text = "*Fees claimable after campaign has finished. House Tax of %s%% is applied!" % str(claim_tax_percentage)
-	
-	managers_in_use = await ClubhouseProgram.utils.get_managers_in_use(house_pda)
+#	disable tracking of previous active settings
+	if active_settings!=null:
+		active_settings.on_fields_updated.disconnect(handle_input_update)
+		
+#	for player settings, have to override with selected mode settings
+	print(page_id)
+	if page_id == 1:
+		active_settings = selected_mode
+		print("ACTIVATING SELECTED MODE ",selected_mode.name)
+	else:
+		active_settings = page_loader.pages[page_id] as DataInputSystem
+		
+	active_button.disabled=!active_settings.get_inputs_valid()
+	active_settings.on_fields_updated.connect(handle_input_update)
 	
 func handle_input_update() -> void:
-	if input_submit_button!=null:
-		if !general_settings.get_inputs_valid():
-			input_submit_button.disabled = true
-			return
-		if !player_settings[player_settings_manager.current_tab].get_inputs_valid():
-			input_submit_button.disabled = true
-			return
-			
-		input_submit_button.disabled = false
-		
-func get_player_settings() -> DataInputSystem:
-	return player_settings[player_settings_manager.current_tab]
+	active_button.disabled = !active_settings.get_inputs_valid()
 	
 func set_max_fund() -> void:
 	fund_input_field.text = str(fund_input_field.max_value)
@@ -137,6 +151,24 @@ func set_manager_collection_gate(display_system:AssetDisplaySystem) -> void:
 	SolanaService.asset_manager.add_collection_to_whitelist(manager_collection_key)
 	manager_display_system.exception_address_list = managers_in_use
 	
+func select_campaign_mode(selected_button:Button) -> void:
+	for mode in campaign_modes:
+		mode.visible=false
+		
+	if active_settings!=null:
+		active_settings.on_fields_updated.disconnect(handle_input_update)
+		
+#	0 is token mode, 1 is NFT mode
+	for i in campaign_mode_button_group.get_buttons().size():
+		if selected_button == campaign_mode_button_group.get_buttons()[i]:
+			campaign_modes[i].visible=true
+			selected_mode = campaign_modes[i]
+			
+			if active_settings!=null:
+				active_settings.on_fields_updated.disconnect(handle_input_update)
+			active_settings = campaign_modes[i]
+			active_settings.on_fields_updated.connect(handle_input_update)
+	
 func update_manager_selection(selected_asset:WalletAsset) -> void:
 	selected_manager = selected_asset
 	if selected_asset == null:
@@ -145,50 +177,60 @@ func update_manager_selection(selected_asset:WalletAsset) -> void:
 		creation_fee_label.set_value(manager_creation_fee)
 	
 func create_campaign() -> void:
-	var general_data:Dictionary = general_settings.get_input_data()
 	var house_pda:Pubkey = ClubhousePDA.get_house_pda(house_data["house_name"])
 	var currency_mint:Pubkey = house_data["house_currency"]
-	var campaign_name:String = general_data["campaignName"]
-	var reward_mint:Pubkey = general_data["rewardCurrency"]
 	
-	var reward_mint_decimals:int = await SolanaService.get_token_decimals(reward_mint.to_string())
-	var fund_amount_lamports:int = floori(general_data["fundAmount"]*pow(10,reward_mint_decimals))
+#	MAIN SETTINGS (1st page)
+	var main_settings:Dictionary = page_loader.pages[0].get_input_data()
 	
-	var max_reward_lamports:int = floori(general_data["maxReward"]*pow(10,reward_mint_decimals))
-	var player_claim_fee: int = floori(general_data["rewardsTax"]*pow(10,9))
+	var manager_data = null
+	if main_settings["campaignManager"]!=null:
+		var manager_asset:WalletAsset = main_settings["campaignManager"]
+		
+		manager_data={
+			"asset":manager_asset.mint,
+			"asset_type": 3 if manager_asset is CoreAsset else 1
+		}
+		
+	var campaign_name:String = main_settings["campaignName"]
 	
 	var timespan:Dictionary = {
-		"start_time":general_data["campaignStartTime"],
-		"end_time":get_campaign_end_timestamp(general_data["campaignStartTime"],general_data["campaignDuration"])
+		"start_time":main_settings["campaignStartTime"],
+		"end_time":get_campaign_end_timestamp(main_settings["campaignStartTime"],main_settings["campaignDuration"])
 	}
 	
-	var player_data:Dictionary = get_player_settings().get_input_data()
+	
+#	PLAYER SETTINGS (2nd page)
+	var player_settings:Dictionary = selected_mode.get_input_data()
 	var nft_config = null
 	var token_config = null
 	
-	if player_data.has("collection"):
+	if player_settings.has("collection"):
 		nft_config = {
-			"collection": player_data["collection"],
-			"max_player_energy":AnchorProgram.u8(player_data["maxEnergy"]),
-			"energy_recharge_minutes":AnchorProgram.option(player_data["rechargeRate"])
+			"collection": player_settings["collection"],
+			"max_player_energy":AnchorProgram.u8(player_settings["maxEnergy"]),
+			"energy_recharge_minutes":AnchorProgram.option(player_settings["rechargeRate"])
 		}
-	elif player_data.has("tokenMint"):
-		var decimals:int = await SolanaService.get_token_decimals(player_data["tokenMint"].to_string())
+	elif player_settings.has("tokenMint"):
+		var decimals:int = await SolanaService.get_token_decimals(player_settings["tokenMint"].to_string())
 		token_config = {
-			"spending_mint": player_data["tokenMint"],
-			"energy_price":AnchorProgram.u64(player_data["energyPrice"]*pow(10,decimals)),
+			"spending_mint": player_settings["tokenMint"],
+			"energy_price":AnchorProgram.u64(player_settings["energyPrice"]*pow(10,decimals)),
 			"spending_mint_decimals":AnchorProgram.u8(decimals),
-			"token_use":player_data["tokenUse"]["id"]
+			"token_use":player_settings["tokenUse"]["id"]
 		}
-		#print(token_config)
-		#return
 		
-	var manager_data = null
-	if selected_manager!=null:
-		manager_data={
-			"asset":selected_manager.mint,
-			"asset_type": 3 if selected_manager is CoreAsset else 1
-		}
+#	REWARD SETTINGS (3rd page)
+	var reward_settings:Dictionary = page_loader.pages[2].get_input_data()
+	
+	var reward_mint:Pubkey = reward_settings["rewardCurrency"].mint
+	
+	var reward_mint_decimals:int = await SolanaService.get_token_decimals(reward_mint.to_string())
+	var fund_amount_lamports:int = floori(reward_settings["fundAmount"]*pow(10,reward_mint_decimals))
+	
+	var max_reward_lamports:int = floori(reward_settings["maxReward"]*pow(10,reward_mint_decimals))
+	var player_claim_fee: int = floori(reward_settings["rewardsTax"]*pow(10,9))
+	
 
 	var tx_data:TransactionData = await ClubhouseProgram.create_campaign(house_pda,currency_mint,campaign_name,reward_mint,fund_amount_lamports,max_reward_lamports,burn_remainder,player_claim_fee,timespan,nft_config,token_config,manager_data)
 	

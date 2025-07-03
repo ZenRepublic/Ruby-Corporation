@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ClubhouseGig" load_steps=3 format=3 uid="uid://bmg3lqei2j5ka"]
 
 [ext_resource type="Texture2D" uid="uid://ci3vupbpeqisu" path="res://Textures/LogosAndTokens/LaunchingSoonLogo.png" id="1_tvwpv"]
-[ext_resource type="Script" uid="uid://djyqvwe53sm87" path="res://Scripts/DropGameKit/Utility/GigManager/Resources/gig_resource.gd" id="2_tvwpv"]
+[ext_resource type="Script" uid="uid://djyqvwe53sm87" path="res://Scripts/DropGameKit/GigManagement/Resources/gig_resource.gd" id="2_tvwpv"]
 
 [resource]
 script = ExtResource("2_tvwpv")

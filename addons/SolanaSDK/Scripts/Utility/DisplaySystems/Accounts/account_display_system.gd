@@ -27,13 +27,25 @@ signal on_page_load_finished
 
 func _ready() -> void:
 	if no_entries_overlay!=null:
-		no_entries_overlay.visible=true
+		no_entries_overlay.visible=false
 	
 	if refresh_button!=null:
 		refresh_button.pressed.connect(refresh_account_list)
 		
 	if page_loader!=null:
 		page_loader.on_page_changed.connect(load_page)
+		
+func clear_display() -> void:
+	if curr_page_container!=null:
+		curr_page_container.queue_free()
+		
+	list_data = {}
+	sort_data = {}
+	raw_accounts = {}
+	paged_accounts.clear()
+	curr_page = 0
+	page_loading=false
+	
 		
 func set_list(program:AnchorProgram,account_keyword:String,filter:Array=[],page_limit:int=5, spawn_accounts:bool=true) -> void:
 	list_data = {
@@ -82,6 +94,7 @@ func refresh_account_list(fetch_new:bool=true) -> void:
 	
 	if fetch_new or raw_accounts.size()==0:
 		raw_accounts = await SolanaService.fetch_all_program_accounts_of_type(list_data["program"],list_data["acc_key"],list_data["filter"])
+	
 	if raw_accounts.size() == 0:
 		if curr_page_container!=null and !page_loading:
 			curr_page_container.queue_free()

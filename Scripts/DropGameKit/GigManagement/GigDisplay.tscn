@@ -1,23 +1,24 @@
 [gd_scene load_steps=10 format=3 uid="uid://dxseqncx12gtl"]
 
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="1_gqpht"]
-[ext_resource type="Script" uid="uid://tt8vtkx6a7qs" path="res://Scripts/DropGameKit/Utility/GigManager/gig_display.gd" id="2_gqpht"]
-[ext_resource type="Texture2D" uid="uid://ci3vupbpeqisu" path="res://Textures/LogosAndTokens/LaunchingSoonLogo.png" id="3_djtl0"]
-[ext_resource type="Script" uid="uid://w7ftxsbvwiax" path="res://addons/SolanaSDK/Scripts/Utility/linked_button.gd" id="4_qdrgw"]
-[ext_resource type="AudioStream" uid="uid://cojs82uu73ctv" path="res://Sounds/UI/buttonpress.mp3" id="5_c1xgk"]
-[ext_resource type="Texture2D" uid="uid://bouy62vdktsrh" path="res://Textures/Socials/Twittericon.png" id="6_lh0ou"]
-[ext_resource type="Script" uid="uid://bwchk1fr718eh" path="res://addons/texture_button_colored/texture_button_colored.gd" id="7_uafmv"]
-[ext_resource type="Texture2D" uid="uid://br8u2jj3e2hqp" path="res://Textures/Socials/DiscordIcon.png" id="8_gwsr2"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="1_d3ax1"]
+[ext_resource type="Script" uid="uid://tt8vtkx6a7qs" path="res://Scripts/DropGameKit/GigManagement/gig_display.gd" id="5_kkmhr"]
+[ext_resource type="Script" uid="uid://w7ftxsbvwiax" path="res://addons/SolanaSDK/Scripts/Utility/linked_button.gd" id="6_c7h1i"]
+[ext_resource type="AudioStream" uid="uid://cojs82uu73ctv" path="res://Sounds/UI/buttonpress.mp3" id="7_43jqo"]
+[ext_resource type="Texture2D" uid="uid://bouy62vdktsrh" path="res://Textures/Socials/Twittericon.png" id="8_b42up"]
+[ext_resource type="Script" uid="uid://bwchk1fr718eh" path="res://addons/texture_button_colored/texture_button_colored.gd" id="9_m3ure"]
+[ext_resource type="Texture2D" uid="uid://br8u2jj3e2hqp" path="res://Textures/Socials/DiscordIcon.png" id="10_uh28h"]
+[ext_resource type="Texture2D" uid="uid://ci3vupbpeqisu" path="res://Textures/LogosAndTokens/LaunchingSoonLogo.png" id="11_y0jiu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwpoy"]
 
-[node name="GigMiniDisplay" type="PanelContainer" node_paths=PackedStringArray("title_label", "tag_label", "gig_visual")]
+[node name="GigDisplay" type="PanelContainer" node_paths=PackedStringArray("title_label", "tag_label", "gig_visual", "select_button")]
 size_flags_horizontal = 3
-theme = ExtResource("1_gqpht")
-script = ExtResource("2_gqpht")
+theme = ExtResource("1_d3ax1")
+script = ExtResource("5_kkmhr")
 title_label = NodePath("Content/GameDetails/Main/TitleContainer/Title/GameTitle")
 tag_label = NodePath("Content/GameDetails/Main/TitleContainer/GameTag")
 gig_visual = NodePath("Content/GameDetails/Main/Logo")
+select_button = NodePath("Content/GameDetails/Main/TitleContainer/SelectButton")
 
 [node name="Content" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -37,7 +38,7 @@ theme_override_constants/separation = 20
 [node name="Logo" type="TextureRect" parent="Content/GameDetails/Main"]
 custom_minimum_size = Vector2(196, 196)
 layout_mode = 2
-texture = ExtResource("3_djtl0")
+texture = ExtResource("11_y0jiu")
 expand_mode = 3
 stretch_mode = 5
 
@@ -51,7 +52,7 @@ layout_mode = 2
 
 [node name="GameTitle" type="Label" parent="Content/GameDetails/Main/TitleContainer/Title"]
 layout_mode = 2
-theme = ExtResource("1_gqpht")
+theme = ExtResource("1_d3ax1")
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 50
 text = "LAUNCHING SOON"
@@ -66,21 +67,21 @@ theme_override_constants/separation = 10
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qwpoy")
-script = ExtResource("4_qdrgw")
+script = ExtResource("6_c7h1i")
 button = NodePath("Button")
 link = "https://x.com/RubyCorporation"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/GameDetails/Main/TitleContainer/Title/SocialButtons/Twitter"]
-stream = ExtResource("5_c1xgk")
+stream = ExtResource("7_43jqo")
 
 [node name="Button" type="TextureButton" parent="Content/GameDetails/Main/TitleContainer/Title/SocialButtons/Twitter"]
 self_modulate = Color(0.0627451, 0.12549, 0.223529, 1)
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-texture_normal = ExtResource("6_lh0ou")
+texture_normal = ExtResource("8_b42up")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("7_uafmv")
+script = ExtResource("9_m3ure")
 theme_override_colors/icon_normal_color = Color(0.0627451, 0.12549, 0.223529, 1)
 theme_override_colors/icon_pressed_color = Color(0.741176, 0.803922, 0.901961, 1)
 theme_override_colors/icon_hover_color = Color(0.254902, 0.290196, 0.415686, 1)
@@ -92,7 +93,7 @@ visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qwpoy")
-script = ExtResource("4_qdrgw")
+script = ExtResource("6_c7h1i")
 button = NodePath("Button")
 link = "https://discord.gg/dTKMjfAW8W"
 
@@ -100,10 +101,10 @@ link = "https://discord.gg/dTKMjfAW8W"
 self_modulate = Color(0.639216, 0.156863, 0.345098, 1)
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-texture_normal = ExtResource("8_gwsr2")
+texture_normal = ExtResource("10_uh28h")
 ignore_texture_size = true
 stretch_mode = 5
-script = ExtResource("7_uafmv")
+script = ExtResource("9_m3ure")
 theme_override_colors/icon_normal_color = Color(0.639216, 0.156863, 0.345098, 1)
 theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_hover_color = Color(0.8, 0.258824, 0.368627, 1)
@@ -111,11 +112,11 @@ theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(0.380392, 0.0941176, 0.317647, 0.6)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/GameDetails/Main/TitleContainer/Title/SocialButtons/Discord"]
-stream = ExtResource("5_c1xgk")
+stream = ExtResource("7_43jqo")
 
 [node name="GameTag" type="Label" parent="Content/GameDetails/Main/TitleContainer"]
 layout_mode = 2
-theme = ExtResource("1_gqpht")
+theme = ExtResource("1_d3ax1")
 theme_type_variation = &"LabelInverted"
 text = "3D STACKER GAME"
 
@@ -124,11 +125,11 @@ custom_minimum_size = Vector2(250, 70)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 10
-theme = ExtResource("1_gqpht")
+theme = ExtResource("1_d3ax1")
 theme_type_variation = &"ButtonFlat"
 text = "SELECT"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/GameDetails/Main/TitleContainer/SelectButton"]
-stream = ExtResource("5_c1xgk")
+stream = ExtResource("7_43jqo")
 
 [connection signal="pressed" from="Content/GameDetails/Main/TitleContainer/SelectButton" to="." method="select"]

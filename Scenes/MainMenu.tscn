@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://dmdb8dbmov2cl"]
+[gd_scene load_steps=53 format=3 uid="uid://dmdb8dbmov2cl"]
 
 [ext_resource type="Script" uid="uid://uxfmmvq5egiv" path="res://Scripts/Menu/menu_manager.gd" id="1_l0w8j"]
 [ext_resource type="AudioStream" uid="uid://bj4v18wnuvk8g" path="res://Sounds/Music/RubyCorporationTheme.mp3" id="2_3qfoj"]
@@ -19,45 +19,34 @@
 [ext_resource type="Script" uid="uid://bapipatfqt33v" path="res://Scripts/Utility/screen_manager.gd" id="15_lty6o"]
 [ext_resource type="Script" uid="uid://vrf04aoisol5" path="res://Scripts/DropGameKit/CampaignManagement/campaign_loader.gd" id="16_7krnb"]
 [ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="17_85f2f"]
-[ext_resource type="Script" uid="uid://jx6unwf5v2gf" path="res://Scripts/DropGameKit/Utility/GigManager/gig_manager.gd" id="18_jhlh1"]
+[ext_resource type="Script" uid="uid://jx6unwf5v2gf" path="res://Scripts/DropGameKit/GigManagement/gig_selector.gd" id="18_jhlh1"]
 [ext_resource type="Texture2D" uid="uid://bpwp0rarwasey" path="res://Textures/LogosAndTokens/Logo no bg.PNG" id="18_lcy8p"]
-[ext_resource type="PackedScene" uid="uid://bnfq88vw2eksv" path="res://Scripts/DropGameKit/CampaignManagement/CampaignEntry.tscn" id="18_y3qgx"]
-[ext_resource type="Script" uid="uid://djyqvwe53sm87" path="res://Scripts/DropGameKit/Utility/GigManager/Resources/gig_resource.gd" id="19_h64ul"]
+[ext_resource type="Script" uid="uid://djyqvwe53sm87" path="res://Scripts/DropGameKit/GigManagement/Resources/gig_resource.gd" id="19_h64ul"]
 [ext_resource type="Texture2D" uid="uid://cdhls8cl6unf2" path="res://Textures/BrandingAssets/work.png" id="19_lcy8p"]
 [ext_resource type="Script" uid="uid://cdouwnr2k06gk" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/page_loader.gd" id="19_s07dd"]
 [ext_resource type="Texture2D" uid="uid://gptwby1tvc0b" path="res://Textures/Icons/Arrow.png" id="20_i5uv2"]
-[ext_resource type="PackedScene" uid="uid://dxseqncx12gtl" path="res://Scripts/DropGameKit/Utility/GigManager/GigMiniDisplay.tscn" id="20_jvcv6"]
-[ext_resource type="Resource" uid="uid://bmg3lqei2j5ka" path="res://Scripts/DropGameKit/Utility/GigManager/Resources/LaunchingSoon.tres" id="20_y41we"]
-[ext_resource type="Script" uid="uid://crlraerd8emwt" path="res://Scripts/DropGameKit/CampaignManagement/campaign_interactor.gd" id="21_8rpsb"]
-[ext_resource type="Resource" uid="uid://8mk52w26ex84" path="res://Scripts/DropGameKit/Utility/GigManager/Resources/BigDiggas.tres" id="21_drl2p"]
-[ext_resource type="Script" uid="uid://dpnv1ypvj2p1e" path="res://Scripts/DropGameKit/Utility/GigManager/house_selector.gd" id="22_jhlh1"]
+[ext_resource type="Resource" uid="uid://bmg3lqei2j5ka" path="res://Scripts/DropGameKit/GigManagement/Resources/LaunchingSoon.tres" id="20_y41we"]
+[ext_resource type="Resource" uid="uid://8mk52w26ex84" path="res://Scripts/DropGameKit/GigManagement/Resources/BigDiggas.tres" id="21_drl2p"]
+[ext_resource type="Script" uid="uid://dpnv1ypvj2p1e" path="res://Scripts/DropGameKit/GigManagement/house_selector.gd" id="22_jhlh1"]
 [ext_resource type="PackedScene" uid="uid://cecstunciplh3" path="res://Scripts/DropGameKit/HouseManagement/HouseDisplaySystem.tscn" id="23_oor3o"]
-[ext_resource type="PackedScene" uid="uid://wg3fgu8qsxb1" path="res://Scripts/DropGameKit/Utility/GigManager/GigDisplaySystem.tscn" id="23_ydj5n"]
 [ext_resource type="Script" uid="uid://7q7s8ljh1dfh" path="res://addons/SolanaSDK/Scripts/NFTGating/address_button_lock.gd" id="24_h64ul"]
-[ext_resource type="PackedScene" uid="uid://ku1agbhqaohs" path="res://Scripts/DropGameKit/CampaignManagement/CampaignCreator.tscn" id="24_oor3o"]
-[ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="24_vxqsd"]
-[ext_resource type="Script" uid="uid://stjjh12o1oou" path="res://Scripts/DropGameKit/Utility/GigManager/gig_loader_pck.gd" id="25_h64ul"]
-[ext_resource type="Script" uid="uid://bnket1c06w8fq" path="res://addons/SolanaSDK/Scripts/Utility/Input/number_label.gd" id="26_rhk5y"]
-[ext_resource type="Script" uid="uid://xl86n3733lsl" path="res://Scripts/Utility/timed_button.gd" id="27_smv1r"]
-[ext_resource type="Script" uid="uid://c25ievjhcwp5e" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/nft_campaign_player_manager.gd" id="28_qgddy"]
-[ext_resource type="PackedScene" uid="uid://btmj6a3kagg46" path="res://Scripts/Web3/UIAssets/DisplayableNFTButton.tscn" id="30_wghwy"]
-[ext_resource type="Texture2D" uid="uid://bpt1e8u1buonk" path="res://Textures/BrandingAssets/whosthatrubian.png" id="32_mgtpg"]
-[ext_resource type="Script" uid="uid://cvjs0lluew8kq" path="res://addons/SolanaSDK/Scripts/NFTGating/token_button_lock.gd" id="33_0s4na"]
-[ext_resource type="Script" uid="uid://8d53ge4w5ku7" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/token_campaign_player_manager.gd" id="34_g4wnk"]
-[ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="35_m856a"]
-[ext_resource type="Texture2D" uid="uid://dfv4g2wd54x0p" path="res://Textures/BrandingAssets/LogoSquare.png" id="36_oor3o"]
-[ext_resource type="Texture2D" uid="uid://dchy7ed3ybfi1" path="res://Textures/LogosAndTokens/Zenny token.PNG" id="38_oor3o"]
-[ext_resource type="PackedScene" uid="uid://4urmdr7smqjk" path="res://Scripts/DropGameKit/Leaderboard/CampaignLeaderboardDisplay.tscn" id="39_lhivc"]
+[ext_resource type="PackedScene" uid="uid://ku1agbhqaohs" path="res://Scripts/DropGameKit/CampaignManagement/CampaignCreator/CampaignCreator.tscn" id="24_oor3o"]
+[ext_resource type="Script" uid="uid://stjjh12o1oou" path="res://Scripts/DropGameKit/GigManagement/gig_loader_pck.gd" id="25_h64ul"]
+[ext_resource type="PackedScene" uid="uid://dxseqncx12gtl" path="res://Scripts/DropGameKit/GigManagement/GigDisplay.tscn" id="33_jhlh1"]
+[ext_resource type="Script" uid="uid://b8u22gdvyfu4v" path="res://Scripts/DropGameKit/GigManagement/gig_overview.gd" id="40_x734p"]
+[ext_resource type="PackedScene" uid="uid://cjwr2xtkisliq" path="res://Scripts/DropGameKit/CampaignManagement/CampaignDetails.tscn" id="42_mbdwi"]
 [ext_resource type="Script" uid="uid://c50bma6jrp4nc" path="res://Scripts/SoundManagement/sfx_manager.gd" id="51_w3p2m"]
 [ext_resource type="AudioStream" uid="uid://cunnj26stug8q" path="res://Sounds/UI/MainButtonSound.mp3" id="52_3qfoj"]
-[ext_resource type="Script" uid="uid://d0lkrs2tp2u3n" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/nft_display_system.gd" id="52_w3p2m"]
 [ext_resource type="AudioStream" uid="uid://bta85g154ui34" path="res://Sounds/UI/button_press_rich.mp3" id="53_jbkk3"]
 [ext_resource type="AudioStream" uid="uid://dbqxyr7v3x53b" path="res://Sounds/UI/checkmarksound.mp3" id="54_q0bdy"]
 [ext_resource type="AudioStream" uid="uid://xoio1puhisej" path="res://Sounds/UI/errorsound.mp3" id="55_x734p"]
 [ext_resource type="AudioStream" uid="uid://b0vf2eljmdfgc" path="res://Sounds/UI/TransactionFailed.mp3" id="56_mbdwi"]
 [ext_resource type="AudioStream" uid="uid://dfmwym0j8y55n" path="res://Sounds/UI/returnsound.mp3" id="57_3y7mu"]
 [ext_resource type="AudioStream" uid="uid://cm278a24mieti" path="res://Sounds/UI/slideradjusts.mp3" id="58_l7o23"]
-[ext_resource type="PackedScene" uid="uid://cfoaj5g1rjjyr" path="res://Scripts/DropGameKit/Utility/GigManager/GigDownloadOverlay.tscn" id="59_3qfoj"]
+[ext_resource type="PackedScene" uid="uid://cfoaj5g1rjjyr" path="res://Scripts/DropGameKit/GigManagement/GigDownloadOverlay.tscn" id="59_3qfoj"]
+[ext_resource type="Script" uid="uid://tt8vtkx6a7qs" path="res://Scripts/DropGameKit/GigManagement/gig_display.gd" id="61_x734p"]
+[ext_resource type="Texture2D" uid="uid://ci3vupbpeqisu" path="res://Textures/LogosAndTokens/LaunchingSoonLogo.png" id="62_mbdwi"]
+[ext_resource type="PackedScene" uid="uid://lwo4ewpjv5ky" path="res://Scripts/DropGameKit/CampaignManagement/CampaignEntry.tscn" id="63_mbdwi"]
 [ext_resource type="PackedScene" uid="uid://opkwvwup8u86" path="res://Scenes/Settings.tscn" id="74_k04pn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8eq28"]
@@ -72,41 +61,9 @@ shader_parameter/tint = Color(0.568627, 0.811765, 0.847059, 0.117647)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcy8p"]
 bg_color = Color(0.0352941, 0.0627451, 0.054902, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqkck"]
-bg_color = Color(0.00392157, 0.235294, 0.231373, 1)
-border_color = Color(0.996078, 0.901961, 0.517647, 1)
-corner_detail = 1
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwpoy"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2pdf"]
-bg_color = Color(1, 1, 1, 1)
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.8, 0.854902, 0.858824, 1)
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vuurv"]
-bg_color = Color(0.00392157, 0.235294, 0.231373, 1)
-corner_detail = 1
-shadow_color = Color(0, 0, 0, 0.368627)
-shadow_offset = Vector2(3, 3)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il6t6"]
-bg_color = Color(0, 0.443137, 0.439216, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mul17"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jhlh1"]
-bg_color = Color(0.00392157, 0.235294, 0.231373, 1)
-border_color = Color(0.8, 0.854902, 0.858824, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_im7gb"]
-bg_color = Color(0, 0.443137, 0.439216, 1)
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_detail = 1
-
-[node name="Menu" type="Control" node_paths=PackedStringArray("screen_manager", "gig_manager", "campaign_loader", "sfx_manager")]
+[node name="Menu" type="Control" node_paths=PackedStringArray("screen_manager", "gig_selector", "gig_overview", "gig_pck_loader", "sfx_manager")]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -116,12 +73,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l0w8j")
 screen_manager = NodePath("Content/MainScreen/ScreenManager")
-gig_manager = NodePath("Content/MainScreen/GigManager")
-campaign_loader = NodePath("Content/MainScreen/CampaignSelector")
+gig_selector = NodePath("Content/MainScreen/GigSelector")
+gig_overview = NodePath("Content/MainScreen/GigOverview")
+gig_pck_loader = NodePath("GigLoaderPCK")
 music_library = {
 "Menu": ExtResource("2_3qfoj")
 }
 sfx_manager = NodePath("SFXManager")
+
+[node name="GigLoaderPCK" type="Node" parent="."]
+script = ExtResource("25_h64ul")
+download_overlay_scn = ExtResource("59_3qfoj")
+metadata/_custom_type_script = "uid://stjjh12o1oou"
 
 [node name="SFXManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
 script = ExtResource("51_w3p2m")
@@ -175,7 +138,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/separation = 0
 script = ExtResource("5_lcy8p")
-user_address_label = NodePath("../MainScreen/GigManager/Content/Intro/WelcomeText/UserAddress")
+user_address_label = NodePath("../MainScreen/GigSelector/Content/Intro/WelcomeText/UserAddress")
 login_button = NodePath("PanelContainer/MarginContainer/HBoxContainer/Buttons/LoginButton")
 token_vault_scn = ExtResource("6_jvcv6")
 vault_button = NodePath("PanelContainer/MarginContainer/HBoxContainer/Buttons/VaultButton")
@@ -322,10 +285,23 @@ size_flags_vertical = 3
 
 [node name="ScreenManager" type="Node" parent="Content/MainScreen" node_paths=PackedStringArray("starting_panel", "screens")]
 script = ExtResource("15_lty6o")
-starting_panel = NodePath("../GigManager")
-screens = [NodePath("../GigManager"), NodePath("../CampaignSelector")]
+starting_panel = NodePath("../GigSelector")
+screens = [NodePath("../GigSelector"), NodePath("../GigOverview")]
 
-[node name="GigManager" type="MarginContainer" parent="Content/MainScreen" node_paths=PackedStringArray("mini_gig_spawn", "gig_loader_pck")]
+[node name="LoadingPanel" type="MarginContainer" parent="Content/MainScreen"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LoadingText" type="Label" parent="Content/MainScreen/LoadingPanel"]
+layout_mode = 2
+theme = ExtResource("7_eupma")
+theme_type_variation = &"HeaderMedium"
+text = "LOADING..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GigSelector" type="MarginContainer" parent="Content/MainScreen" node_paths=PackedStringArray("gig_spawn")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
@@ -335,58 +311,55 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("18_jhlh1")
 gigs = Array[ExtResource("19_h64ul")]([ExtResource("21_drl2p"), ExtResource("20_y41we")])
-mini_gig_spawn = NodePath("Content/ScrollContainer/Gigs")
-mini_gig_display_scn = ExtResource("20_jvcv6")
-display_scn = ExtResource("23_ydj5n")
-gig_creator_scn = ExtResource("24_oor3o")
-gig_loader_pck = NodePath("GigLoaderPCK")
-use_local_pck = false
+gig_spawn = NodePath("Content/ScrollContainer/Gigs")
+gig_display_scn = ExtResource("33_jhlh1")
 
-[node name="GigLoaderPCK" type="Node" parent="Content/MainScreen/GigManager"]
+[node name="GigLoaderPCK" type="Node" parent="Content/MainScreen/GigSelector"]
 script = ExtResource("25_h64ul")
 download_overlay_scn = ExtResource("59_3qfoj")
 metadata/_custom_type_script = "uid://stjjh12o1oou"
 
-[node name="Content" type="VBoxContainer" parent="Content/MainScreen/GigManager"]
+[node name="Content" type="VBoxContainer" parent="Content/MainScreen/GigSelector"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Intro" type="VBoxContainer" parent="Content/MainScreen/GigManager/Content"]
+[node name="Intro" type="VBoxContainer" parent="Content/MainScreen/GigSelector/Content"]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 20
 
-[node name="TextureRect" type="TextureRect" parent="Content/MainScreen/GigManager/Content/Intro"]
+[node name="TextureRect" type="TextureRect" parent="Content/MainScreen/GigSelector/Content/Intro"]
 custom_minimum_size = Vector2(0, 225)
 layout_mode = 2
 texture = ExtResource("19_lcy8p")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="WelcomeText" type="HBoxContainer" parent="Content/MainScreen/GigManager/Content/Intro"]
+[node name="WelcomeText" type="HBoxContainer" parent="Content/MainScreen/GigSelector/Content/Intro"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Content/MainScreen/GigManager/Content/Intro/WelcomeText"]
+[node name="Label" type="Label" parent="Content/MainScreen/GigSelector/Content/Intro/WelcomeText"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 text = "Welcome,"
 
-[node name="UserAddress" type="Label" parent="Content/MainScreen/GigManager/Content/Intro/WelcomeText"]
+[node name="UserAddress" type="Label" parent="Content/MainScreen/GigSelector/Content/Intro/WelcomeText"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_type_variation = &"LabelSpecial"
 text = "GUEST"
 
-[node name="Description" type="Label" parent="Content/MainScreen/GigManager/Content/Intro"]
+[node name="Description" type="Label" parent="Content/MainScreen/GigSelector/Content/Intro"]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme = ExtResource("7_eupma")
-text = "In Ruby Planet, there is always work for those who seek it...
+text = "We offer work for those who seek it...
 
-Select a gig and check if there are any campaigns active for it!"
+Select a gig and check if there's any active campaigns for it!"
 autowrap_mode = 2
 
-[node name="LearnMoreButton" type="Button" parent="Content/MainScreen/GigManager/Content/Intro" node_paths=PackedStringArray("button")]
+[node name="LearnMoreButton" type="Button" parent="Content/MainScreen/GigSelector/Content/Intro" node_paths=PackedStringArray("button")]
+visible = false
 custom_minimum_size = Vector2(300, 70)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -397,18 +370,18 @@ script = ExtResource("8_a02e1")
 button = NodePath(".")
 link = "https://www.canva.com/design/DAGnKPy0j2c/4bk8DUaf3fmGv10FugV23w/edit?utm_content=DAGnKPy0j2c&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Content/MainScreen/GigManager/Content"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Content/MainScreen/GigSelector/Content"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("7_eupma")
 horizontal_scroll_mode = 0
 
-[node name="Gigs" type="VBoxContainer" parent="Content/MainScreen/GigManager/Content/ScrollContainer"]
+[node name="Gigs" type="VBoxContainer" parent="Content/MainScreen/GigSelector/Content/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="HouseSelector" type="PanelContainer" parent="Content/MainScreen/GigManager/Content/ScrollContainer/Gigs" node_paths=PackedStringArray("manage_button")]
+[node name="HouseSelector" type="PanelContainer" parent="Content/MainScreen/GigSelector/Content/ScrollContainer/Gigs" node_paths=PackedStringArray("manage_button")]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_type_variation = &"PanelFlat"
@@ -416,25 +389,25 @@ script = ExtResource("22_jhlh1")
 house_manager_scn = ExtResource("23_oor3o")
 manage_button = NodePath("MarginContainer/VBoxContainer/HouseManagerButton")
 
-[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/GigManager/Content/ScrollContainer/Gigs/HouseSelector"]
+[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/GigSelector/Content/ScrollContainer/Gigs/HouseSelector"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Content/MainScreen/GigManager/Content/ScrollContainer/Gigs/HouseSelector/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/MainScreen/GigSelector/Content/ScrollContainer/Gigs/HouseSelector/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="GameTitle" type="Label" parent="Content/MainScreen/GigManager/Content/ScrollContainer/Gigs/HouseSelector/MarginContainer/VBoxContainer"]
+[node name="GameTitle" type="Label" parent="Content/MainScreen/GigSelector/Content/ScrollContainer/Gigs/HouseSelector/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 text = "More Gigs coming soon!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HouseManagerButton" type="Button" parent="Content/MainScreen/GigManager/Content/ScrollContainer/Gigs/HouseSelector/MarginContainer/VBoxContainer"]
+[node name="HouseManagerButton" type="Button" parent="Content/MainScreen/GigSelector/Content/ScrollContainer/Gigs/HouseSelector/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(350, 70)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -444,92 +417,197 @@ text = "CREATE GAME"
 script = ExtResource("24_h64ul")
 hide_if_locked = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GigManager/Content/ScrollContainer/Gigs/HouseSelector/MarginContainer/VBoxContainer/HouseManagerButton"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GigSelector/Content/ScrollContainer/Gigs/HouseSelector/MarginContainer/VBoxContainer/HouseManagerButton"]
 stream = ExtResource("9_04wh2")
 
-[node name="CampaignSelector" type="VBoxContainer" parent="Content/MainScreen" node_paths=PackedStringArray("screen_manager", "campaign_display_system", "campaign_type_filter", "show_expired_filter", "campaign_interactor")]
-layout_mode = 2
-size_flags_vertical = 3
-script = ExtResource("16_7krnb")
-screen_manager = NodePath("ScreenManager")
-campaign_display_system = NodePath("CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem")
-campaign_type_filter = NodePath("CampaignSelect/MarginContainer/Content/Filters/CampaignType/CampaignTypeOption")
-show_expired_filter = NodePath("CampaignSelect/MarginContainer/Content/Filters/ShowExpired/ShowExpiredCheckbox")
-campaign_interactor = NodePath("CampaignInteractor")
-
-[node name="ScreenManager" type="Node" parent="Content/MainScreen/CampaignSelector" node_paths=PackedStringArray("starting_panel", "screens")]
-script = ExtResource("15_lty6o")
-starting_panel = NodePath("../CampaignSelect")
-screens = [NodePath("../LoadingPanel"), NodePath("../CampaignSelect"), NodePath("../CampaignInteractor")]
-
-[node name="LoadingPanel" type="MarginContainer" parent="Content/MainScreen/CampaignSelector"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="LoadingText" type="Label" parent="Content/MainScreen/CampaignSelector/LoadingPanel"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"HeaderMedium"
-text = "LOADING..."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CampaignSelect" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect"]
+[node name="GigOverview" type="MarginContainer" parent="Content/MainScreen" node_paths=PackedStringArray("gig_display", "campaign_loader")]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
+script = ExtResource("40_x734p")
+campaign_creator_scn = ExtResource("24_oor3o")
+gig_display = NodePath("Content/GigDisplay")
+campaign_loader = NodePath("Content/CampaignLoader")
 
-[node name="Content" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer"]
+[node name="Content" type="VBoxContainer" parent="Content/MainScreen/GigOverview"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="BackButton" type="Button" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content"]
-custom_minimum_size = Vector2(200, 70)
+[node name="ActionButtons" type="HBoxContainer" parent="Content/MainScreen/GigOverview/Content"]
 layout_mode = 2
-size_flags_horizontal = 0
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="BackButton" type="Button" parent="Content/MainScreen/GigOverview/Content/ActionButtons"]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+size_flags_horizontal = 2
 theme = ExtResource("7_eupma")
-theme_type_variation = &"ButtonFlatAlt"
+theme_type_variation = &"ButtonFlat"
 text = "BACK"
 
-[node name="Intro" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content"]
+[node name="CreateCampaign" type="Button" parent="Content/MainScreen/GigOverview/Content/ActionButtons"]
+custom_minimum_size = Vector2(220, 70)
 layout_mode = 2
+theme = ExtResource("7_eupma")
+theme_type_variation = &"ButtonFlatAlt"
+text = "CREATE"
 
-[node name="ActiveCampaigns" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/Intro"]
-custom_minimum_size = Vector2(300, 0)
+[node name="FreePlayButton" type="Button" parent="Content/MainScreen/GigOverview/Content/ActionButtons"]
+custom_minimum_size = Vector2(220, 70)
+layout_mode = 2
+theme = ExtResource("7_eupma")
+theme_type_variation = &"ButtonFlatAlt"
+text = "PRACTICE"
+
+[node name="GigDisplay" type="PanelContainer" parent="Content/MainScreen/GigOverview/Content" node_paths=PackedStringArray("title_label", "tag_label", "description_label", "gig_visual")]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("7_eupma")
-text = "Select an active campaign to play. 
+script = ExtResource("61_x734p")
+title_label = NodePath("Content/GameDetails/Header/GameTitle")
+tag_label = NodePath("Content/GameDetails/Main/TitleContainer/Headline")
+description_label = NodePath("Content/GameDetails/Main/TitleContainer/Description")
+gig_visual = NodePath("Content/GameDetails/Main/Logo")
 
-Note: you can only participate if you hold the required assets!"
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="Content" type="MarginContainer" parent="Content/MainScreen/GigOverview/Content/GigDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="Filters" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content"]
+[node name="GameDetails" type="VBoxContainer" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="CampaignType" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/Filters"]
+[node name="Header" type="HBoxContainer" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails"]
+layout_mode = 2
+
+[node name="GameTitle" type="Label" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails/Header"]
+layout_mode = 2
+theme = ExtResource("7_eupma")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 50
+text = "LAUNCHING SOON"
+
+[node name="SocialButtons" type="HBoxContainer" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails/Header"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 10
+
+[node name="Twitter" type="PanelContainer" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails/Header/SocialButtons" node_paths=PackedStringArray("button")]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qwpoy")
+script = ExtResource("8_a02e1")
+button = NodePath("Button")
+link = "https://x.com/RubyCorporation"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails/Header/SocialButtons/Twitter"]
+stream = ExtResource("9_04wh2")
+
+[node name="Button" type="TextureButton" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails/Header/SocialButtons/Twitter"]
+self_modulate = Color(0.0627451, 0.12549, 0.223529, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("10_47kh5")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("11_ugld7")
+theme_override_colors/icon_normal_color = Color(0.0627451, 0.12549, 0.223529, 1)
+theme_override_colors/icon_pressed_color = Color(0.741176, 0.803922, 0.901961, 1)
+theme_override_colors/icon_hover_color = Color(0.254902, 0.290196, 0.415686, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.741176, 0.803922, 0.901961, 1)
+theme_override_colors/icon_disabled_color = Color(0.0627451, 0.12549, 0.223529, 0.705882)
+
+[node name="Discord" type="PanelContainer" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails/Header/SocialButtons" node_paths=PackedStringArray("button")]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qwpoy")
+script = ExtResource("8_a02e1")
+button = NodePath("Button")
+link = "https://discord.gg/dTKMjfAW8W"
+
+[node name="Button" type="TextureButton" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails/Header/SocialButtons/Discord"]
+self_modulate = Color(0.639216, 0.156863, 0.345098, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = ExtResource("12_40pcs")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("11_ugld7")
+theme_override_colors/icon_normal_color = Color(0.639216, 0.156863, 0.345098, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(0.8, 0.258824, 0.368627, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(0.380392, 0.0941176, 0.317647, 0.6)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails/Header/SocialButtons/Discord"]
+stream = ExtResource("9_04wh2")
+
+[node name="Main" type="HBoxContainer" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Logo" type="TextureRect" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails/Main"]
+custom_minimum_size = Vector2(196, 196)
+layout_mode = 2
+texture = ExtResource("62_mbdwi")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TitleContainer" type="VBoxContainer" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails/Main"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Headline" type="Label" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails/Main/TitleContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme = ExtResource("7_eupma")
+theme_override_font_sizes/font_size = 30
+text = "TRALALERO TRALALA"
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="Content/MainScreen/GigOverview/Content/GigDisplay/Content/GameDetails/Main/TitleContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme = ExtResource("7_eupma")
+theme_type_variation = &"LabelInverted"
+text = "Dig around in a tile-based cave to uncover precious gems and exchange them for tokens!"
+autowrap_mode = 2
+
+[node name="CampaignLoader" type="VBoxContainer" parent="Content/MainScreen/GigOverview/Content" node_paths=PackedStringArray("campaign_display_system", "campaign_type_filter", "show_expired_filter")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+script = ExtResource("16_7krnb")
+campaign_display_system = NodePath("CampaignsDisplaySystem")
+campaign_type_filter = NodePath("Filters/CampaignType/CampaignTypeOption")
+show_expired_filter = NodePath("Filters/ShowExpired/ShowExpiredCheckbox")
+campaign_details_scn = ExtResource("42_mbdwi")
+
+[node name="Filters" type="HBoxContainer" parent="Content/MainScreen/GigOverview/Content/CampaignLoader"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CampaignType" type="HBoxContainer" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/Filters"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/Filters/CampaignType"]
+[node name="Label" type="Label" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/Filters/CampaignType"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_override_font_sizes/font_size = 30
 text = "Type"
 
-[node name="CampaignTypeOption" type="OptionButton" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/Filters/CampaignType"]
+[node name="CampaignTypeOption" type="OptionButton" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/Filters/CampaignType"]
 custom_minimum_size = Vector2(180, 50)
 layout_mode = 2
 size_flags_vertical = 4
@@ -544,59 +622,60 @@ popup/item_1/id = 1
 popup/item_2/text = "TOKEN"
 popup/item_2/id = 2
 
-[node name="ShowExpired" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/Filters"]
+[node name="ShowExpired" type="HBoxContainer" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/Filters"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/Filters/ShowExpired"]
+[node name="Label" type="Label" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/Filters/ShowExpired"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_override_font_sizes/font_size = 30
 text = "Show Expired"
 
-[node name="ShowExpiredCheckbox" type="CheckBox" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/Filters/ShowExpired"]
+[node name="ShowExpiredCheckbox" type="CheckBox" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/Filters/ShowExpired"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_override_constants/icon_max_width = 50
 alignment = 1
 
-[node name="CampaignsDisplaySystem" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content" node_paths=PackedStringArray("container", "no_entries_overlay", "page_loader", "refresh_button")]
+[node name="CampaignsDisplaySystem" type="PanelContainer" parent="Content/MainScreen/GigOverview/Content/CampaignLoader" node_paths=PackedStringArray("container", "no_entries_overlay", "page_loader", "refresh_button")]
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("7_eupma")
+theme_type_variation = &"PanelFlat"
 script = ExtResource("17_85f2f")
 container = NodePath("MarginContainer/ListContent/CampaignList/Spawn")
-entry_scn = ExtResource("18_y3qgx")
+entry_scn = ExtResource("63_mbdwi")
 no_entries_overlay = NodePath("NoCampaignsOverlay")
 bring_new_to_back = false
 page_loader = NodePath("MarginContainer/ListContent/PageLoader")
 refresh_button = NodePath("MarginContainer/ListContent/RefreshButton")
 
-[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem"]
+[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/CampaignsDisplaySystem"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ListContent" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer"]
+[node name="ListContent" type="VBoxContainer" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/CampaignsDisplaySystem/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="CampaignList" type="ScrollContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent"]
+[node name="CampaignList" type="ScrollContainer" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/CampaignsDisplaySystem/MarginContainer/ListContent"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("7_eupma")
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="Spawn" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent/CampaignList"]
+[node name="Spawn" type="VBoxContainer" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/CampaignsDisplaySystem/MarginContainer/ListContent/CampaignList"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
-[node name="PageLoader" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent" node_paths=PackedStringArray("prev_page_button", "next_page_button", "page_label")]
+[node name="PageLoader" type="HBoxContainer" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/CampaignsDisplaySystem/MarginContainer/ListContent" node_paths=PackedStringArray("prev_page_button", "next_page_button", "page_label")]
 layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 1
@@ -605,7 +684,7 @@ prev_page_button = NodePath("Previous")
 next_page_button = NodePath("Next")
 page_label = NodePath("PageLabel")
 
-[node name="Previous" type="TextureButton" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent/PageLoader"]
+[node name="Previous" type="TextureButton" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/CampaignsDisplaySystem/MarginContainer/ListContent/PageLoader"]
 self_modulate = Color(0, 0.443137, 0.439216, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -620,7 +699,7 @@ theme_override_colors/icon_hover_color = Color(0.00392157, 0.235294, 0.231373, 1
 theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(0.00392157, 0.235294, 0.231373, 0.631373)
 
-[node name="PageLabel" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent/PageLoader"]
+[node name="PageLabel" type="Label" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/CampaignsDisplaySystem/MarginContainer/ListContent/PageLoader"]
 layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_override_font_sizes/font_size = 28
@@ -628,7 +707,7 @@ text = "..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Next" type="TextureButton" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent/PageLoader"]
+[node name="Next" type="TextureButton" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/CampaignsDisplaySystem/MarginContainer/ListContent/PageLoader"]
 self_modulate = Color(0, 0.443137, 0.439216, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -642,697 +721,19 @@ theme_override_colors/icon_hover_color = Color(0.00392157, 0.235294, 0.231373, 1
 theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(0.00392157, 0.235294, 0.231373, 0.631373)
 
-[node name="RefreshButton" type="Button" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem/MarginContainer/ListContent"]
+[node name="RefreshButton" type="Button" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/CampaignsDisplaySystem/MarginContainer/ListContent"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("7_eupma")
-theme_type_variation = &"ButtonFlat"
+theme_type_variation = &"ButtonFlatAlt"
 text = "REFRESH"
 
-[node name="NoCampaignsOverlay" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/CampaignsDisplaySystem"]
+[node name="NoCampaignsOverlay" type="Label" parent="Content/MainScreen/GigOverview/Content/CampaignLoader/CampaignsDisplaySystem"]
 visible = false
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("7_eupma")
-theme_type_variation = &"LabelInverted"
-text = "No active campaigns found..."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="FreePlayContainer" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 30
-alignment = 2
-
-[node name="Label" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/FreePlayContainer"]
-custom_minimum_size = Vector2(350, 0)
-layout_mode = 2
-theme = ExtResource("7_eupma")
-text = "Hone your skills in free play mode"
-horizontal_alignment = 2
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="FreePlayButton" type="Button" parent="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/FreePlayContainer"]
-custom_minimum_size = Vector2(250, 70)
-layout_mode = 2
-size_flags_horizontal = 8
-theme = ExtResource("7_eupma")
-text = "PLAY NOW!"
-
-[node name="CampaignInteractor" type="MarginContainer" parent="Content/MainScreen/CampaignSelector" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "manager_displayable", "reward_token_displayable", "max_reward_label", "campaign_timer", "campaign_expired_panel", "not_logged_in_panel", "nft_player_manager", "token_player_manager")]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-script = ExtResource("21_8rpsb")
-campaign_name_label = NodePath("Content/Details/NameContainer/Label")
-gate_displayable = NodePath("Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer/MinerCollectionContainer")
-manager_displayable = NodePath("Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/CampaignOwner")
-reward_token_displayable = NodePath("Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer/MineTreasury/TreasuryContainer")
-max_reward_label = NodePath("Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/MaxReward/RewardContainer/RewardLabel")
-campaign_timer = NodePath("Content/Details/MineDetails/MarginContainer/VBoxContainer/CampaignTimer")
-campaign_expired_panel = NodePath("Content/MineClosedPanel")
-not_logged_in_panel = NodePath("Content/NotLoggedInPanel")
-leaderboard_scn = ExtResource("39_lhivc")
-nft_player_manager = NodePath("Content/NFTPlayerManager")
-token_player_manager = NodePath("Content/TokenPlayerOverview")
-
-[node name="Content" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor"]
-layout_mode = 2
-theme_override_constants/separation = 50
-
-[node name="Buttons" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="BackButton" type="Button" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Buttons"]
-custom_minimum_size = Vector2(180, 70)
-layout_mode = 2
-size_flags_horizontal = 0
-theme = ExtResource("7_eupma")
-theme_type_variation = &"ButtonFlatAlt"
-text = "BACK
-"
-
-[node name="LeaderboardButton" type="Button" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Buttons"]
-custom_minimum_size = Vector2(320, 70)
-layout_mode = 2
-size_flags_horizontal = 10
-theme = ExtResource("7_eupma")
-theme_type_variation = &"ButtonFlat"
-text = "LEADERBOARD"
-
-[node name="Details" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="NameContainer" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details"]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_eqkck")
-
-[node name="Label" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/NameContainer"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"HeaderMedium"
-theme_override_font_sizes/font_size = 40
-text = "BONK FOR MAD LADS!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MineDetails" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details"]
-layout_mode = 2
-size_flags_stretch_ratio = 0.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_j2pdf")
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 40
-
-[node name="MainDetails" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 25
-alignment = 1
-
-[node name="CollectionVisual" type="TextureRect" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails"]
-layout_mode = 2
-texture = ExtResource("36_oor3o")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="MainDetailsContainer" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="MinerCollectionContainer" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer" node_paths=PackedStringArray("visual", "name_label")]
-layout_mode = 2
-theme_override_constants/separation = 5
-script = ExtResource("24_vxqsd")
-visual = NodePath("../../CollectionVisual")
-image_size = 256
-name_label = NodePath("CollectionName")
-max_name_length = 10
-
-[node name="MinerCollection" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer/MinerCollectionContainer"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"LabelInverted"
-theme_override_font_sizes/font_size = 28
-text = "Workers"
-
-[node name="CollectionName" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer/MinerCollectionContainer"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"LabelSpecial"
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-text = "MADLADS"
-
-[node name="MineTreasury" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="TokensInTreasury" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer/MineTreasury"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"LabelInverted"
-theme_override_font_sizes/font_size = 28
-text = "Treasury"
-
-[node name="TreasuryContainer" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer/MineTreasury" node_paths=PackedStringArray("visual", "balance_label")]
-layout_mode = 2
-script = ExtResource("24_vxqsd")
-visual = NodePath("TokenVisual")
-balance_label = NodePath("TokensLabel")
-
-[node name="TokenVisual" type="TextureRect" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer/MineTreasury/TreasuryContainer"]
-layout_mode = 2
-texture = ExtResource("38_oor3o")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="TokensLabel" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/MainDetailsContainer/MineTreasury/TreasuryContainer"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"HeaderSmall"
-theme_override_font_sizes/font_size = 50
-text = "100M"
-script = ExtResource("26_rhk5y")
-format_mode = 1
-decimal_amount = 1
-
-[node name="ExtraDetailsContainer" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="CampaignOwner" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer" node_paths=PackedStringArray("name_label")]
-layout_mode = 2
-theme_override_constants/separation = 5
-script = ExtResource("24_vxqsd")
-name_label = NodePath("OwnerName")
-
-[node name="OwnerLabel" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/CampaignOwner"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"LabelInverted"
-theme_override_font_sizes/font_size = 28
-text = "Owner"
-
-[node name="OwnerName" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/CampaignOwner"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"LabelSpecial"
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-text = "ANON"
-
-[node name="MaxReward" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="MaxReward" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/MaxReward"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"LabelInverted"
-theme_override_font_sizes/font_size = 28
-text = "Max Reward"
-
-[node name="RewardContainer" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/MaxReward"]
-layout_mode = 2
-
-[node name="RewardLabel" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer/MainDetails/ExtraDetailsContainer/MaxReward/RewardContainer"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"HeaderSmall"
-theme_override_font_sizes/font_size = 50
-text = "50K"
-script = ExtResource("26_rhk5y")
-format_mode = 1
-decimal_amount = 1
-
-[node name="CampaignTimer" type="Button" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Details/MineDetails/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"InvisibleButton"
-theme_override_colors/font_disabled_color = Color(0.8, 0.854902, 0.858824, 1)
-theme_override_colors/font_outline_color = Color(0.0352941, 0.0627451, 0.054902, 1)
-theme_override_constants/outline_size = 8
-disabled = true
-text = "Closes In: 3h 50m 15s"
-script = ExtResource("27_smv1r")
-time_left_prefix = "Closes In:"
-activated_text = "Campaign Closed!"
-enable_on_started = false
-enable_on_finished = false
-
-[node name="NFTPlayerManager" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content" node_paths=PackedStringArray("player_select_system", "player_container", "displayable_player", "energy_bar", "energy_bar_label", "recharge_timed_button", "play_button")]
-visible = false
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_vuurv")
-script = ExtResource("28_qgddy")
-player_select_system = NodePath("MarginContainer/Content/PlayerSelection")
-player_container = NodePath("MarginContainer/Content/SelectedPlayerContainer")
-displayable_player = NodePath("MarginContainer/Content/SelectedPlayerContainer")
-energy_bar = NodePath("MarginContainer/Content/SelectedPlayerContainer/PlayerDetails/EnergyBar")
-energy_bar_label = NodePath("MarginContainer/Content/SelectedPlayerContainer/PlayerDetails/EnergyBar/Label")
-recharge_timed_button = NodePath("MarginContainer/Content/SelectedPlayerContainer/PlayerDetails/RechargeTimeDisplay")
-play_button = NodePath("MarginContainer/Content/SelectedPlayerContainer/MarginContainer/PlayButton")
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Content" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="PlayerSelection" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content" node_paths=PackedStringArray("container", "no_asset_overlay")]
-layout_mode = 2
-theme_override_constants/separation = 20
-script = ExtResource("52_w3p2m")
-display_entry_scn = ExtResource("30_wghwy")
-container = NodePath("PanelContainer/ScrollContainer/PlayerList")
-das_assets_only = true
-no_asset_overlay = NodePath("PanelContainer/NoPlayerOverlay")
-
-[node name="Label" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/PlayerSelection"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"LabelSpecial"
-text = "WORKER SELECT"
-vertical_alignment = 1
-
-[node name="PanelContainer" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/PlayerSelection"]
-custom_minimum_size = Vector2(0, 128)
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_override_styles/panel = SubResource("StyleBoxFlat_il6t6")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/PlayerSelection/PanelContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("7_eupma")
-
-[node name="PlayerList" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/PlayerSelection/PanelContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Example" type="MarginContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/PlayerSelection/PanelContainer/ScrollContainer/PlayerList"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Visual" type="TextureRect" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/PlayerSelection/PanelContainer/ScrollContainer/PlayerList/Example"]
-layout_mode = 2
-texture = ExtResource("32_mgtpg")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="Button" type="Button" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/PlayerSelection/PanelContainer/ScrollContainer/PlayerList/Example/Visual"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"InvisibleButton"
-
-[node name="NoPlayerOverlay" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/PlayerSelection/PanelContainer"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-text = "No eligible workers found..."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SelectedPlayerContainer" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content" node_paths=PackedStringArray("visual", "name_label")]
-layout_mode = 2
-theme_override_constants/separation = 10
-script = ExtResource("24_vxqsd")
-visual = NodePath("PlayerVisualContainer/MarginContainer/Visual")
-image_size = 256
-name_label = NodePath("PlayerDetails/NFTNameLabel")
-max_name_length = 13
-
-[node name="PlayerVisualContainer" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/SelectedPlayerContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mul17")
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/SelectedPlayerContainer/PlayerVisualContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Visual" type="TextureRect" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/SelectedPlayerContainer/PlayerVisualContainer/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("32_mgtpg")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="PlayerDetails" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/SelectedPlayerContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="NFTNameLabel" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/SelectedPlayerContainer/PlayerDetails"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"HeaderMedium"
-theme_override_font_sizes/font_size = 40
-text = "Rubian #123"
-vertical_alignment = 1
-
-[node name="EnergyBar" type="ProgressBar" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/SelectedPlayerContainer/PlayerDetails"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 2
-size_flags_vertical = 2
-theme = ExtResource("7_eupma")
-max_value = 5.0
-step = 1.0
-value = 4.0
-show_percentage = false
-
-[node name="Label" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/SelectedPlayerContainer/PlayerDetails/EnergyBar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"HeaderSmall"
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 1
-theme_override_font_sizes/font_size = 50
-text = "4/5"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="RechargeTimeDisplay" type="Button" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/SelectedPlayerContainer/PlayerDetails"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"InvisibleButton"
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 14
-disabled = true
-text = "Next in: 20h 48Min 25Sec"
-alignment = 0
-script = ExtResource("27_smv1r")
-time_left_prefix = "Next in:"
-enable_on_started = false
-enable_on_finished = false
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/SelectedPlayerContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 15
-
-[node name="PlayButton" type="Button" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NFTPlayerManager/MarginContainer/Content/SelectedPlayerContainer/MarginContainer"]
-custom_minimum_size = Vector2(160, 70)
-layout_mode = 2
-size_flags_vertical = 4
-theme = ExtResource("7_eupma")
-theme_override_font_sizes/font_size = 26
-text = "START!"
-autowrap_mode = 2
-script = ExtResource("33_0s4na")
-token_gate_list = {
-"": 0.004
-}
-lock_active = false
-locked_text = "NEED SOL"
-
-[node name="TokenPlayerOverview" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content" node_paths=PackedStringArray("mode_screen_manager", "balance_displayable", "price_displayable", "price_label", "play_button")]
-visible = false
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jhlh1")
-script = ExtResource("34_g4wnk")
-min_sol_to_enter = 0.004
-mode_screen_manager = NodePath("MarginContainer/Content/TopPart/MarginContainer/ScreenManager")
-balance_displayable = NodePath("MarginContainer/Content/SelectedContainer/PriceDetails/BalanceDisplayable")
-price_displayable = NodePath("MarginContainer/Content/SelectedContainer/PriceDetails/CostDisplayable")
-price_label = NodePath("MarginContainer/Content/SelectedContainer/PriceDetails/CostDisplayable/CostLabel")
-play_button = NodePath("MarginContainer/Content/SelectedContainer/MarginContainer/PlayGameButton")
-
-[node name="ScreenManager" type="Node" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview" node_paths=PackedStringArray("starting_panel", "screens")]
-script = ExtResource("15_lty6o")
-starting_panel = NodePath("../MarginContainer/Content")
-screens = [NodePath("../MarginContainer/Content"), NodePath("../MarginContainer/MineClosedOverlay")]
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Content" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="TopPart" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_im7gb")
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/TopPart"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 20
-
-[node name="ScreenManager" type="Node" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/TopPart/MarginContainer" node_paths=PackedStringArray("screens")]
-script = ExtResource("15_lty6o")
-screens = [NodePath("../StakedModeExplain"), NodePath("../BurnModeExplain"), NodePath("../PaidModeExplain")]
-
-[node name="StakedModeExplain" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/TopPart/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Mode" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/TopPart/MarginContainer/StakedModeExplain"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"LabelSpecial"
-text = "STAKED MODE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Description" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/TopPart/MarginContainer/StakedModeExplain"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-theme = ExtResource("7_eupma")
-text = "Stake required amount of tokens to enter. Withdraw all from VAULT when campaign closes!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="BurnModeExplain" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/TopPart/MarginContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Mode" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/TopPart/MarginContainer/BurnModeExplain"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"LabelSpecial"
-text = "BURN MODE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Description" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/TopPart/MarginContainer/BurnModeExplain"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-theme = ExtResource("7_eupma")
-text = "Burn the required amount of tokens to enter."
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="PaidModeExplain" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/TopPart/MarginContainer"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Mode" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/TopPart/MarginContainer/PaidModeExplain"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"LabelSpecial"
-text = "PAID MODE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Description" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/TopPart/MarginContainer/PaidModeExplain"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-theme = ExtResource("7_eupma")
-text = "Pay the required amount of tokens to enter."
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="SelectedContainer" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="PriceDetails" type="VBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/SelectedContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="BalanceDisplayable" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/SelectedContainer/PriceDetails" node_paths=PackedStringArray("visual", "balance_label")]
-layout_mode = 2
-theme_override_constants/separation = 20
-script = ExtResource("24_vxqsd")
-visual = NodePath("Visual")
-image_size = 128
-balance_label = NodePath("BalanceLabel")
-
-[node name="Balance" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/SelectedContainer/PriceDetails/BalanceDisplayable"]
-layout_mode = 2
-size_flags_vertical = 1
-theme = ExtResource("7_eupma")
-text = "Balance:"
-vertical_alignment = 1
-
-[node name="Visual" type="TextureRect" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/SelectedContainer/PriceDetails/BalanceDisplayable"]
-layout_mode = 2
-texture = ExtResource("35_m856a")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="BalanceLabel" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/SelectedContainer/PriceDetails/BalanceDisplayable"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"HeaderMedium"
-theme_override_font_sizes/font_size = 40
-text = "100"
-script = ExtResource("26_rhk5y")
-format_mode = 1
-decimal_amount = 2
-
-[node name="CostDisplayable" type="HBoxContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/SelectedContainer/PriceDetails" node_paths=PackedStringArray("visual")]
-layout_mode = 2
-theme_override_constants/separation = 20
-script = ExtResource("24_vxqsd")
-visual = NodePath("Visual")
-image_size = 128
-
-[node name="Cost" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/SelectedContainer/PriceDetails/CostDisplayable"]
-layout_mode = 2
-size_flags_vertical = 1
-theme = ExtResource("7_eupma")
-text = "Entry Cost:"
-vertical_alignment = 1
-
-[node name="Visual" type="TextureRect" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/SelectedContainer/PriceDetails/CostDisplayable"]
-layout_mode = 2
-texture = ExtResource("35_m856a")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="CostLabel" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/SelectedContainer/PriceDetails/CostDisplayable"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"HeaderMedium"
-theme_override_font_sizes/font_size = 40
-text = "100"
-script = ExtResource("26_rhk5y")
-format_mode = 1
-decimal_amount = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/SelectedContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_right = 15
-
-[node name="PlayGameButton" type="Button" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer/Content/SelectedContainer/MarginContainer"]
-custom_minimum_size = Vector2(110, 0)
-layout_mode = 2
-theme = ExtResource("7_eupma")
-text = "START!"
-autowrap_mode = 2
-script = ExtResource("33_0s4na")
-lock_active = false
-locked_text = "LACK..."
-
-[node name="MineClosedOverlay" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/TokenPlayerOverview/MarginContainer"]
-visible = false
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_override_font_sizes/font_size = 22
-text = "The mine is closed, good luck next time!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MineClosedPanel" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content"]
-visible = false
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"PanelFlat"
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/MineClosedPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="MineClosedOverlay" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/MineClosedPanel/MarginContainer"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-text = "The mine is closed.
-Good luck next time!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NotLoggedInPanel" type="PanelContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content"]
-visible = false
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-theme = ExtResource("7_eupma")
-theme_type_variation = &"PanelFlat"
-
-[node name="MarginContainer" type="MarginContainer" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NotLoggedInPanel"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="NotLoggedInText" type="Label" parent="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/NotLoggedInPanel/MarginContainer"]
-layout_mode = 2
-theme = ExtResource("7_eupma")
-text = "Not Logged in...
-Connect your Wallet to Play!"
+text = "No campaigns found..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1340,6 +741,6 @@ vertical_alignment = 1
 visible = false
 layout_mode = 1
 
-[connection signal="pressed" from="Content/MainScreen/CampaignSelector/CampaignSelect/MarginContainer/Content/BackButton" to="Content/MainScreen/ScreenManager" method="switch_active_panel" binds= [0]]
-[connection signal="pressed" from="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Buttons/BackButton" to="Content/MainScreen/CampaignSelector/ScreenManager" method="switch_active_panel" binds= [1]]
-[connection signal="pressed" from="Content/MainScreen/CampaignSelector/CampaignInteractor/Content/Buttons/LeaderboardButton" to="Content/MainScreen/CampaignSelector/CampaignInteractor" method="load_leaderboard"]
+[connection signal="pressed" from="Content/MainScreen/GigOverview/Content/ActionButtons/BackButton" to="Content/MainScreen/ScreenManager" method="back_to_previous_panel"]
+[connection signal="pressed" from="Content/MainScreen/GigOverview/Content/ActionButtons/CreateCampaign" to="Content/MainScreen/GigOverview" method="pop_campaign_creator"]
+[connection signal="pressed" from="Content/MainScreen/GigOverview/Content/ActionButtons/FreePlayButton" to="Content/MainScreen/GigOverview" method="free_play"]

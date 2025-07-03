@@ -7,6 +7,8 @@
 
 [node name="RubianServer" type="Node" node_paths=PackedStringArray("data_uploader", "nosana_manager", "database_manager")]
 script = ExtResource("1_ip3b0")
+SERVER_LINK = "https://drive.rubians.lol/"
+WEBSOCKET_LINK = "wss://drive.rubians.lol/"
 data_uploader = NodePath("DataUploader")
 nosana_manager = NodePath("NosanaManager")
 database_manager = NodePath("DatabaseManager")

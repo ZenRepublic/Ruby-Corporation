@@ -3,13 +3,13 @@ class_name HouseAdminSystem
 
 @export var screen_manager:ScreenManager
 @export var house_selector:AccountDisplaySystem
-@export var house_creator:HouseCreator
 @export var house_manager:HouseManager
 
+@export var house_creator_scn:PackedScene
+var house_creator:HouseCreator
 
 func _ready() -> void:
 	house_selector.on_account_selected.connect(load_house)
-	house_creator.on_house_created.connect(handle_house_create)
 	house_manager.on_house_edited.connect(handle_house_update)
 	house_manager.on_house_closed.connect(handle_house_close)
 	
@@ -18,6 +18,9 @@ func _ready() -> void:
 		
 func handle_house_create() -> void:
 	house_selector.refresh_account_list()
+	if house_creator!=null:
+		house_creator.on_house_created.disconnect(handle_house_create)
+		house_creator.queue_free()
 	
 func handle_house_update() -> void:
 	house_selector.refresh_account_list()
@@ -26,11 +29,17 @@ func handle_house_close() -> void:
 	house_selector.refresh_account_list()
 	screen_manager.switch_active_panel(1)
 	
-func go_create_new_house() -> void:
-	screen_manager.switch_active_panel(3)
-	
 	
 func load_house(selected_entry:AccountDisplayEntry) -> void:
 	screen_manager.switch_active_panel(0)
 	await house_manager.set_house_data(selected_entry.account_id,selected_entry.data)
 	screen_manager.switch_active_panel(2)
+	
+func pop_house_creator() -> void:
+	if house_creator!=null:
+		house_creator.on_house_created.disconnect(handle_house_create)
+		
+	house_creator = house_creator_scn.instantiate()
+	get_tree().root.add_child(house_creator)
+	
+	house_creator.on_house_created.connect(handle_house_create)

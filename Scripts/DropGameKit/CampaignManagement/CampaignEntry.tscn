@@ -1,193 +1,125 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnfq88vw2eksv"]
+[gd_scene load_steps=9 format=3 uid="uid://lwo4ewpjv5ky"]
 
-[ext_resource type="Script" uid="uid://csusqoq14ygfl" path="res://Scripts/DropGameKit/CampaignManagement/campaign_account.gd" id="2_w5oyl"]
-[ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="3_c34kt"]
-[ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="4_viqwm"]
-[ext_resource type="Script" uid="uid://xl86n3733lsl" path="res://Scripts/Utility/timed_button.gd" id="5_iht2v"]
-[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="5_p8jhh"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="1_268sl"]
+[ext_resource type="Script" uid="uid://csusqoq14ygfl" path="res://Scripts/DropGameKit/CampaignManagement/campaign_account.gd" id="2_a1oux"]
+[ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="3_lo7e3"]
+[ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="4_suf8m"]
+[ext_resource type="Texture2D" uid="uid://gptwby1tvc0b" path="res://Textures/Icons/Arrow.png" id="5_2nff6"]
+[ext_resource type="Script" uid="uid://xl86n3733lsl" path="res://Scripts/Utility/timed_button.gd" id="6_eailt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jms4c"]
+bg_color = Color(0, 0.443137, 0.439216, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yce1"]
 bg_color = Color(1, 1, 1, 1)
 skew = Vector2(0.56, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmr7k"]
-bg_color = Color(1, 1, 1, 1)
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.886262, 0.886261, 0.886262, 0.831373)
-
-[node name="AccountSelect" type="VBoxContainer" node_paths=PackedStringArray("token_displayable", "asset_gate_displayable", "campaign_name_label", "campaign_type_label", "timer_button")]
+[node name="CampaignEntry" type="VBoxContainer" node_paths=PackedStringArray("campaign_name_label", "asset_gate_displayable", "reward_displayable", "timer_button")]
 custom_minimum_size = Vector2(0, 45)
-offset_right = 692.0
-offset_bottom = 57.0
-theme = ExtResource("5_p8jhh")
+theme = ExtResource("1_268sl")
 theme_type_variation = &"ListEntryButton"
 theme_override_constants/separation = 0
-script = ExtResource("2_w5oyl")
-token_displayable = NodePath("Title/MarginContainer/HBoxContainer/TokenInfo")
-asset_gate_displayable = NodePath("MainDetails/MarginContainer/Content/CampaignGateAsset")
-campaign_name_label = NodePath("Title/MarginContainer/HBoxContainer/MineName")
-campaign_type_label = NodePath("MainDetails/MarginContainer/Content/VBoxContainer/HBoxContainer/type")
-timer_button = NodePath("MainDetails/MarginContainer/Content/VBoxContainer/TimerButton")
+script = ExtResource("2_a1oux")
+campaign_name_label = NodePath("MainDetails/MarginContainer/HBoxContainer/CampaignName")
+asset_gate_displayable = NodePath("MainDetails/MarginContainer/HBoxContainer/CampaignInfo/PlayersInfo")
+reward_displayable = NodePath("MainDetails/MarginContainer/HBoxContainer/CampaignInfo/RewardTokenInfo")
+timer_button = NodePath("TimerButton")
 
-[node name="Title" type="PanelContainer" parent="."]
+[node name="MainDetails" type="PanelContainer" parent="."]
 layout_mode = 2
-theme = ExtResource("5_p8jhh")
+theme = ExtResource("1_268sl")
 theme_type_variation = &"PanelFlat"
+theme_override_styles/panel = SubResource("StyleBoxFlat_jms4c")
 
-[node name="MarginContainer" type="MarginContainer" parent="Title"]
+[node name="MarginContainer" type="MarginContainer" parent="MainDetails"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 25
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Title/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainDetails/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 30
 
-[node name="MineName" type="Label" parent="Title/MarginContainer/HBoxContainer"]
+[node name="CampaignName" type="Label" parent="MainDetails/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("5_p8jhh")
+theme = ExtResource("1_268sl")
 theme_type_variation = &"HeaderMedium"
 theme_override_font_sizes/font_size = 35
 text = "CRAZY CAMPAIGN WOOOOW"
 vertical_alignment = 1
 
-[node name="Divider" type="HBoxContainer" parent="Title/MarginContainer/HBoxContainer"]
+[node name="Divider" type="HBoxContainer" parent="MainDetails/MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Divider1" type="Panel" parent="Title/MarginContainer/HBoxContainer/Divider"]
+[node name="Divider1" type="Panel" parent="MainDetails/MarginContainer/HBoxContainer/Divider"]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7yce1")
 
-[node name="Divider2" type="Panel" parent="Title/MarginContainer/HBoxContainer/Divider"]
+[node name="Divider2" type="Panel" parent="MainDetails/MarginContainer/HBoxContainer/Divider"]
 custom_minimum_size = Vector2(4.97, 0)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7yce1")
 
-[node name="TokenInfo" type="HBoxContainer" parent="Title/MarginContainer/HBoxContainer" node_paths=PackedStringArray("visual", "symbol_label")]
+[node name="CampaignInfo" type="HBoxContainer" parent="MainDetails/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PlayersInfo" type="HBoxContainer" parent="MainDetails/MarginContainer/HBoxContainer/CampaignInfo" node_paths=PackedStringArray("visual", "symbol_label")]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
-script = ExtResource("3_c34kt")
+script = ExtResource("3_lo7e3")
+visual = NodePath("TokenIcon")
+image_size = 128
+symbol_label = NodePath("")
+
+[node name="TokenIcon" type="TextureRect" parent="MainDetails/MarginContainer/HBoxContainer/CampaignInfo/PlayersInfo"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_suf8m")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Arrow" type="TextureRect" parent="MainDetails/MarginContainer/HBoxContainer/CampaignInfo"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("5_2nff6")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="RewardTokenInfo" type="HBoxContainer" parent="MainDetails/MarginContainer/HBoxContainer/CampaignInfo" node_paths=PackedStringArray("visual", "symbol_label")]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+script = ExtResource("3_lo7e3")
 visual = NodePath("TokenIcon")
 image_size = 64
-symbol_label = NodePath("SymbolName")
+symbol_label = NodePath("")
 
-[node name="TokenIcon" type="TextureRect" parent="Title/MarginContainer/HBoxContainer/TokenInfo"]
+[node name="TokenIcon" type="TextureRect" parent="MainDetails/MarginContainer/HBoxContainer/CampaignInfo/RewardTokenInfo"]
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("4_viqwm")
+texture = ExtResource("4_suf8m")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="SymbolName" type="Label" parent="Title/MarginContainer/HBoxContainer/TokenInfo"]
-layout_mode = 2
-theme = ExtResource("5_p8jhh")
-theme_override_font_sizes/font_size = 20
-text = "-"
-vertical_alignment = 1
-
-[node name="MainDetails" type="PanelContainer" parent="."]
-layout_mode = 2
-theme = ExtResource("5_p8jhh")
-theme_override_styles/panel = SubResource("StyleBoxFlat_kmr7k")
-
-[node name="MarginContainer" type="MarginContainer" parent="MainDetails"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Content" type="HBoxContainer" parent="MainDetails/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="CampaignGateAsset" type="MarginContainer" parent="MainDetails/MarginContainer/Content" node_paths=PackedStringArray("visual", "name_label")]
-layout_mode = 2
-script = ExtResource("3_c34kt")
-visual = NodePath("TextureRect")
-image_size = 256
-name_label = NodePath("../VBoxContainer/Name")
-max_name_length = 22
-
-[node name="TextureRect" type="TextureRect" parent="MainDetails/MarginContainer/Content/CampaignGateAsset"]
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-texture = ExtResource("4_viqwm")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainDetails/MarginContainer/Content"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 15
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MainDetails/MarginContainer/Content/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="EligibleText" type="Label" parent="MainDetails/MarginContainer/Content/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("5_p8jhh")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_font_sizes/font_size = 18
-text = "Eligible Players:"
-
-[node name="CampaignType" type="Label" parent="MainDetails/MarginContainer/Content/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_p8jhh")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-theme_override_font_sizes/font_size = 18
-text = "Campaign Type:"
-
-[node name="type" type="Label" parent="MainDetails/MarginContainer/Content/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_p8jhh")
-theme_type_variation = &"LabelSpecial"
-theme_override_colors/font_color = Color(0.988235, 0.937255, 0.552941, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 25
-text = "-"
-vertical_alignment = 1
-
-[node name="Name" type="Label" parent="MainDetails/MarginContainer/Content/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("5_p8jhh")
-theme_type_variation = &"LabelSpecial"
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 25
-text = "-"
-
-[node name="TimerButton" type="Button" parent="MainDetails/MarginContainer/Content/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="TimerButton" type="Button" parent="."]
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("5_p8jhh")
-theme_type_variation = &"ButtonFlat"
+theme = ExtResource("1_268sl")
+theme_type_variation = &"ButtonFlatAlt"
 text = "..."
-script = ExtResource("5_iht2v")
+script = ExtResource("6_eailt")
 time_left_prefix = "View Details"
 activated_text = "Closed..."
 refresh_frequency_seconds = 60
 enable_on_finished = false
-
-[node name="Button" type="Button" parent="."]
-visible = false
-layout_mode = 2
-theme = ExtResource("5_p8jhh")
-theme_type_variation = &"ListEntryButton"

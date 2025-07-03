@@ -36,9 +36,9 @@ func game_start_relay(campaign:Pubkey,data:Dictionary,player_data:Dictionary) ->
 	on_game_started.emit(campaign,data,player_data)
 		
 # Called when the node enters the scene tree for the first time.
-func set_campaign_data(id:String,data:Dictionary) -> void:
+func set_campaign_data(campaign_key:Pubkey,data:Dictionary) -> void:
 	curr_campaign_data = data
-	campaign_key = Pubkey.new_from_string(id)
+	self. campaign_key = campaign_key
 	campaign_name_label.text = data["campaign_name"]
 	
 	var mine_gate_asset:WalletAsset

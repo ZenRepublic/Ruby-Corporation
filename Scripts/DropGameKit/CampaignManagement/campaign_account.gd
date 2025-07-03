@@ -1,10 +1,10 @@
 extends AccountDisplayEntry
 class_name CampaignAccount
 
-@export var token_displayable:DisplayableAsset
-@export var asset_gate_displayable:DisplayableAsset
 @export var campaign_name_label:Label
-@export var campaign_type_label:Label
+
+@export var asset_gate_displayable:DisplayableAsset
+@export var reward_displayable:DisplayableAsset
 
 @export var timer_button:TimedButton
 
@@ -24,23 +24,21 @@ func setup_account_entry(id:String,account_data:Dictionary,index:int) -> void:
 		
 	var campaign_key:Pubkey = Pubkey.new_from_string(id)
 	
-	var campaign_token:Token = await SolanaService.asset_manager.get_asset_from_mint(data["reward_mint"],true)
-	campaign_token.token_account = ClubhousePDA.get_campaign_vault_pda(campaign_key)
-	campaign_token.decimals = data["reward_mint_decimals"]
-	await token_displayable.set_data(campaign_token)
-	
 	var gate_asset:WalletAsset
 	if data["nft_config"] != null:
 		gate_asset = await SolanaService.asset_manager.get_asset_from_mint(data["nft_config"]["collection"],true)
-		campaign_type_label.text = "NFT"
 	elif data["token_config"] != null:
 		gate_asset = await SolanaService.asset_manager.get_asset_from_mint(data["token_config"]["spending_mint"],true)
-		campaign_type_label.text = "TOKEN"
 	
 	if gate_asset!=null:
-		asset_gate_displayable.set_data(gate_asset)
+		await asset_gate_displayable.set_data(gate_asset)
 	else:
 		push_error("Gate Asset Failed to load...")
+	
+	var reward_token:Token = await SolanaService.asset_manager.get_asset_from_mint(data["reward_mint"],true)
+	reward_token.token_account = ClubhousePDA.get_campaign_vault_pda(campaign_key)
+	reward_token.decimals = data["reward_mint_decimals"]
+	await reward_displayable.set_data(reward_token)
 
 	timer_button.start_timer(data["time_span"]["start_time"],data["time_span"]["end_time"])
 	

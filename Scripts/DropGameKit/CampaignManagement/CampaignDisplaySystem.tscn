@@ -30,13 +30,13 @@ grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("1_ldnsl")
 screen_manager = NodePath("ScreenManager")
-campaign_selector = NodePath("Content/CampaignDisplay")
+campaign_selector = NodePath("Content/CampaignSelector")
 campaign_manager = NodePath("Content/CampaignManager")
 
 [node name="ScreenManager" type="Node" parent="." node_paths=PackedStringArray("starting_panel", "screens")]
 script = ExtResource("2_5to25")
-starting_panel = NodePath("../Content/CampaignDisplay")
-screens = [NodePath("../Content/LoadingScreen"), NodePath("../Content/CampaignDisplay"), NodePath("../Content/CampaignManager")]
+starting_panel = NodePath("../Content/CampaignSelector")
+screens = [NodePath("../Content/LoadingScreen"), NodePath("../Content/CampaignSelector"), NodePath("../Content/CampaignManager")]
 
 [node name="Background" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -116,8 +116,7 @@ text = "LOADING..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CampaignDisplay" type="MarginContainer" parent="Content" node_paths=PackedStringArray("container", "no_entries_overlay")]
-visible = false
+[node name="CampaignSelector" type="MarginContainer" parent="Content" node_paths=PackedStringArray("container", "no_entries_overlay")]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
@@ -129,39 +128,39 @@ container = NodePath("VboxContainer/ActiveCampaignsContainer/MarginContainer/Scr
 entry_scn = ExtResource("6_2hy6e")
 no_entries_overlay = NodePath("VboxContainer/ActiveCampaignsContainer/NoFound")
 
-[node name="VboxContainer" type="VBoxContainer" parent="Content/CampaignDisplay"]
+[node name="VboxContainer" type="VBoxContainer" parent="Content/CampaignSelector"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="CampaignsLabel" type="Label" parent="Content/CampaignDisplay/VboxContainer"]
+[node name="CampaignsLabel" type="Label" parent="Content/CampaignSelector/VboxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme = ExtResource("4_txo57")
-text = "View and manage the campaigns you have created for Gigs"
+text = "View and manage your active campaigns"
 autowrap_mode = 2
 
-[node name="ActiveCampaignsContainer" type="PanelContainer" parent="Content/CampaignDisplay/VboxContainer"]
+[node name="ActiveCampaignsContainer" type="PanelContainer" parent="Content/CampaignSelector/VboxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_txo57")
 
-[node name="MarginContainer" type="MarginContainer" parent="Content/CampaignDisplay/VboxContainer/ActiveCampaignsContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Content/CampaignSelector/VboxContainer/ActiveCampaignsContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Content/CampaignDisplay/VboxContainer/ActiveCampaignsContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Content/CampaignSelector/VboxContainer/ActiveCampaignsContainer/MarginContainer"]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="CampaignList" type="VBoxContainer" parent="Content/CampaignDisplay/VboxContainer/ActiveCampaignsContainer/MarginContainer/ScrollContainer"]
+[node name="CampaignList" type="VBoxContainer" parent="Content/CampaignSelector/VboxContainer/ActiveCampaignsContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="NoFound" type="Label" parent="Content/CampaignDisplay/VboxContainer/ActiveCampaignsContainer"]
+[node name="NoFound" type="Label" parent="Content/CampaignSelector/VboxContainer/ActiveCampaignsContainer"]
 visible = false
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
@@ -172,6 +171,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="CampaignManager" type="MarginContainer" parent="Content" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "owner_displayable", "campaign_type_label", "max_reward_displayable", "treasury_token_displayable", "total_games_label", "unique_players_label", "deposit_token_displayable", "not_available_deposit_label", "leaderboard", "fees_collected", "close_button")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

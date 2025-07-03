@@ -1,13 +1,10 @@
 extends Node
 class_name CampaignLoader
 
-@export var screen_manager:ScreenManager
-
 @export var campaign_display_system:AccountDisplaySystem
 @export var campaign_type_filter:OptionButton
 @export var show_expired_filter:CheckBox
-
-@export var campaign_interactor:CampaignInteractor
+@export var campaign_details_scn:PackedScene
 
 var house_pda:Pubkey
 
@@ -25,9 +22,11 @@ func on_visibility_changed() -> void:
 		pass
 		
 func load_campaigns() -> void:
+	campaign_display_system.clear_display()
+	
 	var house_data:Dictionary = await ClubhouseProgram.utils.get_active_house_data()
 	if house_data.size()==0:
-		print("No active house found. Skipping setting campaigns")
+		print("No active house found. Skipping load campaigns")
 		return
 		
 	house_pda = ClubhousePDA.get_house_pda(house_data["house_name"])
@@ -36,14 +35,12 @@ func load_campaigns() -> void:
 	campaign_display_system.set_sort_data("time_span.start_time",false)
 	campaign_display_system.set_list(ClubhouseProgram.get_program(),"Campaign",filter)
 	campaign_display_system.on_account_selected.connect(select_campaign)
-	#self.visibility_changed.connect(on_visibility_changed)
-	#mine_account_display.on_account_added.connect(handle_mine_active)
 	
 		
 func select_campaign(campaign_entry:AccountDisplayEntry) -> void:
-	screen_manager.switch_active_panel(0)
-	await campaign_interactor.set_campaign_data(campaign_entry.account_id,campaign_entry.data)
-	screen_manager.switch_active_panel(2)
+	var campaign_details:CampaignDetails = campaign_details_scn.instantiate() as CampaignDetails
+	get_tree().root.add_child(campaign_details)
+	campaign_details.setup_campaign_details(campaign_entry.account_id,campaign_entry.data)
 	
 func set_campaign_type_filter(selected_idx:int) -> void:
 	var type_name:String = campaign_type_filter.get_item_text(selected_idx)
@@ -57,7 +54,6 @@ func set_campaign_type_filter(selected_idx:int) -> void:
 		campaign_display_system.add_filter_parameter("token_config",null,"notEquals")
 	if type_name == "NFT":
 		campaign_display_system.add_filter_parameter("nft_config",null,"notEquals")
-	print(campaign_display_system.filter_data)
 #	this function hits first before accounts are setup, but we also want to
 #	be able to filter later on when they are all loaded
 	if campaign_display_system.raw_accounts.size()>0:
@@ -71,8 +67,7 @@ func set_show_expired_filter() -> void:
 	else:
 		var curr_time = Time.get_unix_time_from_system()
 		campaign_display_system.add_filter_parameter("time_span.end_time",curr_time,"higher")
-		
-	print(campaign_display_system.filter_data)
+
 	#	this function hits first before accounts are setup, but we also want to
 #	be able to filter later on when they are all loaded
 	if campaign_display_system.raw_accounts.size()>0:
