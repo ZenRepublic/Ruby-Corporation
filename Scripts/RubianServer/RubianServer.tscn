@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bksjobpfy88xy" path="res://Scripts/RubianServer/data_uploader.gd" id="2_oeh2r"]
 [ext_resource type="Script" uid="uid://yqce2t1oi8hs" path="res://Scripts/RubianServer/database_manager.gd" id="3_y7qi3"]
 [ext_resource type="Script" uid="uid://c24nbpn1cxac2" path="res://Scripts/RubianServer/nosana_manager.gd" id="4_22i0n"]
-[ext_resource type="Script" uid="uid://b5n2cu14u0eb6" path="res://Scripts/Tensor/tensor_api.gd" id="5_2d5le"]
+[ext_resource type="Script" uid="uid://b5n2cu14u0eb6" path="res://Scripts/RubianServer/tensor_api.gd" id="5_2d5le"]
 
 [node name="RubianServer" type="Node" node_paths=PackedStringArray("data_uploader", "nosana_manager", "database_manager", "tensor_api")]
 script = ExtResource("1_ip3b0")
@@ -26,4 +26,3 @@ script = ExtResource("3_y7qi3")
 
 [node name="TensorAPI" type="Node" parent="."]
 script = ExtResource("5_2d5le")
-metadata/_custom_type_script = "uid://b5n2cu14u0eb6"
