@@ -1,7 +1,6 @@
 extends Node
 class_name TensorCollectionDisplay
 
-@export var tensor_api:TensorAPI
 @export var show_limit:int = 20
 @export var container:Container
 @export var no_asset_overlay:Control
@@ -30,11 +29,13 @@ func search_collections(query:String) -> void:
 	if query.length() == 0:
 		return
 	
-	var collections:Dictionary = await tensor_api.search_collections(query,show_limit)
-	if collections.size() == 0 or !collections.has("collections"):
+	var response:Dictionary = await RubianServer.tensor_api.search_collections(query,show_limit)
+	if !response.has("body") or !response["body"].has("data"):
 		return
 		
-	for collection in collections["collections"]:
+	var collections:Array = response["body"]["data"]["collections"]
+		
+	for collection in collections:
 		var entry_instance:TensorCollectionEntry = display_entry_scn.instantiate() as TensorCollectionEntry
 		container.add_child(entry_instance)
 		
@@ -77,7 +78,7 @@ func close() -> void:
 		queue_free()
 		
 func get_onchain_id(offchain_id:String):
-	var whitelist_info:Array = await tensor_api.get_whitelist_info([offchain_id])
+	var whitelist_info:Array = await RubianServer.tensor_api.get_whitelist_info([offchain_id])
 	var has_collection_id:bool
 	var collection_id_index:int=-1
 	for condition in whitelist_info[0]["conditions"]:

@@ -9,11 +9,13 @@ extends Node
 @export var data_uploader:DataUploader
 @export var nosana_manager:NosanaManager
 @export var database_manager:DatabaseManager
+@export var tensor_api:TensorAPI
 
 func _ready() -> void:	
 	data_uploader.setup_data_uploader()
 	database_manager.setup_database_manager()
 	nosana_manager.setup_nosana_manager()
+	tensor_api.setup_tensor()
 	
 func get_request_link(slug:String="") -> String:
 	var base_link:String

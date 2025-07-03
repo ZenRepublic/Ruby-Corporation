@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://lx17th5tw38f"]
+[gd_scene load_steps=8 format=3 uid="uid://lx17th5tw38f"]
 
 [ext_resource type="Script" uid="uid://b36aty3kmcble" path="res://Scripts/Tensor/tensor_collection_display.gd" id="1_6bsox"]
 [ext_resource type="PackedScene" uid="uid://bav80rv2du2x2" path="res://Scripts/Tensor/TensorCollectionEntry.tscn" id="2_8jyjq"]
-[ext_resource type="Script" uid="uid://b5n2cu14u0eb6" path="res://Scripts/Tensor/tensor_api.gd" id="3_tefep"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="4_ixmf5"]
 [ext_resource type="Texture2D" uid="uid://bdjw50vivwoew" path="res://Textures/Icons/CloseIcon.PNG" id="5_yb2aa"]
 [ext_resource type="Script" uid="uid://cja6e8dxjd81x" path="res://addons/SolanaSDK/Scripts/Utility/Input/input_field.gd" id="6_8epwe"]
@@ -11,7 +10,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yb2aa"]
 bg_color = Color(0, 0.443137, 0.439216, 1)
 
-[node name="TensorCollectionDisplay" type="Control" node_paths=PackedStringArray("tensor_api", "container", "no_asset_overlay", "search_bar", "search_button")]
+[node name="TensorCollectionDisplay" type="Control" node_paths=PackedStringArray("container", "no_asset_overlay", "search_bar", "search_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +18,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6bsox")
-tensor_api = NodePath("TensorAPI")
 show_limit = 10
 container = NodePath("MarginContainer/Content/Panel/MarginContainer/VBoxContainer/ScrollContainer/CollectionContainer")
 no_asset_overlay = NodePath("MarginContainer/Content/Panel/MarginContainer/NoAssetsOverlay")
@@ -27,10 +25,6 @@ display_entry_scn = ExtResource("2_8jyjq")
 search_bar = NodePath("MarginContainer/Content/Panel/MarginContainer/VBoxContainer/Searchbar/Searchbar")
 search_button = NodePath("MarginContainer/Content/Panel/MarginContainer/VBoxContainer/Searchbar/SearchButton")
 close_on_select = true
-
-[node name="TensorAPI" type="Node" parent="."]
-script = ExtResource("3_tefep")
-API_KEY = "8af09011-d26f-4002-9bd3-130e569c5176"
 
 [node name="BG" type="Panel" parent="."]
 layout_mode = 1
