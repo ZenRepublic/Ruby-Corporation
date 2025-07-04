@@ -205,7 +205,7 @@ func get_ata_balance(associated_token_account:String) -> float:
 	client.get_token_account_balance(associated_token_account)
 	var response_dict:Dictionary = await client.http_response_received
 	client.queue_free()
-	
+
 	if response_dict.has("error"):
 		push_error("Failed to ata balance")
 		return 0
