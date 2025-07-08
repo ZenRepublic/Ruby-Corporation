@@ -24,16 +24,11 @@ var campaign_player_manager:CampaignPlayerManager
 
 var campaign_expired:bool
 
-signal on_game_started(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionary)
-
 func _ready() -> void:
 	campaign_timer.on_timer_finished.connect(disable_campaign)
 	
 	nft_player_manager.visible=false
 	token_player_manager.visible=false
-	
-func game_start_relay(campaign:Pubkey,data:Dictionary,player_data:Dictionary) -> void:
-	on_game_started.emit(campaign,data,player_data)
 		
 # Called when the node enters the scene tree for the first time.
 func set_campaign_data(campaign_key:Pubkey,data:Dictionary) -> void:
@@ -99,10 +94,8 @@ func disable_campaign(disable:bool=true) -> void:
 	
 func setup_nft_campaign() -> void:
 	if campaign_player_manager!=null:
-		campaign_player_manager.on_game_started.disconnect(game_start_relay)
 		campaign_player_manager.visible=false
 
-	nft_player_manager.on_game_started.connect(game_start_relay)
 	nft_player_manager.visible=true
 	
 	campaign_player_manager = nft_player_manager
@@ -111,10 +104,8 @@ func setup_nft_campaign() -> void:
 	
 func setup_token_campaign() -> void:
 	if campaign_player_manager!=null:
-		campaign_player_manager.on_game_started.disconnect(game_start_relay)
 		campaign_player_manager.visible=false
 		
-	token_player_manager.on_game_started.connect(game_start_relay)
 	token_player_manager.visible=true
 	
 	campaign_player_manager = token_player_manager

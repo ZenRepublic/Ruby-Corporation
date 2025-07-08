@@ -76,6 +76,7 @@ screen_manager = NodePath("Content/MainScreen/ScreenManager")
 gig_selector = NodePath("Content/MainScreen/GigSelector")
 gig_overview = NodePath("Content/MainScreen/GigOverview")
 gig_pck_loader = NodePath("GigLoaderPCK")
+use_local_pck = false
 music_library = {
 "Menu": ExtResource("2_3qfoj")
 }

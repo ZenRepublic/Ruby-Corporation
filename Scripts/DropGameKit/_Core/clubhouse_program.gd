@@ -190,6 +190,7 @@ func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,h
 			core_asset_account = manager_data["asset"]
 		manager_slot_pda = ClubhousePDA.get_campaign_manager_pda(house_pda,manager_data["asset"])
 		creation_fee_account = null
+		
 			
 	var ix:Instruction = program.build_instruction("create_campaign",[	
 		SolanaService.wallet.get_kp(),
