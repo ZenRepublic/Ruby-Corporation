@@ -5,6 +5,7 @@ class_name CampaignInteractor
 @export var gate_displayable:DisplayableAsset
 @export var manager_displayable:DisplayableAsset
 @export var reward_token_displayable:DisplayableAsset
+@export var max_reward_displayable:DisplayableAsset
 @export var max_reward_label:NumberLabel
 @export var campaign_timer:TimedButton
 @export var campaign_expired_panel:Control
@@ -56,6 +57,7 @@ func set_campaign_data(campaign_key:Pubkey,data:Dictionary) -> void:
 	campaign_token.token_account = ClubhousePDA.get_campaign_vault_pda(campaign_key)
 	campaign_token.decimals = data["reward_mint_decimals"]
 	await reward_token_displayable.set_data(campaign_token)
+	await max_reward_displayable.set_data(campaign_token)
 	
 	max_reward_label.set_value(data["max_rewards_per_game"]/pow(10,data["reward_mint_decimals"]))
 	

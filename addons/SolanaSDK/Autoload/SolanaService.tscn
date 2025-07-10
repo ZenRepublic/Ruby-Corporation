@@ -22,7 +22,6 @@
 
 [node name="SolanaService" type="Node"]
 script = ExtResource("1_hwc3u")
-rpc_cluster = 1
 mainnet_rpc = "https://mainnet.helius-rpc.com/?api-key=14091e35-f13b-4071-9578-410522205b40"
 devnet_rpc = "https://devnet.helius-rpc.com/?api-key=14091e35-f13b-4071-9578-410522205b40"
 magicblock_rpc = "https://devnet.magicblock.app/"
