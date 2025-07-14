@@ -331,12 +331,11 @@ stretch_mode = 5
 script = ExtResource("10_u850w")
 button = NodePath(".")
 
-[node name="LinksContainer" type="HBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails" node_paths=PackedStringArray("name_label")]
+[node name="LinksContainer" type="HBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails"]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 script = ExtResource("8_od8kp")
-name_label = NodePath("")
 
 [node name="CampaignOwner" type="VBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails" node_paths=PackedStringArray("name_label")]
 layout_mode = 2

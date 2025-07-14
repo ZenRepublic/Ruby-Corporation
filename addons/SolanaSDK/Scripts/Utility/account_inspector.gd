@@ -50,4 +50,3 @@ func get_cluster_extension(inspect_site:InspectSite) -> String:
 			extension += SolanaService.honeycomb_rpc.uri_encode()
 		
 	return extension
-	
