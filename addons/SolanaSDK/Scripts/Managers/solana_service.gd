@@ -387,7 +387,8 @@ func get_token_accounts(wallet_to_check:Pubkey) -> Array[Dictionary]:
 	client.get_token_accounts_by_owner(wallet_to_check.to_string(),"",TOKEN22_PID)
 	var response_dict2:Dictionary = await client.http_response_received
 	client.queue_free()
-	
+	print(response_dict)
+	print(response_dict2)
 	if response_dict.has("error") or response_dict2.has("error"):
 		push_error("Failed to fetch token accounts")
 		return []
