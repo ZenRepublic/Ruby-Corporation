@@ -8,6 +8,7 @@ class_name Token
 func refresh_balance() -> void:
 	if decimals == 0:
 		if das_metadata.size() > 0:
+			print(das_metadata)
 			decimals = das_metadata["token_info"]["decimals"]
 		else:
 			await SolanaService.get_token_decimals(mint.to_string())

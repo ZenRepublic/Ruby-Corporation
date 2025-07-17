@@ -379,17 +379,18 @@ func get_collection_assets_data(nft_owner:Pubkey,collection_mint:Pubkey,asset_li
 	
 func get_token_accounts(wallet_to_check:Pubkey) -> Array[Dictionary]:
 	var client:SolanaClient = spawn_client_instance()
-	client.get_token_accounts_by_owner(wallet_to_check.to_string(),"",TOKEN_PID)
+	client.get_token_accounts_by_owner(wallet_to_check.to_string(),null,TOKEN_PID)
 	var response_dict:Dictionary = await client.http_response_received
 	client.queue_free()
 	
 	client = spawn_client_instance()
-	client.get_token_accounts_by_owner(wallet_to_check.to_string(),"",TOKEN22_PID)
+	client.get_token_accounts_by_owner(wallet_to_check.to_string(),null,TOKEN22_PID)
 	var response_dict2:Dictionary = await client.http_response_received
 	client.queue_free()
 	if response_dict.has("error") or response_dict2.has("error"):
 		push_error("Failed to fetch token accounts")
 		return []
+	
 	
 	var raw_token_data:Array
 	raw_token_data.append_array(response_dict["result"]["value"])

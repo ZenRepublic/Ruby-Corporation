@@ -35,7 +35,7 @@ func load_assets(das_only:bool=false)->void:
 		
 	is_loading=true
 	var wallet_to_load:Pubkey = SolanaService.wallet.get_pubkey()
-	#var wallet_to_load:Pubkey = Pubkey.new_from_string("9DLXWVfBA6pwJHxJ6MJ7tVQR19xbRpFTStEEJqtypxyH")
+	#var wallet_to_load:Pubkey = Pubkey.new_from_string("84pL2GAuv8XGVPyZre2xcgUNSGz9csYHBt5AW4PUcEe9")
 	owned_assets.clear()
 	
 	#loading from OG and DAS are 2 different ways completely
