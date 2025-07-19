@@ -17,7 +17,7 @@ func setup_player_selection(campaign:Pubkey,data:Dictionary) -> void:
 	var game_mint:Pubkey = data["token_config"]["spending_mint"]
 	if mode_screen_manager!=null:
 		mode_screen_manager.switch_active_panel(data["token_config"]["token_use"])
-		
+	
 	curr_player_data = await get_player_data(SolanaService.wallet.get_pubkey())
 	var spending_token:Token = await SolanaService.asset_manager.get_asset_from_mint(game_mint,true)
 	await balance_displayable.set_data(spending_token)

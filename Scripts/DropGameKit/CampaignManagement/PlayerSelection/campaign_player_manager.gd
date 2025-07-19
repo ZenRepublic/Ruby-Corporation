@@ -12,7 +12,6 @@ signal on_game_started(campaign_key:Pubkey,campaign_data:Dictionary,player_data:
 func setup_player_selection(campaign:Pubkey,data:Dictionary) -> void:
 	campaign_key = campaign
 	campaign_data = data
-	pass
 	
 func game_start() -> void:
 	on_game_started.emit(campaign_key,campaign_data,curr_player_data)

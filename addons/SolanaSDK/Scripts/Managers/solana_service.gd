@@ -287,8 +287,10 @@ func fetch_program_account_of_type(program:AnchorProgram,account_type:String,key
 		print("Failed to fetch program accounts")
 		program_instance.queue_free()
 		return {}
-		
+	print(account_type, " ", key.to_string())
+	print("WAITING")
 	var account:Dictionary = await program_instance.account_fetched
+	print("FETCHED")
 	program_instance.queue_free()
 	return account
 	

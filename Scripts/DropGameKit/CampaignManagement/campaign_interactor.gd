@@ -77,11 +77,28 @@ func set_campaign_data(campaign_key:Pubkey,data:Dictionary) -> void:
 		return
 		
 	if SolanaService.wallet.is_logged_in():
+		not_logged_in_panel.visible=false
 		await campaign_player_manager.setup_player_selection(campaign_key,curr_campaign_data)
+		campaign_player_manager.visible=true
 	else:
 		not_logged_in_panel.visible=true
 		campaign_player_manager.visible=false
-		SolanaService.wallet.on_login_success.connect(setup_player_selection)
+	
+	
+func setup_nft_campaign() -> void:
+	if campaign_player_manager!=null:
+		campaign_player_manager.visible=false
+	
+	campaign_player_manager = nft_player_manager
+	pass
+	
+func setup_token_campaign() -> void:
+	if campaign_player_manager!=null:
+		campaign_player_manager.visible=false
+	
+	campaign_player_manager = token_player_manager
+	pass
+	
 	
 func disable_campaign(disable:bool=true) -> void:
 	if campaign_expired_panel!=null:
@@ -93,35 +110,6 @@ func disable_campaign(disable:bool=true) -> void:
 	else:
 		if not_logged_in_panel!=null:
 			not_logged_in_panel.visible = !disable
-	
-func setup_nft_campaign() -> void:
-	if campaign_player_manager!=null:
-		campaign_player_manager.visible=false
-
-	nft_player_manager.visible=true
-	
-	campaign_player_manager = nft_player_manager
-	pass
-	
-	
-func setup_token_campaign() -> void:
-	if campaign_player_manager!=null:
-		campaign_player_manager.visible=false
-		
-	token_player_manager.visible=true
-	
-	campaign_player_manager = token_player_manager
-	pass
-	
-func setup_player_selection() -> void:
-	if curr_campaign_data["nft_config"] != null:
-		await setup_nft_campaign()
-	elif curr_campaign_data["token_config"] != null:
-		await setup_token_campaign()
-		
-	not_logged_in_panel.visible=false
-	await campaign_player_manager.setup_player_selection(campaign_key,curr_campaign_data)
-	campaign_player_manager.visible=true
 		
 func load_leaderboard() -> void:
 	var leaderboard:CampaignLeaderboard = leaderboard_scn.instantiate()
