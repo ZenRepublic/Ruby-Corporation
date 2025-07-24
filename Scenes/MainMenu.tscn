@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dmdb8dbmov2cl"]
+[gd_scene load_steps=60 format=3 uid="uid://dmdb8dbmov2cl"]
 
 [ext_resource type="Script" uid="uid://uxfmmvq5egiv" path="res://Scripts/Menu/menu_manager.gd" id="1_l0w8j"]
 [ext_resource type="AudioStream" uid="uid://bj4v18wnuvk8g" path="res://Sounds/Music/RubyCorporationTheme.mp3" id="2_3qfoj"]
@@ -35,6 +35,8 @@
 [ext_resource type="PackedScene" uid="uid://dxseqncx12gtl" path="res://Scripts/DropGameKit/GigManagement/GigDisplay.tscn" id="33_jhlh1"]
 [ext_resource type="Script" uid="uid://b8u22gdvyfu4v" path="res://Scripts/DropGameKit/GigManagement/gig_overview.gd" id="40_x734p"]
 [ext_resource type="PackedScene" uid="uid://cjwr2xtkisliq" path="res://Scripts/DropGameKit/CampaignManagement/CampaignDetails.tscn" id="42_mbdwi"]
+[ext_resource type="Script" uid="uid://cvjtkwf8f4711" path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" id="49_oor3o"]
+[ext_resource type="FontFile" uid="uid://bngvp83jfv5b1" path="res://Fonts/Jaywalk.ttf" id="50_h64ul"]
 [ext_resource type="Script" uid="uid://c50bma6jrp4nc" path="res://Scripts/SoundManagement/sfx_manager.gd" id="51_w3p2m"]
 [ext_resource type="AudioStream" uid="uid://cunnj26stug8q" path="res://Sounds/UI/MainButtonSound.mp3" id="52_3qfoj"]
 [ext_resource type="AudioStream" uid="uid://bta85g154ui34" path="res://Sounds/UI/button_press_rich.mp3" id="53_jbkk3"]
@@ -62,6 +64,30 @@ shader_parameter/tint = Color(0.568627, 0.811765, 0.847059, 0.117647)
 bg_color = Color(0.0352941, 0.0627451, 0.054902, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwpoy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h64ul"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drl2p"]
+bg_color = Color(0.407843, 0.0509804, 0.0156863, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.0352941, 0.0627451, 0.054902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y41we"]
+bg_color = Color(0.996078, 0.901961, 0.517647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h64ul"]
+bg_color = Color(0.996078, 0.901961, 0.517647, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydj5n"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("screen_manager", "gig_selector", "gig_overview", "gig_pck_loader", "sfx_manager")]
 clip_contents = true
@@ -741,6 +767,28 @@ vertical_alignment = 1
 [node name="SettingsScreen" parent="." instance=ExtResource("74_k04pn")]
 visible = false
 layout_mode = 1
+
+[node name="OnscreenKeyboard" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -306.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_h64ul")
+script = ExtResource("49_oor3o")
+separation = Vector2i(4, 4)
+background = SubResource("StyleBoxFlat_drl2p")
+normal = SubResource("StyleBoxFlat_y41we")
+hover = SubResource("StyleBoxFlat_h64ul")
+pressed = SubResource("StyleBoxFlat_ydj5n")
+font = ExtResource("50_h64ul")
+font_color_normal = Color(0.407843, 0.0509804, 0.0156863, 1)
+font_color_hover = Color(0.407843, 0.0509804, 0.0156863, 1)
+font_color_pressed = Color(0.0352941, 0.0627451, 0.054902, 1)
+metadata/_custom_type_script = "uid://cvjtkwf8f4711"
 
 [connection signal="pressed" from="Content/MainScreen/GigOverview/Content/ActionButtons/BackButton" to="Content/MainScreen/ScreenManager" method="back_to_previous_panel"]
 [connection signal="pressed" from="Content/MainScreen/GigOverview/Content/ActionButtons/CreateCampaign" to="Content/MainScreen/GigOverview" method="pop_campaign_creator"]

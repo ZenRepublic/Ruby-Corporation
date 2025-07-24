@@ -47,7 +47,7 @@ mouse_cursor/custom_image_hotspot=Vector2(5, 13)
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/LineRenderer/plugin.cfg", "res://addons/PaletteTools/plugin.cfg", "res://addons/SolanaSDK/plugin.cfg", "res://addons/advanced_radial_menu/plugin.cfg", "res://addons/custom_theme_overrides/plugin.cfg", "res://addons/richtext2/plugin.cfg", "res://addons/texture_button_colored/plugin.cfg")
+enabled=PackedStringArray("res://addons/LineRenderer/plugin.cfg", "res://addons/PaletteTools/plugin.cfg", "res://addons/SolanaSDK/plugin.cfg", "res://addons/advanced_radial_menu/plugin.cfg", "res://addons/custom_theme_overrides/plugin.cfg", "res://addons/onscreenkeyboard/plugin.cfg", "res://addons/richtext2/plugin.cfg", "res://addons/texture_button_colored/plugin.cfg")
 
 [gui]
 
@@ -109,6 +109,16 @@ fonts={
 &"Hergiev": "res://Fonts/Hergiev.ttf",
 &"Jaywalk": "res://Fonts/Jaywalk.ttf",
 &"Kaph": "res://Fonts/Kaph-Regular.ttf",
+&"Roboto": "res://addons/onscreenkeyboard/customize/styles/Roboto/Roboto-Regular.ttf",
+&"Roboto-Black": "res://addons/onscreenkeyboard/customize/styles/Roboto/Roboto-Black.ttf",
+&"Roboto-BlackItalic": "res://addons/onscreenkeyboard/customize/styles/Roboto/Roboto-BlackItalic.ttf",
+&"Roboto-Light": "res://addons/onscreenkeyboard/customize/styles/Roboto/Roboto-Light.ttf",
+&"Roboto-LightItalic": "res://addons/onscreenkeyboard/customize/styles/Roboto/Roboto-LightItalic.ttf",
+&"Roboto-Medium": "res://addons/onscreenkeyboard/customize/styles/Roboto/Roboto-Medium.ttf",
+&"Roboto-MediumItalic": "res://addons/onscreenkeyboard/customize/styles/Roboto/Roboto-MediumItalic.ttf",
+&"Roboto-Thin": "res://addons/onscreenkeyboard/customize/styles/Roboto/Roboto-Thin.ttf",
+&"Roboto-ThinItalic": "res://addons/onscreenkeyboard/customize/styles/Roboto/Roboto-ThinItalic.ttf",
+&"RobotoItalic": "res://addons/onscreenkeyboard/customize/styles/Roboto/Roboto-BoldItalic.ttf",
 &"WaterLemon-5yzwa": "res://Fonts/WaterLemon-5yzwa.otf",
 &"Xirod - new rubian font": "res://Fonts/Xirod - new rubian font.otf",
 &"ZeroCool": "res://Fonts/ZeroCool.ttf",
