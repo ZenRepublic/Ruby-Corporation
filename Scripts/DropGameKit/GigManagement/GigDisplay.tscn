@@ -13,6 +13,7 @@
 
 [node name="GigDisplay" type="PanelContainer" node_paths=PackedStringArray("title_label", "tag_label", "gig_visual", "select_button")]
 size_flags_horizontal = 3
+mouse_filter = 1
 theme = ExtResource("1_d3ax1")
 script = ExtResource("5_kkmhr")
 title_label = NodePath("Content/GameDetails/Main/TitleContainer/Title/GameTitle")
@@ -125,6 +126,7 @@ custom_minimum_size = Vector2(250, 70)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 10
+mouse_filter = 1
 theme = ExtResource("1_d3ax1")
 theme_type_variation = &"ButtonFlat"
 text = "SELECT"
