@@ -43,7 +43,6 @@ func load_assets(das_only:bool=false)->void:
 		var das_assets:Array = await asset_fetcher_das.fetch_assets(wallet_to_load)
 		await load_das_assets(das_assets)
 		
-#	all assets loaded previous by DAS will be skipped, so this will only load user's tokens
 	if !das_only:
 		#	all assets loaded previous by DAS will be skipped, so this will only load user's tokens
 		var wallet_token_accounts:Array[Dictionary] = await SolanaService.get_token_accounts(wallet_to_load)
@@ -67,12 +66,6 @@ func load_user_assets_og(token_accounts:Array[Dictionary]) -> void:
 		var asset:WalletAsset = await get_asset_from_mint(asset_mint,load_asset_textures)
 		if asset == null:
 			continue
-		
-		#if asset is Token && load_token_balances:
-			#var token = asset as Token
-			#token.decimals = await SolanaService.get_token_decimals(asset_mint.to_string())
-			#token.balance = token_accounts[i]["amount"] / pow(10,token.decimals)
-			
 		add_to_owned_assets(asset)
 		
 		

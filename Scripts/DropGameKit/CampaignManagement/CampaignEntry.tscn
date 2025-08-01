@@ -27,6 +27,7 @@ timer_button = NodePath("TimerButton")
 
 [node name="MainDetails" type="PanelContainer" parent="."]
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("1_268sl")
 theme_type_variation = &"PanelFlat"
 theme_override_styles/panel = SubResource("StyleBoxFlat_jms4c")
@@ -72,14 +73,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7yce1")
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="PlayersInfo" type="HBoxContainer" parent="MainDetails/MarginContainer/HBoxContainer/CampaignInfo" node_paths=PackedStringArray("visual", "symbol_label")]
+[node name="PlayersInfo" type="HBoxContainer" parent="MainDetails/MarginContainer/HBoxContainer/CampaignInfo" node_paths=PackedStringArray("visual")]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 script = ExtResource("3_lo7e3")
 visual = NodePath("TokenIcon")
 image_size = 128
-symbol_label = NodePath("")
 
 [node name="TokenIcon" type="TextureRect" parent="MainDetails/MarginContainer/HBoxContainer/CampaignInfo/PlayersInfo"]
 layout_mode = 2
@@ -95,14 +95,13 @@ texture = ExtResource("5_2nff6")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="RewardTokenInfo" type="HBoxContainer" parent="MainDetails/MarginContainer/HBoxContainer/CampaignInfo" node_paths=PackedStringArray("visual", "symbol_label")]
+[node name="RewardTokenInfo" type="HBoxContainer" parent="MainDetails/MarginContainer/HBoxContainer/CampaignInfo" node_paths=PackedStringArray("visual")]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 script = ExtResource("3_lo7e3")
 visual = NodePath("TokenIcon")
 image_size = 64
-symbol_label = NodePath("")
 
 [node name="TokenIcon" type="TextureRect" parent="MainDetails/MarginContainer/HBoxContainer/CampaignInfo/RewardTokenInfo"]
 layout_mode = 2
@@ -115,6 +114,7 @@ stretch_mode = 5
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 1
 theme = ExtResource("1_268sl")
 theme_type_variation = &"ButtonFlatAlt"
 text = "..."

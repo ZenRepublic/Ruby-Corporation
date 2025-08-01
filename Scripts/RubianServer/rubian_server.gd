@@ -10,12 +10,16 @@ extends Node
 @export var nosana_manager:NosanaManager
 @export var database_manager:DatabaseManager
 @export var tensor_api:TensorAPI
+@export var danbooru_api:DanbooruAPI
+@export var rpc_manager:RPCManager
 
 func _ready() -> void:	
 	data_uploader.setup_data_uploader()
 	database_manager.setup_database_manager()
 	nosana_manager.setup_nosana_manager()
 	tensor_api.setup_tensor()
+	danbooru_api.setup_danbooru()
+	rpc_manager.setup_rpc_manager()
 	
 func get_request_link(slug:String="") -> String:
 	var base_link:String
@@ -49,4 +53,3 @@ func check_password(input:String) -> bool:
 		return false
 	
 	return response["response_code"] == 200
-	

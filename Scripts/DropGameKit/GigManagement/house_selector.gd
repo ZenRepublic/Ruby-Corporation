@@ -7,6 +7,7 @@ class_name HouseSelector
 func _ready() -> void:
 	manage_button.pressed.connect(pop_house_manager)
 	var program_admins:Array[Pubkey] = await ClubhouseProgram.utils.get_program_admin_list()
+	print(program_admins.size())
 	manage_button.set_address_list(program_admins)
 	
 func pop_house_manager() -> void:

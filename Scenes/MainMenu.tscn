@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://dmdb8dbmov2cl"]
+[gd_scene load_steps=60 format=3 uid="uid://dmdb8dbmov2cl"]
 
 [ext_resource type="Script" uid="uid://uxfmmvq5egiv" path="res://Scripts/Menu/menu_manager.gd" id="1_l0w8j"]
 [ext_resource type="AudioStream" uid="uid://bj4v18wnuvk8g" path="res://Sounds/Music/RubyCorporationTheme.mp3" id="2_3qfoj"]
@@ -34,6 +34,7 @@
 [ext_resource type="Script" uid="uid://stjjh12o1oou" path="res://Scripts/DropGameKit/GigManagement/gig_loader_pck.gd" id="25_h64ul"]
 [ext_resource type="PackedScene" uid="uid://dxseqncx12gtl" path="res://Scripts/DropGameKit/GigManagement/GigDisplay.tscn" id="33_jhlh1"]
 [ext_resource type="Script" uid="uid://b8u22gdvyfu4v" path="res://Scripts/DropGameKit/GigManagement/gig_overview.gd" id="40_x734p"]
+[ext_resource type="Script" uid="uid://mnheun5h1lg8" path="res://addons/SolanaSDK/Scripts/NFTGating/button_lock.gd" id="40_y41we"]
 [ext_resource type="PackedScene" uid="uid://cjwr2xtkisliq" path="res://Scripts/DropGameKit/CampaignManagement/CampaignDetails.tscn" id="42_mbdwi"]
 [ext_resource type="Script" uid="uid://cvjtkwf8f4711" path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" id="49_oor3o"]
 [ext_resource type="FontFile" uid="uid://bngvp83jfv5b1" path="res://Fonts/Jaywalk.ttf" id="50_h64ul"]
@@ -439,6 +440,7 @@ theme = ExtResource("7_eupma")
 theme_type_variation = &"ButtonFlatAlt"
 text = "CREATE GAME"
 script = ExtResource("24_h64ul")
+wallet_snapshot_path = "res://admin_wallets.json"
 hide_if_locked = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/MainScreen/GigSelector/Content/ScrollContainer/Gigs/HouseSelector/MarginContainer/VBoxContainer/HouseManagerButton"]
@@ -480,6 +482,7 @@ layout_mode = 2
 theme = ExtResource("7_eupma")
 theme_type_variation = &"ButtonFlatAlt"
 text = "CREATE"
+script = ExtResource("40_y41we")
 
 [node name="FreePlayButton" type="Button" parent="Content/MainScreen/GigOverview/Content/ActionButtons"]
 custom_minimum_size = Vector2(220, 70)

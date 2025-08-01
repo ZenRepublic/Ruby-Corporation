@@ -8,7 +8,6 @@ class_name Token
 func refresh_balance() -> void:
 	if decimals == 0:
 		if das_metadata.size() > 0:
-			print(das_metadata)
 			decimals = das_metadata["token_info"]["decimals"]
 		else:
 			await SolanaService.get_token_decimals(mint.to_string())
@@ -30,6 +29,9 @@ func get_lamport_balance(fetch_new:bool=false) -> float:
 	return balance*(10**decimals)
 	
 func get_asset_owner() -> Pubkey:
+	if das_metadata.size() > 0:
+		return Pubkey.new_from_string(das_metadata["ownership"]["owner"])
+		
 	var token_account:Pubkey = await SolanaService.get_largest_account(mint)
 	var account_info:Dictionary = await SolanaService.get_account_info(token_account)
 	var owner_address:Pubkey = account_info["result"]["value"]["owner"]

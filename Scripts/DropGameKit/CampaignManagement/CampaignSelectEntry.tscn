@@ -10,6 +10,7 @@
 custom_minimum_size = Vector2(450, 70)
 offset_right = 300.0
 offset_bottom = 50.0
+mouse_filter = 1
 theme = ExtResource("1_11wr0")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2xnnd")
 script = ExtResource("2_bvspj")
@@ -19,6 +20,7 @@ button = NodePath("Button")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("1_11wr0")
 theme_type_variation = &"ButtonFlat"
 

@@ -51,6 +51,10 @@ func send_transaction(instructions:Array[Instruction], oracle:Pubkey=null, extra
 			signers.append(extra_signer.to_pubkey())
 		
 		var transaction:Transaction = await SolanaService.transaction_manager.create_transaction(instructions,SolanaService.wallet.get_kp())
+		
+		var dynamic_fee:int = await RubianServer.rpc_manager.calculate_fee(transaction)
+		SolanaService.transaction_manager.set_custom_priority_fee(transaction,dynamic_fee)
+		
 		transaction.set_signers(signers)
 		transaction.partially_sign(extra_signers)
 		
@@ -67,6 +71,10 @@ func send_transaction(instructions:Array[Instruction], oracle:Pubkey=null, extra
 		tx_data = await SolanaService.transaction_manager.send_transaction(signed_transaction)
 	else:
 		var transaction:Transaction = await SolanaService.transaction_manager.create_transaction(instructions,SolanaService.wallet.get_kp())
+		
+		var dynamic_fee:int = await RubianServer.rpc_manager.calculate_fee(transaction)
+		SolanaService.transaction_manager.set_custom_priority_fee(transaction,dynamic_fee)
+		
 		for extra_signer in extra_signers:
 			transaction = await SolanaService.transaction_manager.add_signature(transaction,extra_signer)
 		await SolanaService.transaction_manager.add_signature(transaction,SolanaService.wallet.get_kp())

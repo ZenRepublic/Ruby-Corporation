@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cb48i2bov70jc"]
+[gd_scene load_steps=8 format=3 uid="uid://cb48i2bov70jc"]
 
 [ext_resource type="Script" uid="uid://baq1yqwr3o0eg" path="res://Scripts/RubianServer/rubian_server.gd" id="1_ip3b0"]
 [ext_resource type="Script" uid="uid://bksjobpfy88xy" path="res://Scripts/RubianServer/data_uploader.gd" id="2_oeh2r"]
 [ext_resource type="Script" uid="uid://yqce2t1oi8hs" path="res://Scripts/RubianServer/database_manager.gd" id="3_y7qi3"]
 [ext_resource type="Script" uid="uid://c24nbpn1cxac2" path="res://Scripts/RubianServer/nosana_manager.gd" id="4_22i0n"]
 [ext_resource type="Script" uid="uid://b5n2cu14u0eb6" path="res://Scripts/RubianServer/tensor_api.gd" id="5_2d5le"]
+[ext_resource type="Script" uid="uid://decikjtqo8iml" path="res://Scripts/RubianServer/danbooru_api.gd" id="6_lmfxa"]
+[ext_resource type="Script" uid="uid://cp28cdsn035f" path="res://Scripts/RubianServer/rpc_manager.gd" id="7_2tg8c"]
 
-[node name="RubianServer" type="Node" node_paths=PackedStringArray("data_uploader", "nosana_manager", "database_manager", "tensor_api")]
+[node name="RubianServer" type="Node" node_paths=PackedStringArray("data_uploader", "nosana_manager", "database_manager", "tensor_api", "danbooru_api", "rpc_manager")]
 script = ExtResource("1_ip3b0")
 SERVER_LINK = "https://drive.rubians.lol/"
 WEBSOCKET_LINK = "wss://drive.rubians.lol/"
@@ -14,6 +16,8 @@ data_uploader = NodePath("DataUploader")
 nosana_manager = NodePath("NosanaManager")
 database_manager = NodePath("DatabaseManager")
 tensor_api = NodePath("TensorAPI")
+danbooru_api = NodePath("DanbooruAPI")
+rpc_manager = NodePath("RPCManager")
 
 [node name="DataUploader" type="Node" parent="."]
 script = ExtResource("2_oeh2r")
@@ -26,3 +30,12 @@ script = ExtResource("3_y7qi3")
 
 [node name="TensorAPI" type="Node" parent="."]
 script = ExtResource("5_2d5le")
+
+[node name="DanbooruAPI" type="Node" parent="."]
+script = ExtResource("6_lmfxa")
+metadata/_custom_type_script = "uid://decikjtqo8iml"
+
+[node name="RPCManager" type="Node" parent="."]
+script = ExtResource("7_2tg8c")
+priority_fee_level = 3
+metadata/_custom_type_script = "uid://cp28cdsn035f"
