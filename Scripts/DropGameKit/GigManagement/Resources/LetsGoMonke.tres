@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ClubhouseGig" load_steps=3 format=3 uid="uid://wsn11swfdo01"]
+
+[ext_resource type="Script" uid="uid://djyqvwe53sm87" path="res://Scripts/DropGameKit/GigManagement/Resources/gig_resource.gd" id="1_5x5k8"]
+[ext_resource type="Texture2D" uid="uid://c8b3n6aktccfg" path="res://icon.svg" id="2_xkmvv"]
+
+[resource]
+script = ExtResource("1_5x5k8")
+title = "LET'S GO MONKE!"
+tag = "MonkeDAO Gig"
+description = "Fun in the sun! Oasis Resort is the only place where you get paid going on a vacation."
+visual = ExtResource("2_xkmvv")
+mainnet_house_id = ""
+devnet_house_id = "DevDCwopyRXSJzJWFgGs85U3VmzhNP5SoksMNGVKsmtA"
+local_pck_path = "res://Gigs/lets_go_monke_v0.04.pck"
+url_to_pck = ""
+folder_name = "LetsGoMonke"
+main_scn_path = "res://_GigMakerSDK/GigMaker.tscn"
+metadata/_custom_type_script = "uid://djyqvwe53sm87"

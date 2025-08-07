@@ -32,6 +32,10 @@ custom_wallet_path = "C:\\Users\\thoma\\Desktop\\kp\\dev2gUnXyMLh6WyV9NTBaXeNfo1
 wallet_adapter_scn = ExtResource("3_0sdjq")
 
 [node name="WalletAdapter" type="WalletAdapter" parent="WalletService"]
+mobile_blockchain = 1
+mobile_identity_uri = "https://rubycorp.lol"
+mobile_identity_name = "Ruby Corporation"
+mobile_icon_uri = "index.icon.png"
 
 [node name="SessionKeyManager" type="Node" parent="WalletService"]
 script = ExtResource("4_wfwmi")

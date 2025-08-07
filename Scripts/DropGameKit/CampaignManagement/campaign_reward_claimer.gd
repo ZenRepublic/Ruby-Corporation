@@ -103,11 +103,12 @@ func handle_replay(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dict
 	rewards_display_instance.queue_free()
 	
 func handle_return() -> void:
-	rewards_display_instance.on_replay_pressed.disconnect(handle_replay)
-	rewards_display_instance.on_return_pressed.disconnect(handle_return)
-	
 	SceneManager.load_previous_scene(true,-1,0.0)
 	
-	await get_tree().create_timer(0.5).timeout
-	rewards_display_instance.queue_free()
+#	handle return might be called from the freeplay gig, so rewards display wont be up
+	if rewards_display_instance!=null:
+		rewards_display_instance.on_replay_pressed.disconnect(handle_replay)
+		rewards_display_instance.on_return_pressed.disconnect(handle_return)
+		await get_tree().create_timer(0.5).timeout
+		rewards_display_instance.queue_free()
 	
