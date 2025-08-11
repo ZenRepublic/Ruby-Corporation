@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://dmdb8dbmov2cl"]
+[gd_scene load_steps=61 format=3 uid="uid://dmdb8dbmov2cl"]
 
 [ext_resource type="Script" uid="uid://uxfmmvq5egiv" path="res://Scripts/Menu/menu_manager.gd" id="1_l0w8j"]
 [ext_resource type="AudioStream" uid="uid://bj4v18wnuvk8g" path="res://Sounds/Music/RubyCorporationTheme.mp3" id="2_3qfoj"]
@@ -32,6 +32,7 @@
 [ext_resource type="Script" uid="uid://7q7s8ljh1dfh" path="res://addons/SolanaSDK/Scripts/NFTGating/address_button_lock.gd" id="24_h64ul"]
 [ext_resource type="PackedScene" uid="uid://ku1agbhqaohs" path="res://Scripts/DropGameKit/CampaignManagement/CampaignCreator/CampaignCreator.tscn" id="24_oor3o"]
 [ext_resource type="Script" uid="uid://stjjh12o1oou" path="res://Scripts/DropGameKit/GigManagement/gig_loader_pck.gd" id="25_h64ul"]
+[ext_resource type="Resource" uid="uid://wsn11swfdo01" path="res://Scripts/DropGameKit/GigManagement/Resources/LetsGoMonke.tres" id="33_drl2p"]
 [ext_resource type="PackedScene" uid="uid://dxseqncx12gtl" path="res://Scripts/DropGameKit/GigManagement/GigDisplay.tscn" id="33_jhlh1"]
 [ext_resource type="Script" uid="uid://b8u22gdvyfu4v" path="res://Scripts/DropGameKit/GigManagement/gig_overview.gd" id="40_x734p"]
 [ext_resource type="Script" uid="uid://mnheun5h1lg8" path="res://addons/SolanaSDK/Scripts/NFTGating/button_lock.gd" id="40_y41we"]
@@ -101,7 +102,6 @@ screen_manager = NodePath("Content/MainScreen/ScreenManager")
 gig_selector = NodePath("Content/MainScreen/GigSelector")
 gig_overview = NodePath("Content/MainScreen/GigOverview")
 gig_pck_loader = NodePath("GigLoaderPCK")
-use_local_pck = false
 music_library = {
 "Menu": ExtResource("2_3qfoj")
 }
@@ -335,7 +335,7 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("18_jhlh1")
-gigs = Array[ExtResource("19_h64ul")]([ExtResource("21_drl2p"), ExtResource("20_y41we")])
+gigs = Array[ExtResource("19_h64ul")]([ExtResource("21_drl2p"), ExtResource("20_y41we"), ExtResource("33_drl2p")])
 gig_spawn = NodePath("Content/ScrollContainer/Gigs")
 gig_display_scn = ExtResource("33_jhlh1")
 
