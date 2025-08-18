@@ -42,6 +42,7 @@ var display_instance:TensorCollectionDisplay
 func _ready() -> void:
 	if SolanaService.rpc_cluster == SolanaService.RpcCluster.MAINNET:
 		collection_input_field.focus_entered.connect(show_display)
+	pass
 	
 func show_display() -> void:
 	display_instance = tensor_display_scn.instantiate()
@@ -529,6 +530,7 @@ button_group = ExtResource("8_05276")
 text = "NFT MODE"
 
 [node name="TokenTypeSettings" type="VBoxContainer" parent="Content/CreatorScreen/Content/PlayerSettings"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -626,7 +628,6 @@ layout_mode = 2
 theme_override_constants/separation = 30
 
 [node name="NFTTypeSettings" type="VBoxContainer" parent="Content/CreatorScreen/Content/PlayerSettings"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
