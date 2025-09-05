@@ -6,12 +6,12 @@
 [resource]
 script = ExtResource("1_5x5k8")
 title = "LET'S GO MONKE!"
-tag = "MonkeDAO Gig"
+tag = "MONKEDAO GIG (Alpha)"
 description = "Fun in the sun! Oasis Resort is the only place where you get paid going on a vacation."
 visual = ExtResource("2_xkmvv")
-mainnet_house_id = ""
+mainnet_house_id = "GVgwDrjmdcHd1gmBxXzi8NkFJsA8kFwGbmbziDcUYhdc"
 devnet_house_id = "DevDCwopyRXSJzJWFgGs85U3VmzhNP5SoksMNGVKsmtA"
 local_pck_path = "res://Gigs/lets_go_monke_v0.063.pck"
-url_to_pck = ""
+url_to_pck = "https://datadrive.lol/lets_go_monke_v0.063.pck"
 folder_name = "LetsGoMonke"
 metadata/_custom_type_script = "uid://djyqvwe53sm87"
