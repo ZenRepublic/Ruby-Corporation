@@ -28,7 +28,8 @@ honeycomb_rpc = "https://rpc.test.honeycombprotocol.com/"
 
 [node name="WalletService" type="Node" parent="."]
 script = ExtResource("5_f327g")
-custom_wallet_path = "C:\\Users\\thomas\\Desktop\\kp\\dev2gUnXyMLh6WyV9NTBaXeNfo1DTn2R4b69VTGNidF.json"
+use_generated = true
+custom_wallet_path = "C:\\Users\\Thomas\\Desktop\\kp\\dev2gUnXyMLh6WyV9NTBaXeNfo1DTn2R4b69VTGNidF.json"
 wallet_adapter_scn = ExtResource("3_0sdjq")
 
 [node name="WalletAdapter" type="WalletAdapter" parent="WalletService"]

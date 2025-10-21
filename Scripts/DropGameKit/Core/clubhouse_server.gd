@@ -62,3 +62,20 @@ func delete_campaign_data(house_key:Pubkey,campaign_key:Pubkey) -> Dictionary:
 	}
 	var response:Dictionary = await HttpRequestHandler.send_post_request(JSON.stringify(body),headers,get_server_link("clubhouse/deletecampaign"))
 	return response
+	
+func record_user(user:Pubkey) -> Dictionary:
+	var headers:Array = ["Content-type: application/json"]
+	var body:Dictionary = {
+		"player_address":user.to_string(),
+	}
+	var response:Dictionary = await HttpRequestHandler.send_post_request(JSON.stringify(body),headers,get_server_link("clubhouse/record-player"))
+	return response
+	
+	
+func record_campaign(token_mint:Pubkey) -> Dictionary:
+	var headers:Array = ["Content-type: application/json"]
+	var body:Dictionary = {
+		"token_address":token_mint.to_string(),
+	}
+	var response:Dictionary = await HttpRequestHandler.send_post_request(JSON.stringify(body),headers,get_server_link("clubhouse/record-token"))
+	return response

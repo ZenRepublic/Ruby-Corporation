@@ -36,6 +36,11 @@ func _ready() -> void:
 		SolanaService.wallet.on_login_success.connect(handle_user_login)
 		
 func handle_user_login() -> void:
+	#print("TRYINTG")
+	#var response:Dictionary = await ClubhouseProgram.server.record_campaign(Pubkey.new_from_string("tTxYt4VGT47esMgAF6W6Y285Z4hgRv85QHYv3Csindi"))
+	#print(response)
+	#var response2:Dictionary = await ClubhouseProgram.server.record_user(SolanaService.wallet.get_pubkey())
+	#print(response2)
 	pass
 	
 func play_ui_sound(sound_name:String) -> void:

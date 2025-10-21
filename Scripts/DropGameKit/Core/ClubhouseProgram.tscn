@@ -1530,6 +1530,7 @@ mainnet_house_id = "FcxGPktM2MJJ9qTxwiEVKJxHTpvatoFawKGq46SJxviG"
 
 [node name="ClubhouseServer" type="Node" parent="."]
 script = ExtResource("5_5nyte")
+SERVER_LINK = "https://drive.rubians.lol/"
 metadata/_custom_type_script = "uid://ddctawf4lsjqw"
 
 [node name="Calculators" type="Node" parent="."]

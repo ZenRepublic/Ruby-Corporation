@@ -41,3 +41,4 @@ func reject_submission(user:Pubkey,submission:String) -> Dictionary:
 	}
 	var response:Dictionary = await HttpRequestHandler.send_post_request(JSON.stringify(body),headers,RubianServer.get_request_link("users/removesubmission"))
 	return response
+	

@@ -171,6 +171,10 @@ func create_campaign(house_pda:Pubkey,house_currency:Pubkey,campaign_name:String
 	var campaign_keypair:Keypair = Keypair.new_random()
 	var create_campaign_ix:Instruction = get_create_campaign_instruction(campaign_keypair,house_pda,house_currency,campaign_name,reward_mint,fund_amount_lamports,max_reward_lamports,burn_remainder,player_claim_fee,timespan,nft_config,token_config,manager_data,custom_data)
 	var tx_data:TransactionData = await send_transaction([create_campaign_ix],null,[campaign_keypair])
+	
+	if tx_data.is_successful() and server.is_set():
+		await server.record_campaign(reward_mint)
+		
 	return tx_data
 
 func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,house_currency:Pubkey,campaign_name:String,reward_mint:Pubkey,fund_amount_lamports:int,max_reward_lamports:int,burn_remainder:bool,player_claim_fee:int,timespan:Dictionary,nft_config=null,token_config=null,manager_data=null,custom_data=null) -> Instruction:
@@ -301,9 +305,7 @@ func start_game(house_pda:Pubkey,oracle:Pubkey,campaign_key:Pubkey,reward_mint:P
 		var player_id:Pubkey = game_data["asset"] if game_data.has("asset") else SolanaService.wallet.get_pubkey() 
 		
 		if server.is_set():
-			print("GETTING DATA")
 			var player_data:Dictionary = await server.get_player_data(house_pda,campaign_key,player_id)
-			print("GOT DATA")
 			if !player_data.has("error") and player_data.has("unclaimed_amount"):
 				unclaimed_amount = player_data["unclaimed_amount"]
 				
@@ -315,6 +317,10 @@ func start_game(house_pda:Pubkey,oracle:Pubkey,campaign_key:Pubkey,reward_mint:P
 			await server.set_player_data(house_pda,campaign_key,player_id,{"unclaimed_amount":0})
 	else:
 		tx_data = await send_transaction(instructions)
+		
+		if tx_data.is_successful() and server.is_set():
+			await server.record_player(SolanaService.wallet.get_pubkey())
+	
 		
 	return tx_data
 	

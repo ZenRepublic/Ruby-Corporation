@@ -9,6 +9,9 @@ extends Node
 @export var campaigns_scn:PackedScene
 @export var campaigns_button:BaseButton
 
+@export var buy_ruby_scn:PackedScene
+@export var buy_ruby_button:BaseButton
+
 @export var settings_screen:Control
 @export var settings_button:BaseButton
 
@@ -26,6 +29,7 @@ func _ready() -> void:
 	login_button.pressed.connect(try_login)
 	vault_button.pressed.connect(open_player_vault)
 	campaigns_button.pressed.connect(open_player_campaigns)
+	buy_ruby_button.pressed.connect(open_buy_ruby)
 	settings_button.pressed.connect(show_settings)
 	
 func try_login() -> void:
@@ -46,6 +50,10 @@ func open_player_vault() -> void:
 func open_player_campaigns() -> void:
 	var campaigns_instance:CampaignAdminSystem = campaigns_scn.instantiate()
 	get_tree().root.add_child(campaigns_instance)
+	
+func open_buy_ruby() -> void:
+	var buy_ruby_instance = buy_ruby_scn.instantiate()
+	get_tree().root.add_child(buy_ruby_instance)
 	
 func show_settings() -> void:
 	settings_screen.visible=true

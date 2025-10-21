@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://dmdb8dbmov2cl"]
+[gd_scene load_steps=63 format=3 uid="uid://dmdb8dbmov2cl"]
 
 [ext_resource type="Script" uid="uid://uxfmmvq5egiv" path="res://Scripts/Menu/menu_manager.gd" id="1_l0w8j"]
 [ext_resource type="AudioStream" uid="uid://bj4v18wnuvk8g" path="res://Sounds/Music/RubyCorporationTheme.mp3" id="2_3qfoj"]
@@ -20,13 +20,13 @@
 [ext_resource type="Script" uid="uid://vrf04aoisol5" path="res://Scripts/DropGameKit/CampaignManagement/campaign_loader.gd" id="16_7krnb"]
 [ext_resource type="Script" uid="uid://bc12jv82xckj8" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Accounts/account_display_system.gd" id="17_85f2f"]
 [ext_resource type="Script" uid="uid://jx6unwf5v2gf" path="res://Scripts/DropGameKit/GigManagement/gig_selector.gd" id="18_jhlh1"]
-[ext_resource type="Texture2D" uid="uid://bpwp0rarwasey" path="res://Textures/LogosAndTokens/Logo no bg.PNG" id="18_lcy8p"]
 [ext_resource type="Script" uid="uid://djyqvwe53sm87" path="res://Scripts/DropGameKit/GigManagement/Resources/gig_resource.gd" id="19_h64ul"]
-[ext_resource type="Texture2D" uid="uid://cdhls8cl6unf2" path="res://Textures/BrandingAssets/work.png" id="19_lcy8p"]
 [ext_resource type="Script" uid="uid://cdouwnr2k06gk" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/page_loader.gd" id="19_s07dd"]
 [ext_resource type="Texture2D" uid="uid://gptwby1tvc0b" path="res://Textures/Icons/Arrow.png" id="20_i5uv2"]
 [ext_resource type="Resource" uid="uid://bmg3lqei2j5ka" path="res://Scripts/DropGameKit/GigManagement/Resources/LaunchingSoon.tres" id="20_y41we"]
+[ext_resource type="PackedScene" uid="uid://bhs8y0gy5c3db" path="res://Scenes/PurchaseRubyScreen.tscn" id="20_ydj5n"]
 [ext_resource type="Resource" uid="uid://8mk52w26ex84" path="res://Scripts/DropGameKit/GigManagement/Resources/BigDiggas.tres" id="21_drl2p"]
+[ext_resource type="Texture2D" uid="uid://dekqdvjcc6wjf" path="res://Textures/LogosAndTokens/ruby_token_transparent.png" id="22_drl2p"]
 [ext_resource type="Script" uid="uid://dpnv1ypvj2p1e" path="res://Scripts/DropGameKit/GigManagement/house_selector.gd" id="22_jhlh1"]
 [ext_resource type="PackedScene" uid="uid://cecstunciplh3" path="res://Scripts/DropGameKit/HouseManagement/HouseDisplaySystem.tscn" id="23_oor3o"]
 [ext_resource type="Script" uid="uid://7q7s8ljh1dfh" path="res://addons/SolanaSDK/Scripts/NFTGating/address_button_lock.gd" id="24_h64ul"]
@@ -34,6 +34,7 @@
 [ext_resource type="Script" uid="uid://stjjh12o1oou" path="res://Scripts/DropGameKit/GigManagement/gig_loader_pck.gd" id="25_h64ul"]
 [ext_resource type="Resource" uid="uid://wsn11swfdo01" path="res://Scripts/DropGameKit/GigManagement/Resources/LetsGoMonke.tres" id="33_drl2p"]
 [ext_resource type="PackedScene" uid="uid://dxseqncx12gtl" path="res://Scripts/DropGameKit/GigManagement/GigDisplay.tscn" id="33_jhlh1"]
+[ext_resource type="Texture2D" uid="uid://cfdp484a5i7e6" path="res://Textures/BrandingAssets/banner1.png" id="34_y41we"]
 [ext_resource type="Script" uid="uid://b8u22gdvyfu4v" path="res://Scripts/DropGameKit/GigManagement/gig_overview.gd" id="40_x734p"]
 [ext_resource type="Script" uid="uid://mnheun5h1lg8" path="res://addons/SolanaSDK/Scripts/NFTGating/button_lock.gd" id="40_y41we"]
 [ext_resource type="PackedScene" uid="uid://cjwr2xtkisliq" path="res://Scripts/DropGameKit/CampaignManagement/CampaignDetails.tscn" id="42_mbdwi"]
@@ -64,6 +65,14 @@ shader_parameter/tint = Color(0.568627, 0.811765, 0.847059, 0.117647)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcy8p"]
 bg_color = Color(0.0352941, 0.0627451, 0.054902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fw7q4"]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qwpoy"]
 
@@ -161,18 +170,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Header" type="VBoxContainer" parent="Content" node_paths=PackedStringArray("user_address_label", "login_button", "vault_button", "campaigns_button", "settings_screen", "settings_button")]
+[node name="Header" type="VBoxContainer" parent="Content" node_paths=PackedStringArray("user_address_label", "login_button", "vault_button", "campaigns_button", "buy_ruby_button", "settings_screen", "settings_button")]
 layout_mode = 2
 theme_override_constants/separation = 0
 script = ExtResource("5_lcy8p")
 user_address_label = NodePath("../MainScreen/GigSelector/Content/Intro/WelcomeText/UserAddress")
-login_button = NodePath("PanelContainer/MarginContainer/HBoxContainer/Buttons/LoginButton")
+login_button = NodePath("PanelContainer/MarginContainer/Buttons/LoginButton")
 token_vault_scn = ExtResource("6_jvcv6")
-vault_button = NodePath("PanelContainer/MarginContainer/HBoxContainer/Buttons/VaultButton")
+vault_button = NodePath("PanelContainer/MarginContainer/Buttons/VaultButton")
 campaigns_scn = ExtResource("7_h64ul")
-campaigns_button = NodePath("PanelContainer/MarginContainer/HBoxContainer/Buttons/CampaignsButton")
+campaigns_button = NodePath("PanelContainer/MarginContainer/Buttons/CampaignsButton")
+buy_ruby_scn = ExtResource("20_ydj5n")
+buy_ruby_button = NodePath("PanelContainer/MarginContainer/Buttons/BuyRubyButton")
 settings_screen = NodePath("../../SettingsScreen")
-settings_button = NodePath("PanelContainer/MarginContainer/HBoxContainer/Buttons/SettingsButton")
+settings_button = NodePath("PanelContainer/MarginContainer/Buttons/SettingsButton")
 
 [node name="PanelContainer" type="PanelContainer" parent="Content/Header"]
 custom_minimum_size = Vector2(0, 120)
@@ -187,23 +198,12 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Content/Header/PanelContainer/MarginContainer"]
+[node name="Buttons" type="HBoxContainer" parent="Content/Header/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
-
-[node name="Logo" type="TextureRect" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("18_lcy8p")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Buttons" type="HBoxContainer" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-theme_override_constants/separation = 30
 alignment = 1
 
-[node name="LoginButton" type="Button" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons"]
+[node name="LoginButton" type="Button" parent="Content/Header/PanelContainer/MarginContainer/Buttons"]
 custom_minimum_size = Vector2(250, 70)
 layout_mode = 2
 size_flags_vertical = 4
@@ -212,7 +212,7 @@ icon = ExtResource("14_jhlh1")
 icon_alignment = 2
 expand_icon = true
 
-[node name="CampaignsButton" type="Button" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons"]
+[node name="CampaignsButton" type="Button" parent="Content/Header/PanelContainer/MarginContainer/Buttons"]
 visible = false
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
@@ -224,7 +224,7 @@ text = "CAMPAIGNS"
 icon_alignment = 2
 expand_icon = true
 
-[node name="VaultButton" type="Button" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons"]
+[node name="VaultButton" type="Button" parent="Content/Header/PanelContainer/MarginContainer/Buttons"]
 visible = false
 custom_minimum_size = Vector2(130, 50)
 layout_mode = 2
@@ -236,12 +236,21 @@ text = "VAULT"
 icon_alignment = 2
 expand_icon = true
 
-[node name="SocialButtons" type="HBoxContainer" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons"]
+[node name="BuyRubyButton" type="Button" parent="Content/Header/PanelContainer/MarginContainer/Buttons"]
+custom_minimum_size = Vector2(220, 70)
+layout_mode = 2
+size_flags_vertical = 4
+text = "$RUBY"
+icon = ExtResource("22_drl2p")
+icon_alignment = 2
+expand_icon = true
+
+[node name="SocialButtons" type="HBoxContainer" parent="Content/Header/PanelContainer/MarginContainer/Buttons"]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Twitter" type="PanelContainer" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons/SocialButtons" node_paths=PackedStringArray("button")]
+[node name="Twitter" type="PanelContainer" parent="Content/Header/PanelContainer/MarginContainer/Buttons/SocialButtons" node_paths=PackedStringArray("button")]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_nagj0")
@@ -249,10 +258,10 @@ script = ExtResource("8_a02e1")
 button = NodePath("Button")
 link = "https://x.com/BigDiggas"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons/SocialButtons/Twitter"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/Header/PanelContainer/MarginContainer/Buttons/SocialButtons/Twitter"]
 stream = ExtResource("9_04wh2")
 
-[node name="Button" type="TextureButton" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons/SocialButtons/Twitter"]
+[node name="Button" type="TextureButton" parent="Content/Header/PanelContainer/MarginContainer/Buttons/SocialButtons/Twitter"]
 self_modulate = Color(0.639216, 0.156863, 0.345098, 1)
 custom_minimum_size = Vector2(64, 63)
 layout_mode = 2
@@ -266,7 +275,7 @@ theme_override_colors/icon_hover_color = Color(0.8, 0.258824, 0.368627, 1)
 theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(0.380392, 0.0941176, 0.317647, 0.6)
 
-[node name="Discord" type="PanelContainer" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons/SocialButtons" node_paths=PackedStringArray("button")]
+[node name="Discord" type="PanelContainer" parent="Content/Header/PanelContainer/MarginContainer/Buttons/SocialButtons" node_paths=PackedStringArray("button")]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_nagj0")
@@ -274,7 +283,7 @@ script = ExtResource("8_a02e1")
 button = NodePath("Button")
 link = "https://discord.gg/dTKMjfAW8W"
 
-[node name="Button" type="TextureButton" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons/SocialButtons/Discord"]
+[node name="Button" type="TextureButton" parent="Content/Header/PanelContainer/MarginContainer/Buttons/SocialButtons/Discord"]
 self_modulate = Color(0.639216, 0.156863, 0.345098, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -288,12 +297,13 @@ theme_override_colors/icon_hover_color = Color(0.8, 0.258824, 0.368627, 1)
 theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_disabled_color = Color(0.380392, 0.0941176, 0.317647, 0.6)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons/SocialButtons/Discord"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Content/Header/PanelContainer/MarginContainer/Buttons/SocialButtons/Discord"]
 stream = ExtResource("9_04wh2")
 
-[node name="SettingsButton" type="TextureButton" parent="Content/Header/PanelContainer/MarginContainer/HBoxContainer/Buttons"]
+[node name="SettingsButton" type="TextureButton" parent="Content/Header/PanelContainer/MarginContainer/Buttons"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+size_flags_horizontal = 10
 texture_normal = ExtResource("9_jvcv6")
 texture_pressed = ExtResource("9_jvcv6")
 texture_hover = ExtResource("9_jvcv6")
@@ -353,10 +363,16 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="TextureRect" type="TextureRect" parent="Content/MainScreen/GigSelector/Content/Intro"]
+[node name="PanelContainer" type="PanelContainer" parent="Content/MainScreen/GigSelector/Content/Intro"]
+layout_mode = 2
+theme = ExtResource("7_eupma")
+theme_type_variation = &"PanelFlat"
+theme_override_styles/panel = SubResource("StyleBoxFlat_fw7q4")
+
+[node name="TextureRect" type="TextureRect" parent="Content/MainScreen/GigSelector/Content/Intro/PanelContainer"]
 custom_minimum_size = Vector2(0, 225)
 layout_mode = 2
-texture = ExtResource("19_lcy8p")
+texture = ExtResource("34_y41we")
 expand_mode = 3
 stretch_mode = 5
 
@@ -379,9 +395,9 @@ text = "GUEST"
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme = ExtResource("7_eupma")
-text = "We offer work for those who seek it...
+text = "Select a gig and check if there's any active campaigns for it..
 
-Select a gig and check if there's any active campaigns for it!"
+Or create one yourself!"
 autowrap_mode = 2
 
 [node name="LearnMoreButton" type="Button" parent="Content/MainScreen/GigSelector/Content/Intro" node_paths=PackedStringArray("button")]

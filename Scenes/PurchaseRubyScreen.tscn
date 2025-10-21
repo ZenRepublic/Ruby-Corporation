@@ -1,0 +1,181 @@
+[gd_scene load_steps=12 format=3 uid="uid://bhs8y0gy5c3db"]
+
+[ext_resource type="Script" uid="uid://dx4g4f2ft4e2q" path="res://Scripts/Web3/TokenPurchase/ruby_purchase_options.gd" id="1_rtv6b"]
+[ext_resource type="ButtonGroup" uid="uid://d3c22gxsbdvgc" path="res://Scripts/Web3/TokenPurchase/TokenPurchaseOptions.tres" id="2_4gm2l"]
+[ext_resource type="Script" uid="uid://bev6bdyjti6q5" path="res://addons/SolanaSDK/Scripts/ThirdPartyTools/Jupiter/jupiter_api.gd" id="3_betbj"]
+[ext_resource type="Texture2D" uid="uid://bdjw50vivwoew" path="res://Textures/Icons/CloseIcon.PNG" id="4_w15m5"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="5_endhf"]
+[ext_resource type="Texture2D" uid="uid://bb4dq61dj4jju" path="res://Textures/BrandingAssets/confident_ceo.png" id="6_2gjg2"]
+[ext_resource type="Texture2D" uid="uid://dekqdvjcc6wjf" path="res://Textures/LogosAndTokens/ruby_token_transparent.png" id="7_pbeq8"]
+[ext_resource type="Script" uid="uid://mnheun5h1lg8" path="res://addons/SolanaSDK/Scripts/NFTGating/button_lock.gd" id="8_4gm2l"]
+[ext_resource type="Script" uid="uid://c50bma6jrp4nc" path="res://Scripts/SoundManagement/sfx_manager.gd" id="8_ystxk"]
+[ext_resource type="AudioStream" uid="uid://cm278a24mieti" path="res://Sounds/UI/slideradjusts.mp3" id="9_v507w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wux1o"]
+bg_color = Color(0, 0.443137, 0.439216, 0.960784)
+
+[node name="PurchaseRUBYScreen" type="Control" node_paths=PackedStringArray("jupiter_api", "option_buttons", "buy_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rtv6b")
+jupiter_api = NodePath("JupiterAPI")
+token_ca_to_sell = "So11111111111111111111111111111111111111112"
+token_ca_to_buy = "tTxYt4VGT47esMgAF6W6Y285Z4hgRv85QHYv3Csindi"
+option_buttons = [NodePath("MarginContainer/Container/BuyContainer/Buttons/Option1"), NodePath("MarginContainer/Container/BuyContainer/Buttons/Option2"), NodePath("MarginContainer/Container/BuyContainer/Buttons/Option3")]
+price_options = Array[float]([0.1, 0.3, 1.0])
+option_group = ExtResource("2_4gm2l")
+buy_button = NodePath("MarginContainer/Container/BuyContainer/BuyButton")
+
+[node name="JupiterAPI" type="Node" parent="."]
+script = ExtResource("3_betbj")
+metadata/_custom_type_script = "uid://bev6bdyjti6q5"
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wux1o")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 40
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="CloseButton" type="TextureButton" parent="MarginContainer/Container"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("4_w15m5")
+texture_pressed = ExtResource("4_w15m5")
+texture_hover = ExtResource("4_w15m5")
+texture_disabled = ExtResource("4_w15m5")
+texture_focused = ExtResource("4_w15m5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="MarginContainer/Container"]
+layout_mode = 2
+theme = ExtResource("5_endhf")
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 80
+text = "GET YOUR $RUBY UP!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Container"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+texture = ExtResource("6_2gjg2")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Explanation" type="Label" parent="MarginContainer/Container"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme = ExtResource("5_endhf")
+text = "$RUBY is the native token of the Rubians brand.
+
+In this app, it is used as an entry token for participating in some campaigns, as well as payment currency for creating them!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BuyContainer" type="VBoxContainer" parent="MarginContainer/Container"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 30
+
+[node name="Amount" type="Label" parent="MarginContainer/Container/BuyContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme = ExtResource("5_endhf")
+theme_override_font_sizes/font_size = 35
+text = "Select amount:"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/Container/BuyContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Option1" type="Button" parent="MarginContainer/Container/BuyContainer/Buttons"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("5_endhf")
+theme_type_variation = &"ButtonFlatAlt"
+toggle_mode = true
+button_group = ExtResource("2_4gm2l")
+text = "0.1 SOL"
+
+[node name="Option2" type="Button" parent="MarginContainer/Container/BuyContainer/Buttons"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("5_endhf")
+theme_type_variation = &"ButtonFlatAlt"
+toggle_mode = true
+button_group = ExtResource("2_4gm2l")
+text = "0.3 SOL"
+
+[node name="Option3" type="Button" parent="MarginContainer/Container/BuyContainer/Buttons"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("5_endhf")
+theme_type_variation = &"ButtonFlatAlt"
+toggle_mode = true
+button_group = ExtResource("2_4gm2l")
+text = "1 SOL"
+
+[node name="BuyButton" type="Button" parent="MarginContainer/Container/BuyContainer"]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("5_endhf")
+text = "BUY NOW!"
+icon = ExtResource("7_pbeq8")
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("8_4gm2l")
+no_auth_text = "NOT LOGGED IN"
+
+[node name="SFXManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
+script = ExtResource("8_ystxk")
+audio_player = NodePath("AudioStreamPlayer")
+sound_library = {
+"Slider": ExtResource("9_v507w")
+}
+pitch_range = Vector2(0.9, 1.2)
+metadata/_custom_type_script = "uid://c50bma6jrp4nc"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SFXManager"]
+
+[connection signal="pressed" from="MarginContainer/Container/CloseButton" to="." method="queue_free"]
