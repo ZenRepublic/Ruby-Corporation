@@ -25,7 +25,7 @@ func _ready():
 func load_gig(gig:ClubhouseGig, local: bool) -> bool:
 	curr_gig = gig
 	var scene:PackedScene
-	var path_to_pck:String = gig.get_url_or_path(local)
+	var path_to_pck:String = await gig.get_url_or_path(local)
 
 	var split_path:Array = path_to_pck.split("/")
 	var new_gig_name:String = split_path[split_path.size()-1]

@@ -18,7 +18,11 @@ func get_url_or_path(local:bool) -> String:
 	if local:
 		return local_pck_path
 	else:
-		return url_to_pck
+#		TEMPORARY SOLUTION: get newest game link from server based on the title
+		var response:Dictionary = await ClubhouseProgram.server.get_url_to_gig_pck(folder_name)
+		if response.has("error"):
+			return url_to_pck
+		return response["body"]["link"]
 		
 func get_config_path() -> String:
 	return "res://%s/_GigMakerSDK/gig_config.json" % folder_name

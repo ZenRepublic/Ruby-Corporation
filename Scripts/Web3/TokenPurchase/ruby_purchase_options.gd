@@ -9,7 +9,7 @@ extends Node
 @export var option_group:ButtonGroup
 
 @export var buy_button:ButtonLock
-@export var original_buy_text:String
+var original_buy_text:String
 
 var selected_amount:float=0
 

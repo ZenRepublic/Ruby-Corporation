@@ -36,6 +36,8 @@ func _ready() -> void:
 		SolanaService.wallet.on_login_success.connect(handle_user_login)
 		
 func handle_user_login() -> void:
+	var response:Dictionary = await ClubhouseProgram.server.get_url_to_gig_pck("LetsGoMonke")
+	print(response)
 	#print("TRYINTG")
 	#var response:Dictionary = await ClubhouseProgram.server.record_campaign(Pubkey.new_from_string("tTxYt4VGT47esMgAF6W6Y285Z4hgRv85QHYv3Csindi"))
 	#print(response)

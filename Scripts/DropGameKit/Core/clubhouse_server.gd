@@ -28,6 +28,14 @@ func add_oracle_signature(transaction:Transaction) -> PackedByteArray:
 		return []
 		
 	return response["body"]["transaction"]["data"]
+	
+func get_url_to_gig_pck(title:String) -> Dictionary:
+	var headers:Array = ["Content-type: application/json"]
+	var body:Dictionary = {
+		"title":title,
+	}
+	var response:Dictionary = await HttpRequestHandler.send_post_request(JSON.stringify(body),headers,get_server_link("clubhouse/get-game-link"))
+	return response
 
 func set_player_data(house_key:Pubkey,campaign_key:Pubkey,player_key:Pubkey,data:Dictionary) -> Dictionary:
 	var headers:Array = ["Content-type: application/json"]
