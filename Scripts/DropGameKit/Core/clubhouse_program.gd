@@ -190,14 +190,14 @@ func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,h
 		if token_config["token_use"] != 1:
 			game_deposit_vault = ClubhousePDA.get_deposit_vault_pda(campaign_key)
 			
-	var player_nft_token_account:Pubkey = null 
-	var player_nft_metadata_account:Pubkey = null
+	var manager_nft_token_account:Pubkey = null 
+	var manager_nft_metadata_account:Pubkey = null
 	var core_asset_account:Pubkey=null
 	var manager_slot_pda:Pubkey=null
 	if manager_data!=null and manager_data.has("asset"):
 		if manager_data["asset_type"] == 1:
-			player_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),manager_data["asset"])
-			player_nft_metadata_account = ClubhousePDA.get_nft_metadata_pda(manager_data["asset"])
+			manager_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),manager_data["asset"])
+			manager_nft_metadata_account = ClubhousePDA.get_nft_metadata_pda(manager_data["asset"])
 		elif manager_data["asset_type"] == 3:
 			core_asset_account = manager_data["asset"]
 		manager_slot_pda = ClubhousePDA.get_campaign_manager_pda(house_pda,manager_data["asset"])
@@ -218,8 +218,8 @@ func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,h
 		game_deposit_vault,
 		SolanaService.TOKEN_PID,
 		SystemProgram.get_pid(),
-		player_nft_token_account,
-		player_nft_metadata_account,
+		manager_nft_token_account,
+		manager_nft_metadata_account,
 		manager_slot_pda
 		],{
 			"campaign_name":campaign_name,

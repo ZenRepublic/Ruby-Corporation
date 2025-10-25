@@ -28,6 +28,7 @@ signal on_campaign_closed
 # Called when the node enters the scene tree for the first time.
 func set_campaign(campaign_id:String,campaign_data:Dictionary) -> void:
 	curr_campaign_data = campaign_data
+	print(campaign_id)
 	print(curr_campaign_data)
 	var result = await ClubhouseProgram.utils.get_managers_in_use(curr_campaign_data["house"])
 	#print(result["2RMG75ydGKLcviZZvU4tL7kZ4iGSVQELhnfXHxPCjWvx"]["manager"].to_string())

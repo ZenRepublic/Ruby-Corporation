@@ -117,6 +117,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CampaignSelector" type="MarginContainer" parent="Content" node_paths=PackedStringArray("container", "no_entries_overlay")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 30
@@ -171,7 +172,6 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="CampaignManager" type="MarginContainer" parent="Content" node_paths=PackedStringArray("campaign_name_label", "gate_displayable", "owner_displayable", "campaign_type_label", "max_reward_displayable", "treasury_token_displayable", "total_games_label", "unique_players_label", "deposit_token_displayable", "not_available_deposit_label", "leaderboard", "fees_collected", "close_button")]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
