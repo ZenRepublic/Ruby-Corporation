@@ -3,6 +3,7 @@ class_name GigOverview
 
 @export var campaign_creator_scn:PackedScene
 @export var gig_display:GigDisplay
+@export var create_campaign_button:BaseButton
 @export var campaign_loader:CampaignLoader
 
 var active_gig:ClubhouseGig=null
@@ -10,12 +11,20 @@ var active_gig:ClubhouseGig=null
 var menu_manager:MenuManager
 
 func _ready() -> void:
+	create_campaign_button.pressed.connect(pop_campaign_creator)
 	menu_manager = get_tree().get_first_node_in_group("MenuManager")
 	pass
 
 		
 func setup_gig(gig:ClubhouseGig) -> void:
 	active_gig = gig
+	var is_admin:bool = await ClubhouseProgram.utils.is_admin(SolanaService.wa)
+	create_campaign_button.visible = active_gig.allow_campaign_creation
+	
+#	try to override by checking admin rights if creation not allowed
+	if !active_gig.allow_campaign_creation and SolanaService.wallet.is_logged_in():
+		create_campaign_button.visible = await ClubhouseProgram.utils.is_admin(SolanaService.wallet.get_pubkey())
+		
 	ClubhouseProgram.utils.set_house_data(gig.mainnet_house_id,gig.devnet_house_id)
 	
 	gig_display.set_basic_fields(gig)

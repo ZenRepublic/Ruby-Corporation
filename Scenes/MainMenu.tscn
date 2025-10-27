@@ -395,9 +395,7 @@ text = "GUEST"
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme = ExtResource("7_eupma")
-text = "Select a gig and check if there's any active campaigns for it..
-
-Or create one yourself!"
+text = "Select a gig, find an active campaign you're eligible for and get to work!"
 autowrap_mode = 2
 
 [node name="LearnMoreButton" type="Button" parent="Content/MainScreen/GigSelector/Content/Intro" node_paths=PackedStringArray("button")]
@@ -810,5 +808,4 @@ font_color_pressed = Color(0.0352941, 0.0627451, 0.054902, 1)
 metadata/_custom_type_script = "uid://cvjtkwf8f4711"
 
 [connection signal="pressed" from="Content/MainScreen/GigOverview/Content/ActionButtons/BackButton" to="Content/MainScreen/ScreenManager" method="back_to_previous_panel"]
-[connection signal="pressed" from="Content/MainScreen/GigOverview/Content/ActionButtons/CreateCampaign" to="Content/MainScreen/GigOverview" method="pop_campaign_creator"]
 [connection signal="pressed" from="Content/MainScreen/GigOverview/Content/ActionButtons/FreePlayButton" to="Content/MainScreen/GigOverview" method="free_play"]

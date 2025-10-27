@@ -13,6 +13,8 @@ class_name ClubhouseGig
 @export var url_to_pck:String
 
 @export var folder_name:String
+#allow campaign creation for anyone (admins override to always allow)
+@export var allow_campaign_creation:bool=false
 	
 func get_url_or_path(local:bool) -> String:
 	if local:
