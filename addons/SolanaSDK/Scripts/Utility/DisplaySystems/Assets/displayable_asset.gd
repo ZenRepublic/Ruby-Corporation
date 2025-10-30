@@ -74,7 +74,17 @@ func get_associated_asset() -> WalletAsset:
 	return asset
 	
 func handle_select() -> void:
-	on_selected.emit(self)
+	if select_button.toggle_mode:
+		if select_button.button_pressed:
+			on_selected.emit(self)
+		else:
+			on_selected.emit(null)
+	else:
+		on_selected.emit(self)
+		
+func deselect() -> void:
+	if select_button.toggle_mode and select_button.button_pressed:
+		select_button.button_pressed = false
 	
 func handle_image_load_complete() -> void:
 	if asset.image!=null:

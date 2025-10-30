@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://c25ievjhcwp5e" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/nft_campaign_player_manager.gd" id="7_4rq04"]
 [ext_resource type="Script" uid="uid://fyl7vadeoj03" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/displayable_asset.gd" id="8_5j8qh"]
 [ext_resource type="Script" uid="uid://xl86n3733lsl" path="res://Scripts/Utility/timed_button.gd" id="9_3yh7w"]
-[ext_resource type="Script" uid="uid://cvjs0lluew8kq" path="res://addons/SolanaSDK/Scripts/NFTGating/token_button_lock.gd" id="10_0oexu"]
+[ext_resource type="Script" uid="uid://cvjs0lluew8kq" path="res://addons/SolanaSDK/Scripts/Utility/TokenGating/token_button_lock.gd" id="10_0oexu"]
 [ext_resource type="Script" uid="uid://8d53ge4w5ku7" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/token_campaign_player_manager.gd" id="11_l8wy8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x46re"]

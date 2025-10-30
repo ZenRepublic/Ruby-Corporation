@@ -15,6 +15,8 @@ func _ready() -> void:
 	campaign_type_filter.item_selected.connect(set_campaign_type_filter)
 	set_show_expired_filter()
 	show_expired_filter.pressed.connect(set_show_expired_filter)
+	
+	campaign_display_system.on_account_selected.connect(select_campaign)
 
 	
 func on_visibility_changed() -> void:
@@ -34,7 +36,6 @@ func load_campaigns() -> void:
 	var filter:Array = [{"memcmp" : { "offset":9, "bytes": house_pda.to_string()}}]
 	campaign_display_system.set_sort_data("time_span.start_time",false)
 	campaign_display_system.set_list(ClubhouseProgram.get_program(),"Campaign",filter)
-	campaign_display_system.on_account_selected.connect(select_campaign)
 	
 		
 func select_campaign(campaign_entry:AccountDisplayEntry) -> void:

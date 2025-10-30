@@ -116,7 +116,6 @@ func fetch_asset_data(asset_mint:Pubkey):
 	
 func create_asset(asset_mint:Pubkey, asset_data,load_texture:bool) -> WalletAsset:	
 	var metadata:MetaData
-	
 	if asset_data is Dictionary:
 		metadata = MetaData.new()
 		metadata.copy_from_dict(asset_data)
@@ -129,7 +128,8 @@ func create_asset(asset_mint:Pubkey, asset_data,load_texture:bool) -> WalletAsse
 	if existing_asset!= null:
 		return existing_asset
 		
-	var asset_type:AssetType = get_asset_type(metadata)
+	var asset_type:AssetType = get_asset_type(asset_data)
+	
 	if asset_type == AssetType.NONE and (asset_data["interface"] == "MplCoreAsset" or asset_data["interface"] == "MplCoreCollection"):
 		asset_type = AssetType.CORE
 		
@@ -166,18 +166,31 @@ func add_collection_to_whitelist(collection_key:Pubkey) -> void:
 # 3 - Non fungible edition (NFT edition)
 # 4 - Programmable NFT
 # 5 - Programmable NFT Edition		
-func get_asset_type(metadata:MetaData) -> AssetType:
-	if metadata.get_token_standard() == null:
-		return AssetType.NONE
-		
-	var token_standard:int = metadata.get_token_standard()
-	match token_standard:
-		1,2:
-			return AssetType.TOKEN
-		0,3,4,5:
-			return AssetType.NFT
+func get_asset_type(asset_data) -> AssetType:
+	if asset_data is MetaData:
+		if asset_data.get_token_standard() == null:
+			return AssetType.NONE
 			
-	return AssetType.MISSING
+		var token_standard:int = asset_data.get_token_standard()
+		match token_standard:
+			1,2:
+				return AssetType.TOKEN
+			0,3,4,5:
+				return AssetType.NFT
+				
+		return AssetType.MISSING
+	else:
+		if asset_data["interface"] == "FungibleToken" or asset_data["interface"] == "FungibleAsset":
+			return AssetType.TOKEN
+		elif asset_data["interface"] == "V1_NFT":
+			return AssetType.NFT
+		elif asset_data["interface"] == "MplCoreAsset" or asset_data["interface"] == "MplCoreCollection":
+			return AssetType.CORE
+		else:
+			print("UNKNOWN ASSET INTERFACE FOUND: ", asset_data["interface"])
+			return AssetType.MISSING
+			
+		
 
 func get_owned_asset(asset_mint:Pubkey) -> WalletAsset:
 	for asset in owned_assets:

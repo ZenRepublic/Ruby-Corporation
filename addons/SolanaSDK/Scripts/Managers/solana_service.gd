@@ -232,7 +232,7 @@ func simulate_transaction(transaction:Transaction) -> Dictionary:
 		
 	return result
 	
-func is_transaction_confirmed(tx_signatures:Array) -> bool:
+func is_transaction_confirmed(tx_signatures:Array, commitment:TransactionManager.Commitment) -> bool:
 	var client:SolanaClient = spawn_client_instance()
 	client.get_signature_statuses(tx_signatures,false)
 	var response_dict:Dictionary = await client.http_response_received
@@ -249,7 +249,14 @@ func is_transaction_confirmed(tx_signatures:Array) -> bool:
 			print("NO CONFIRMATION STATUS")
 			all_confirmed=false
 			break
-		if status["confirmationStatus"] != "confirmed" and status["confirmationStatus"] != "finalized":
+			
+		if commitment == TransactionManager.Commitment.PROCESSED and status["confirmationStatus"] != "processed":
+			all_confirmed=false
+			break
+		if commitment == TransactionManager.Commitment.CONFIRMED and status["confirmationStatus"] != "confirmed":
+			all_confirmed=false
+			break
+		if commitment == TransactionManager.Commitment.FINALIZED and status["confirmationStatus"] != "finalized":
 			all_confirmed=false
 			break
 			

@@ -2,11 +2,12 @@ extends Node
 class_name MenuManager
 
 @export var screen_manager:ScreenManager
-
 @export var gig_selector:GigSelector
 @export var gig_overview:GigOverview
 @export var gig_pck_loader:GigLoaderPCK
 @export var use_local_pck:bool=true
+
+@export var session_creator_scn:PackedScene
 
 @export var music_library:Dictionary
 @export var sfx_manager:SFXManager
@@ -56,6 +57,17 @@ func handle_gig_selection(selected_gig:ClubhouseGig) -> void:
 	
 func load_gig(campaign_key:Pubkey,campaign_data:Dictionary,player_data:Dictionary) -> void:
 	play_ui_sound("ButtonSimple")
+#	first check if the game is fully onchain or not. if it is, then first create a session key (show panel explaining)
+	if gig_overview.active_gig.is_foc():
+		var gig_program:Pubkey = gig_overview.active_gig.get_onchain_program_id()
+		if SolanaService.wallet.get_session_key(gig_program) == null:
+			var session_creator:SessionKeyCreator = session_creator_scn.instantiate() as SessionKeyCreator
+			get_tree().root.add_child(session_creator)
+			session_creator.setup_session_creator(gig_program)
+			var session_created:bool = await session_creator.on_choice_made
+			if !session_created:
+				return
+		
 	var scene_to_load = await try_load_pck_scene()
 
 	if scene_to_load!=null:

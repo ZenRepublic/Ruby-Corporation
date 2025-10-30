@@ -132,7 +132,7 @@ func close_house(house_name:String, house_currency:Pubkey) -> TransactionData:
 	
 func get_close_house_instruction(house_name:String, house_currency:Pubkey) -> Instruction:
 	var house_pda:Pubkey = ClubhousePDA.get_house_pda(house_name)
-	var fees_withdrawal_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),house_currency)
+	var fees_withdrawal_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),house_currency,Pubkey.new_from_string(SolanaService.TOKEN_PID))
 	
 	var ix:Instruction = program.build_instruction("close_house",[
 		house_pda,
@@ -153,7 +153,7 @@ func withdraw_house_fees(house_name:String, house_currency:Pubkey) -> Transactio
 	
 func get_withdraw_house_fees_instruction(house_name:String, house_currency:Pubkey) -> Instruction:
 	var house_pda:Pubkey = ClubhousePDA.get_house_pda(house_name)
-	var fees_withdrawal_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),house_currency)
+	var fees_withdrawal_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),house_currency,Pubkey.new_from_string(SolanaService.TOKEN_PID))
 	
 	var ix:Instruction = program.build_instruction("withdraw_house_fees",[
 		house_pda,
@@ -179,8 +179,8 @@ func create_campaign(house_pda:Pubkey,house_currency:Pubkey,campaign_name:String
 
 func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,house_currency:Pubkey,campaign_name:String,reward_mint:Pubkey,fund_amount_lamports:int,max_reward_lamports:int,burn_remainder:bool,player_claim_fee:int,timespan:Dictionary,nft_config=null,token_config=null,manager_data=null,custom_data=null) -> Instruction:
 	var campaign_key:Pubkey = campaign_keypair.to_pubkey()
-	var creation_fee_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),house_currency)
-	var reward_depositor_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),reward_mint)
+	var creation_fee_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),house_currency,Pubkey.new_from_string(SolanaService.TOKEN_PID))
+	var reward_depositor_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),reward_mint,Pubkey.new_from_string(SolanaService.TOKEN_PID))
 	
 	var game_mint:Pubkey = null
 	var game_deposit_vault:Pubkey = null
@@ -196,7 +196,7 @@ func get_create_campaign_instruction(campaign_keypair:Keypair,house_pda:Pubkey,h
 	var manager_slot_pda:Pubkey=null
 	if manager_data!=null and manager_data.has("asset"):
 		if manager_data["asset_type"] == 1:
-			manager_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),manager_data["asset"])
+			manager_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),manager_data["asset"],Pubkey.new_from_string(SolanaService.TOKEN_PID))
 			manager_nft_metadata_account = ClubhousePDA.get_nft_metadata_pda(manager_data["asset"])
 		elif manager_data["asset_type"] == 3:
 			core_asset_account = manager_data["asset"]
@@ -244,7 +244,7 @@ func close_campaign(house_pda:Pubkey,campaign_key:Pubkey,campaign_data:Dictionar
 	return tx_data
 	
 func get_close_campaign_instruction(house_pda:Pubkey,campaign_key:Pubkey,campaign_data:Dictionary,manager_data=null) -> Instruction:
-	var reward_withdrawal_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),campaign_data["reward_mint"])
+	var reward_withdrawal_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),campaign_data["reward_mint"],Pubkey.new_from_string(SolanaService.TOKEN_PID))
 	
 	var game_deposit_vault:Pubkey = null
 	var deposit_withdrawal_account:Pubkey = null
@@ -254,7 +254,7 @@ func get_close_campaign_instruction(house_pda:Pubkey,campaign_key:Pubkey,campaig
 	#if pay token mode, add optional accounts to claim those tokens
 	if campaign_data["token_config"] != null and campaign_data["token_config"]["token_use"] == 2:
 		game_deposit_vault = ClubhousePDA.get_deposit_vault_pda(campaign_key)
-		deposit_withdrawal_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),campaign_data["token_config"]["spending_mint"])
+		deposit_withdrawal_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),campaign_data["token_config"]["spending_mint"],Pubkey.new_from_string(SolanaService.TOKEN_PID))
 		game_mint = campaign_data["token_config"]["spending_mint"]
 		deposit_token_program = SolanaService.TOKEN_PID
 		
@@ -264,7 +264,7 @@ func get_close_campaign_instruction(house_pda:Pubkey,campaign_key:Pubkey,campaig
 	var manager_slot_pda:Pubkey=null
 	#if manager_data!=null and manager_data.has("asset"):
 		#if manager_data["asset_type"] == 1:
-			#player_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),manager_data["asset"])
+			#player_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),manager_data["asset"],Pubkey.new_from_string(SolanaService.TOKEN_PID))
 			#player_nft_metadata_account = ClubhousePDA.get_nft_metadata_pda(manager_data["asset"])
 		#elif manager_data["asset_type"] == 3:
 			#core_asset_account = manager_data["asset"]
@@ -336,14 +336,14 @@ func get_start_game_instruction(house_pda:Pubkey,campaign_key:Pubkey,game_data:D
 	if game_data.has("asset"):
 		campaign_player_pda = ClubhousePDA.get_campaign_player_pda(campaign_key,game_data["asset"])
 		if game_data["asset_type"] == 1:
-			player_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),game_data["asset"])
+			player_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),game_data["asset"],Pubkey.new_from_string(SolanaService.TOKEN_PID))
 			player_nft_metadata_account = ClubhousePDA.get_nft_metadata_pda(game_data["asset"])
 		elif game_data["asset_type"] == 3:
 			core_asset_account = game_data["asset"]
 	else:
 		campaign_player_pda = ClubhousePDA.get_campaign_player_pda(campaign_key,SolanaService.wallet.get_pubkey())
 		game_deposit_mint = game_data["game_mint"]
-		player_deposit_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),game_data["game_mint"])
+		player_deposit_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),game_data["game_mint"],Pubkey.new_from_string(SolanaService.TOKEN_PID))
 		if game_data["token_use"] != 1:
 			game_deposit_vault = ClubhousePDA.get_deposit_vault_pda(campaign_key)
 	
@@ -386,14 +386,14 @@ func get_claim_reward_instruction(house_pda:Pubkey,oracle:Pubkey,campaign_key:Pu
 	if game_data.has("asset"):
 		campaign_player_pda = ClubhousePDA.get_campaign_player_pda(campaign_key,game_data["asset"])
 		if game_data["asset_type"] == 1:
-			player_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),game_data["asset"])
+			player_nft_token_account = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),game_data["asset"],Pubkey.new_from_string(SolanaService.TOKEN_PID))
 			player_nft_metadata_account = ClubhousePDA.get_nft_metadata_pda(game_data["asset"])
 		elif game_data["asset_type"] == 3:
 			core_asset_account = game_data["asset"]
 	else:
 		campaign_player_pda = ClubhousePDA.get_campaign_player_pda(campaign_key,SolanaService.wallet.get_pubkey())
 		
-	var player_reward_token_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),reward_mint)		
+	var player_reward_token_account:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),reward_mint,Pubkey.new_from_string(SolanaService.TOKEN_PID))		
 	#if oracle is not set, it is defaulted to SystemProgram. We set it to null then to not need a signer	
 	if oracle!=null and oracle.to_string() == SystemProgram.get_pid().to_string():
 		oracle = null
@@ -426,7 +426,7 @@ func withdraw_stake(campaign_key:Pubkey,campaign_player_pda:Pubkey,game_deposit_
 	return tx_data
 	
 func get_withdraw_stake_instruction(campaign_key:Pubkey,campaign_player_pda:Pubkey,game_deposit_mint:Pubkey) -> Instruction:
-	var stake_recipient_ata:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),game_deposit_mint)
+	var stake_recipient_ata:Pubkey = Pubkey.new_associated_token_address(SolanaService.wallet.get_pubkey(),game_deposit_mint,Pubkey.new_from_string(SolanaService.TOKEN_PID))
 	var ix:Instruction = program.build_instruction("claim_stake",[	
 		campaign_player_pda,
 		SolanaService.wallet.get_kp(),

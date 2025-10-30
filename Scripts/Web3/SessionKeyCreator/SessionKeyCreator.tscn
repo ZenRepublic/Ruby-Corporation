@@ -1,0 +1,168 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7puasnxt3hhv"]
+
+[ext_resource type="Script" uid="uid://b5nismo58ifft" path="res://Scripts/Web3/SessionKeyCreator/session_key_creator.gd" id="1_fw6gj"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="2_fw6gj"]
+[ext_resource type="Script" uid="uid://5hv4pjs1xcht" path="res://addons/richtext2/text_effects/anims/rte_fader.gd" id="3_7rn8j"]
+[ext_resource type="Script" uid="uid://i8bg2nawwnn0" path="res://addons/richtext2/text_effects/effects/rte_sin.gd" id="4_g5j3f"]
+[ext_resource type="Script" uid="uid://b6mbstaftpedd" path="res://addons/richtext2/rich_text_animation.gd" id="5_3ok5l"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_rfuem"]
+resource_name = "fader"
+script = ExtResource("3_7rn8j")
+metadata/rt = 2463532928792
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_fw6gj"]
+resource_name = "sin"
+script = ExtResource("4_g5j3f")
+metadata/rt = 2463532928792
+
+[node name="SessionKeyCreator" type="CanvasLayer" node_paths=PackedStringArray("create_button")]
+layer = 98
+script = ExtResource("1_fw6gj")
+create_button = NodePath("TransactionOverlay/Content/Buttons/AgreeButton")
+sol_top_up_amount = 0.02
+duration_in_minutes = 60
+
+[node name="TransactionOverlay" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_fw6gj")
+theme_type_variation = &"PanelFlat"
+
+[node name="Content" type="VBoxContainer" parent="TransactionOverlay"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ErrorText" type="VBoxContainer" parent="TransactionOverlay/Content"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Disclaimer" type="Label" parent="TransactionOverlay/Content/ErrorText"]
+layout_mode = 2
+theme = ExtResource("2_fw6gj")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 120
+text = "DISCLAIMER!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="explanation" type="RichTextLabel" parent="TransactionOverlay/Content/ErrorText"]
+clip_contents = false
+custom_minimum_size = Vector2(600, 464)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_fw6gj")
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_rfuem"), SubResource("RichTextEffect_fw6gj")]
+script = ExtResource("5_3ok5l")
+progress = 1.0
+visible_character = 362
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 30, 23), Transform2D(1, 0, 0, 1, 48, 23), Transform2D(1, 0, 0, 1, 66, 23), Transform2D(1, 0, 0, 1, 84, 23), Transform2D(1, 0, 0, 1, 102, 23), Transform2D(1, 0, 0, 1, 119, 23), Transform2D(1, 0, 0, 1, 137, 23), Transform2D(1, 0, 0, 1, 155, 23), Transform2D(1, 0, 0, 1, 173, 23), Transform2D(1, 0, 0, 1, 191, 23), Transform2D(1, 0, 0, 1, 209, 23), Transform2D(1, 0, 0, 1, 227, 23), Transform2D(1, 0, 0, 1, 245, 23), Transform2D(1, 0, 0, 1, 263, 23), Transform2D(1, 0, 0, 1, 281, 23), Transform2D(1, 0, 0, 1, 299, 23), Transform2D(1, 0, 0, 1, 317, 23), Transform2D(1, 0, 0, 1, 335, 23), Transform2D(1, 0, 0, 1, 353, 23), Transform2D(1, 0, 0, 1, 371, 23), Transform2D(1, 0, 0, 1, 389, 23), Transform2D(1, 0, 0, 1, 407, 23), Transform2D(1, 0, 0, 1, 425, 23), Transform2D(1, 0, 0, 1, 443, 23), Transform2D(1, 0, 0, 1, 461, 23), Transform2D(1, 0, 0, 1, 479, 23), Transform2D(1, 0, 0, 1, 497, 23), Transform2D(1, 0, 0, 1, 515, 23), Transform2D(1, 0, 0, 1, 533, 23), Transform2D(1, 0, 0, 1, 551, 23), Transform2D(1, 0, 0, 1, 569, 23), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 102, 52), Transform2D(1, 0, 0, 1, 120, 52), Transform2D(1, 0, 0, 1, 138, 52), Transform2D(1, 0, 0, 1, 156, 52), Transform2D(1, 0, 0, 1, 174, 52), Transform2D(1, 0, 0, 1, 192, 52), Transform2D(1, 0, 0, 1, 210, 52), Transform2D(1, 0, 0, 1, 228, 52), Transform2D(1, 0, 0, 1, 246, 52), Transform2D(1, 0, 0, 1, 264, 52), Transform2D(1, 0, 0, 1, 282, 52), Transform2D(1, 0, 0, 1, 300, 52), Transform2D(1, 0, 0, 1, 318, 52), Transform2D(1, 0, 0, 1, 336, 52), Transform2D(1, 0, 0, 1, 354, 52), Transform2D(1, 0, 0, 1, 372, 52), Transform2D(1, 0, 0, 1, 390, 52), Transform2D(1, 0, 0, 1, 408, 52), Transform2D(1, 0, 0, 1, 426, 52), Transform2D(1, 0, 0, 1, 444, 52), Transform2D(1, 0, 0, 1, 462, 52), Transform2D(1, 0, 0, 1, 480, 52), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 183, 81), Transform2D(1, 0, 0, 1, 201, 81), Transform2D(1, 0, 0, 1, 219, 81), Transform2D(1, 0, 0, 1, 237, 81), Transform2D(1, 0, 0, 1, 255, 81), Transform2D(1, 0, 0, 1, 273, 81), Transform2D(1, 0, 0, 1, 291, 81), Transform2D(1, 0, 0, 1, 309, 81), Transform2D(1, 0, 0, 1, 327, 81), Transform2D(1, 0, 0, 1, 345, 81), Transform2D(1, 0, 0, 1, 363, 81), Transform2D(1, 0, 0, 1, 381, 81), Transform2D(1, 0, 0, 1, 399, 81), Transform2D(1, 0, 0, 1, 417, 81), Transform2D(1, 0, 0, 1, 300, 110), Transform2D(1, 0, 0, 1, 66, 139), Transform2D(1, 0, 0, 1, 84, 139), Transform2D(1, 0, 0, 1, 102, 139), Transform2D(1, 0, 0, 1, 120, 139), Transform2D(1, 0, 0, 1, 138, 139), Transform2D(1, 0, 0, 1, 156, 139), Transform2D(1, 0, 0, 1, 174, 139), Transform2D(1, 0, 0, 1, 192, 139), Transform2D(1, 0, 0, 1, 210, 139), Transform2D(1, 0, 0, 1, 228, 139), Transform2D(1, 0, 0, 1, 246, 139), Transform2D(1, 0, 0, 1, 264, 139), Transform2D(1, 0, 0, 1, 282, 139), Transform2D(1, 0, 0, 1, 300, 139), Transform2D(1, 0, 0, 1, 318, 139), Transform2D(1, 0, 0, 1, 336, 139), Transform2D(1, 0, 0, 1, 354, 139), Transform2D(1, 0, 0, 1, 372, 139), Transform2D(1, 0, 0, 1, 390, 139), Transform2D(1, 0, 0, 1, 408, 139), Transform2D(1, 0, 0, 1, 426, 139), Transform2D(1, 0, 0, 1, 444, 139), Transform2D(1, 0, 0, 1, 462, 139), Transform2D(1, 0, 0, 1, 480, 139), Transform2D(1, 0, 0, 1, 498, 139), Transform2D(1, 0, 0, 1, 516, 139), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 21, 168), Transform2D(1, 0, 0, 1, 39, 168), Transform2D(1, 0, 0, 1, 57, 168), Transform2D(1, 0, 0, 1, 75, 168), Transform2D(1, 0, 0, 1, 93, 168), Transform2D(1, 0, 0, 1, 111, 168), Transform2D(1, 0, 0, 1, 129, 168), Transform2D(1, 0, 0, 1, 147, 168), Transform2D(1, 0, 0, 1, 165, 168), Transform2D(1, 0, 0, 1, 183, 168), Transform2D(1, 0, 0, 1, 201, 168), Transform2D(1, 0, 0, 1, 219, 168), Transform2D(1, 0, 0, 1, 237, 168), Transform2D(1, 0, 0, 1, 255, 168), Transform2D(1, 0, 0, 1, 273, 168), Transform2D(1, 0, 0, 1, 291, 168), Transform2D(1, 0, 0, 1, 309, 168), Transform2D(1, 0, 0, 1, 327, 168), Transform2D(1, 0, 0, 1, 345, 168), Transform2D(1, 0, 0, 1, 363, 168), Transform2D(1, 0, 0, 1, 381, 168), Transform2D(1, 0, 0, 1, 399, 168), Transform2D(1, 0, 0, 1, 417, 168), Transform2D(1, 0, 0, 1, 435, 168), Transform2D(1, 0, 0, 1, 453, 168), Transform2D(1, 0, 0, 1, 471, 168), Transform2D(1, 0, 0, 1, 489, 168), Transform2D(1, 0, 0, 1, 507, 168), Transform2D(1, 0, 0, 1, 525, 168), Transform2D(1, 0, 0, 1, 543, 168), Transform2D(1, 0, 0, 1, 561, 168), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 49, 197), Transform2D(1, 0, 0, 1, 67, 197), Transform2D(1, 0, 0, 1, 83, 197), Transform2D(1, 0, 0, 1, 101, 197), Transform2D(1, 0, 0, 1, 119, 197), Transform2D(1, 0, 0, 1, 137, 197), Transform2D(1, 0, 0, 1, 155, 197), Transform2D(1, 0, 0, 1, 173, 197), Transform2D(1, 0, 0, 1, 191, 197), Transform2D(1, 0, 0, 1, 209, 197), Transform2D(1, 0, 0, 1, 227, 197), Transform2D(1, 0, 0, 1, 245, 197), Transform2D(1, 0, 0, 1, 263, 197), Transform2D(1, 0, 0, 1, 281, 197), Transform2D(1, 0, 0, 1, 299, 197), Transform2D(1, 0, 0, 1, 317, 197), Transform2D(1, 0, 0, 1, 335, 197), Transform2D(1, 0, 0, 1, 353, 197), Transform2D(1, 0, 0, 1, 371, 197), Transform2D(1, 0, 0, 1, 389, 197), Transform2D(1, 0, 0, 1, 407, 197), Transform2D(1, 0, 0, 1, 425, 197), Transform2D(1, 0, 0, 1, 443, 197), Transform2D(1, 0, 0, 1, 461, 197), Transform2D(1, 0, 0, 1, 479, 197), Transform2D(1, 0, 0, 1, 497, 197), Transform2D(1, 0, 0, 1, 515, 197), Transform2D(1, 0, 0, 1, 533, 197), Transform2D(1, 0, 0, 1, 551, 197), Transform2D(1, 0, 0, 1, 300, 226), Transform2D(1, 0, 0, 1, 57, 255), Transform2D(1, 0, 0, 1, 75, 255), Transform2D(1, 0, 0, 1, 93, 255), Transform2D(1, 0, 0, 1, 111, 255), Transform2D(1, 0, 0, 1, 129, 255), Transform2D(1, 0, 0, 1, 147, 255), Transform2D(1, 0, 0, 1, 165, 255), Transform2D(1, 0, 0, 1, 183, 255), Transform2D(1, 0, 0, 1, 201, 255), Transform2D(1, 0, 0, 1, 219, 255), Transform2D(1, 0, 0, 1, 237, 255), Transform2D(1, 0, 0, 1, 255, 255), Transform2D(1, 0, 0, 1, 273, 255), Transform2D(1, 0, 0, 1, 291, 255), Transform2D(1, 0, 0, 1, 309, 255), Transform2D(1, 0, 0, 1, 327, 255), Transform2D(1, 0, 0, 1, 345, 255), Transform2D(1, 0, 0, 1, 363, 255), Transform2D(1, 0, 0, 1, 381, 255), Transform2D(1, 0, 0, 1, 399, 255), Transform2D(1, 0, 0, 1, 417, 255), Transform2D(1, 0, 0, 1, 435, 255), Transform2D(1, 0, 0, 1, 453, 255), Transform2D(1, 0, 0, 1, 471, 255), Transform2D(1, 0, 0, 1, 489, 255), Transform2D(1, 0, 0, 1, 507, 255), Transform2D(1, 0, 0, 1, 525, 255), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 49, 284), Transform2D(1, 0, 0, 1, 67, 284), Transform2D(1, 0, 0, 1, 85, 284), Transform2D(1, 0, 0, 1, 103, 284), Transform2D(1, 0, 0, 1, 121, 284), Transform2D(1, 0, 0, 1, 139, 284), Transform2D(1, 0, 0, 1, 157, 284), Transform2D(1, 0, 0, 1, 175, 284), Transform2D(1, 0, 0, 1, 193, 284), Transform2D(1, 0, 0, 1, 211, 284), Transform2D(1, 0, 0, 1, 229, 284), Transform2D(1, 0, 0, 1, 247, 284), Transform2D(1, 0, 0, 1, 263, 284), Transform2D(1, 0, 0, 1, 281, 284), Transform2D(1, 0, 0, 1, 299, 284), Transform2D(1, 0, 0, 1, 317, 284), Transform2D(1, 0, 0, 1, 335, 284), Transform2D(1, 0, 0, 1, 353, 284), Transform2D(1, 0, 0, 1, 371, 284), Transform2D(1, 0, 0, 1, 389, 284), Transform2D(1, 0, 0, 1, 407, 284), Transform2D(1, 0, 0, 1, 425, 284), Transform2D(1, 0, 0, 1, 443, 284), Transform2D(1, 0, 0, 1, 461, 284), Transform2D(1, 0, 0, 1, 479, 284), Transform2D(1, 0, 0, 1, 497, 284), Transform2D(1, 0, 0, 1, 515, 284), Transform2D(1, 0, 0, 1, 533, 284), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 3, 313), Transform2D(1, 0, 0, 1, 21, 313), Transform2D(1, 0, 0, 1, 39, 313), Transform2D(1, 0, 0, 1, 57, 313), Transform2D(1, 0, 0, 1, 75, 313), Transform2D(1, 0, 0, 1, 93, 313), Transform2D(1, 0, 0, 1, 111, 313), Transform2D(1, 0, 0, 1, 129, 313), Transform2D(1, 0, 0, 1, 147, 313), Transform2D(1, 0, 0, 1, 165, 313), Transform2D(1, 0, 0, 1, 183, 313), Transform2D(1, 0, 0, 1, 201, 313), Transform2D(1, 0, 0, 1, 219, 313), Transform2D(1, 0, 0, 1, 237, 313), Transform2D(1, 0, 0, 1, 255, 313), Transform2D(1, 0, 0, 1, 273, 313), Transform2D(1, 0, 0, 1, 291, 313), Transform2D(1, 0, 0, 1, 309, 313), Transform2D(1, 0, 0, 1, 327, 313), Transform2D(1, 0, 0, 1, 345, 313), Transform2D(1, 0, 0, 1, 363, 313), Transform2D(1, 0, 0, 1, 381, 313), Transform2D(1, 0, 0, 1, 399, 313), Transform2D(1, 0, 0, 1, 417, 313), Transform2D(1, 0, 0, 1, 435, 313), Transform2D(1, 0, 0, 1, 453, 313), Transform2D(1, 0, 0, 1, 471, 313), Transform2D(1, 0, 0, 1, 489, 313), Transform2D(1, 0, 0, 1, 507, 313), Transform2D(1, 0, 0, 1, 525, 313), Transform2D(1, 0, 0, 1, 543, 313), Transform2D(1, 0, 0, 1, 561, 313), Transform2D(1, 0, 0, 1, 579, 313), Transform2D(1, 0, 0, 1, 597, 313), Transform2D(1, 0, 0, 1, 300, 342), Transform2D(1, 0, 0, 1, 30, 371), Transform2D(1, 0, 0, 1, 48, 371), Transform2D(1, 0, 0, 1, 66, 371), Transform2D(1, 0, 0, 1, 84, 371), Transform2D(1, 0, 0, 1, 102, 371), Transform2D(1, 0, 0, 1, 120, 371), Transform2D(1, 0, 0, 1, 138, 371), Transform2D(1, 0, 0, 1, 156, 371), Transform2D(1, 0, 0, 1, 174, 371), Transform2D(1, 0, 0, 1, 192, 371), Transform2D(1, 0, 0, 1, 210, 371), Transform2D(1, 0, 0, 1, 228, 371), Transform2D(1, 0, 0, 1, 246, 371), Transform2D(1, 0, 0, 1, 264, 371), Transform2D(1, 0, 0, 1, 282, 371), Transform2D(1, 0, 0, 1, 300, 371), Transform2D(1, 0, 0, 1, 318, 371), Transform2D(1, 0, 0, 1, 336, 371), Transform2D(1, 0, 0, 1, 354, 371), Transform2D(1, 0, 0, 1, 372, 371), Transform2D(1, 0, 0, 1, 390, 371), Transform2D(1, 0, 0, 1, 408, 371), Transform2D(1, 0, 0, 1, 426, 371), Transform2D(1, 0, 0, 1, 444, 371), Transform2D(1, 0, 0, 1, 462, 371), Transform2D(1, 0, 0, 1, 480, 371), Transform2D(1, 0, 0, 1, 498, 371), Transform2D(1, 0, 0, 1, 516, 371), Transform2D(1, 0, 0, 1, 534, 371), Transform2D(1, 0, 0, 1, 552, 371), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 85, 400), Transform2D(1, 0, 0, 1, 103, 400), Transform2D(1, 0, 0, 1, 121, 400), Transform2D(1, 0, 0, 1, 137, 400), Transform2D(1, 0, 0, 1, 155, 400), Transform2D(1, 0, 0, 1, 173, 400), Transform2D(1, 0, 0, 1, 191, 400), Transform2D(1, 0, 0, 1, 209, 400), Transform2D(1, 0, 0, 1, 227, 400), Transform2D(1, 0, 0, 1, 245, 400), Transform2D(1, 0, 0, 1, 263, 400), Transform2D(1, 0, 0, 1, 281, 400), Transform2D(1, 0, 0, 1, 299, 400), Transform2D(1, 0, 0, 1, 317, 400), Transform2D(1, 0, 0, 1, 335, 400), Transform2D(1, 0, 0, 1, 353, 400), Transform2D(1, 0, 0, 1, 371, 400), Transform2D(1, 0, 0, 1, 389, 400), Transform2D(1, 0, 0, 1, 407, 400), Transform2D(1, 0, 0, 1, 425, 400), Transform2D(1, 0, 0, 1, 443, 400), Transform2D(1, 0, 0, 1, 461, 400), Transform2D(1, 0, 0, 1, 479, 400), Transform2D(1, 0, 0, 1, 497, 400), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 39, 429), Transform2D(1, 0, 0, 1, 57, 429), Transform2D(1, 0, 0, 1, 75, 429), Transform2D(1, 0, 0, 1, 93, 429), Transform2D(1, 0, 0, 1, 111, 429), Transform2D(1, 0, 0, 1, 129, 429), Transform2D(1, 0, 0, 1, 147, 429), Transform2D(1, 0, 0, 1, 165, 429), Transform2D(1, 0, 0, 1, 183, 429), Transform2D(1, 0, 0, 1, 201, 429), Transform2D(1, 0, 0, 1, 219, 429), Transform2D(1, 0, 0, 1, 237, 429), Transform2D(1, 0, 0, 1, 255, 429), Transform2D(1, 0, 0, 1, 273, 429), Transform2D(1, 0, 0, 1, 291, 429), Transform2D(1, 0, 0, 1, 309, 429), Transform2D(1, 0, 0, 1, 327, 429), Transform2D(1, 0, 0, 1, 345, 429), Transform2D(1, 0, 0, 1, 363, 429), Transform2D(1, 0, 0, 1, 381, 429), Transform2D(1, 0, 0, 1, 399, 429), Transform2D(1, 0, 0, 1, 417, 429), Transform2D(1, 0, 0, 1, 435, 429), Transform2D(1, 0, 0, 1, 453, 429), Transform2D(1, 0, 0, 1, 471, 429), Transform2D(1, 0, 0, 1, 489, 429), Transform2D(1, 0, 0, 1, 507, 429), Transform2D(1, 0, 0, 1, 525, 429), Transform2D(1, 0, 0, 1, 543, 429), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 85, 458), Transform2D(1, 0, 0, 1, 103, 458), Transform2D(1, 0, 0, 1, 121, 458), Transform2D(1, 0, 0, 1, 139, 458), Transform2D(1, 0, 0, 1, 157, 458), Transform2D(1, 0, 0, 1, 174, 458), Transform2D(1, 0, 0, 1, 192, 458), Transform2D(1, 0, 0, 1, 210, 458), Transform2D(1, 0, 0, 1, 228, 458), Transform2D(1, 0, 0, 1, 246, 458), Transform2D(1, 0, 0, 1, 264, 458), Transform2D(1, 0, 0, 1, 282, 458), Transform2D(1, 0, 0, 1, 300, 458), Transform2D(1, 0, 0, 1, 318, 458), Transform2D(1, 0, 0, 1, 336, 458), Transform2D(1, 0, 0, 1, 354, 458), Transform2D(1, 0, 0, 1, 372, 458), Transform2D(1, 0, 0, 1, 390, 458), Transform2D(1, 0, 0, 1, 408, 458), Transform2D(1, 0, 0, 1, 426, 458), Transform2D(1, 0, 0, 1, 444, 458), Transform2D(1, 0, 0, 1, 460, 458), Transform2D(1, 0, 0, 1, 478, 458), Transform2D(1, 0, 0, 1, 496, 458)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(18, 17), Vector2(15, 17), Vector2(18, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(6, 17), Vector2(0, 17), Vector2(18, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 0), Vector2(18, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(0, 0), Vector2(14, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(6, 17), Vector2(0, 17), Vector2(0, 17), Vector2(0, 17), Vector2(18, 17), Vector2(15, 17), Vector2(0, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(0, 17), Vector2(14, 17), Vector2(15, 17), Vector2(0, 0), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(18, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(0, 17), Vector2(18, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(0, 0), Vector2(18, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(18, 17), Vector2(15, 17), Vector2(6, 17), Vector2(0, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(18, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(18, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(14, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 0), Vector2(15, 17), Vector2(18, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(6, 17), Vector2(0, 17), Vector2(18, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(18, 17), Vector2(0, 17), Vector2(14, 17), Vector2(15, 17), Vector2(0, 0), Vector2(15, 17), Vector2(15, 17), Vector2(18, 17), Vector2(15, 17), Vector2(0, 17), Vector2(14, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(6, 17), Vector2(0, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(18, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 0), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(14, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(18, 17), Vector2(15, 17), Vector2(0, 0), Vector2(14, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(0, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(14, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 0), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(0, 17), Vector2(18, 17), Vector2(15, 17), Vector2(18, 17), Vector2(6, 17), Vector2(15, 17), Vector2(0, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(15, 17), Vector2(14, 17), Vector2(15, 17), Vector2(6, 17)])
+_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_forced_finish_delay = -0.0376409
+default_wait_time = 1.0
+play_on_bbcode = true
+play_speed = 500.0
+fade_out = false
+fade_in_speed = 10.0
+fade_out_speed = 120.0
+ctc_offset = Vector2(1, -0.5)
+ctc_on_finished = false
+ctc_on_wait = false
+shortcut_expression = true
+shortcut_bookmark = true
+signal_quotes = true
+signal_stars = true
+bbcode = "This gig is fully onchain, which means each action is a transaction. 
+
+We require your consent to delegate control of your wallet with [rainbow]Session Key[] technology.
+
+This will allow you to play smoothly, without needing to sign transaction for each action.
+
+Rest assured that our app will [sin][green]ONLY[][] have access to sign transactions that are part of the gig's functionality!"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "manolomono"
+font_auto_setup = true
+font_size = 30
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://b6mbstaftpedd"
+
+[node name="Buttons" type="VBoxContainer" parent="TransactionOverlay/Content"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="AgreeButton" type="Button" parent="TransactionOverlay/Content/Buttons"]
+custom_minimum_size = Vector2(400, 70)
+layout_mode = 2
+theme = ExtResource("2_fw6gj")
+theme_type_variation = &"ButtonFlatAlt"
+text = "I AGREE!"
+
+[node name="CloseButton" type="Button" parent="TransactionOverlay/Content/Buttons"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("2_fw6gj")
+theme_type_variation = &"ButtonFlat"
+text = "GO BACK"
+
+[connection signal="pressed" from="TransactionOverlay/Content/Buttons/CloseButton" to="." method="queue_free"]

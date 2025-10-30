@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ClubhouseGig" load_steps=3 format=3 uid="uid://bdbjmem1tjkj2"]
+
+[ext_resource type="Script" uid="uid://djyqvwe53sm87" path="res://Scripts/DropGameKit/GigManagement/Resources/gig_resource.gd" id="1_fyuk0"]
+[ext_resource type="Texture2D" uid="uid://clfygnn1sbkyd" path="res://Textures/LogosAndTokens/GeneLottoLogo.png" id="2_bicr2"]
+
+[resource]
+script = ExtResource("1_fyuk0")
+title = "GENE LOTTO"
+tag = "ONCHAIN GIG"
+description = "Stitch a series of genomes to form a full DNA strand. One wrong choice, and you're DONE!"
+visual = ExtResource("2_bicr2")
+mainnet_house_id = ""
+devnet_house_id = "DVon4aaDwtidYfqrvaGK5MsGotuYrzghvim6XBxkG1v2"
+onchain_program_id = "GENENMG1rQsT9FQ73rFx2AZ4vKwJtGfGaiodbnGwgb19"
+local_pck_path = "res://Gigs/gene_lotto_v0.02.pck"
+url_to_pck = ""
+folder_name = "GeneLotto"
+allow_campaign_creation = false
+metadata/_custom_type_script = "uid://djyqvwe53sm87"

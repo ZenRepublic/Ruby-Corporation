@@ -18,7 +18,7 @@
 [ext_resource type="Script" uid="uid://d0lkrs2tp2u3n" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/Assets/nft_display_system.gd" id="13_04n86"]
 [ext_resource type="PackedScene" uid="uid://btmj6a3kagg46" path="res://Scripts/Web3/UIAssets/DisplayableNFTButton.tscn" id="14_1fngh"]
 [ext_resource type="Texture2D" uid="uid://bpt1e8u1buonk" path="res://Textures/BrandingAssets/whosthatrubian.png" id="15_vhta4"]
-[ext_resource type="Script" uid="uid://cvjs0lluew8kq" path="res://addons/SolanaSDK/Scripts/NFTGating/token_button_lock.gd" id="16_wxc1a"]
+[ext_resource type="Script" uid="uid://cvjs0lluew8kq" path="res://addons/SolanaSDK/Scripts/Utility/TokenGating/token_button_lock.gd" id="16_wxc1a"]
 [ext_resource type="Script" uid="uid://8d53ge4w5ku7" path="res://Scripts/DropGameKit/CampaignManagement/PlayerSelection/token_campaign_player_manager.gd" id="17_rx0vm"]
 [ext_resource type="Texture2D" uid="uid://dkyfoudbohuqq" path="res://addons/SolanaSDK/Textures/missingicon.png" id="18_efkil"]
 [ext_resource type="Script" uid="uid://bw7bp5xiv4j8l" path="res://Scripts/DropGameKit/Leaderboard/campaign_leaderboard.gd" id="19_gxged"]
@@ -260,7 +260,7 @@ layout_mode = 2
 theme_override_constants/separation = 25
 
 [node name="CollectionVisual" type="TextureRect" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails"]
-custom_minimum_size = Vector2(225, 256)
+custom_minimum_size = Vector2(180, 180)
 layout_mode = 2
 texture = ExtResource("7_7240g")
 expand_mode = 3
@@ -647,7 +647,6 @@ lock_active = false
 locked_text = "NEED SOL"
 
 [node name="TokenPlayerOverview" type="PanelContainer" parent="Content/Interactor/Content" node_paths=PackedStringArray("mode_screen_manager", "balance_displayable", "price_displayable", "price_label", "play_button")]
-visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jhlh1")
 script = ExtResource("17_rx0vm")

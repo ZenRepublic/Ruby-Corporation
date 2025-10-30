@@ -126,6 +126,13 @@ func start_game() -> void:
 		#if !end_game_tx_data.is_successful():
 			#return
 		#force_end_previous_game=false
+		
+	#	check if the game is fully onchain. if so, skip starting game here. VERY ROUGH
+#	BETTER SOLUTION: CHECK IF ORACLE IS ON CURVE. if on curve, means a pubkey (server oracle). if off-curve its a PDA from custom program
+	var menu_manager:MenuManager = get_tree().get_first_node_in_group("MenuManager")
+	if menu_manager.gig_overview.active_gig.is_foc():
+		game_start()
+		return
 	
 	var tx_data:TransactionData = await ClubhouseProgram.start_game(campaign_data["house"],oracle,campaign_key,reward_mint,game_data,force_end_previous_game)
 	if tx_data.is_successful():

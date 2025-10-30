@@ -18,7 +18,6 @@ func _ready() -> void:
 		
 func setup_gig(gig:ClubhouseGig) -> void:
 	active_gig = gig
-	var is_admin:bool = await ClubhouseProgram.utils.is_admin(SolanaService.wa)
 	create_campaign_button.visible = active_gig.allow_campaign_creation
 	
 #	try to override by checking admin rights if creation not allowed

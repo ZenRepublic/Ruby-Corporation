@@ -9,6 +9,9 @@ class_name ClubhouseGig
 @export var mainnet_house_id:String
 @export var devnet_house_id:String
 
+#if the gig is fully onchain and has its own program handling start/end and the full logic
+@export var onchain_program_id:String
+
 @export var local_pck_path:String
 @export var url_to_pck:String
 
@@ -25,6 +28,14 @@ func get_url_or_path(local:bool) -> String:
 		if response.has("error"):
 			return url_to_pck
 		return response["body"]["link"]
+		
+func is_foc() -> bool:
+	return onchain_program_id.length() > 0
+		
+func get_onchain_program_id() -> Pubkey:
+	if onchain_program_id == "":
+		return null
+	return Pubkey.new_from_string(onchain_program_id)
 		
 func get_config_path() -> String:
 	return "res://%s/_GigMakerSDK/gig_config.json" % folder_name

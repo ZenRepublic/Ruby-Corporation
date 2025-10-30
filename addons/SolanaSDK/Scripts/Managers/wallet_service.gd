@@ -90,7 +90,10 @@ func get_pubkey() -> Pubkey:
 	else:
 		return wallet_adapter.get_connected_key()
 	
-func get_kp():
+func get_kp(session:bool=false):
+	if session:
+		return session_keypair
+		
 	if use_generated:
 		return keypair
 	else:
@@ -119,9 +122,6 @@ func init_session_keypair(keypair:Keypair=null, override_existing:bool=false) ->
 		keypair = Keypair.new_random()
 		
 	session_keypair = keypair
-	
-func get_session_kp() -> Keypair:
-	return session_keypair
 	
 func start_session(target_program:Pubkey, initial_top_up_amount:float=0.0,duration_in_minutes:int=120) -> SessionKey:
 	if session_keypair == null:
