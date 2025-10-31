@@ -71,8 +71,6 @@ func start_game() -> void:
 		game_start()
 		return
 	
-	print("BOOOM")
-	return	
 	var tx_data:TransactionData = await ClubhouseProgram.start_game(campaign_data["house"],oracle,campaign_key,reward_mint,game_data,force_end_previous_game)
 	if tx_data.is_successful():
 		game_start()

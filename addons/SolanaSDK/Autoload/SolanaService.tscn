@@ -35,7 +35,7 @@ wallet_adapter_scn = ExtResource("3_38cwu")
 mobile_blockchain = 1
 mobile_identity_uri = "https://rubycorp.lol"
 mobile_identity_name = "Ruby Corporation"
-mobile_icon_path = "res://Textures/BrandingAssets/LogoSquare.png"
+mobile_icon_path = "index.icon.png"
 
 [node name="SessionKeyManager" type="Node" parent="WalletService"]
 script = ExtResource("4_wfwmi")
