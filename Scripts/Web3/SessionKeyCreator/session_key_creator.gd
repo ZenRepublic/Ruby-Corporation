@@ -15,10 +15,16 @@ func _ready() -> void:
 func setup_session_creator(program_key:Pubkey) -> void:
 	session_program = program_key
 
+#func setup_session() -> void:
+	#var session_key:SessionKey = await SolanaService.wallet.start_session(session_program,sol_top_up_amount,duration_in_minutes)
+##	the job is finished, session key created. move on
+	#on_choice_made.emit(session_key!=null)
+	#
+	#if session_key!=null:
+		#queue_free()
+		
 func setup_session() -> void:
-	var session_key:SessionKey = await SolanaService.wallet.start_session(session_program,sol_top_up_amount,duration_in_minutes)
+	#var session_key:SessionKey = await SolanaService.wallet.start_session(session_program,sol_top_up_amount,duration_in_minutes)
 #	the job is finished, session key created. move on
-	on_choice_made.emit(session_key!=null)
-	
-	if session_key!=null:
-		queue_free()
+	on_choice_made.emit(true)
+	queue_free()

@@ -21,7 +21,6 @@
 
 [node name="SolanaService" type="Node"]
 script = ExtResource("1_hwc3u")
-rpc_cluster = 1
 mainnet_rpc = "https://api.mainnet-beta.solana.com"
 devnet_rpc = "https://api.devnet.solana.com"
 magicblock_rpc = "https://devnet.magicblock.app/"
@@ -29,11 +28,14 @@ honeycomb_rpc = "https://rpc.test.honeycombprotocol.com/"
 
 [node name="WalletService" type="Node" parent="."]
 script = ExtResource("5_f327g")
-use_generated = true
 custom_wallet_path = "C:\\Users\\Thomas\\Desktop\\kp\\dev2gUnXyMLh6WyV9NTBaXeNfo1DTn2R4b69VTGNidF.json"
 wallet_adapter_scn = ExtResource("3_38cwu")
 
 [node name="WalletAdapter" type="WalletAdapter" parent="WalletService"]
+mobile_blockchain = 1
+mobile_identity_uri = "https://rubycorp.lol"
+mobile_identity_name = "Ruby Corporation"
+mobile_icon_path = "res://Textures/BrandingAssets/LogoSquare.png"
 
 [node name="SessionKeyManager" type="Node" parent="WalletService"]
 script = ExtResource("4_wfwmi")

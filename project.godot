@@ -34,6 +34,7 @@ ClubhouseProgram="*res://Scripts/DropGameKit/Core/ClubhouseProgram.tscn"
 RubianServer="*res://Scripts/RubianServer/RubianServer.tscn"
 HttpRequestHandler="*res://addons/SolanaSDK/Autoload/HttpRequestHandler.tscn"
 AutoloadBridge="*res://Scripts/DropGameKit/Utility/AutoloadBridge/AutoloadBridge.tscn"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [display]
 
@@ -47,7 +48,7 @@ mouse_cursor/custom_image_hotspot=Vector2(5, 13)
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/LineRenderer/plugin.cfg", "res://addons/PaletteTools/plugin.cfg", "res://addons/SolanaSDK/plugin.cfg", "res://addons/advanced_radial_menu/plugin.cfg", "res://addons/custom_theme_overrides/plugin.cfg", "res://addons/onscreenkeyboard/plugin.cfg", "res://addons/richtext2/plugin.cfg", "res://addons/texture_button_colored/plugin.cfg")
+enabled=PackedStringArray("res://addons/LineRenderer/plugin.cfg", "res://addons/PaletteTools/plugin.cfg", "res://addons/SolanaSDK/plugin.cfg", "res://addons/advanced_radial_menu/plugin.cfg", "res://addons/custom_theme_overrides/plugin.cfg", "res://addons/onscreenkeyboard/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/richtext2/plugin.cfg", "res://addons/texture_button_colored/plugin.cfg")
 
 [gui]
 
