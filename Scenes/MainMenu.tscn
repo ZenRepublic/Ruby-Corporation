@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://dmdb8dbmov2cl"]
+[gd_scene load_steps=64 format=3 uid="uid://dmdb8dbmov2cl"]
 
 [ext_resource type="Script" uid="uid://uxfmmvq5egiv" path="res://Scripts/Menu/menu_manager.gd" id="1_l0w8j"]
 [ext_resource type="AudioStream" uid="uid://bj4v18wnuvk8g" path="res://Sounds/Music/RubyCorporationTheme.mp3" id="2_3qfoj"]
@@ -25,13 +25,13 @@
 [ext_resource type="Script" uid="uid://cdouwnr2k06gk" path="res://addons/SolanaSDK/Scripts/Utility/DisplaySystems/page_loader.gd" id="19_s07dd"]
 [ext_resource type="Texture2D" uid="uid://gptwby1tvc0b" path="res://Textures/Icons/Arrow.png" id="20_i5uv2"]
 [ext_resource type="Resource" uid="uid://bmg3lqei2j5ka" path="res://Scripts/DropGameKit/GigManagement/Resources/LaunchingSoon.tres" id="20_y41we"]
-[ext_resource type="PackedScene" uid="uid://bhs8y0gy5c3db" path="res://Scenes/PurchaseRubyScreen.tscn" id="20_ydj5n"]
 [ext_resource type="Resource" uid="uid://8mk52w26ex84" path="res://Scripts/DropGameKit/GigManagement/Resources/BigDiggas.tres" id="21_drl2p"]
 [ext_resource type="Texture2D" uid="uid://dekqdvjcc6wjf" path="res://Textures/LogosAndTokens/ruby_token_transparent.png" id="22_drl2p"]
 [ext_resource type="Script" uid="uid://dpnv1ypvj2p1e" path="res://Scripts/DropGameKit/GigManagement/house_selector.gd" id="22_jhlh1"]
 [ext_resource type="PackedScene" uid="uid://cecstunciplh3" path="res://Scripts/DropGameKit/HouseManagement/HouseDisplaySystem.tscn" id="23_oor3o"]
 [ext_resource type="Script" uid="uid://7q7s8ljh1dfh" path="res://addons/SolanaSDK/Scripts/Utility/TokenGating/address_button_lock.gd" id="24_h64ul"]
 [ext_resource type="PackedScene" uid="uid://ku1agbhqaohs" path="res://Scripts/DropGameKit/CampaignManagement/CampaignCreator/CampaignCreator.tscn" id="24_oor3o"]
+[ext_resource type="Texture2D" uid="uid://dnuhuf2jip50q" path="res://Textures/LogosAndTokens/rcc_token.png" id="25_grj4f"]
 [ext_resource type="Script" uid="uid://stjjh12o1oou" path="res://Scripts/DropGameKit/GigManagement/gig_loader_pck.gd" id="25_h64ul"]
 [ext_resource type="PackedScene" uid="uid://dxseqncx12gtl" path="res://Scripts/DropGameKit/GigManagement/GigDisplay.tscn" id="33_jhlh1"]
 [ext_resource type="Texture2D" uid="uid://cfdp484a5i7e6" path="res://Textures/BrandingAssets/banner1.png" id="34_y41we"]
@@ -44,6 +44,7 @@
 [ext_resource type="AudioStream" uid="uid://cunnj26stug8q" path="res://Sounds/UI/MainButtonSound.mp3" id="52_3qfoj"]
 [ext_resource type="AudioStream" uid="uid://bta85g154ui34" path="res://Sounds/UI/button_press_rich.mp3" id="53_jbkk3"]
 [ext_resource type="AudioStream" uid="uid://dbqxyr7v3x53b" path="res://Sounds/UI/checkmarksound.mp3" id="54_q0bdy"]
+[ext_resource type="PackedScene" uid="uid://btkua5ud2qvsw" path="res://Scenes/RCCInfoScreen.tscn" id="55_grj4f"]
 [ext_resource type="AudioStream" uid="uid://xoio1puhisej" path="res://Sounds/UI/errorsound.mp3" id="55_x734p"]
 [ext_resource type="AudioStream" uid="uid://b0vf2eljmdfgc" path="res://Sounds/UI/TransactionFailed.mp3" id="56_mbdwi"]
 [ext_resource type="AudioStream" uid="uid://dfmwym0j8y55n" path="res://Sounds/UI/returnsound.mp3" id="57_3y7mu"]
@@ -181,8 +182,8 @@ token_vault_scn = ExtResource("6_jvcv6")
 vault_button = NodePath("PanelContainer/MarginContainer/Buttons/VaultButton")
 campaigns_scn = ExtResource("7_h64ul")
 campaigns_button = NodePath("PanelContainer/MarginContainer/Buttons/CampaignsButton")
-buy_ruby_scn = ExtResource("20_ydj5n")
-buy_ruby_button = NodePath("PanelContainer/MarginContainer/Buttons/BuyRubyButton")
+buy_ruby_scn = ExtResource("55_grj4f")
+buy_ruby_button = NodePath("PanelContainer/MarginContainer/Buttons/InfoRCC")
 settings_screen = NodePath("../../SettingsScreen")
 settings_button = NodePath("PanelContainer/MarginContainer/Buttons/SettingsButton")
 
@@ -238,11 +239,21 @@ icon_alignment = 2
 expand_icon = true
 
 [node name="BuyRubyButton" type="Button" parent="Content/Header/PanelContainer/MarginContainer/Buttons"]
+visible = false
 custom_minimum_size = Vector2(220, 70)
 layout_mode = 2
 size_flags_vertical = 4
 text = "$RUBY"
 icon = ExtResource("22_drl2p")
+icon_alignment = 2
+expand_icon = true
+
+[node name="InfoRCC" type="Button" parent="Content/Header/PanelContainer/MarginContainer/Buttons"]
+custom_minimum_size = Vector2(220, 70)
+layout_mode = 2
+size_flags_vertical = 4
+text = "$RCC"
+icon = ExtResource("25_grj4f")
 icon_alignment = 2
 expand_icon = true
 

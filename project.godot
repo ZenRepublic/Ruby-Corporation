@@ -110,6 +110,8 @@ fonts={
 &"Hergiev": "res://Fonts/Hergiev.ttf",
 &"Jaywalk": "res://Fonts/Jaywalk.ttf",
 &"Kaph": "res://Fonts/Kaph-Regular.ttf",
+&"Nunito": "res://addons/phantom_camera/fonts/Nunito-Regular.ttf",
+&"Nunito-Black": "res://addons/phantom_camera/fonts/Nunito-Black.ttf",
 &"Roboto": "res://addons/onscreenkeyboard/customize/styles/Roboto/Roboto-Regular.ttf",
 &"Roboto-Black": "res://addons/onscreenkeyboard/customize/styles/Roboto/Roboto-Black.ttf",
 &"Roboto-BlackItalic": "res://addons/onscreenkeyboard/customize/styles/Roboto/Roboto-BlackItalic.ttf",

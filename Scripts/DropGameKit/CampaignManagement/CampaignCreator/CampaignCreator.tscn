@@ -478,6 +478,7 @@ text = "* If set for the future, your campaign will still be visible to the work
 autowrap_mode = 2
 
 [node name="PlayerSettings" type="VBoxContainer" parent="Content/CreatorScreen/Content"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 50
@@ -737,7 +738,6 @@ max_value = 1440.0
 allow_zero = false
 
 [node name="RewardsSettings" type="VBoxContainer" parent="Content/CreatorScreen/Content"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -952,7 +952,6 @@ theme = ExtResource("3_if3s2")
 text = "0.0002"
 placeholder_text = "Enter amount..."
 alignment = 1
-editable = false
 script = ExtResource("18_j2cfb")
 input_type = 2
 max_value = -1.0

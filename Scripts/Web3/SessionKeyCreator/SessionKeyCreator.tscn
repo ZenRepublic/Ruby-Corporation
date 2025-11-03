@@ -9,12 +9,12 @@
 [sub_resource type="RichTextEffect" id="RichTextEffect_rfuem"]
 resource_name = "fader"
 script = ExtResource("3_7rn8j")
-metadata/rt = 2463532928792
+metadata/rt = 2533980459595
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_fw6gj"]
 resource_name = "sin"
 script = ExtResource("4_g5j3f")
-metadata/rt = 2463532928792
+metadata/rt = 2533980459595
 
 [node name="SessionKeyCreator" type="CanvasLayer" node_paths=PackedStringArray("create_button")]
 layer = 98

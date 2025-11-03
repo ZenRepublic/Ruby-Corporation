@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=3 uid="uid://btkua5ud2qvsw"]
+
+[ext_resource type="Texture2D" uid="uid://cutqcutvdw8p6" path="res://Textures/BrandingAssets/image221.png" id="1_fsy6c"]
+[ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="2_78wct"]
+[ext_resource type="Script" uid="uid://c50bma6jrp4nc" path="res://Scripts/SoundManagement/sfx_manager.gd" id="4_r4sx4"]
+[ext_resource type="AudioStream" uid="uid://cm278a24mieti" path="res://Sounds/UI/slideradjusts.mp3" id="5_xrth5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wux1o"]
+bg_color = Color(0, 0.443137, 0.439216, 0.960784)
+
+[node name="RCCInfoScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wux1o")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 40
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Container"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+texture = ExtResource("1_fsy6c")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="MarginContainer/Container"]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+theme = ExtResource("2_78wct")
+theme_type_variation = &"HeaderMedium"
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+text = "$RCC CAMPAIGN IS LIVE!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Explanation" type="Label" parent="MarginContainer/Container"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme = ExtResource("2_78wct")
+text = "$RCC is a non-tradable utility token of Ruby Corporation, which you can earn by participating in gigs. And, unlike traditional point systems, you keep the tokens in your wallet.
+
+At the end of campaign, you will be able to exchange $RCC into cool partner prizes!
+
+More info: @RubyCorporation on X"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BuyButton" type="Button" parent="MarginContainer/Container"]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_78wct")
+text = "UNDERSTOOD!"
+icon_alignment = 2
+expand_icon = true
+
+[node name="SFXManager" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
+script = ExtResource("4_r4sx4")
+audio_player = NodePath("AudioStreamPlayer")
+sound_library = {
+"Slider": ExtResource("5_xrth5")
+}
+pitch_range = Vector2(0.9, 1.2)
+metadata/_custom_type_script = "uid://c50bma6jrp4nc"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SFXManager"]
+
+[connection signal="pressed" from="MarginContainer/Container/BuyButton" to="." method="queue_free"]
