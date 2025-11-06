@@ -169,6 +169,7 @@ func create_timeout_timer() -> Timer:
 
 func sign_transaction_serialized(tx_bytes:PackedByteArray, signer, all_needed_signers:Array) -> Transaction:
 	var transaction:Transaction = Transaction.new_from_bytes(tx_bytes)
+	on_tx_create_start.emit()
 	add_child(transaction)
 	transaction.set_signers(all_needed_signers)
 	

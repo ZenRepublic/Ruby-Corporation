@@ -90,9 +90,9 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme = ExtResource("2_liuad")
 theme_override_font_sizes/font_size = 24
-text = "When you participate in a Staked Token Campaign, your tokens get locked up until the campaign expires.
+text = "When you participate in a Staked Token Campaign, your tokens get locked up until it expires.
 
-Here you can track all of your staked tokens and withdraw them when the time comes!"
+Track all of your staked tokens and withdraw them when the time comes!"
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -142,11 +142,10 @@ theme_type_variation = &"ButtonFlat"
 text = "REFRESH"
 
 [node name="NoVaultsOverlay" type="Label" parent="Content/VaultDisplay/Content/VaultsDisplaySystem"]
-visible = false
 layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_liuad")
-text = "No STAKE VAULTS FOUND..."
+text = "No Vaults found..."
 horizontal_alignment = 1
 vertical_alignment = 1
 

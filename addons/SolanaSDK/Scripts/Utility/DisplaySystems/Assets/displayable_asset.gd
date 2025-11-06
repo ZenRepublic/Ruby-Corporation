@@ -12,6 +12,8 @@ class_name DisplayableAsset
 @export var select_button:BaseButton
 @export var unavailable_overlay:Control
 
+@export var inspect_button:LinkedButton
+
 @export_category("Displayable Token Settings")
 @export var balance_label:NumberLabel
 @export var auto_load_balance:bool
@@ -55,8 +57,12 @@ func set_data(asset:WalletAsset) -> void:
 			balance_label.set_value(await token.get_balance())
 		if auto_load_balance:
 			SolanaService.transaction_manager.on_tx_finish.connect(update_balance)
-	elif asset is Nft:
-		var nft = asset as Nft
+		
+	if inspect_button!=null:
+		if asset is Token:
+			inspect_button.link = SolanaService.account_inspector.get_inspect_link(asset.mint,AccountInspector.InspectSite.DEXSCREENER)
+		elif asset is Nft or asset is CoreAsset:
+			inspect_button.link = SolanaService.account_inspector.get_inspect_link(asset.mint,AccountInspector.InspectSite.TENSOR)
 		
 	on_data_loaded.emit()
 		
@@ -131,3 +137,4 @@ func set_interactive(interactive:bool) -> void:
 		select_button.disabled = !interactive
 	if unavailable_overlay!=null:
 		unavailable_overlay.visible = !interactive
+		

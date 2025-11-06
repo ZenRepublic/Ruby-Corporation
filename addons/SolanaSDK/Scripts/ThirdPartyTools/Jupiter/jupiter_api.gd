@@ -33,7 +33,9 @@ func get_swap_quote(token_to_send:Pubkey,token_to_receive:Pubkey,amount_to_send:
 	var slippage:String = "slippageBps="+str(percentage_to_bps(slippage_percentage))
 
 	var quote_slug:String = "quote?%s&%s&%s&%s" % [input_mint,output_mint,amount,slippage]
-	var response:Dictionary = await HttpRequestHandler.send_get_request(JUP_QUOTE_API+quote_slug)
+	
+	var custom_headers = ["Accept-Encoding: identity"]
+	var response:Dictionary = await HttpRequestHandler.send_get_request(JUP_QUOTE_API+quote_slug,true,custom_headers)
 	if response.has("error"):
 		return {}
 		
@@ -47,23 +49,26 @@ func get_swap_quote(token_to_send:Pubkey,token_to_receive:Pubkey,amount_to_send:
 	return quote
 	
 func swap_token(payer:Pubkey,swap_quote:Dictionary) -> TransactionData:
-	var headers:Array = ["Content-type: application/json"]
+	var headers:Array = ["Content-type: application/json","Accept-Encoding: identity"]
 	var body:Dictionary = {
 		"quoteResponse":swap_quote,
 		"userPublicKey":payer.to_string(),
+		"asLegacyTransaction":true
 		#"wrapAndUnwrapSol":true
 	}
 	var response:Dictionary = await HttpRequestHandler.send_post_request(JSON.stringify(body),headers,JUP_SWAP_API)
 	var serialized_tx_data:PackedByteArray = SolanaUtils.bs64_decode(response["body"]["swapTransaction"])
 	var priority_fee:float = response["body"]["prioritizationFeeLamports"]
 	#return null
+	
 	var transaction:Transaction = await SolanaService.transaction_manager.sign_transaction_serialized(serialized_tx_data,SolanaService.wallet.get_kp(),[SolanaService.wallet.get_kp()])
 	var tx_data:TransactionData = await SolanaService.transaction_manager.send_transaction(transaction)
 	return tx_data
 
 func get_token_data(token_mint:Pubkey) -> Dictionary:
 	var query:String = "%s/search?query=%s" % [JUP_TOKEN_API,token_mint.to_string()]
-	var response:Dictionary = await HttpRequestHandler.send_get_request(query)
+	var custom_headers = ["Accept-Encoding: identity"]
+	var response:Dictionary = await HttpRequestHandler.send_get_request(query,true,custom_headers)
 	if response.has("error"):
 		response
 	return response["body"][0]
@@ -87,8 +92,9 @@ func get_token_unit_price(mints:Array[Pubkey]) -> float:
 	#var vs_token:String = ""
 	#if price_against!=null:
 		#vs_token = "&vsToken="+price_against.to_string()
-		
-	var response:Dictionary = await HttpRequestHandler.send_get_request(JUP_PRICE_API+ids)
+	
+	var custom_headers = ["Accept-Encoding: identity"]
+	var response:Dictionary = await HttpRequestHandler.send_get_request(JUP_PRICE_API+ids,true,custom_headers)
 	if response.has("error"):
 		return 0
 		

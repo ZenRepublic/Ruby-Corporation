@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cjwr2xtkisliq"]
+[gd_scene load_steps=37 format=3 uid="uid://cjwr2xtkisliq"]
 
 [ext_resource type="Script" uid="uid://bxv3munf54u31" path="res://Scripts/DropGameKit/CampaignManagement/campaign_details.gd" id="1_g312w"]
 [ext_resource type="Theme" uid="uid://ds48g7imsbnvb" path="res://RubyCorpTheme.tres" id="1_x8pmv"]
@@ -64,6 +64,11 @@ func show_inspect_button() -> void:
 		tensor_button.link = SolanaService.account_inspector.get_inspect_link(gate_displayable.asset.mint,AccountInspector.InspectSite.TENSOR)
 		tensor_button.visible=true
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my0ny"]
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.0352941, 0.0627451, 0.054902, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vuurv"]
 bg_color = Color(0.00392157, 0.235294, 0.231373, 1)
@@ -195,9 +200,9 @@ script = ExtResource("5_nk60q")
 campaign_name_label = NodePath("Content/Details/NameContainer/Label")
 gate_displayable = NodePath("Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails/CollectionContainer")
 manager_displayable = NodePath("Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails/CampaignOwner")
-reward_token_displayable = NodePath("Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/TokenDetails/Treasury/TreasuryContainer")
-max_reward_displayable = NodePath("Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/TokenDetails/MaxReward/MaxRewardContainer")
-max_reward_label = NodePath("Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/TokenDetails/MaxReward/MaxRewardContainer/RewardLabel")
+reward_token_displayable = NodePath("Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/CampaignReward")
+max_reward_displayable = NodePath("Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/TokenDetails/MaxReward/MaxRewardContainer")
+max_reward_label = NodePath("Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/TokenDetails/MaxReward/MaxRewardContainer/RewardLabel")
 campaign_timer = NodePath("Content/Details/CampaignDetails/MarginContainer/VBoxContainer/CampaignTimer")
 campaign_expired_panel = NodePath("Content/MineClosedPanel")
 not_logged_in_panel = NodePath("Content/NotLoggedInPanel")
@@ -260,7 +265,7 @@ layout_mode = 2
 theme_override_constants/separation = 25
 
 [node name="CollectionVisual" type="TextureRect" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails"]
-custom_minimum_size = Vector2(180, 180)
+custom_minimum_size = Vector2(144, 144)
 layout_mode = 2
 texture = ExtResource("7_7240g")
 expand_mode = 3
@@ -268,22 +273,43 @@ stretch_mode = 5
 
 [node name="CampaignDetails" type="VBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 
-[node name="CollectionContainer" type="VBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails" node_paths=PackedStringArray("visual", "name_label")]
+[node name="CampaignOwner" type="HBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails" node_paths=PackedStringArray("name_label")]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+script = ExtResource("8_od8kp")
+name_label = NodePath("OwnerName")
+
+[node name="OwnerLabel" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails/CampaignOwner"]
+layout_mode = 2
+theme = ExtResource("1_x8pmv")
+theme_type_variation = &"LabelInverted"
+text = "Manager:"
+
+[node name="OwnerName" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails/CampaignOwner"]
+layout_mode = 2
+theme = ExtResource("1_x8pmv")
+theme_type_variation = &"LabelSpecial"
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+text = "ANON"
+
+[node name="CollectionContainer" type="HBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails" node_paths=PackedStringArray("visual", "name_label")]
 layout_mode = 2
 theme_override_constants/separation = 10
 script = ExtResource("8_od8kp")
 visual = NodePath("../../CollectionVisual")
 image_size = 256
 name_label = NodePath("Details/CollectionName")
-max_name_length = 9
+max_name_length = 10
 
 [node name="Workers" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails/CollectionContainer"]
 layout_mode = 2
 theme = ExtResource("1_x8pmv")
 theme_type_variation = &"LabelInverted"
-text = "Workers "
+text = "Players:"
 
 [node name="Details" type="HBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails/CollectionContainer"]
 layout_mode = 2
@@ -307,6 +333,7 @@ tensor_button = NodePath("TensorButton")
 dexscreener_button = NodePath("DexScreenerButton")
 
 [node name="TensorButton" type="TextureButton" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails/CollectionContainer/Details/InspectLinkContainer" node_paths=PackedStringArray("button")]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("9_my0ny")
 texture_pressed = ExtResource("9_my0ny")
@@ -319,7 +346,6 @@ script = ExtResource("10_u850w")
 button = NodePath(".")
 
 [node name="DexScreenerButton" type="TextureButton" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails/CollectionContainer/Details/InspectLinkContainer" node_paths=PackedStringArray("button")]
-visible = false
 layout_mode = 2
 texture_normal = ExtResource("11_l6h1v")
 texture_pressed = ExtResource("11_l6h1v")
@@ -331,112 +357,137 @@ stretch_mode = 5
 script = ExtResource("10_u850w")
 button = NodePath(".")
 
-[node name="LinksContainer" type="HBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 10
-script = ExtResource("8_od8kp")
-
-[node name="CampaignOwner" type="VBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails" node_paths=PackedStringArray("name_label")]
-layout_mode = 2
-theme_override_constants/separation = 10
-script = ExtResource("8_od8kp")
-name_label = NodePath("OwnerName")
-
-[node name="OwnerLabel" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails/CampaignOwner"]
-layout_mode = 2
-theme = ExtResource("1_x8pmv")
-theme_type_variation = &"LabelInverted"
-text = "Manager "
-
-[node name="OwnerName" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/MainDetails/CampaignDetails/CampaignOwner"]
-layout_mode = 2
-theme = ExtResource("1_x8pmv")
-theme_type_variation = &"LabelSpecial"
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-text = "ANON"
-
 [node name="TokenDetails" type="PanelContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="TokenDetails" type="HBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer"]
+[node name="Rewards" type="VBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CampaignReward" type="HBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards" node_paths=PackedStringArray("visual", "symbol_label", "inspect_button", "balance_label")]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+script = ExtResource("8_od8kp")
+visual = NodePath("../TokenDetails/Treasury/TreasuryContainer/TokenVisual")
+symbol_label = NodePath("tokensymbol")
+inspect_button = NodePath("DexScreenerButton2")
+balance_label = NodePath("../TokenDetails/Treasury/TreasuryContainer/TokensLabel")
+
+[node name="OwnerLabel" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/CampaignReward"]
+layout_mode = 2
+theme = ExtResource("1_x8pmv")
+theme_type_variation = &"LabelInverted"
+text = "Reward Token:"
+
+[node name="tokensymbol" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/CampaignReward"]
+layout_mode = 2
+theme = ExtResource("1_x8pmv")
+theme_type_variation = &"LabelSpecial"
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+text = "$ZENNY"
+
+[node name="DexScreenerButton2" type="TextureButton" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/CampaignReward" node_paths=PackedStringArray("button")]
+visible = false
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture_normal = ExtResource("11_l6h1v")
+texture_pressed = ExtResource("11_l6h1v")
+texture_hover = ExtResource("11_l6h1v")
+texture_disabled = ExtResource("11_l6h1v")
+texture_focused = ExtResource("11_l6h1v")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("10_u850w")
+button = NodePath(".")
+
+[node name="Spacer" type="PanelContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_my0ny")
+
+[node name="TokenDetails" type="HBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards"]
 layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="Treasury" type="VBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/TokenDetails"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="TokensInTreasury" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/TokenDetails/Treasury"]
-layout_mode = 2
-theme = ExtResource("1_x8pmv")
-theme_type_variation = &"LabelInverted"
-theme_override_font_sizes/font_size = 28
-text = "Rewards Left"
-
-[node name="TreasuryContainer" type="HBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/TokenDetails/Treasury" node_paths=PackedStringArray("visual", "balance_label")]
-layout_mode = 2
-theme_override_constants/separation = 10
-script = ExtResource("8_od8kp")
-visual = NodePath("TokenVisual")
-image_size = 256
-balance_label = NodePath("TokensLabel")
-
-[node name="TokenVisual" type="TextureRect" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/TokenDetails/Treasury/TreasuryContainer"]
+[node name="TextureRect" type="TextureRect" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/TokenDetails"]
+visible = false
 layout_mode = 2
 texture = ExtResource("9_i2yqr")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="TokensLabel" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/TokenDetails/Treasury/TreasuryContainer"]
-layout_mode = 2
-theme = ExtResource("1_x8pmv")
-theme_type_variation = &"HeaderSmall"
-theme_override_font_sizes/font_size = 50
-text = "100M"
-script = ExtResource("10_6muqw")
-format_mode = 1
-decimal_amount = 1
-
-[node name="MaxReward" type="VBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/TokenDetails"]
+[node name="MaxReward" type="VBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/TokenDetails"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="MaxReward" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/TokenDetails/MaxReward"]
+[node name="MaxReward" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/TokenDetails/MaxReward"]
 layout_mode = 2
 theme = ExtResource("1_x8pmv")
 theme_type_variation = &"LabelInverted"
 theme_override_font_sizes/font_size = 28
 text = "Max Reward"
 
-[node name="MaxRewardContainer" type="HBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/TokenDetails/MaxReward" node_paths=PackedStringArray("visual")]
+[node name="MaxRewardContainer" type="HBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/TokenDetails/MaxReward" node_paths=PackedStringArray("visual")]
 layout_mode = 2
 theme_override_constants/separation = 10
+alignment = 1
 script = ExtResource("8_od8kp")
 visual = NodePath("TokenVisual")
 image_size = 256
 
-[node name="TokenVisual" type="TextureRect" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/TokenDetails/MaxReward/MaxRewardContainer"]
+[node name="TokenVisual" type="TextureRect" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/TokenDetails/MaxReward/MaxRewardContainer"]
 layout_mode = 2
 texture = ExtResource("9_i2yqr")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="RewardLabel" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/TokenDetails/MaxReward/MaxRewardContainer"]
+[node name="RewardLabel" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/TokenDetails/MaxReward/MaxRewardContainer"]
 layout_mode = 2
 theme = ExtResource("1_x8pmv")
 theme_type_variation = &"HeaderSmall"
 theme_override_font_sizes/font_size = 50
 text = "50K"
+script = ExtResource("10_6muqw")
+format_mode = 1
+decimal_amount = 1
+
+[node name="Treasury" type="VBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/TokenDetails"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TokensInTreasury" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/TokenDetails/Treasury"]
+layout_mode = 2
+theme = ExtResource("1_x8pmv")
+theme_type_variation = &"LabelInverted"
+theme_override_font_sizes/font_size = 28
+text = "Tokens Left"
+
+[node name="TreasuryContainer" type="HBoxContainer" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/TokenDetails/Treasury"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TokenVisual" type="TextureRect" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/TokenDetails/Treasury/TreasuryContainer"]
+layout_mode = 2
+texture = ExtResource("9_i2yqr")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TokensLabel" type="Label" parent="Content/Interactor/Content/Details/CampaignDetails/MarginContainer/VBoxContainer/TokenDetails/MarginContainer/Rewards/TokenDetails/Treasury/TreasuryContainer"]
+layout_mode = 2
+theme = ExtResource("1_x8pmv")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 50
+text = "100M"
 script = ExtResource("10_6muqw")
 format_mode = 1
 decimal_amount = 1
