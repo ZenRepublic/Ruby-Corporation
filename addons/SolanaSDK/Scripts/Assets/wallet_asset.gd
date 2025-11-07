@@ -20,24 +20,27 @@ signal on_image_loaded
 
 func set_data(mint_address:Pubkey,metadata:MetaData,asset_data:Dictionary,asset_type:AssetManager.AssetType,autoload_image:bool=false,image_size:int=256) -> void:
 	mint = mint_address
-	print(asset_data)
 	self.metadata = metadata
 	#asset_name = metadata.get_token_name()
 	#symbol = metadata.get_symbol()
-	asset_name = asset_data["content"]["metadata"]["name"]
-	symbol = asset_data["content"]["metadata"]["symbol"]
 	self.asset_type = asset_type
 	
 	if asset_data.size()>0:
 		das_metadata = asset_data
 		uri = asset_data["content"]["json_uri"]
+		
 		offchain_metadata = asset_data["content"]["metadata"]
+		
+		if offchain_metadata.has("name"):
+			asset_name = offchain_metadata["name"]
+		if offchain_metadata.has("symbol"):
+			symbol = offchain_metadata["symbol"]
 
 		if asset_data["content"]["links"].has("image"):
 			offchain_metadata["image"] = asset_data["content"]["links"]["image"]
+			print(offchain_metadata["image"])
 	else:
-		#uri = metadata.get_uri()
-		uri = asset_data["content"]["json_uri"]
+		uri = metadata.get_uri()
 		if uri != null and uri.length() > 0:
 			offchain_metadata = await SolanaService.file_loader.load_token_metadata(uri)
 			if offchain_metadata.size() == 0:
