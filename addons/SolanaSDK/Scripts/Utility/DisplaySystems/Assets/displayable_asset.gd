@@ -137,4 +137,3 @@ func set_interactive(interactive:bool) -> void:
 		select_button.disabled = !interactive
 	if unavailable_overlay!=null:
 		unavailable_overlay.visible = !interactive
-		

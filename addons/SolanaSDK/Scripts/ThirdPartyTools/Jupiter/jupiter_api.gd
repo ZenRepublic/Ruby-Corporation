@@ -62,6 +62,9 @@ func swap_token(payer:Pubkey,swap_quote:Dictionary) -> TransactionData:
 	#return null
 	
 	var transaction:Transaction = await SolanaService.transaction_manager.sign_transaction_serialized(serialized_tx_data,SolanaService.wallet.get_kp(),[SolanaService.wallet.get_kp()])
+	if transaction == null:
+		return TransactionData.new({},{"error":"Transaction Cancelled by User.."})
+		
 	var tx_data:TransactionData = await SolanaService.transaction_manager.send_transaction(transaction)
 	return tx_data
 

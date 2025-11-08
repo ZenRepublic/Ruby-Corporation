@@ -34,6 +34,7 @@ func _ready() -> void:
 	
 func on_visibility_changed() -> void:
 	if self.visible:
+		print("VISIBLE")
 		await refresh_candy_machine_data()
 			
 func refresh_candy_machine_data() -> void:		

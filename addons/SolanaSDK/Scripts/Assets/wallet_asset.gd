@@ -21,8 +21,8 @@ signal on_image_loaded
 func set_data(mint_address:Pubkey,metadata:MetaData,asset_data:Dictionary,asset_type:AssetManager.AssetType,autoload_image:bool=false,image_size:int=256) -> void:
 	mint = mint_address
 	self.metadata = metadata
-	#asset_name = metadata.get_token_name()
-	#symbol = metadata.get_symbol()
+	asset_name = metadata.get_token_name()
+	symbol = metadata.get_symbol()
 	self.asset_type = asset_type
 	
 	if asset_data.size()>0:
@@ -38,7 +38,7 @@ func set_data(mint_address:Pubkey,metadata:MetaData,asset_data:Dictionary,asset_
 
 		if asset_data["content"]["links"].has("image"):
 			offchain_metadata["image"] = asset_data["content"]["links"]["image"]
-			print(offchain_metadata["image"])
+			
 	else:
 		uri = metadata.get_uri()
 		if uri != null and uri.length() > 0:
@@ -87,5 +87,4 @@ func get_collection_mint() -> Pubkey:
 	
 func get_asset_owner() -> Pubkey:
 	return null
-	
 	
