@@ -1,0 +1,469 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqivwue51d36x"]
+
+[ext_resource type="JSON" path="res://Scripts/GeneLotto/gene_lotto.json" id="1_sbgaw"]
+
+[node name="GeneLotto" type="Node"]
+
+[node name="AnchorProgram" type="AnchorProgram" parent="."]
+pid = "GDProS92UnjiuvqSXth1hrhJu6orb9UysrDqRMZ6Z9pu"
+json_file = ExtResource("1_sbgaw")
+idl = {
+"accounts": [{
+"discriminator": [214.0, 139.0, 187.0, 48.0, 143.0, 183.0, 157.0, 113.0],
+"name": "GameSettings"
+}, {
+"discriminator": [144.0, 94.0, 208.0, 172.0, 248.0, 99.0, 134.0, 120.0],
+"name": "GameState"
+}],
+"address": "GDProS92UnjiuvqSXth1hrhJu6orb9UysrDqRMZ6Z9pu",
+"errors": [{
+"code": 6000.0,
+"msg": "Invalid argument provided.",
+"name": "InvalidArgument"
+}, {
+"code": 6001.0,
+"msg": "Cannot visit an invalid tile.",
+"name": "InvalidTileVisit"
+}, {
+"code": 6002.0,
+"msg": "Default column count cannot be 0.",
+"name": "InvalidDefaultColumnCount"
+}, {
+"code": 6003.0,
+"msg": "Row count can't be zero.",
+"name": "InvalidRowCount"
+}, {
+"code": 6004.0,
+"msg": "Starting lives cannot be zero.",
+"name": "InvalidStartingLives"
+}, {
+"code": 6005.0,
+"msg": "CRIT: Invalid tile type in state.",
+"name": "InvalidTileType"
+}, {
+"code": 6006.0,
+"msg": "Unsupported game state version.",
+"name": "UnsupportedVersion"
+}, {
+"code": 6007.0,
+"msg": "A VRF request is already pending.",
+"name": "RequestAlreadyPending"
+}, {
+"code": 6008.0,
+"msg": "No VRF request is pending.",
+"name": "NoRequestPending"
+}, {
+"code": 6009.0,
+"msg": "VRF callback does not match pending move.",
+"name": "VrfMoveMismatch"
+}, {
+"code": 6010.0,
+"msg": "VRF call failed.",
+"name": "VrfCallFailed"
+}, {
+"code": 6011.0,
+"msg": "Game Over.",
+"name": "GameOver"
+}, {
+"code": 6012.0,
+"msg": "Game already won.",
+"name": "GameWon"
+}],
+"instructions": [{
+"accounts": [{
+"address": "9irBy75QS2BN81FUgXuHcjqceJJRuc9oDkAe8TKVvvAw",
+"name": "vrf_program_identity",
+"signer": true
+}, {
+"name": "game_state",
+"writable": true
+}, {
+"address": "MagicContext1111111111111111111111111111111",
+"docs": ["CHECK"],
+"name": "magic_context",
+"optional": true,
+"writable": true
+}, {
+"address": "Magic11111111111111111111111111111111111111",
+"docs": ["CHECK"],
+"name": "magic_program",
+"optional": true
+}],
+"args": [{
+"name": "randomness",
+"type": {
+"array": ["u8", 32.0]
+}
+}, {
+"name": "move_no",
+"type": "u16"
+}],
+"discriminator": [218.0, 60.0, 26.0, 206.0, 35.0, 86.0, 211.0, 105.0],
+"name": "advance_callback"
+}, {
+"accounts": [{
+"name": "signer",
+"signer": true,
+"writable": true
+}, {
+"name": "game_state",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [103.0, 97.0, 109.0, 101.0, 95.0, 115.0, 116.0, 97.0, 116.0, 101.0]
+}, {
+"kind": "account",
+"path": "player"
+}]
+},
+"writable": true
+}, {
+"name": "oracle_queue",
+"writable": true
+}, {
+"name": "player"
+}, {
+"name": "program_identity",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [105.0, 100.0, 101.0, 110.0, 116.0, 105.0, 116.0, 121.0]
+}]
+}
+}, {
+"address": "Vrf1RNUjXmQGjmQrQLvJHs9SNkvDJEsRVFPkfSQUwGz",
+"name": "vrf_program"
+}, {
+"address": "SysvarS1otHashes111111111111111111111111111",
+"name": "slot_hashes"
+}, {
+"address": "11111111111111111111111111111111",
+"name": "system_program"
+}],
+"args": [{
+"name": "choice",
+"type": "u8"
+}],
+"discriminator": [92.0, 227.0, 13.0, 224.0, 246.0, 113.0, 184.0, 97.0],
+"name": "advance_with_choice"
+}, {
+"accounts": [{
+"name": "game_state",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [103.0, 97.0, 109.0, 101.0, 95.0, 115.0, 116.0, 97.0, 116.0, 101.0]
+}, {
+"kind": "account",
+"path": "player"
+}]
+},
+"writable": true
+}, {
+"name": "player",
+"signer": true
+}, {
+"name": "attestee"
+}],
+"args": [],
+"discriminator": [237.0, 236.0, 157.0, 201.0, 253.0, 20.0, 248.0, 67.0],
+"name": "close_game"
+}, {
+"accounts": [{
+"name": "game_settings",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [103.0, 97.0, 109.0, 101.0, 95.0, 115.0, 101.0, 116.0, 116.0, 105.0, 110.0, 103.0, 115.0]
+}]
+},
+"writable": true
+}, {
+"name": "user",
+"signer": true,
+"writable": true
+}, {
+"address": "11111111111111111111111111111111",
+"name": "system_program"
+}],
+"args": [{
+"name": "initial_column_count",
+"type": "u8"
+}, {
+"name": "row_count",
+"type": "u8"
+}, {
+"name": "starting_lives",
+"type": "u8"
+}, {
+"name": "use_rollup",
+"type": "bool"
+}, {
+"name": "minimum_tile_count",
+"type": {
+"array": ["u8", 3.0]
+}
+}, {
+"name": "remaining_tile_odds",
+"type": {
+"array": ["u32", 3.0]
+}
+}, {
+"name": "column_count_chances",
+"type": {
+"vec": {
+"defined": {
+"name": "ColumnCountChance"
+}
+}
+}
+}],
+"discriminator": [154.0, 175.0, 226.0, 158.0, 180.0, 104.0, 170.0, 16.0],
+"name": "set_game_settings"
+}, {
+"accounts": [{
+"name": "buffer_game_state",
+"pda": {
+"program": {
+"kind": "const",
+"value": [226.0, 12.0, 30.0, 180.0, 103.0, 48.0, 24.0, 122.0, 197.0, 63.0, 47.0, 90.0, 58.0, 125.0, 159.0, 157.0, 26.0, 236.0, 148.0, 12.0, 73.0, 234.0, 234.0, 76.0, 223.0, 72.0, 222.0, 64.0, 88.0, 164.0, 67.0, 74.0]
+},
+"seeds": [{
+"kind": "const",
+"value": [98.0, 117.0, 102.0, 102.0, 101.0, 114.0]
+}, {
+"kind": "account",
+"path": "game_state"
+}]
+},
+"writable": true
+}, {
+"name": "delegation_record_game_state",
+"pda": {
+"program": {
+"kind": "account",
+"path": "delegation_program"
+},
+"seeds": [{
+"kind": "const",
+"value": [100.0, 101.0, 108.0, 101.0, 103.0, 97.0, 116.0, 105.0, 111.0, 110.0]
+}, {
+"kind": "account",
+"path": "game_state"
+}]
+},
+"writable": true
+}, {
+"name": "delegation_metadata_game_state",
+"pda": {
+"program": {
+"kind": "account",
+"path": "delegation_program"
+},
+"seeds": [{
+"kind": "const",
+"value": [100.0, 101.0, 108.0, 101.0, 103.0, 97.0, 116.0, 105.0, 111.0, 110.0, 45.0, 109.0, 101.0, 116.0, 97.0, 100.0, 97.0, 116.0, 97.0]
+}, {
+"kind": "account",
+"path": "game_state"
+}]
+},
+"writable": true
+}, {
+"name": "game_state",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [103.0, 97.0, 109.0, 101.0, 95.0, 115.0, 116.0, 97.0, 116.0, 101.0]
+}, {
+"kind": "account",
+"path": "user"
+}]
+},
+"writable": true
+}, {
+"name": "game_settings",
+"pda": {
+"seeds": [{
+"kind": "const",
+"value": [103.0, 97.0, 109.0, 101.0, 95.0, 115.0, 101.0, 116.0, 116.0, 105.0, 110.0, 103.0, 115.0]
+}]
+}
+}, {
+"name": "user",
+"signer": true,
+"writable": true
+}, {
+"address": "11111111111111111111111111111111",
+"name": "system_program"
+}, {
+"address": "GDProS92UnjiuvqSXth1hrhJu6orb9UysrDqRMZ6Z9pu",
+"name": "owner_program"
+}, {
+"address": "DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh",
+"name": "delegation_program"
+}],
+"args": [],
+"discriminator": [249.0, 47.0, 252.0, 172.0, 184.0, 162.0, 245.0, 14.0],
+"name": "start_game"
+}],
+"metadata": {
+"description": "Created with Anchor",
+"name": "gene_lotto",
+"spec": "0.1.0",
+"version": "0.1.0"
+},
+"types": [{
+"name": "ColumnCountChance",
+"type": {
+"fields": [{
+"name": "column_count",
+"type": "u8"
+}, {
+"name": "basis_points",
+"type": "u16"
+}],
+"kind": "struct"
+}
+}, {
+"name": "GameConfig",
+"type": {
+"kind": "enum",
+"variants": [{
+"fields": [{
+"name": "initial_column_count",
+"type": "u8"
+}, {
+"name": "row_count",
+"type": "u8"
+}, {
+"name": "starting_lives",
+"type": "u8"
+}, {
+"name": "use_rollup",
+"type": "bool"
+}, {
+"name": "minimum_tile_count",
+"type": {
+"array": ["u8", 3.0]
+}
+}, {
+"name": "remaining_tile_odds",
+"type": {
+"array": ["u32", 3.0]
+}
+}, {
+"name": "column_count_chances",
+"type": {
+"vec": {
+"defined": {
+"name": "ColumnCountChance"
+}
+}
+}
+}],
+"name": "V1"
+}]
+}
+}, {
+"name": "GameSettings",
+"type": {
+"fields": [{
+"name": "bump",
+"type": "u8"
+}, {
+"name": "game_config",
+"type": {
+"defined": {
+"name": "GameConfig"
+}
+}
+}],
+"kind": "struct"
+}
+}, {
+"name": "GameState",
+"type": {
+"fields": [{
+"name": "bump",
+"type": "u8"
+}, {
+"name": "data",
+"type": {
+"defined": {
+"name": "GameStateData"
+}
+}
+}],
+"kind": "struct"
+}
+}, {
+"name": "GameStateData",
+"type": {
+"kind": "enum",
+"variants": [{
+"fields": [{
+"defined": {
+"name": "StandardGameV1"
+}
+}],
+"name": "StandardV1"
+}]
+}
+}, {
+"name": "StandardGameV1",
+"type": {
+"fields": [{
+"name": "lives",
+"type": "u8"
+}, {
+"name": "game_over",
+"type": "bool"
+}, {
+"name": "game_won",
+"type": "bool"
+}, {
+"name": "current_row",
+"type": "u8"
+}, {
+"name": "next_column_count",
+"type": "u8"
+}, {
+"name": "pending_choice",
+"type": {
+"option": "u8"
+}
+}, {
+"name": "max_columns",
+"type": "u8"
+}, {
+"name": "row_count",
+"type": "u8"
+}, {
+"name": "game_config",
+"type": {
+"defined": {
+"name": "GameConfig"
+}
+}
+}, {
+"name": "move_counter",
+"type": "u16"
+}, {
+"name": "pending_move",
+"type": {
+"option": "u16"
+}
+}, {
+"name": "pending_since_ts",
+"type": {
+"option": "i64"
+}
+}, {
+"name": "board",
+"type": "bytes"
+}],
+"kind": "struct"
+}
+}]
+}

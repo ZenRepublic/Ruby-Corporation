@@ -40,4 +40,10 @@ func get_asset_owner() -> Pubkey:
 	var owner_address:Pubkey = account_info["result"]["value"]["owner"]
 	return owner_address
 	
+func get_token_program() -> Pubkey:
+	if das_metadata.size() == 0 or !das_metadata.has("token_info"):
+		return null
+	
+	return Pubkey.new_from_string(das_metadata["token_info"]["token_program"])
+	
 	
